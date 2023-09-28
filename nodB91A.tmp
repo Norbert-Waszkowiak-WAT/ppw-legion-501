@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://b8kl60fulqq1u"]
+
+[ext_resource type="Texture2D" uid="uid://cir30xg2nfc10" path="res://pixil-frame-0.png" id="1_by0m7"]
+[ext_resource type="Script" path="res://player.gd" id="2_kcsxb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_noobk"]
+size = Vector2(146, 6)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pykxj"]
+size = Vector2(12, 16)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 18)
+shape = SubResource("RectangleShape2D_noobk")
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+script = ExtResource("2_kcsxb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+shape = SubResource("RectangleShape2D_pykxj")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
+
+[node name="player" type="Sprite2D" parent="CharacterBody2D"]
+texture_filter = 1
+texture = ExtResource("1_by0m7")
+
+[node name="Camera2D" type="Camera2D" parent="CharacterBody2D/player"]
+zoom = Vector2(5.485, 5.485)

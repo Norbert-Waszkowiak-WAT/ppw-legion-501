@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://b8kl60fulqq1u"]
+
+[ext_resource type="Texture2D" uid="uid://cir30xg2nfc10" path="res://pixil-frame-0.png" id="1_by0m7"]
+[ext_resource type="Script" path="res://player.gd" id="2_kcsxb"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="player" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_by0m7")
+script = ExtResource("2_kcsxb")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]

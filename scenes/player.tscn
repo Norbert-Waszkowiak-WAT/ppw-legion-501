@@ -1,29 +1,27 @@
 [gd_scene load_steps=4 format=3 uid="uid://b8kl60fulqq1u"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_xhwip"]
-[ext_resource type="Texture2D" uid="uid://c348l6vj3kdlk" path="res://player.png" id="2_pbwvc"]
+[ext_resource type="Texture2D" uid="uid://c348l6vj3kdlk" path="res://textures/test-player/player.png" id="2_pbwvc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pykxj"]
 size = Vector2(12, 16)
 
 [node name="player" type="Node2D"]
 
-[node name="Area2D" type="Area2D" parent="."]
-
-[node name="CharacterBody2D" type="CharacterBody2D" parent="Area2D"]
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 script = ExtResource("1_xhwip")
 jump_height = 24.0
 jump_descent = 0.4
 jump_peak = 0.5
 
-[node name="playerSprite" type="Sprite2D" parent="Area2D/CharacterBody2D"]
+[node name="playerSprite" type="Sprite2D" parent="CharacterBody2D"]
 texture_filter = 1
 texture = ExtResource("2_pbwvc")
 
-[node name="Camera2D" type="Camera2D" parent="Area2D/CharacterBody2D/playerSprite"]
+[node name="Camera2D" type="Camera2D" parent="CharacterBody2D/playerSprite"]
 zoom = Vector2(5.485, 5.485)
 position_smoothing_enabled = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D/CharacterBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 shape = SubResource("RectangleShape2D_pykxj")
 debug_color = Color(0, 0.6, 0.701961, 0.419608)

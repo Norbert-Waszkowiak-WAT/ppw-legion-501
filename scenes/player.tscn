@@ -10,9 +10,12 @@ size = Vector2(12, 16)
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 script = ExtResource("1_xhwip")
-jump_height = 24.0
-jump_descent = 0.4
-jump_peak = 0.5
+speed = 100.0
+acceleration = 8.0
+jump_height = 35.0
+jump_descent = 0.25
+jump_peak = 0.35
+metadata/_edit_group_ = true
 
 [node name="playerSprite" type="Sprite2D" parent="CharacterBody2D"]
 texture_filter = 1

@@ -30,6 +30,8 @@ func _physics_process(delta):
 	# Dodanie grawitacji
 	velocity.y += get_gravity() * delta
 	
+	dir = 0
+	
 	# Poruszanie się na boki
 	if Input.is_action_pressed("move_right"):
 		set_direction("right")

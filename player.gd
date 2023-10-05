@@ -17,7 +17,8 @@ var dir = 0.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	print("hello world")
+	var enemy = get_node("Level/enemy")
+	enemy.hit.connect(on_received_hit)
 	
 	# Wartości prędkości podczas skoku na podstawie równania rzutu pionowego
 	jump_speed = ((2.0 * jump_height) / jump_peak) * -1
@@ -65,6 +66,9 @@ func set_direction(direction):
 		"left":
 			dir = -1.0
 			scale.x = scale.y * -1
+
+func on_received_hit():
+	print("hit!")
 
 # Skok
 func jump():

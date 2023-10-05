@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+signal hit(damage)
+
 @export var speed = 25.0
 const GRAVITY = 200.0
 var dir = 0.0
@@ -21,6 +23,14 @@ func _physics_process(delta):
 	# Dodanie grawitacji
 	
 	velocity.x = dir * speed
+	
+	for i in get_slide_collision_count():
+		var collision = get_slide_collision(i)
+		if collision.get_collider_name() == "player":
+			hit.emit(1)
+	
+	
+	
 	# Obsługuje poruszanie i kolizję
 	move_and_slide()
 

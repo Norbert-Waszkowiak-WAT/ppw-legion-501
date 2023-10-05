@@ -6,9 +6,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pykxj"]
 size = Vector2(12, 16)
 
-[node name="player" type="Node2D"]
-
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+[node name="CharacterBody2D" type="CharacterBody2D"]
 script = ExtResource("1_xhwip")
 speed = 100.0
 acceleration = 8.0
@@ -17,14 +15,14 @@ jump_descent = 0.25
 jump_peak = 0.35
 metadata/_edit_group_ = true
 
-[node name="playerSprite" type="Sprite2D" parent="CharacterBody2D"]
+[node name="playerSprite" type="Sprite2D" parent="."]
 texture_filter = 1
 texture = ExtResource("2_pbwvc")
 
-[node name="Camera2D" type="Camera2D" parent="CharacterBody2D/playerSprite"]
+[node name="Camera2D" type="Camera2D" parent="playerSprite"]
 zoom = Vector2(5.485, 5.485)
 position_smoothing_enabled = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_pykxj")
 debug_color = Color(0, 0.6, 0.701961, 0.419608)

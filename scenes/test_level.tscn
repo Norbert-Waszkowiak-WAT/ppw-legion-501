@@ -1,5 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://jiyiuno0whkw"]
+[gd_scene load_steps=8 format=3 uid="uid://jiyiuno0whkw"]
 
+[ext_resource type="Script" path="res://scenes/test_level.gd" id="1_j0jb0"]
 [ext_resource type="Texture2D" uid="uid://utq8ojlddrce" path="res://textures/test-floor/floor.png" id="1_wlhax"]
 [ext_resource type="PackedScene" uid="uid://b8kl60fulqq1u" path="res://scenes/player.tscn" id="2_w8aub"]
 [ext_resource type="PackedScene" uid="uid://c53i7mvtd0bbx" path="res://scenes/enemy.tscn" id="3_r8es1"]
@@ -14,6 +15,8 @@ size = Vector2(5.9799, 90)
 size = Vector2(12, 89)
 
 [node name="Level" type="Node"]
+script = ExtResource("1_j0jb0")
+enemy_scene = ExtResource("3_r8es1")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 scale = Vector2(1.99, 1)
@@ -38,5 +41,8 @@ shape = SubResource("RectangleShape2D_pdojl")
 [node name="player" parent="." instance=ExtResource("2_w8aub")]
 position = Vector2(28, -16)
 
-[node name="enemy" parent="." instance=ExtResource("3_r8es1")]
-position = Vector2(-49, -9)
+[node name="spawnpoint" type="Marker2D" parent="."]
+position = Vector2(0, 3)
+
+[node name="enemy_spawnpoint" type="Marker2D" parent="."]
+position = Vector2(-40, -26)

@@ -13,6 +13,7 @@ script = ExtResource("1_gdrp6")
 texture_filter = 2
 position = Vector2(-0.5, 0)
 shape = SubResource("RectangleShape2D_vfotn")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
 
 [node name="Enemy" type="Sprite2D" parent="."]
 texture_filter = 3

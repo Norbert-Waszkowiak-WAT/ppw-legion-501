@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 @export var speed = 25.0
-@export var acceleration = 1.0
+@export var acceleration = 1.5
 
 const GRAVITY = 200.0
 var dir = 0.0

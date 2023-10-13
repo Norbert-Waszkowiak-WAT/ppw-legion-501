@@ -1,6 +1,8 @@
 extends CharacterBody2D
 
 @export var speed = 25.0
+@export var acceleration = 1.0
+
 const GRAVITY = 200.0
 var dir = 0.0
 
@@ -25,7 +27,7 @@ func _physics_process(delta):
 	velocity.y += delta * GRAVITY
 	
 	# Nadanie prędkości poziomej
-	velocity.x = dir * speed
+	velocity.x = dir * min(acceleration + abs(velocity.x), speed)
 	
 	# Obsługuje poruszanie i kolizję
 	move_and_slide()

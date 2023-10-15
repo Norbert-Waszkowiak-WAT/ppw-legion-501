@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://m1ky1srouq0c"]
+
+[ext_resource type="Texture2D" uid="uid://doh7kbiiclx15" path="res://textures/test-bronie/kij.png" id="1_d1afe"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_pdi31"]
+a = Vector2(11, -11)
+b = Vector2(0, 0)
+
+[node name="Stick" type="Node2D"]
+texture_filter = 1
+rotation = -0.120428
+
+[node name="detection_area" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detection_area"]
+shape = SubResource("SegmentShape2D_pdi31")
+one_way_collision_margin = 0.0
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
+
+[node name="stick" type="Sprite2D" parent="detection_area"]
+position = Vector2(4, -5)
+texture = ExtResource("1_d1afe")

@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://b8kl60fulqq1u"]
+[gd_scene load_steps=8 format=3 uid="uid://b8kl60fulqq1u"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_xhwip"]
 [ext_resource type="Texture2D" uid="uid://3wf6gg78jrf" path="res://textures/animated-player/ghost1.png" id="2_e1h0m"]
+[ext_resource type="PackedScene" uid="uid://m1ky1srouq0c" path="res://textures/test-bronie/stick.tscn" id="2_si5ai"]
 [ext_resource type="Texture2D" uid="uid://dm15wkrehblp5" path="res://textures/animated-player/ghost2.png" id="3_xkodq"]
 [ext_resource type="Texture2D" uid="uid://dwss7sxgcylxj" path="res://textures/animated-player/ghost3.png" id="4_oonk3"]
 
@@ -34,12 +35,14 @@ animations = [{
 }]
 
 [node name="CharacterBody2D2" type="CharacterBody2D"]
+position = Vector2(0, -3)
 script = ExtResource("1_xhwip")
 speed = 100.0
 acceleration = 8.0
 jump_height = 35.0
 jump_descent = 0.25
 jump_peak = 0.35
+stick_scene = ExtResource("2_si5ai")
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -58,3 +61,6 @@ sprite_frames = SubResource("SpriteFrames_lbsb1")
 animation = &"walk"
 frame = 1
 frame_progress = 0.961036
+
+[node name="stick_spawnpoint" type="Marker2D" parent="."]
+position = Vector2(7, 3)

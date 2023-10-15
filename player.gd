@@ -16,6 +16,7 @@ var fall_gravity
 # Kierunek poruszania się
 var dir = 0.0
 
+@export var stick_scene : PackedScene
 
 # | ============================================================================= |
 
@@ -67,7 +68,8 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		jump()
 
-
+	stick()
+	
 	# Obsługuje poruszanie i kolizję
 	move_and_slide()
 
@@ -117,4 +119,24 @@ func set_direction(direction):
 # Skok
 func jump():
 	velocity.y = jump_speed
+	
+func stick():
+	if Input.is_action_just_pressed("stick"):
+		spawn_stick($stick_spawnpoint.position)
+		hit()
+	#if Input.is_action_just_pressed("stick"):
+		
+		
+func spawn_stick(pos1):
+	# Tworzy nową instancję sceny z kijem
+	var stick = stick_scene.instantiate()
+	
+	# Ustawia położenie kija na wybraną
+	stick.position = pos1
+	
+	# Dodaje nowo utworzonego kija do sceny
+	add_child(stick)
 
+
+func hit():
+		print("Hit!")

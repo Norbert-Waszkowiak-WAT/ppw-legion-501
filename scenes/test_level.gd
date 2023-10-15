@@ -2,7 +2,6 @@ extends Node
 
 @export var enemy_scene : PackedScene
 
-
 # | ============================================================================= |
 
 
@@ -11,7 +10,6 @@ func _ready():
 	# Dodaje gracza i wroga
 	$player.spawn($spawnpoint.position)
 	spawn_enemy($enemy_spawnpoint.position)
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

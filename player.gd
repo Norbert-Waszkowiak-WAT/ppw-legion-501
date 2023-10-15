@@ -16,6 +16,11 @@ var fall_gravity
 # Kierunek poruszania się
 var dir = 0.0
 
+var health : float
+@export var MAX_HEALTH = 100.0
+
+@onready var sprite = get_node("AnimatedSprite2D")
+@onready var healthbar = get_node("CanvasLayer/healthbar")
 
 # | ============================================================================= |
 
@@ -30,11 +35,9 @@ func _ready():
 	jump_gravity = ((-2.0 * jump_height) / (jump_peak * jump_peak)) * -1
 	fall_gravity = ((-2.0 * jump_height) / (jump_descent * jump_descent)) * -1
 
-
-# Called every frame
+# Wywoływane podczas każdej klatki
 func _process(delta):
-	pass
-
+	healthbar.value = health
 
 # Obsługuje fizykę 
 func _physics_process(delta):
@@ -91,6 +94,7 @@ func enable_player():
 func spawn(pos):
 	position = pos
 	enable_player()
+	health = MAX_HEALTH
 	show()
 
 
@@ -108,10 +112,10 @@ func set_direction(direction):
 	match direction:
 		"right":
 			dir = 1.0
-			scale.x = scale.y * 1
+			sprite.scale.x = sprite.scale.y * 1
 		"left":
 			dir = -1.0
-			scale.x = scale.y * -1
+			sprite.scale.x = sprite.scale.y * -1
 
 
 # Skok

@@ -20,6 +20,7 @@ enemy_scene = ExtResource("3_r8es1")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 scale = Vector2(1.99, 1)
+collision_mask = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(1, 23)

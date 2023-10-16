@@ -44,10 +44,6 @@ func _physics_process(delta):
 	if is_on_floor():
 		velocity.x = dir * min(acceleration + abs(velocity.x), speed)
 	
-	# Test ataku
-	if Input.is_action_pressed("jump"):
-		apply_damage(10, 25, player.position)
-	
 	# Obsługuje poruszanie i kolizję
 	move_and_slide()
 

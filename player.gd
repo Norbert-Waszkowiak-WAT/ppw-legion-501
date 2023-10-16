@@ -12,6 +12,7 @@ extends CharacterBody2D
 # Kierunek poruszania się
 var dir = 0.0
 
+# Wartości życia
 var health : float
 @export var MAX_HEALTH = 100.0
 
@@ -33,6 +34,7 @@ func _ready():
 
 # Wywoływane podczas każdej klatki
 func _process(delta):
+	# Ustawia pasek życia na aktualną wartość życia
 	healthbar.value = health
 
 # Obsługuje fizykę 
@@ -54,10 +56,8 @@ func _physics_process(delta):
 	# Granie animacji chodzenia
 	if velocity.x != 0:
 		$AnimatedSprite2D.animation = "walk"
-		$AnimatedSprite2D.play()
 	else:
 		$AnimatedSprite2D.animation = "idle"
-		$AnimatedSprite2D.stop()
 
 
 	# Pobranie eventu jump (domyślnie spacja i strzałka w górę) oraz skok
@@ -89,6 +89,8 @@ func spawn(pos):
 	position = pos
 	enable_player()
 	health = MAX_HEALTH
+	$AnimatedSprite2D.animation = "idle"
+	$AnimatedSprite2D.play()
 	show()
 
 

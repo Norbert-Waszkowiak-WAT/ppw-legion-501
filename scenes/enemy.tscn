@@ -22,11 +22,7 @@ shape = SubResource("RectangleShape2D_vfotn")
 
 [node name="Enemy" type="Sprite2D" parent="."]
 texture_filter = 3
-position = Vector2(0.5, 0)
 texture = ExtResource("1_k5m6p")
-
-[node name="dir_timer" type="Timer" parent="."]
-wait_time = 2.0
 
 [node name="healthbar" type="ProgressBar" parent="."]
 texture_filter = 1
@@ -39,6 +35,9 @@ theme_override_styles/background = SubResource("StyleBoxFlat_ex46t")
 theme_override_styles/fill = SubResource("StyleBoxFlat_3l68f")
 value = 44.99
 show_percentage = false
+
+[node name="dir_timer" type="Timer" parent="."]
+wait_time = 2.0
 
 [node name="health_timer" type="Timer" parent="."]
 wait_time = 3.0

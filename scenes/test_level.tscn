@@ -47,3 +47,9 @@ position = Vector2(0, 3)
 
 [node name="enemy_spawnpoint" type="Marker2D" parent="."]
 position = Vector2(-40, -26)
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+scroll_base_scale = Vector2(0.05, 0.05)
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+texture_filter = 1

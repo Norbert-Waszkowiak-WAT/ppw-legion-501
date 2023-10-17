@@ -23,6 +23,7 @@ var health : float
 
 @onready var sprite = get_node("AnimatedSprite2D")
 @onready var healthbar = get_node("HUD/healthbar")
+@onready var weapon = get_node("AnimatedSprite2D/weapon")
 
 # | ============================================================================= |
 
@@ -31,6 +32,7 @@ var health : float
 func _ready():
 	disable_player()
 	hide()
+	weapon.hide()
 
 # Wywoływane podczas każdej klatki
 func _process(delta):
@@ -48,6 +50,7 @@ func _physics_process(delta):
 		set_direction("right")
 	if Input.is_action_pressed("move_left"):
 		set_direction("left")
+	get_weapon()
 
 	# Nadaje poziomą prędkość postaci
 	velocity.x = dir * min(acceleration + abs(velocity.x), speed)
@@ -118,3 +121,6 @@ func set_direction(direction):
 func jump():
 	velocity.y = jump_speed
 
+func get_weapon():
+	if Input.is_action_pressed("stick"):
+		weapon.show()

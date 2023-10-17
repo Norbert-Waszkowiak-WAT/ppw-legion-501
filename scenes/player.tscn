@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://b8kl60fulqq1u"]
+[gd_scene load_steps=9 format=3 uid="uid://b8kl60fulqq1u"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_xhwip"]
 [ext_resource type="Texture2D" uid="uid://3wf6gg78jrf" path="res://textures/animated-player/ghost1.png" id="2_e1h0m"]
 [ext_resource type="Texture2D" uid="uid://dm15wkrehblp5" path="res://textures/animated-player/ghost2.png" id="3_xkodq"]
 [ext_resource type="Texture2D" uid="uid://dwss7sxgcylxj" path="res://textures/animated-player/ghost3.png" id="4_oonk3"]
 [ext_resource type="PackedScene" uid="uid://clf8aqe0iy2if" path="res://scenes/hud.tscn" id="5_e68ka"]
+[ext_resource type="PackedScene" uid="uid://dj74demvny3ql" path="res://scenes/weapon.tscn" id="5_v6u64"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pykxj"]
 size = Vector2(14, 12)
@@ -62,5 +63,9 @@ sprite_frames = SubResource("SpriteFrames_lbsb1")
 animation = &"walk"
 frame = 1
 frame_progress = 0.961036
+
+[node name="weapon" parent="AnimatedSprite2D" instance=ExtResource("5_v6u64")]
+position = Vector2(48.565, 0)
+scale = Vector2(4, 4)
 
 [node name="HUD" parent="." instance=ExtResource("5_e68ka")]

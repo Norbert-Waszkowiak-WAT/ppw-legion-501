@@ -23,7 +23,6 @@ var health : float
 
 @onready var sprite = get_node("AnimatedSprite2D")
 @onready var healthbar = get_node("HUD/healthbar")
-@onready var weapon = get_node("AnimatedSprite2D/weapon")
 
 # | ============================================================================= |
 
@@ -32,12 +31,13 @@ var health : float
 func _ready():
 	disable_player()
 	hide()
-	weapon.hide()
+	
 
 # Wywoływane podczas każdej klatki
 func _process(delta):
 	# Ustawia pasek życia na aktualną wartość życia
 	healthbar.value = health
+
 
 # Obsługuje fizykę 
 func _physics_process(delta):
@@ -50,11 +50,9 @@ func _physics_process(delta):
 		set_direction("right")
 	if Input.is_action_pressed("move_left"):
 		set_direction("left")
-	get_weapon()
 
 	# Nadaje poziomą prędkość postaci
 	velocity.x = dir * min(acceleration + abs(velocity.x), speed)
-
 
 	# Granie animacji chodzenia
 	if velocity.x != 0:
@@ -62,11 +60,9 @@ func _physics_process(delta):
 	else:
 		$AnimatedSprite2D.animation = "idle"
 
-
 	# Pobranie eventu jump (domyślnie spacja i strzałka w górę) oraz skok
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		jump()
-
 
 	# Obsługuje poruszanie i kolizję
 	move_and_slide()
@@ -121,6 +117,3 @@ func set_direction(direction):
 func jump():
 	velocity.y = jump_speed
 
-func get_weapon():
-	if Input.is_action_pressed("stick"):
-		weapon.show()

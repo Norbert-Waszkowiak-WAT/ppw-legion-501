@@ -10,6 +10,7 @@ var health : float
 @export var MAX_HEALTH = 100.0
 
 @export var iframes = 0.5
+var knockback = false
 
 @onready var sprite = get_node("Enemy")
 @onready var dir_timer = get_node("dir_timer")
@@ -41,8 +42,10 @@ func _physics_process(delta):
 	velocity.y += delta * GRAVITY
 	
 	# Nadanie prędkości poziomej
-	if is_on_floor():
+	if not knockback and is_on_floor():
 		velocity.x = dir * min(acceleration + abs(velocity.x), speed)
+	else:
+		knockback = false
 	
 	# Obsługuje poruszanie i kolizję
 	move_and_slide()
@@ -79,8 +82,10 @@ func apply_damage(damage, knockback, pos : Vector2):
 
 # Odrzucenie podczas otrzymywania obrażeń
 func apply_knockback(strength, pos : Vector2):
-	var direction = pos.direction_to(position) + Vector2(0, -3)
+	knockback = true
+	var direction = pos.direction_to(position) + Vector2(0, -2)
 	velocity = direction * strength
+	print(direction)
 
 
 # Ukrywa pasek życia po określonym czasie

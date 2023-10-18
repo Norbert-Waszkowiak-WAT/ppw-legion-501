@@ -2,6 +2,9 @@ extends Node
 
 @export var enemy_scene : PackedScene
 
+@export var cloudspeed = 0.35
+
+@onready var clouds = get_node("ParallaxBackground/clouds_layer/clouds")
 
 # | ============================================================================= |
 
@@ -15,7 +18,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	clouds.position.x += cloudspeed
 
 
 # | ============================================================================= |

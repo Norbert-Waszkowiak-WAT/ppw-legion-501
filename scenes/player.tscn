@@ -55,6 +55,7 @@ zoom = Vector2(5.485, 5.485)
 position_smoothing_enabled = true
 position_smoothing_speed = 9.0
 drag_vertical_enabled = true
+drag_top_margin = 0.45
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1

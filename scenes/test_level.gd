@@ -18,9 +18,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	clouds.position.x += cloudspeed
-	if clouds.position.x >= 1024:
-		clouds.position.x = 0
+	move_clouds()
 
 
 # | ============================================================================= |
@@ -35,3 +33,9 @@ func spawn_enemy(pos):
 	
 	# Dodaje nowo utworzonego wroga do sceny
 	add_child(enemy)
+
+
+func move_clouds():
+	clouds.position.x += cloudspeed
+	if clouds.position.x >= 1024:
+		clouds.position.x = 0

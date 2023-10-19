@@ -84,6 +84,7 @@ func apply_damage(damage, knockback, pos : Vector2):
 		$healthbar.show()
 		$health_timer.start()
 		$damage_timer.start()
+		print("Enemy receives " + str(damage) + " damage.")
 
 
 # Odrzucenie podczas otrzymywania obrażeń
@@ -91,8 +92,7 @@ func apply_knockback(strength, pos : Vector2):
 	taking_knockback = true
 	var direction = pos.direction_to(position) + Vector2(0, -1.5)
 	velocity = direction * strength
-	print(direction)
-
+	
 
 # Ukrywa pasek życia po określonym czasie
 func hide_health():

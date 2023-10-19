@@ -32,6 +32,7 @@ var taking_knockback : bool
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$color_timer.timeout.connect(standard_color)
 	disable_player()
 	hide()
 	
@@ -133,7 +134,7 @@ func apply_damage(damage, knockback, pos : Vector2):
 		healthbar.show()
 		$damage_timer.start()
 		$color_timer.start()
-		$color_timer.timeout.connect(standard_color)
+		print("Player receives " + str(damage) + " damage.")
 		
 		
 func standard_color():
@@ -144,4 +145,3 @@ func apply_knockback(strength, pos : Vector2):
 	taking_knockback = true
 	var direction = pos.direction_to(position) + Vector2(0, -1.5)
 	velocity = direction * strength
-	print(direction)

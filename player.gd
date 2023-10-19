@@ -16,6 +16,8 @@ var dir = 0.0
 var health : float
 @export var MAX_HEALTH = 100.0
 
+var taking_knockback : bool
+
 # Wartości prędkości podczas skoku na podstawie równania rzutu pionowego
 @onready var jump_speed = ((2.0 * jump_height) / jump_peak) * -1
 @onready var jump_gravity = ((-2.0 * jump_height) / (jump_peak * jump_peak)) * -1
@@ -23,6 +25,7 @@ var health : float
 
 @onready var sprite = get_node("AnimatedSprite2D")
 @onready var healthbar = get_node("HUD/healthbar")
+
 
 # | ============================================================================= |
 
@@ -52,7 +55,10 @@ func _physics_process(delta):
 		set_direction("left")
 
 	# Nadaje poziomą prędkość postaci
-	velocity.x = dir * min(acceleration + abs(velocity.x), speed)
+	if not taking_knockback:
+		velocity.x = dir * min(acceleration + abs(velocity.x), speed)
+	else:
+		taking_knockback = false
 
 	# Granie animacji chodzenia
 	if velocity.x != 0:
@@ -86,10 +92,10 @@ func enable_player():
 # Pojawianie się gracza
 func spawn(pos):
 	position = pos
-	enable_player()
 	health = MAX_HEALTH
 	$AnimatedSprite2D.animation = "idle"
 	$AnimatedSprite2D.play()
+	enable_player()
 	show()
 
 
@@ -117,3 +123,19 @@ func set_direction(direction):
 func jump():
 	velocity.y = jump_speed
 
+
+# Zadaje obrażenia oraz pokazuje pasek życia
+func apply_damage(damage, knockback, pos : Vector2):
+	if $damage_timer.is_stopped():
+		health -= damage
+		apply_knockback(knockback, pos)
+		healthbar.show()
+		$damage_timer.start()
+
+
+# Odrzucenie podczas otrzymywania obrażeń
+func apply_knockback(strength, pos : Vector2):
+	taking_knockback = true
+	var direction = pos.direction_to(position) + Vector2(0, -1.5)
+	velocity = direction * strength
+	print(direction)

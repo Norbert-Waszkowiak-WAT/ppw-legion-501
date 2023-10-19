@@ -65,7 +65,9 @@ frame = 1
 frame_progress = 0.961036
 
 [node name="weapon" parent="AnimatedSprite2D" instance=ExtResource("5_v6u64")]
-position = Vector2(48.565, 0)
 scale = Vector2(4, 4)
 
 [node name="HUD" parent="." instance=ExtResource("5_e68ka")]
+
+[node name="damage_timer" type="Timer" parent="."]
+one_shot = true

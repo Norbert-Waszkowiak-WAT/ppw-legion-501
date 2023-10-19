@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://c53i7mvtd0bbx"]
+[gd_scene load_steps=7 format=3 uid="uid://c53i7mvtd0bbx"]
 
 [ext_resource type="Script" path="res://enemy.gd" id="1_gdrp6"]
 [ext_resource type="Texture2D" uid="uid://smal4hmb1hlj" path="res://textures/test-enemy/enemy.png" id="1_k5m6p"]
+[ext_resource type="PackedScene" uid="uid://dh4fi820qxc7k" path="res://scenes/stick.tscn" id="3_6v6qr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vfotn"]
 size = Vector2(7, 12)
@@ -24,6 +25,10 @@ shape = SubResource("RectangleShape2D_vfotn")
 texture_filter = 3
 texture = ExtResource("1_k5m6p")
 
+[node name="stick" parent="Enemy" instance=ExtResource("3_6v6qr")]
+position = Vector2(4.645, -2.55)
+scale = Vector2(0.48, 0.48)
+
 [node name="healthbar" type="ProgressBar" parent="."]
 texture_filter = 1
 offset_left = -4.0
@@ -39,9 +44,8 @@ show_percentage = false
 [node name="dir_timer" type="Timer" parent="."]
 wait_time = 2.0
 
+[node name="damage_timer" type="Timer" parent="."]
+one_shot = true
+
 [node name="health_timer" type="Timer" parent="."]
 wait_time = 3.0
-
-[node name="damage_timer" type="Timer" parent="."]
-wait_time = 0.5
-one_shot = true

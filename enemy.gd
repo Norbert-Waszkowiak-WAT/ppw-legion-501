@@ -9,12 +9,12 @@ var dir = 0.0
 var health : float
 @export var MAX_HEALTH = 100.0
 
-@export var iframes = 0.5
-var knockback = false
+var taking_knockback = false
 
 @onready var sprite = get_node("Enemy")
 @onready var dir_timer = get_node("dir_timer")
 @onready var player = get_node("../player")
+@onready var weapon = $Enemy.get_children()[0]
 
 
 # | ============================================================================= |
@@ -28,9 +28,13 @@ func _ready():
 	# Timer wysyła sygnał o zakończeniu liczenia, przez co aktywuje get_dir()
 	dir_timer.timeout.connect(get_dir)
 	$health_timer.timeout.connect(hide_health)
+	
+	weapon.set_target("player")
+	weapon.set_monitoring(true)
 
 
 # | ============================================================================= |
+
 
 func _process(delta):
 	$healthbar.value = health
@@ -42,10 +46,12 @@ func _physics_process(delta):
 	velocity.y += delta * GRAVITY
 	
 	# Nadanie prędkości poziomej
-	if not knockback and is_on_floor():
+	if not taking_knockback and is_on_floor():
 		velocity.x = dir * min(acceleration + abs(velocity.x), speed)
 	else:
-		knockback = false
+		taking_knockback = false
+	
+	weapon.attack(position)
 	
 	# Obsługuje poruszanie i kolizję
 	move_and_slide()
@@ -82,8 +88,8 @@ func apply_damage(damage, knockback, pos : Vector2):
 
 # Odrzucenie podczas otrzymywania obrażeń
 func apply_knockback(strength, pos : Vector2):
-	knockback = true
-	var direction = pos.direction_to(position) + Vector2(0, -2)
+	taking_knockback = true
+	var direction = pos.direction_to(position) + Vector2(0, -1.5)
 	velocity = direction * strength
 	print(direction)
 

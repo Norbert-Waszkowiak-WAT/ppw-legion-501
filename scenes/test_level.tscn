@@ -19,26 +19,26 @@ size = Vector2(12, 89)
 [node name="Level" type="Node"]
 script = ExtResource("1_j0jb0")
 enemy_scene = ExtResource("3_r8es1")
-cloudspeed = 1.0
+cloudspeed = 0.2
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="terrain" type="StaticBody2D" parent="."]
 scale = Vector2(1.99, 1)
 collision_mask = 7
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="terrain"]
 position = Vector2(73.9925, 23)
 shape = SubResource("RectangleShape2D_n8amk")
 
-[node name="Floor" type="Sprite2D" parent="StaticBody2D"]
+[node name="Floor" type="Sprite2D" parent="terrain"]
 position = Vector2(73.9925, 23)
 scale = Vector2(2.45985, 1)
 texture = ExtResource("1_wlhax")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="terrain"]
 position = Vector2(200, -14)
 shape = SubResource("RectangleShape2D_l2cl0")
 
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="terrain"]
 position = Vector2(-52.2613, -13)
 scale = Vector2(0.502513, 1)
 shape = SubResource("RectangleShape2D_pdojl")
@@ -57,10 +57,12 @@ scale = Vector2(0.3, 0.3)
 transform = Transform2D(0.3, 0, 0, 0.3, 0, 0)
 
 [node name="background_layer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.4, 0.4)
 motion_offset = Vector2(1500, 50)
 motion_mirroring = Vector2(1024, 0)
 
 [node name="background" type="Sprite2D" parent="ParallaxBackground/background_layer"]
+texture_filter = 1
 texture = ExtResource("5_1uff7")
 
 [node name="clouds_layer" type="ParallaxLayer" parent="ParallaxBackground"]
@@ -68,4 +70,5 @@ motion_offset = Vector2(1500, 50)
 motion_mirroring = Vector2(1024, 0)
 
 [node name="clouds" type="Sprite2D" parent="ParallaxBackground/clouds_layer"]
+texture_filter = 1
 texture = ExtResource("6_f8kjs")

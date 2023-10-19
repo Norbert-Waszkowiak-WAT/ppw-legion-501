@@ -69,7 +69,7 @@ func _physics_process(delta):
 	# Pobranie eventu jump (domyślnie spacja i strzałka w górę) oraz skok
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		jump()
-
+	
 	# Obsługuje poruszanie i kolizję
 	move_and_slide()
 
@@ -127,12 +127,18 @@ func jump():
 # Zadaje obrażenia oraz pokazuje pasek życia
 func apply_damage(damage, knockback, pos : Vector2):
 	if $damage_timer.is_stopped():
+		$AnimatedSprite2D.self_modulate = Color(1, 0, 0)
 		health -= damage
 		apply_knockback(knockback, pos)
 		healthbar.show()
 		$damage_timer.start()
-
-
+		$color_timer.start()
+		$color_timer.timeout.connect(standard_color)
+		
+		
+func standard_color():
+	$AnimatedSprite2D.self_modulate = Color(1, 1, 1)
+	
 # Odrzucenie podczas otrzymywania obrażeń
 func apply_knockback(strength, pos : Vector2):
 	taking_knockback = true

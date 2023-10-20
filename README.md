@@ -2,14 +2,14 @@
 [![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-718a45dd9cf7e7f842a935f5ebbe5719a5e09af4491e668f4dbf3b35d5cca122.svg)](https://classroom.github.com/online_ide?assignment_repo_id=11989278&assignment_repo_type=AssignmentRepo)
 
 
-## Opis projektu:
+## Opis projektu
 
 XXX* jest grą wideo na PC. To platformówka 2D w motywie kosmicznym z elementami RPG.
 
 *nazwa WIP
 
 
-## Cele projketu:
+## Cele projketu
 
 	1. Postać gracza z możliwością poruszania się
 	2. Oprawa graficzna w stylu Pixel Art
@@ -22,3 +22,30 @@ XXX* jest grą wideo na PC. To platformówka 2D w motywie kosmicznym z elementam
 
 _Grę rozwijamy w silniku Godot. W razie większych problemów jesteśmy gotowi przerzucić się na inny silnik._
 
+
+## Dziennik
+
+# 20/10/2023
+Zaimplementowana funkcjonalność:
+- System poruszania się gracza
+- System zadawania i otrzymywania obrażeń
+- Prototyp systemu broni
+- Prototyp wroga
+- Ruchome tło
+- Testowy poziom 
+
+Gracz może poruszać się i skakać. Wiąże się to z odpowiednimi animacjami.
+Wróg ma zaimplementowaną wczesną wersję poruszania się poza walką.
+Zarówno gracz, jak i wróg, mogą otrzymywać obrażenia. Efektem jest utrata punktów życia oraz odepchnięcie do tyłu z ustaloną siłą.
+Dla testów została zaimplementowana pierwsza broń do walki wręcz. Może ją dzierżyć gracz lub też wróg, i atakować nią wybrane cele.
+Tło poziomu testowego porusza się razem z kamerą, lecz wolniej od niej, co daje wrażenie 3-wymiarowości (tło wydaje się odległe).
+Oprócz tego częścią tła są poruszające się chmury.
+Wszystkie tekstury obecne w grze to nadal placeholdery. Pracujemy nad finalnymi teksturami do gry, i będziemy je implementować jak tylko będą 
+gotowe do użycia.
+
+Planowana funkcjonalność na następne tygodnie:
+- Rework systemu poruszania się gracza na tzw. state machine
+- Wzór zachowania się wroga na podstawie state machine
+- Finalne wersje niektórych tekstur
+- TileSet do tworzenia poziomów
+- Poprawki i refaktoryzacja kodu

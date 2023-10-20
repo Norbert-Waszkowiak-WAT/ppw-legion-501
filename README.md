@@ -25,7 +25,7 @@ _Grę rozwijamy w silniku Godot. W razie większych problemów jesteśmy gotowi 
 
 ## Dziennik
 
-# 20/10/2023
+### 20/10/2023
 Zaimplementowana funkcjonalność:
 - System poruszania się gracza
 - System zadawania i otrzymywania obrażeń

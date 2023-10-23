@@ -10,6 +10,7 @@ var health : float
 @export var MAX_HEALTH = 100.0
 
 var taking_knockback = false
+@export var death_time: float = 0.4
 
 @onready var sprite = get_node("Enemy")
 @onready var dir_timer = get_node("dir_timer")
@@ -38,6 +39,8 @@ func _ready():
 
 func _process(delta):
 	$healthbar.value = health
+	if health <= 0:
+		kys()
 
 
 # Obsługuje fizykę
@@ -98,6 +101,16 @@ func apply_knockback(strength, pos : Vector2):
 func hide_health():
 	$healthbar.hide()
 	$health_timer.stop()
+
+
+func kys():
+	await get_tree().create_timer(death_time).timeout
+	drop_loot()
+	queue_free()
+
+
+func drop_loot():
+	pass
 
 
 # | ============================================================================= |

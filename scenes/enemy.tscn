@@ -16,6 +16,8 @@ bg_color = Color(0.933333, 0.352941, 0.352941, 1)
 [node name="CharacterBody2D" type="CharacterBody2D" groups=["enemy"]]
 collision_layer = 4
 script = ExtResource("1_gdrp6")
+death_time = 0.5
+loot_scene = ExtResource("3_6v6qr")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 texture_filter = 2

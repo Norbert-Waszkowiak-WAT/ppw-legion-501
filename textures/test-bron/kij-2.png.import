@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://62mv0diwxsrv"
-path="res://.godot/imported/kij.png-df5f11f368f1fd61b868e06d6e2be7da.ctex"
+uid="uid://dak1i408pne13"
+path="res://.godot/imported/kij-2.png-72acf2192361fb358b5464cd2e28f590.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/test-bron/kij.png"
-dest_files=["res://.godot/imported/kij.png-df5f11f368f1fd61b868e06d6e2be7da.ctex"]
+source_file="res://textures/test-bron/kij-2.png"
+dest_files=["res://.godot/imported/kij-2.png-72acf2192361fb358b5464cd2e28f590.ctex"]
 
 [params]
 

@@ -1,10 +1,11 @@
 extends Node
 
-@export var enemy_scene : PackedScene
+@export var enemy_scene: PackedScene
 
-@export var cloudspeed = 0.35
+@export var cloudspeed: float = 0.2
 
 @onready var clouds = get_node("ParallaxBackground/clouds_layer/clouds")
+@onready var enemyspawn = get_node("enemy_spawnpoint")
 
 # | ============================================================================= |
 
@@ -13,7 +14,7 @@ extends Node
 func _ready():
 	# Dodaje gracza i wroga
 	$player.spawn($spawnpoint.position)
-	spawn_enemy($enemy_spawnpoint.position)
+	$enemy_spawn_timer.timeout.connect(_spawn_enemy)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -22,6 +23,10 @@ func _process(delta):
 
 
 # | ============================================================================= |
+
+
+func _spawn_enemy():
+	spawn_enemy($enemy_spawnpoint.position)
 
 
 func spawn_enemy(pos):

@@ -1,27 +1,27 @@
 extends CharacterBody2D
 
 # Prędkość oraz przyspieszenie chodzenia
-@export var speed = 40.0
-@export var acceleration = 1.0
+@export var speed: float = 40.0
+@export var acceleration: float = 1.0
 
 # Wysokość oraz prędkość skoku
-@export var jump_height = 100.0
-@export var jump_descent = 0.5
-@export var jump_peak = 0.7
+@export var jump_height: float = 100.0
+@export var jump_descent: float = 0.5
+@export var jump_peak: float = 0.7
 
 # Kierunek poruszania się
-var dir = 0.0
+var dir: float = 0.0
 
 # Wartości życia
 var health : float
-@export var MAX_HEALTH = 100.0
+@export var MAX_HEALTH: float = 100.0
 
 var taking_knockback : bool
 
 # Wartości prędkości podczas skoku na podstawie równania rzutu pionowego
-@onready var jump_speed = ((2.0 * jump_height) / jump_peak) * -1
-@onready var jump_gravity = ((-2.0 * jump_height) / (jump_peak * jump_peak)) * -1
-@onready var fall_gravity = ((-2.0 * jump_height) / (jump_descent * jump_descent)) * -1
+@onready var jump_speed: float = ((2.0 * jump_height) / jump_peak) * -1
+@onready var jump_gravity: float = ((-2.0 * jump_height) / (jump_peak * jump_peak)) * -1
+@onready var fall_gravity: float = ((-2.0 * jump_height) / (jump_descent * jump_descent)) * -1
 
 @onready var sprite = get_node("AnimatedSprite2D")
 @onready var healthbar = get_node("HUD/healthbar")

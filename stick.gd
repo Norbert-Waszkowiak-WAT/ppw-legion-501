@@ -1,8 +1,8 @@
 extends Area2D
 
 
-@export var damage : float
-@export var knockback : float
+@export var damage: float
+@export var knockback: float
 
 @onready var user = get_parent()
 
@@ -34,7 +34,7 @@ func set_target(target):
 
 func attack(userpos):
 	if $attack_timer.is_stopped():
-		rotation += 90
+		$stick_sprite.play("attack")
 		
 		var targets = get_overlapping_bodies()
 		for i in targets:
@@ -42,5 +42,7 @@ func attack(userpos):
 		
 		$attack_timer.start()
 		
-		await get_tree().create_timer(0.3).timeout
-		rotation -= 90
+		#await get_tree().create_timer(0.3).timeout
+		await $attack_timer.timeout
+		$stick_sprite.frame = 0
+		

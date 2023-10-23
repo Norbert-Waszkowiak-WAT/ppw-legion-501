@@ -1,15 +1,15 @@
 extends CharacterBody2D
 
-@export var speed = 25.0
-@export var acceleration = 1.5
+@export var speed: float = 25.0
+@export var acceleration: float = 1.5
 
-const GRAVITY = 200.0
-var dir = 0.0
+const GRAVITY: float = 200.0
+var dir: float = 0.0
 
 var health : float
-@export var MAX_HEALTH = 100.0
+@export var MAX_HEALTH: float = 100.0
 
-var taking_knockback = false
+var taking_knockback: bool = false
 @export var death_time: float = 0.4
 
 @onready var sprite = get_node("Enemy")
@@ -17,6 +17,7 @@ var taking_knockback = false
 @onready var player = get_node("../player")
 @onready var weapon = $Enemy.get_children()[0]
 
+@export var loot_scene: PackedScene
 
 # | ============================================================================= |
 
@@ -104,13 +105,17 @@ func hide_health():
 
 
 func kys():
+	$Enemy.self_modulate = Color(1.0, 0, 0, 1)
+	set_collision_layer_value(3, false)
 	await get_tree().create_timer(death_time).timeout
 	drop_loot()
 	queue_free()
 
 
 func drop_loot():
-	pass
+	var loot = loot_scene.instantiate()
+	loot.position = position
+	get_parent().add_child(loot)
 
 
 # | ============================================================================= |

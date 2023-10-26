@@ -1,7 +1,9 @@
 extends Node
 
+# Zmienna zawierająca scenę z wrogiem
 @export var enemy_scene: PackedScene
 
+# Prędkość poruszania się chmur
 @export var cloudspeed: float = 0.2
 
 @onready var clouds = get_node("ParallaxBackground/clouds_layer/clouds")

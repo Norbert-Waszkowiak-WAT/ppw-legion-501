@@ -1,28 +1,18 @@
 extends Area2D
 
 
+# Wartości zadawanych obrażeń i odrzucenia
 @export var damage: float
 @export var knockback: float
 
+# Odniesienie do użytkownika broni
 @onready var user = get_parent()
 
 
 # | ============================================================================= |
 
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
-
-# | ============================================================================= |
-
-
+# Ustawia rodzaj celu dla broni (wróg, gracz, itp.)
 func set_target(target):
 	match target:
 		"player":
@@ -32,6 +22,7 @@ func set_target(target):
 	print(get_parent(), collision_mask)
 
 
+# Atak
 func attack(userpos):
 	if $attack_timer.is_stopped():
 		$stick_sprite.play("attack")
@@ -42,7 +33,6 @@ func attack(userpos):
 		
 		$attack_timer.start()
 		
-		#await get_tree().create_timer(0.3).timeout
 		await $attack_timer.timeout
 		$stick_sprite.frame = 0
 		

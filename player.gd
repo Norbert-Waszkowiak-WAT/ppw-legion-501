@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name Player
 
 # Prędkość oraz przyspieszenie chodzenia
 @export var speed: float = 40.0
@@ -23,8 +24,10 @@ var taking_knockback : bool
 @onready var jump_gravity: float = ((-2.0 * jump_height) / (jump_peak * jump_peak)) * -1
 @onready var fall_gravity: float = ((-2.0 * jump_height) / (jump_descent * jump_descent)) * -1
 
+# Odniesienia do potrzebnych węzłów
 @onready var sprite = get_node("AnimatedSprite2D")
 @onready var healthbar = get_node("HUD/healthbar")
+@onready var state_machine = get_node("state_machine")
 
 
 # | ============================================================================= |
@@ -32,6 +35,9 @@ var taking_knockback : bool
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	# Inicjalizuje state machine
+	state_machine.init(self)
+	
 	$color_timer.timeout.connect(standard_color)
 	disable_player()
 	hide()
@@ -39,40 +45,17 @@ func _ready():
 
 # Wywoływane podczas każdej klatki
 func _process(delta):
+	# Wywołuje pętle state machine
+	state_machine.process(delta)
+	
 	# Ustawia pasek życia na aktualną wartość życia
 	healthbar.value = health
 
 
 # Obsługuje fizykę 
 func _physics_process(delta):
-	# Dodanie grawitacji
-	velocity.y += get_gravity() * delta
-	
-	# Poruszanie się na boki
-	dir = 0
-	if Input.is_action_pressed("move_right"):
-		set_direction("right")
-	if Input.is_action_pressed("move_left"):
-		set_direction("left")
-
-	# Nadaje poziomą prędkość postaci
-	if not taking_knockback:
-		velocity.x = dir * min(acceleration + abs(velocity.x), speed)
-	else:
-		taking_knockback = false
-
-	# Granie animacji chodzenia
-	if velocity.x != 0:
-		$AnimatedSprite2D.animation = "walk"
-	else:
-		$AnimatedSprite2D.animation = "idle"
-
-	# Pobranie eventu jump (domyślnie spacja i strzałka w górę) oraz skok
-	if Input.is_action_just_pressed("jump") and is_on_floor():
-		jump()
-	
-	# Obsługuje poruszanie i kolizję
-	move_and_slide()
+	# Wywołuje pętlę fizyczną state machine
+	state_machine.physics(delta)
 
 
 # | ============================================================================= |
@@ -94,8 +77,6 @@ func enable_player():
 func spawn(pos):
 	position = pos
 	health = MAX_HEALTH
-	$AnimatedSprite2D.animation = "idle"
-	$AnimatedSprite2D.play()
 	enable_player()
 	show()
 
@@ -118,6 +99,8 @@ func set_direction(direction):
 		"left":
 			dir = -1.0
 			sprite.scale.x = sprite.scale.y * -1
+		"0":
+			dir = 0
 
 
 # Skok
@@ -125,7 +108,7 @@ func jump():
 	velocity.y = jump_speed
 
 
-# Zadaje obrażenia oraz pokazuje pasek życia
+# Zadaje obrażenia graczowi
 func apply_damage(damage, knockback, pos : Vector2):
 	if $damage_timer.is_stopped():
 		$AnimatedSprite2D.self_modulate = Color(1, 0, 0)
@@ -135,11 +118,13 @@ func apply_damage(damage, knockback, pos : Vector2):
 		$damage_timer.start()
 		$color_timer.start()
 		print("Player receives " + str(damage) + " damage.")
-		
-		
+
+
+# Ustawienie koloru gracza na standardowy
 func standard_color():
 	$AnimatedSprite2D.self_modulate = Color(1, 1, 1)
-	
+
+
 # Odrzucenie podczas otrzymywania obrażeń
 func apply_knockback(strength, pos : Vector2):
 	taking_knockback = true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://b8kl60fulqq1u"]
+[gd_scene load_steps=14 format=3 uid="uid://b8kl60fulqq1u"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_xhwip"]
 [ext_resource type="Texture2D" uid="uid://3wf6gg78jrf" path="res://textures/animated-player/ghost1.png" id="2_e1h0m"]
@@ -6,6 +6,11 @@
 [ext_resource type="Texture2D" uid="uid://dwss7sxgcylxj" path="res://textures/animated-player/ghost3.png" id="4_oonk3"]
 [ext_resource type="PackedScene" uid="uid://clf8aqe0iy2if" path="res://scenes/hud.tscn" id="5_e68ka"]
 [ext_resource type="PackedScene" uid="uid://dj74demvny3ql" path="res://scenes/weapon.tscn" id="5_v6u64"]
+[ext_resource type="Script" path="res://state_machine.gd" id="7_tys86"]
+[ext_resource type="Script" path="res://idle.gd" id="8_o6koi"]
+[ext_resource type="Script" path="res://walk.gd" id="9_ye4cr"]
+[ext_resource type="Script" path="res://jump.gd" id="10_x52e5"]
+[ext_resource type="Script" path="res://fall.gd" id="11_h6ekv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pykxj"]
 size = Vector2(14, 12)
@@ -76,3 +81,31 @@ one_shot = true
 [node name="color_timer" type="Timer" parent="."]
 wait_time = 0.5
 one_shot = true
+
+[node name="state_machine" type="Node" parent="." node_paths=PackedStringArray("starting_state")]
+script = ExtResource("7_tys86")
+starting_state = NodePath("idle")
+
+[node name="idle" type="Node" parent="state_machine" node_paths=PackedStringArray("walk", "jump", "fall")]
+script = ExtResource("8_o6koi")
+walk = NodePath("../walk")
+jump = NodePath("../jump")
+fall = NodePath("../fall")
+
+[node name="walk" type="Node" parent="state_machine" node_paths=PackedStringArray("idle", "jump", "fall")]
+script = ExtResource("9_ye4cr")
+idle = NodePath("../idle")
+jump = NodePath("../jump")
+fall = NodePath("../fall")
+
+[node name="jump" type="Node" parent="state_machine" node_paths=PackedStringArray("idle", "walk", "fall")]
+script = ExtResource("10_x52e5")
+idle = NodePath("../idle")
+walk = NodePath("../walk")
+fall = NodePath("../fall")
+
+[node name="fall" type="Node" parent="state_machine" node_paths=PackedStringArray("idle", "walk", "jump")]
+script = ExtResource("11_h6ekv")
+idle = NodePath("../idle")
+walk = NodePath("../walk")
+jump = NodePath("../jump")

@@ -8,7 +8,7 @@ extends State
 
 # Wywoływana gdy gracz wchodzi w stan
 func enter():
-	player.velocity.x = 0
+	player.dir = 0
 
 
 # Wywoływana na każdej klatce
@@ -22,6 +22,7 @@ func process(delta: float) -> State:
 
 # Wywoływana na każdej klatce, odpowiada za procesy fizyczne
 func physics(delta: float) -> State:
+	player.horizontal_movement()
 	player.velocity.y += player.get_gravity() * delta
 	player.move_and_slide()
 	

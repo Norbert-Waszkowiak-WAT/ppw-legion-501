@@ -56,6 +56,8 @@ func _process(delta):
 func _physics_process(delta):
 	# Wywołuje pętlę fizyczną state machine
 	state_machine.physics(delta)
+	if taking_knockback and is_on_floor():
+		taking_knockback = false
 
 
 # | ============================================================================= |
@@ -103,6 +105,11 @@ func set_direction(direction):
 			dir = 0
 
 
+func horizontal_movement():
+	if not taking_knockback:
+		velocity.x = dir * min(acceleration + abs(velocity.x), speed)
+
+
 # Skok
 func jump():
 	velocity.y = jump_speed
@@ -120,13 +127,13 @@ func apply_damage(damage, knockback, pos : Vector2):
 		print("Player receives " + str(damage) + " damage.")
 
 
-# Ustawienie koloru gracza na standardowy
-func standard_color():
-	$AnimatedSprite2D.self_modulate = Color(1, 1, 1)
-
-
 # Odrzucenie podczas otrzymywania obrażeń
 func apply_knockback(strength, pos : Vector2):
 	taking_knockback = true
-	var direction = pos.direction_to(position) + Vector2(0, -1.5)
+	var direction = pos.direction_to(position) * Vector2(2, 1) + Vector2(0, -1.5)
 	velocity = direction * strength
+
+
+# Ustawienie koloru gracza na standardowy
+func standard_color():
+	$AnimatedSprite2D.self_modulate = Color(1, 1, 1)

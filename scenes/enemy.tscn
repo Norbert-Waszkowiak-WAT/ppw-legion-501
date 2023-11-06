@@ -30,6 +30,7 @@ texture = ExtResource("1_k5m6p")
 [node name="stick" parent="Enemy" instance=ExtResource("3_6v6qr")]
 position = Vector2(4.645, -2.55)
 scale = Vector2(0.48, 0.48)
+knockback = 15.0
 
 [node name="healthbar" type="ProgressBar" parent="."]
 texture_filter = 1

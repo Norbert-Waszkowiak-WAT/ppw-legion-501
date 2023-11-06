@@ -17,6 +17,7 @@ func _ready():
 	# Dodaje gracza i wroga
 	$player.spawn($spawnpoint.position)
 	$enemy_spawn_timer.timeout.connect(_spawn_enemy)
+	spawn_enemy($enemy_spawnpoint.position)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

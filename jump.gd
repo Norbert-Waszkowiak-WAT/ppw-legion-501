@@ -24,7 +24,7 @@ func process(delta: float) -> State:
 
 # Wywoływana na każdej klatce, odpowiada za procesy fizyczne
 func physics(delta) -> State:
-	player.velocity.x = player.dir * min(player.acceleration + abs(player.velocity.x), player.speed)
+	player.horizontal_movement()
 	player.velocity.y += player.get_gravity() * delta
 	player.move_and_slide()
 	

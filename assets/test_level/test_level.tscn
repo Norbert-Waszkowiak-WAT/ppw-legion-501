@@ -1,9 +1,9 @@
 [gd_scene load_steps=10 format=3 uid="uid://jiyiuno0whkw"]
 
-[ext_resource type="Script" path="res://scenes/test_level.gd" id="1_j0jb0"]
+[ext_resource type="Script" path="res://assets/test_level/test_level.gd" id="1_j0jb0"]
 [ext_resource type="Texture2D" uid="uid://utq8ojlddrce" path="res://textures/test-floor/floor.png" id="1_wlhax"]
-[ext_resource type="PackedScene" uid="uid://b8kl60fulqq1u" path="res://scenes/player.tscn" id="2_w8aub"]
-[ext_resource type="PackedScene" uid="uid://c53i7mvtd0bbx" path="res://scenes/enemy.tscn" id="3_r8es1"]
+[ext_resource type="PackedScene" uid="uid://b8kl60fulqq1u" path="res://assets/player/player.tscn" id="2_w8aub"]
+[ext_resource type="PackedScene" uid="uid://c53i7mvtd0bbx" path="res://assets/enemy/enemy.tscn" id="3_r8es1"]
 [ext_resource type="Texture2D" uid="uid://d0m1flehcwkvn" path="res://textures/test-background/background.jpg" id="5_1uff7"]
 [ext_resource type="Texture2D" uid="uid://ulrs6xtx8r0r" path="res://textures/test-background/clouds.png" id="6_f8kjs"]
 

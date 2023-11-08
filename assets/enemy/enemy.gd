@@ -1,34 +1,44 @@
 extends CharacterBody2D
 
-@export var speed: float = 25.0
-@export var acceleration: float = 1.5
+@export var speed : float = 25.0
+@export var acceleration : float = 1.5
+const GRAVITY : float = 200.0
+var dir : int = 0
 
-const GRAVITY: float = 200.0
-var dir: float = 0.0
 
 var health : float
 @export var MAX_HEALTH: float = 100.0
-
 var taking_knockback: bool = false
 @export var death_time: float = 0.4
 
+
+enum states {idle, chase, attack}
+var current_state : states
+
+
+@export var detection_range : float
+@export var attack_range : float
+@export var reaction_time : float
+
+
 @onready var sprite = get_node("Enemy")
 @onready var player = get_node("../player")
-@onready var weapon = $Enemy.get_children()[0]
+@onready var weapon = $Enemy.get_child(0)
 
-@export var loot_scene: PackedScene
 
 # | ============================================================================= |
 
 
 # Wywoływana na początku sceny
 func _ready():
-	$dir_timer.start()
-	$healthbar.hide()
-	health = MAX_HEALTH
+	current_state = states.idle
 	
 	$dir_timer.timeout.connect(get_dir)
+	$dir_timer.start()
+	
+	$healthbar.hide()
 	$health_timer.timeout.connect(hide_health)
+	health = MAX_HEALTH
 	
 	# Ustawia cel broni na gracza
 	weapon.set_target("player")
@@ -45,6 +55,14 @@ func _process(delta):
 
 # Obsługuje fizykę
 func _physics_process(delta):
+	
+	match current_state:
+		states.idle:
+			idle()
+		states.chase:
+			chase()
+		states.attack:
+			attack()
 	# Dodanie grawitacji
 	velocity.y += delta * GRAVITY
 	
@@ -53,9 +71,6 @@ func _physics_process(delta):
 		velocity.x = dir * min(acceleration + abs(velocity.x), speed)
 	else:
 		taking_knockback = false
-	
-	# Tymczasowo: wróg atakuje bez przerwy
-	weapon.attack(position)
 	
 	# Obsługuje poruszanie i kolizję
 	move_and_slide()
@@ -98,6 +113,47 @@ func apply_knockback(strength, pos : Vector2):
 	velocity = direction * strength
 
 
+func change_state(state : states):
+	await get_tree().create_timer(reaction_time).timeout
+	current_state = state
+
+# Odpowiada za zachowanie wroga poza walką
+func idle():
+	$dir_timer.start
+	
+	if position.distance_to(player.position) <= detection_range:
+		$dir_timer.stop
+		change_state(states.chase)
+	if position.distance_to(player.position) <= attack_range:
+		$dir_timer.stop
+		change_state(states.attack)
+
+
+# Odpowiada za zachowanie wroga podczas gonienia gracza
+func chase():
+	if position.direction_to(player.position).x > 0:
+		dir = 1
+	else:
+		dir = -1
+	sprite.scale.x = sprite.scale.y * dir
+	
+	if position.distance_to(player.position) > detection_range:
+		change_state(states.idle)
+	if position.distance_to(player.position) <= attack_range:
+		change_state(states.attack)
+
+
+# Odpowiada za zachowanie wroga podczes ataku
+func attack():
+	dir = 0
+	weapon.attack(position)
+	
+	if position.distance_to(player.position) > detection_range:
+		change_state(states.idle)
+	if position.distance_to(player.position) <= detection_range:
+		change_state(states.chase)
+
+
 # Ukrywa pasek życia po określonym czasie
 func hide_health():
 	$healthbar.hide()
@@ -109,15 +165,7 @@ func die():
 	$Enemy.self_modulate = Color(1.0, 0, 0, 1)
 	set_collision_layer_value(3, false)
 	await get_tree().create_timer(death_time).timeout
-	drop_loot()
 	queue_free()
-
-
-# Upuszczanie przedmiotów
-func drop_loot():
-	var loot = loot_scene.instantiate()
-	loot.position = position
-	get_parent().add_child(loot)
 
 
 # | ============================================================================= |

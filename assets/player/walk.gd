@@ -5,7 +5,7 @@ extends State
 @export var jump: State
 @export var fall: State
 
-@onready var sprite = get_node("AnimatedSprite2D")
+@onready var sprite = get_node("../../AnimatedSprite2D")
 
 
 # Wywoływana gdy gracz wchodzi w stan

@@ -40,4 +40,4 @@ func change_state(state: State):
 	current_state = state
 	current_state.enter()
 	
-	# print(current_state)
+#	print(current_state)

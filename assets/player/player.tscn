@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://clf8aqe0iy2if" path="res://assets/hud/hud.tscn" id="5_e68ka"]
 [ext_resource type="PackedScene" uid="uid://dj74demvny3ql" path="res://assets/weapon/weapon.tscn" id="5_v6u64"]
 [ext_resource type="Script" path="res://assets/state_machine/state_machine.gd" id="7_tys86"]
-[ext_resource type="Script" path="res://assets/enemy/idle.gd" id="8_o6koi"]
+[ext_resource type="Script" path="res://assets/player/idle.gd" id="8_u7umh"]
 [ext_resource type="Script" path="res://assets/player/walk.gd" id="9_ye4cr"]
 [ext_resource type="Script" path="res://assets/player/jump.gd" id="10_x52e5"]
 [ext_resource type="Script" path="res://assets/player/fall.gd" id="11_h6ekv"]
@@ -42,6 +42,7 @@ animations = [{
 
 [node name="player" type="CharacterBody2D"]
 collision_layer = 2
+collision_mask = 5
 script = ExtResource("1_xhwip")
 speed = 100.0
 acceleration = 8.0
@@ -87,7 +88,7 @@ script = ExtResource("7_tys86")
 starting_state = NodePath("idle")
 
 [node name="idle" type="Node" parent="state_machine" node_paths=PackedStringArray("walk", "jump", "fall")]
-script = ExtResource("8_o6koi")
+script = ExtResource("8_u7umh")
 walk = NodePath("../walk")
 jump = NodePath("../jump")
 fall = NodePath("../fall")

@@ -86,10 +86,10 @@ func get_dir():
 	
 	# Zmienia kierunek oraz odwraca teksturę wroga
 	if chance < 0.3:
-		dir = 1.0
+		dir = 1
 		sprite.scale.x = sprite.scale.y * 1
 	elif chance < 0.6:
-		dir = -1.0
+		dir = -1
 		sprite.scale.x = sprite.scale.y * -1
 	else:
 		dir = 0
@@ -119,13 +119,11 @@ func change_state(state : states):
 
 # Odpowiada za zachowanie wroga poza walką
 func idle():
-	$dir_timer.start
-	
 	if position.distance_to(player.position) <= detection_range:
-		$dir_timer.stop
+		$dir_timer.stop()
 		change_state(states.chase)
 	if position.distance_to(player.position) <= attack_range:
-		$dir_timer.stop
+		$dir_timer.stop()
 		change_state(states.attack)
 
 
@@ -138,6 +136,7 @@ func chase():
 	sprite.scale.x = sprite.scale.y * dir
 	
 	if position.distance_to(player.position) > detection_range:
+		$dir_timer.start()
 		change_state(states.idle)
 	if position.distance_to(player.position) <= attack_range:
 		change_state(states.attack)
@@ -149,6 +148,7 @@ func attack():
 	weapon.attack(position)
 	
 	if position.distance_to(player.position) > detection_range:
+		$dir_timer.start()
 		change_state(states.idle)
 	if position.distance_to(player.position) <= detection_range:
 		change_state(states.chase)

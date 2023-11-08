@@ -25,6 +25,25 @@ _Grę rozwijamy w silniku Godot. W razie większych problemów jesteśmy gotowi 
 
 ## Dziennik
 
+### 08/11/2023
+Zaimplementowana funkcjonalność:
+- Rework systemu poruszania się gracza na tzw. state machine
+- Wzór zachowania się wroga na podstawie state machine
+
+Zmiany w systemie poruszania się gracza pozwolą na łatwą implementację animacji różnych czynności gracza,
+a także na szybkie dodawanie nowych zdolności dla gracza (np. double jump).
+Prototyp wroga otrzymał mocno uproszczoną wersję tego systemu, a jego zachowanie zostało poprawione.
+Teraz po wejściu gracza w jego zasięg zaczyna go gonić, a następnie atakować. Kiedy nie ma gracza w swoim zasięgu,
+zachowuje się tak jak wcześniej (stoi w miejscu, czasem porusza się na boki).
+
+Planowana funkcjonalność na następne tygodnie:
+- Finalne wersje niektórych tekstur
+- TileSet do tworzenia poziomów
+- Poprawki w implementacji wrogów (klasa ogólna dla wrogów, przygotowania
+ pod różne rodzaje wrogów)
+- Poprawki w implementacji broni
+- Poprawki i refaktoryzacja kodu
+
 ### 20/10/2023
 Zaimplementowana funkcjonalność:
 - System poruszania się gracza

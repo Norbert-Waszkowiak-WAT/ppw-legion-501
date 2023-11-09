@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://b8kl60fulqq1u"]
+[gd_scene load_steps=13 format=3 uid="uid://b8kl60fulqq1u"]
 
 [ext_resource type="Script" path="res://assets/player/player.gd" id="1_xhwip"]
 [ext_resource type="Texture2D" uid="uid://3wf6gg78jrf" path="res://textures/animated-player/ghost1.png" id="2_e1h0m"]
@@ -11,9 +11,6 @@
 [ext_resource type="Script" path="res://assets/player/walk.gd" id="9_ye4cr"]
 [ext_resource type="Script" path="res://assets/player/jump.gd" id="10_x52e5"]
 [ext_resource type="Script" path="res://assets/player/fall.gd" id="11_h6ekv"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_pykxj"]
-size = Vector2(14, 12)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_lbsb1"]
 animations = [{
@@ -43,6 +40,7 @@ animations = [{
 [node name="player" type="CharacterBody2D"]
 collision_layer = 2
 collision_mask = 5
+floor_max_angle = 0.0872665
 script = ExtResource("1_xhwip")
 speed = 100.0
 acceleration = 8.0
@@ -51,10 +49,8 @@ jump_descent = 0.25
 jump_peak = 0.35
 metadata/_edit_group_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 2)
-shape = SubResource("RectangleShape2D_pykxj")
-debug_color = Color(0, 0.6, 0.701961, 0.419608)
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-7, 6, 1, 8, 7, 6, 7, -2, 0, -4, -7, -2)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(5.485, 5.485)

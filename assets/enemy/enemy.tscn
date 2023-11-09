@@ -1,11 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://c53i7mvtd0bbx"]
+[gd_scene load_steps=6 format=3 uid="uid://c53i7mvtd0bbx"]
 
 [ext_resource type="Script" path="res://assets/enemy/enemy.gd" id="1_gdrp6"]
 [ext_resource type="Texture2D" uid="uid://smal4hmb1hlj" path="res://textures/test-enemy/enemy.png" id="1_k5m6p"]
 [ext_resource type="PackedScene" uid="uid://dh4fi820qxc7k" path="res://assets/stick/stick.tscn" id="3_6v6qr"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_vfotn"]
-size = Vector2(7, 12)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ex46t"]
 bg_color = Color(0, 0, 0, 0.231373)
@@ -16,14 +13,14 @@ bg_color = Color(0.933333, 0.352941, 0.352941, 1)
 [node name="CharacterBody2D" type="CharacterBody2D" groups=["enemy"]]
 collision_layer = 4
 collision_mask = 3
+floor_max_angle = 0.0872665
 script = ExtResource("1_gdrp6")
 detection_range = 70.0
 attack_range = 15.0
 reaction_time = 0.2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-texture_filter = 2
-shape = SubResource("RectangleShape2D_vfotn")
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-3, 5, 0, 6, 3, 5, 3, -5, 0, -6, -3, -5)
 
 [node name="Enemy" type="Sprite2D" parent="."]
 texture_filter = 3

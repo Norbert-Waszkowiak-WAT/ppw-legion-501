@@ -1,7 +1,6 @@
 extends Weapon
 
 
-
 # Odniesienie do użytkownika broni
 @onready var user = get_parent()
 

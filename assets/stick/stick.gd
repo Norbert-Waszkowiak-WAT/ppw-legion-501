@@ -1,9 +1,6 @@
-extends Area2D
+extends Weapon
 
 
-# Wartości zadawanych obrażeń i odrzucenia
-@export var damage: float
-@export var knockback: float
 
 # Odniesienie do użytkownika broni
 @onready var user = get_parent()

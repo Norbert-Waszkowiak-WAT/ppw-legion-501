@@ -1,6 +1,7 @@
 extends CharacterBody2D
 class_name Player
 
+
 # Prędkość oraz przyspieszenie chodzenia
 @export var speed: float = 40.0
 @export var acceleration: float = 1.0

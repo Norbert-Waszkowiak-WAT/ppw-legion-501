@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://dm15wkrehblp5" path="res://textures/animated-player/ghost2.png" id="3_xkodq"]
 [ext_resource type="Texture2D" uid="uid://dwss7sxgcylxj" path="res://textures/animated-player/ghost3.png" id="4_oonk3"]
 [ext_resource type="PackedScene" uid="uid://clf8aqe0iy2if" path="res://assets/hud/hud.tscn" id="5_e68ka"]
-[ext_resource type="PackedScene" uid="uid://dj74demvny3ql" path="res://assets/weapon/weapon.tscn" id="5_v6u64"]
+[ext_resource type="PackedScene" uid="uid://sxa4031yuikd" path="res://assets/weapons/weapons.tscn" id="5_v6u64"]
 [ext_resource type="Script" path="res://assets/state_machine/state_machine.gd" id="7_tys86"]
 [ext_resource type="Script" path="res://assets/player/idle.gd" id="8_u7umh"]
 [ext_resource type="Script" path="res://assets/player/walk.gd" id="9_ye4cr"]
@@ -40,7 +40,6 @@ animations = [{
 [node name="player" type="CharacterBody2D"]
 collision_layer = 2
 collision_mask = 5
-floor_max_angle = 0.0872665
 script = ExtResource("1_xhwip")
 speed = 100.0
 acceleration = 8.0
@@ -50,7 +49,7 @@ jump_peak = 0.35
 metadata/_edit_group_ = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(-7, 6, 1, 8, 7, 6, 7, -2, 0, -4, -7, -2)
+polygon = PackedVector2Array(-7, 8, 7, 8, 7, -2, 0, -4, -7, -2)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(5.485, 5.485)
@@ -67,7 +66,7 @@ animation = &"walk"
 frame = 1
 frame_progress = 0.961036
 
-[node name="weapon" parent="AnimatedSprite2D" instance=ExtResource("5_v6u64")]
+[node name="weapons" parent="AnimatedSprite2D" instance=ExtResource("5_v6u64")]
 scale = Vector2(4, 4)
 
 [node name="HUD" parent="." instance=ExtResource("5_e68ka")]

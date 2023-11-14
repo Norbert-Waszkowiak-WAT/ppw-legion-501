@@ -6,9 +6,12 @@ class_name Weapon
 @export var damage: float
 @export var knockback: float
 
+# Odniesienie do użytkownika broni
+@onready var user = get_parent()
+
 
 # | ============================================================================= |
 
 
-func attack(userpos):
+func attack():
 	pass

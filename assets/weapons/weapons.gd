@@ -21,7 +21,7 @@ func _ready():
 func _process(delta):
 	get_weapon()
 	if Input.is_action_just_pressed("attack") and selected_weapon:
-		selected_weapon.attack(player.position)
+		selected_weapon.attack()
 
 
 # | ============================================================================= |

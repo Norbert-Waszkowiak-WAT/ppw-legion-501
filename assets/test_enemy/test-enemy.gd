@@ -16,9 +16,6 @@ func _ready():
 	$dir_timer.timeout.connect(get_dir)
 	$dir_timer.start()
 	
-	$healthbar.hide()
-	$health_timer.timeout.connect(hide_health)
-	
 	# Ustawia cel broni na gracza
 	weapon.set_monitoring(true)
 
@@ -60,9 +57,11 @@ func get_dir():
 		dir = 0
 
 
+# Zmiana stanu
 func change_state(state : states):
 	await get_tree().create_timer(reaction_time).timeout
 	current_state = state
+
 
 # Odpowiada za zachowanie wroga poza walką
 func idle():
@@ -92,27 +91,13 @@ func chase():
 # Odpowiada za zachowanie wroga podczes ataku
 func attack():
 	dir = 0
-	weapon.attack(position)
+	weapon.attack()
 	
 	if position.distance_to(player.position) > detection_range:
 		$dir_timer.start()
 		change_state(states.idle)
 	if position.distance_to(player.position) <= detection_range:
 		change_state(states.chase)
-
-
-# Ukrywa pasek życia po określonym czasie
-func hide_health():
-	$healthbar.hide()
-	$health_timer.stop()
-
-
-# Śmierć wroga
-func die():
-	sprite.self_modulate = Color(1.0, 0, 0, 1)
-	set_collision_layer_value(3, false)
-	await get_tree().create_timer(death_time).timeout
-	queue_free()
 
 
 # | ============================================================================= |

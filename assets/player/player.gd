@@ -19,6 +19,7 @@ var health : float
 @export var MAX_HEALTH: float = 100.0
 
 var taking_knockback : bool
+@export var knockback_multiplier : float = 1.0
 
 # Wartości prędkości podczas skoku na podstawie równania rzutu pionowego
 @onready var jump_speed: float = ((2.0 * jump_height) / jump_peak) * -1
@@ -125,14 +126,14 @@ func apply_damage(damage, knockback, pos : Vector2):
 		healthbar.show()
 		$damage_timer.start()
 		$color_timer.start()
-		print("Player receives " + str(damage) + " damage.")
+#		print("Player receives " + str(damage) + " damage.")
 
 
 # Odrzucenie podczas otrzymywania obrażeń
 func apply_knockback(strength, pos : Vector2):
 	taking_knockback = true
-	var direction = pos.direction_to(position) * Vector2(2, 1) + Vector2(0, -1.5)
-	velocity = direction * strength
+	var direction = pos.direction_to(global_position) + Vector2(0, -1.5)
+	velocity = direction.normalized() * strength * knockback_multiplier
 
 
 # Ustawienie koloru gracza na standardowy

@@ -46,6 +46,7 @@ acceleration = 8.0
 jump_height = 35.0
 jump_descent = 0.25
 jump_peak = 0.35
+knockback_multiplier = 2.0
 metadata/_edit_group_ = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
@@ -55,8 +56,12 @@ polygon = PackedVector2Array(-7, 8, 7, 8, 7, -2, 0, -4, -7, -2)
 zoom = Vector2(5.485, 5.485)
 position_smoothing_enabled = true
 position_smoothing_speed = 9.0
+drag_horizontal_enabled = true
 drag_vertical_enabled = true
-drag_top_margin = 0.45
+drag_left_margin = 0.05
+drag_top_margin = 0.5
+drag_right_margin = 0.05
+drag_bottom_margin = 0.6
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
@@ -72,6 +77,7 @@ scale = Vector2(4, 4)
 [node name="HUD" parent="." instance=ExtResource("5_e68ka")]
 
 [node name="damage_timer" type="Timer" parent="."]
+wait_time = 0.5
 one_shot = true
 
 [node name="color_timer" type="Timer" parent="."]

@@ -30,8 +30,10 @@ var taking_knockback : bool
 @onready var sprite = get_node("AnimatedSprite2D")
 @onready var healthbar = get_node("HUD/healthbar")
 @onready var state_machine = get_node("state_machine")
+@onready var expbar = get_node("HUD/expbar")
 
-
+var exp : float
+@export var MAX_EXP: float = 10.0
 # | ============================================================================= |
 
 
@@ -52,7 +54,7 @@ func _process(delta):
 	
 	# Ustawia pasek życia na aktualną wartość życia
 	healthbar.value = health
-
+	expbar.value = exp
 
 # Obsługuje fizykę 
 func _physics_process(delta):
@@ -81,6 +83,7 @@ func enable_player():
 func spawn(pos):
 	position = pos
 	health = MAX_HEALTH
+	exp = MAX_EXP
 	enable_player()
 	show()
 

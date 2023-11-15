@@ -77,8 +77,10 @@ func idle():
 func chase():
 	if position.direction_to(player.position).x > 0:
 		dir = 1
-	else:
+	elif position.direction_to(player.position).x < 0:
 		dir = -1
+	else:
+		dir = 0
 	sprite.scale.x = sprite.scale.y * dir
 	
 	if position.distance_to(player.position) > detection_range:

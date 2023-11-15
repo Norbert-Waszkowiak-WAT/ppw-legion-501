@@ -11,6 +11,8 @@ var health : float
 @export var MAX_HEALTH : float
 var taking_knockback : bool = false
 
+@export var dropped_experience : float = 15.0
+
 @export var detection_range : float
 @export var attack_range : float
 @export var reaction_time : float
@@ -19,7 +21,7 @@ var taking_knockback : bool = false
 
 @onready var sprite = get_node("AnimatedSprite2D")
 @onready var player = get_node("../player")
-@onready var weapon = sprite.get_child(0)
+@onready var weapon = sprite.find_children("*", "Weapon")[0]
 
 
 # | ============================================================================= |
@@ -27,7 +29,8 @@ var taking_knockback : bool = false
 
 # Wywoływana na początku sceny
 func _ready():
-	weapon.set_target("player")
+	if weapon:
+		weapon.set_target("player")
 	health = MAX_HEALTH
 	
 	$healthbar.hide()
@@ -82,6 +85,8 @@ func hide_health():
 
 # Śmierć wroga
 func die():
+	set_process(false)
 	sprite.self_modulate = Color(1.0, 0, 0, 1)
+	player.experience += dropped_experience
 	await get_tree().create_timer(death_time).timeout
 	queue_free()

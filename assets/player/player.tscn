@@ -80,10 +80,6 @@ scale = Vector2(4, 4)
 wait_time = 0.5
 one_shot = true
 
-[node name="color_timer" type="Timer" parent="."]
-wait_time = 0.5
-one_shot = true
-
 [node name="state_machine" type="Node" parent="." node_paths=PackedStringArray("starting_state")]
 script = ExtResource("7_tys86")
 starting_state = NodePath("idle")

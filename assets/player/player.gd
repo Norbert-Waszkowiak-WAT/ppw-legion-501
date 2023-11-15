@@ -29,20 +29,21 @@ var taking_knockback : bool
 # Odniesienia do potrzebnych węzłów
 @onready var sprite = get_node("AnimatedSprite2D")
 @onready var healthbar = get_node("HUD/healthbar")
-@onready var state_machine = get_node("state_machine")
 @onready var expbar = get_node("HUD/expbar")
 
-var exp : float
+var experience : float
 @export var MAX_EXP: float = 10.0
+
+
 # | ============================================================================= |
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	# Inicjalizuje state machine
-	state_machine.init(self)
+	$state_machine.init(self)
 	
-	$color_timer.timeout.connect(standard_color)
+	$damage_timer.timeout.connect(standard_color)
 	disable_player()
 	hide()
 	
@@ -50,16 +51,17 @@ func _ready():
 # Wywoływane podczas każdej klatki
 func _process(delta):
 	# Wywołuje pętle state machine
-	state_machine.process(delta)
+	$state_machine.process(delta)
 	
 	# Ustawia pasek życia na aktualną wartość życia
 	healthbar.value = health
-	expbar.value = exp
+	expbar.value = experience
 
 # Obsługuje fizykę 
 func _physics_process(delta):
 	# Wywołuje pętlę fizyczną state machine
-	state_machine.physics(delta)
+	$state_machine.physics(delta)
+	
 	if taking_knockback and is_on_floor():
 		taking_knockback = false
 
@@ -83,7 +85,6 @@ func enable_player():
 func spawn(pos):
 	position = pos
 	health = MAX_HEALTH
-	exp = MAX_EXP
 	enable_player()
 	show()
 
@@ -128,7 +129,6 @@ func apply_damage(damage, knockback, pos : Vector2):
 		apply_knockback(knockback, pos)
 		healthbar.show()
 		$damage_timer.start()
-		$color_timer.start()
 #		print("Player receives " + str(damage) + " damage.")
 
 

@@ -5,15 +5,6 @@ enum states {idle, chase, attack}
 var current_state : states
 var starting_state : states = states.idle
 
-# Wysokość oraz prędkość skoku
-@export var enemy_jump_height: float = 100
-@export var enemy_jump_descent: float = 0.5
-@export var enemy_jump_peak: float = 0.7
-
-# Wartości prędkości podczas skoku na podstawie równania rzutu pionowego
-@onready var enemy_jump_speed: float = ((2.0 * enemy_jump_height) / enemy_jump_peak) * -1
-@onready var enemy_jump_gravity: float = ((-2.0 * enemy_jump_height) / (enemy_jump_peak * enemy_jump_peak)) * -1
-@onready var enemy_fall_gravity: float = ((-2.0 * enemy_jump_height) / (enemy_jump_descent * enemy_jump_descent)) * -1
 
 # | ============================================================================= |
 
@@ -32,7 +23,6 @@ func _ready():
 
 # Wywoływana na każdej klatce
 func _process(delta):
-	
 	super(delta)
 
 
@@ -41,22 +31,12 @@ func _physics_process(delta):
 	match current_state:
 		states.idle:
 			idle()
-			# Zapobiega spadnięciu
-			check_floor()
 		states.chase:
 			chase()
-			check_floor_chase()
-			check_wall()
-			velocity.y += get_gravity() * delta
 		states.attack:
 			attack()
-			
-	
-	
-	
-	
+	check_movement()
 	super(delta)
-	
 
 
 # | ============================================================================= |
@@ -106,6 +86,7 @@ func chase():
 	sprite.scale.x = sprite.scale.y * dir
 	
 	if position.distance_to(player.position) > detection_range or !sees_player():
+		await get_tree().create_timer(memory_time).timeout
 		speed = idle_speed
 		$dir_timer.start()
 		change_state(states.idle)
@@ -119,39 +100,29 @@ func attack():
 	weapon.attack()
 	
 	if position.distance_to(player.position) > detection_range or !sees_player():
+		await get_tree().create_timer(memory_time).timeout
 		speed = idle_speed
 		$dir_timer.start()
 		change_state(states.idle)
 	if position.distance_to(player.position) <= detection_range:
 		speed = chase_speed
 		change_state(states.chase)
-		
-func get_gravity() -> float:
-	if velocity.y > 0:
-		return enemy_fall_gravity
-	else:
-		return enemy_jump_gravity
 
-func jump():
-	velocity.y = enemy_jump_speed
-	
-# Śmierć wroga
-func check_floor():
-	if !$left_short.get_collider() and dir == -1:
-		dir = 0
-	if !$right_short.get_collider() and dir == 1:
-		dir = 0
-		
-func check_floor_chase():
-	if !$left_long.get_collider() or !$right_long.get_collider():
-		jump()
-		
-func check_wall():
-	if $left_step.get_collider() and !$left_wall.get_collider() and dir == -1:
-		jump()
-	if $right_step.get_collider() and !$right_wall.get_collider() and dir == 1:
-		jump()
-		
+
+func check_movement():
+	match current_state:
+		states.chase:
+			if !$left_long.get_collider() or !$right_long.get_collider():
+				jump()
+			if $left_step.get_collider() and !$left_wall.get_collider() and dir == -1:
+				jump()
+			if $right_step.get_collider() and !$right_wall.get_collider() and dir == 1:
+				jump()
+		states.idle:
+			if !$left_short.get_collider() and dir == -1 and is_on_floor():
+				dir = 0
+			if !$right_short.get_collider() and dir == 1 and is_on_floor():
+				dir = 0
 
 
 # | ============================================================================= |

@@ -6,7 +6,6 @@ var speed : float
 @export var idle_speed : float
 @export var chase_speed : float
 @export var acceleration : float
-const GRAVITY : float = 200.0
 var dir : int = 0
 
 var health : float
@@ -18,8 +17,19 @@ var taking_knockback : bool = false
 @export var detection_range : float
 @export var attack_range : float
 @export var reaction_time : float
+@export var memory_time : float
 
 @export var death_time: float = 0.4
+
+# Wysokość oraz prędkość skoku
+@export var jump_height: float = 100
+@export var jump_descent: float = 0.5
+@export var jump_peak: float = 0.7
+
+# Wartości prędkości podczas skoku na podstawie równania rzutu pionowego
+@onready var jump_speed: float = ((2.0 * jump_height) / jump_peak) * -1
+@onready var jump_gravity: float = ((-2.0 * jump_height) / (jump_peak * jump_peak)) * -1
+@onready var fall_gravity: float = ((-2.0 * jump_height) / (jump_descent * jump_descent)) * -1
 
 @onready var sprite = get_node("AnimatedSprite2D")
 @onready var player = get_node("../player")
@@ -49,10 +59,10 @@ func _process(delta):
 
 func _physics_process(delta):
 	# Dodanie grawitacji
-	velocity.y += delta * GRAVITY
+	velocity.y += get_gravity() * delta
 	
 	# Nadanie prędkości poziomej
-	if not taking_knockback and is_on_floor():
+	if not taking_knockback:
 		velocity.x = dir * min(acceleration + abs(velocity.x), speed)
 	else:
 		taking_knockback = false
@@ -95,6 +105,19 @@ func sees_player() -> bool:
 		return false
 	else:
 		return true
+
+
+func get_gravity() -> float:
+	if velocity.y > 0:
+		return fall_gravity
+	else:
+		return jump_gravity
+
+
+func jump():
+	if is_on_floor():
+		velocity.y = jump_speed
+
 
 func die():
 	set_process(false)

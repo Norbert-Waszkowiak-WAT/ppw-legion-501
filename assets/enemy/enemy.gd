@@ -96,8 +96,6 @@ func sees_player() -> bool:
 	else:
 		return true
 
-
-# Śmierć wroga
 func die():
 	set_process(false)
 	sprite.self_modulate = Color(1.0, 0, 0, 1)

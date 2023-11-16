@@ -2,7 +2,9 @@ extends CharacterBody2D
 class_name Enemy
 
 
-@export var speed : float
+var speed : float
+@export var idle_speed : float
+@export var chase_speed : float
 @export var acceleration : float
 const GRAVITY : float = 200.0
 var dir : int = 0
@@ -33,6 +35,7 @@ func _ready():
 		weapon.set_target("player")
 	health = MAX_HEALTH
 	
+	$healthbar.max_value = MAX_HEALTH
 	$healthbar.hide()
 	$health_timer.timeout.connect(hide_health)
 
@@ -42,7 +45,7 @@ func _process(delta):
 	$healthbar.value = health
 	if health <= 0:
 		die()
-
+		
 
 func _physics_process(delta):
 	# Dodanie grawitacji
@@ -81,6 +84,17 @@ func apply_knockback(strength, pos : Vector2):
 func hide_health():
 	$healthbar.hide()
 	$health_timer.stop()
+
+
+func sees_player() -> bool:
+	var space_state = get_world_2d().direct_space_state
+	var query = PhysicsRayQueryParameters2D.create(global_position, player.position, 1)
+	query.exclude = [self]
+	var result = space_state.intersect_ray(query)
+	if result or position.direction_to(player.position).x * sprite.scale.x < 0:
+		return false
+	else:
+		return true
 
 
 # Śmierć wroga

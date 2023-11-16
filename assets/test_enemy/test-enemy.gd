@@ -34,6 +34,12 @@ func _physics_process(delta):
 			chase()
 		states.attack:
 			attack()
+			
+	# Zapobiega spadnięciu
+	check_floor()
+	
+	
+	
 	super(delta)
 	
 
@@ -65,25 +71,27 @@ func change_state(state : states):
 
 # Odpowiada za zachowanie wroga poza walką
 func idle():
-	if position.distance_to(player.position) <= detection_range:
+	if position.distance_to(player.position) <= detection_range and sees_player():
+		speed = chase_speed
 		$dir_timer.stop()
 		change_state(states.chase)
-	if position.distance_to(player.position) <= attack_range:
+	if position.distance_to(player.position) <= attack_range and sees_player():
 		$dir_timer.stop()
 		change_state(states.attack)
 
 
 # Odpowiada za zachowanie wroga podczas gonienia gracza
 func chase():
-	if position.direction_to(player.position).x > 0:
-		dir = 1
-	elif position.direction_to(player.position).x < 0:
-		dir = -1
-	else:
+	if position.direction_to(player.position).x == 0:
 		dir = 0
+	elif position.direction_to(player.position).x > 0:
+		dir = 1
+	else:
+		dir = -1
 	sprite.scale.x = sprite.scale.y * dir
 	
-	if position.distance_to(player.position) > detection_range:
+	if position.distance_to(player.position) > detection_range or !sees_player():
+		speed = idle_speed
 		$dir_timer.start()
 		change_state(states.idle)
 	if position.distance_to(player.position) <= attack_range:
@@ -95,11 +103,20 @@ func attack():
 	dir = 0
 	weapon.attack()
 	
-	if position.distance_to(player.position) > detection_range:
+	if position.distance_to(player.position) > detection_range or !sees_player():
+		speed = idle_speed
 		$dir_timer.start()
 		change_state(states.idle)
 	if position.distance_to(player.position) <= detection_range:
+		speed = chase_speed
 		change_state(states.chase)
+
+
+func check_floor():
+	if !$raycast_left.get_collider() and dir == -1:
+		dir = 0
+	if !$raycast_right.get_collider() and dir == 1:
+		dir = 0
 
 
 # | ============================================================================= |

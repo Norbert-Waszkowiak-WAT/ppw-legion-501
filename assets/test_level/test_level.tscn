@@ -98,5 +98,5 @@ position = Vector2(189, -36)
 enemy_type = ExtResource("3_r8es1")
 
 [node name="enemy_spawnpoint4" parent="spawnpoints" instance=ExtResource("7_k47k2")]
-position = Vector2(384, -57)
+position = Vector2(190, 2)
 enemy_type = ExtResource("3_r8es1")

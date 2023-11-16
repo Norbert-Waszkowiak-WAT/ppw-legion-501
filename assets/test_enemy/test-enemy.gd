@@ -112,7 +112,7 @@ func attack():
 func check_movement():
 	match current_state:
 		states.chase:
-			if !$left_long.get_collider() or !$right_long.get_collider():
+			if !$left_short.get_collider() or !$right_short.get_collider():
 				jump()
 			if $left_step.get_collider() and !$left_wall.get_collider() and dir == -1:
 				jump()

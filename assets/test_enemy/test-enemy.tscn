@@ -71,11 +71,11 @@ one_shot = true
 wait_time = 3.0
 
 [node name="right_short" type="RayCast2D" parent="."]
-position = Vector2(3, 0)
+position = Vector2(4, 0)
 target_position = Vector2(0, 7)
 
 [node name="left_short" type="RayCast2D" parent="."]
-position = Vector2(-3, 0)
+position = Vector2(-4, 0)
 target_position = Vector2(0, 7)
 
 [node name="left_long" type="RayCast2D" parent="."]
@@ -86,18 +86,26 @@ target_position = Vector2(0, 51)
 position = Vector2(3, 0)
 target_position = Vector2(0, 51)
 
-[node name="right_step" type="RayCast2D" parent="."]
-position = Vector2(1, 3)
-target_position = Vector2(8, 0)
+[node name="right_step_angle" type="RayCast2D" parent="."]
+position = Vector2(2, 5)
+target_position = Vector2(3, -3)
 
-[node name="left_step" type="RayCast2D" parent="."]
-position = Vector2(-1, 3)
-target_position = Vector2(-8, 0)
+[node name="right_step_down" type="RayCast2D" parent="."]
+position = Vector2(5, 0)
+target_position = Vector2(0, 9)
+
+[node name="left_step_angle" type="RayCast2D" parent="."]
+position = Vector2(-2, 5)
+target_position = Vector2(-3, -3)
+
+[node name="left_step_down" type="RayCast2D" parent="."]
+position = Vector2(-5, 0)
+target_position = Vector2(0, 9)
 
 [node name="right_wall" type="RayCast2D" parent="."]
-position = Vector2(1, -9)
+position = Vector2(1, -14)
 target_position = Vector2(8, 0)
 
 [node name="left_wall" type="RayCast2D" parent="."]
-position = Vector2(-1, -9)
+position = Vector2(-1, -14)
 target_position = Vector2(-8, 0)

@@ -5,7 +5,7 @@ enum states {idle, chase, attack}
 var current_state : states
 var starting_state : states = states.idle
 
-var detection_timer: float = 1
+
 # | ============================================================================= |
 
 

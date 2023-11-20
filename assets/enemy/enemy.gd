@@ -11,6 +11,7 @@ var dir : int = 0
 var health : float
 @export var MAX_HEALTH : float
 var taking_knockback : bool = false
+var knockback_multiplier : float = 1.7
 
 @export var dropped_experience : float = 15.0
 
@@ -64,11 +65,13 @@ func _physics_process(delta):
 	# Nadanie prędkości poziomej
 	if not taking_knockback:
 		velocity.x = dir * min(acceleration + abs(velocity.x), speed)
-	else:
-		taking_knockback = false
 	
 	# Obsługuje poruszanie i kolizję
 	move_and_slide()
+	
+	if taking_knockback	and is_on_floor():
+		taking_knockback = false
+		print(taking_knockback)
 
 
 # Zadaje obrażenia oraz pokazuje pasek życia
@@ -85,8 +88,9 @@ func apply_damage(damage, knockback, pos : Vector2):
 # Odrzucenie podczas otrzymywania obrażeń
 func apply_knockback(strength, pos : Vector2):
 	taking_knockback = true
+	print(taking_knockback)
 	var direction = pos.direction_to(position) + Vector2(0, -1.5)
-	velocity = direction * strength
+	velocity = direction * strength * knockback_multiplier
 	print(velocity)
 
 

@@ -27,7 +27,7 @@ detection_range = 100.0
 attack_range = 15.0
 reaction_time = 0.3
 memory_time = 3.0
-jump_height = 20.0
+jump_height = 30.0
 jump_descent = 0.4
 jump_peak = 0.3
 
@@ -63,8 +63,10 @@ metadata/_edit_use_anchors_ = true
 [node name="dir_timer" type="Timer" parent="."]
 wait_time = 2.0
 
+[node name="mask_timer" type="Timer" parent="."]
+
 [node name="damage_timer" type="Timer" parent="."]
-wait_time = 0.6
+wait_time = 0.1
 one_shot = true
 
 [node name="health_timer" type="Timer" parent="."]
@@ -103,9 +105,9 @@ position = Vector2(-5, 0)
 target_position = Vector2(0, 9)
 
 [node name="right_wall" type="RayCast2D" parent="."]
-position = Vector2(1, -14)
+position = Vector2(1, -18)
 target_position = Vector2(8, 0)
 
 [node name="left_wall" type="RayCast2D" parent="."]
-position = Vector2(-1, -14)
+position = Vector2(-1, -18)
 target_position = Vector2(-8, 0)

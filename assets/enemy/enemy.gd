@@ -101,7 +101,7 @@ func sees_player() -> bool:
 	var query = PhysicsRayQueryParameters2D.create(global_position, player.position, 1)
 	query.exclude = [self]
 	var result = space_state.intersect_ray(query)
-	if result or position.direction_to(player.position).x * sprite.scale.x < 0:
+	if result:
 		return false
 	else:
 		return true

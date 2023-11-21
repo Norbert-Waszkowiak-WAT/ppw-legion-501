@@ -26,10 +26,10 @@ MAX_HEALTH = 50.0
 detection_range = 100.0
 attack_range = 15.0
 reaction_time = 0.3
-memory_time = 3.0
-jump_height = 30.0
-jump_descent = 0.4
-jump_peak = 0.3
+memory_time = 10.0
+jump_height = 25.0
+jump_descent = 0.3
+jump_peak = 0.4
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(-3, 5, 0, 6, 3, 5, 3, -5, 0, -6, -3, -5)

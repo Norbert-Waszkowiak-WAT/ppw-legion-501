@@ -16,10 +16,13 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("4_12bbh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_2e3x7")
 }],
 "loop": false,
 "name": &"attack",
-"speed": 14.0
+"speed": 20.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6mgrv"]

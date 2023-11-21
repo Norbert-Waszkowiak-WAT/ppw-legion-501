@@ -71,7 +71,6 @@ func _physics_process(delta):
 	
 	if taking_knockback	and is_on_floor():
 		taking_knockback = false
-		print(taking_knockback)
 
 
 # Zadaje obrażenia oraz pokazuje pasek życia
@@ -88,10 +87,8 @@ func apply_damage(damage, knockback, pos : Vector2):
 # Odrzucenie podczas otrzymywania obrażeń
 func apply_knockback(strength, pos : Vector2):
 	taking_knockback = true
-	print(taking_knockback)
 	var direction = pos.direction_to(position) + Vector2(0, -1.5)
 	velocity = direction * strength * knockback_multiplier
-	print(velocity)
 
 
 # Ukrywa pasek życia po określonym czasie

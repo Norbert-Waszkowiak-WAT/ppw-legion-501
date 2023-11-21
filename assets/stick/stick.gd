@@ -26,5 +26,4 @@ func attack():
 		$attack_timer.start()
 		
 		await $attack_timer.timeout
-		$stick_sprite.frame = 0
 		

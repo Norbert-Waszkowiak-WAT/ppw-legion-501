@@ -77,13 +77,14 @@ func idle():
 
 # Odpowiada za zachowanie wroga podczas gonienia gracza
 func chase():
-	if position.direction_to(player.position).x == 0:
+	if position.x > player.position.x - 10 and position.x < player.position.x + 10:
 		dir = 0
 	elif position.direction_to(player.position).x > 0:
 		dir = 1
+		sprite.scale.x = sprite.scale.y * dir
 	else:
 		dir = -1
-	sprite.scale.x = sprite.scale.y * dir
+		sprite.scale.x = sprite.scale.y * dir
 	
 	if position.distance_to(player.position) > detection_range or !sees_player():
 		await get_tree().create_timer(memory_time).timeout

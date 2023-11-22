@@ -23,6 +23,7 @@ idle_speed = 20.0
 chase_speed = 45.0
 acceleration = 1.5
 MAX_HEALTH = 50.0
+dropped_experience = 60.0
 detection_range = 100.0
 attack_range = 15.0
 reaction_time = 0.3

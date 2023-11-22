@@ -13,7 +13,7 @@ var health : float
 var taking_knockback : bool = false
 var knockback_multiplier : float = 1.7
 
-@export var dropped_experience : float = 15.0
+@export var dropped_experience : float
 
 @export var detection_range : float
 @export var attack_range : float
@@ -122,6 +122,7 @@ func jump():
 
 func die():
 	set_process(false)
+	print("die")
 	sprite.self_modulate = Color(1.0, 0, 0, 1)
 	player.experience += dropped_experience
 	await get_tree().create_timer(death_time).timeout

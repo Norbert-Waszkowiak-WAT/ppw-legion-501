@@ -32,17 +32,24 @@ var taking_knockback : bool
 @onready var expbar = get_node("HUD/expbar")
 
 var experience : float
-@export var MAX_EXP: float = 10.0
+var exp_lvl : int
+@export var MAX_EXP : float = 100.0
 
 
 # | ============================================================================= |
 
+func exp_bar_updata():
+	if experience >= MAX_EXP:
+a		experience -= MAX_EXP
+		exp_lvl += 1
+		MAX_EXP *= 1.5
+		expbar.max_value = MAX_EXP
+	expbar.value = experience
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	# Inicjalizuje state machine
 	$state_machine.init(self)
-	
 	$damage_timer.timeout.connect(standard_color)
 	disable_player()
 	hide()
@@ -55,7 +62,7 @@ func _process(delta):
 	
 	# Ustawia pasek życia na aktualną wartość życia
 	healthbar.value = health
-	expbar.value = experience
+	exp_bar_updata()
 
 # Obsługuje fizykę 
 func _physics_process(delta):

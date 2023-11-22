@@ -1,0 +1,71 @@
+[gd_scene load_steps=6 format=3 uid="uid://bgod5pyugdjn"]
+
+[ext_resource type="Texture2D" uid="uid://du2c15r3nn8i7" path="res://textures/main-menu/new_game.png" id="1_pabwv"]
+[ext_resource type="Texture2D" uid="uid://c4pttsv4c7wtw" path="res://textures/level1/Tlo1.png" id="1_vga8p"]
+[ext_resource type="Texture2D" uid="uid://btbhv0lqx7l1u" path="res://textures/main-menu/continue.png" id="2_d5cl3"]
+[ext_resource type="Texture2D" uid="uid://buq8ketoyy078" path="res://textures/main-menu/settings.png" id="3_4k0fd"]
+[ext_resource type="Texture2D" uid="uid://28d2yaiidpwr" path="res://textures/main-menu/exit.png" id="4_6cx8s"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="title" type="TextureRect" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="new_game" type="TextureRect" parent="MarginContainer/VBoxContainer"]
+texture_filter = 1
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+texture = ExtResource("1_pabwv")
+stretch_mode = 5
+
+[node name="continue" type="TextureRect" parent="MarginContainer/VBoxContainer"]
+texture_filter = 1
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+texture = ExtResource("2_d5cl3")
+stretch_mode = 5
+
+[node name="settings" type="TextureRect" parent="MarginContainer/VBoxContainer"]
+texture_filter = 1
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+texture = ExtResource("3_4k0fd")
+stretch_mode = 5
+
+[node name="exit" type="TextureRect" parent="MarginContainer/VBoxContainer"]
+texture_filter = 1
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+texture = ExtResource("4_6cx8s")
+stretch_mode = 5
+
+[node name="TextureRect" type="TextureRect" parent="."]
+z_index = -1
+layout_mode = 2
+offset_right = 1194.0
+offset_bottom = 664.0
+texture = ExtResource("1_vga8p")
+expand_mode = 1
+stretch_mode = 6

@@ -40,7 +40,7 @@ var exp_lvl : int
 
 func exp_bar_updata():
 	if experience >= MAX_EXP:
-a		experience -= MAX_EXP
+		experience -= MAX_EXP
 		exp_lvl += 1
 		MAX_EXP *= 1.5
 		expbar.max_value = MAX_EXP

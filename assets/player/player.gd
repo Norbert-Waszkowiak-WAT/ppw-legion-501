@@ -17,6 +17,7 @@ var dir: float = 0.0
 # Wartości życia
 var health : float
 @export var MAX_HEALTH: float = 100.0
+signal taking_damage
 
 var taking_knockback : bool
 @export var knockback_multiplier : float = 1.0
@@ -38,13 +39,14 @@ var exp_lvl : int
 
 # | ============================================================================= |
 
-func exp_bar_updata():
+func exp_bar_update():
 	if experience >= MAX_EXP:
 		experience -= MAX_EXP
 		exp_lvl += 1
 		MAX_EXP *= 1.5
 		expbar.max_value = MAX_EXP
 	expbar.value = experience
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -53,7 +55,7 @@ func _ready():
 	$damage_timer.timeout.connect(standard_color)
 	disable_player()
 	hide()
-	
+
 
 # Wywoływane podczas każdej klatki
 func _process(delta):
@@ -62,7 +64,8 @@ func _process(delta):
 	
 	# Ustawia pasek życia na aktualną wartość życia
 	healthbar.value = health
-	exp_bar_updata()
+	exp_bar_update()
+
 
 # Obsługuje fizykę 
 func _physics_process(delta):
@@ -134,9 +137,8 @@ func apply_damage(damage, knockback, pos : Vector2):
 		$AnimatedSprite2D.self_modulate = Color(1, 0, 0)
 		health -= damage
 		apply_knockback(knockback, pos)
-		healthbar.show()
 		$damage_timer.start()
-#		print("Player receives " + str(damage) + " damage.")
+		taking_damage.emit()
 
 
 # Odrzucenie podczas otrzymywania obrażeń

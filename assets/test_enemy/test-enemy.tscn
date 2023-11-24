@@ -92,6 +92,7 @@ target_position = Vector2(0, 51)
 [node name="right_step_angle" type="RayCast2D" parent="."]
 position = Vector2(2, 5)
 target_position = Vector2(3, -3)
+collision_mask = 5
 
 [node name="right_step_down" type="RayCast2D" parent="."]
 position = Vector2(5, 0)
@@ -100,6 +101,7 @@ target_position = Vector2(0, 9)
 [node name="left_step_angle" type="RayCast2D" parent="."]
 position = Vector2(-2, 5)
 target_position = Vector2(-3, -3)
+collision_mask = 5
 
 [node name="left_step_down" type="RayCast2D" parent="."]
 position = Vector2(-5, 0)

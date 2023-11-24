@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dwss7sxgcylxj" path="res://textures/animated-player/ghost3.png" id="4_oonk3"]
 [ext_resource type="PackedScene" uid="uid://clf8aqe0iy2if" path="res://assets/hud/hud.tscn" id="5_e68ka"]
 [ext_resource type="PackedScene" uid="uid://dj74demvny3ql" path="res://assets/weapons/weapons.tscn" id="5_v6u64"]
-[ext_resource type="Script" path="res://assets/state_machine/state_machine.gd" id="7_tys86"]
+[ext_resource type="Script" path="res://assets/player/state_machine/state_machine.gd" id="7_tys86"]
 [ext_resource type="Script" path="res://assets/player/idle.gd" id="8_u7umh"]
 [ext_resource type="Script" path="res://assets/player/walk.gd" id="9_ye4cr"]
 [ext_resource type="Script" path="res://assets/player/jump.gd" id="10_x52e5"]

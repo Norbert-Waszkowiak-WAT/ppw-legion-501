@@ -1,22 +1,41 @@
-[gd_scene load_steps=6 format=3 uid="uid://clf8aqe0iy2if"]
+[gd_scene load_steps=7 format=3 uid="uid://clf8aqe0iy2if"]
 
 [ext_resource type="Texture2D" uid="uid://bacq5305whrcs" path="res://textures/test-bar/test_bar_under.png" id="1_np1ih"]
 [ext_resource type="Script" path="res://assets/hud/healthbar.gd" id="2_lxfns"]
 [ext_resource type="Texture2D" uid="uid://krio4m6k7bkc" path="res://textures/test-bar/test-bar-progress.png" id="2_ol76l"]
 [ext_resource type="Texture2D" uid="uid://bxe1ri500rj2t" path="res://textures/test-bar/test-bar-damage.png" id="3_kbynf"]
-[ext_resource type="Texture2D" uid="uid://bfks6unq4fwsg" path="res://textures/test-bar/test_bar_exp.png" id="3_v00mo"]
+[ext_resource type="Texture2D" uid="uid://sb18qbt3iofr" path="res://textures/xp-bar/xp-bar-under.png" id="5_upksd"]
+[ext_resource type="Texture2D" uid="uid://r30e5nss0onf" path="res://textures/xp-bar/xp-bar-progress.png" id="6_maie4"]
 
 [node name="HUD" type="CanvasLayer"]
 scale = Vector2(3.905, 3.905)
 transform = Transform2D(3.905, 0, 0, 3.905, 0, 0)
 follow_viewport_scale = 3.0
 
+[node name="Control" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="healthbar" type="TextureProgressBar" parent="."]
 texture_filter = 1
-offset_left = 9.47503
-offset_top = 8.70679
-offset_right = 59.475
-offset_bottom = 18.7068
+offset_left = 10.225
+offset_top = 3.75
+offset_right = 60.225
+offset_bottom = 13.75
+scale = Vector2(1.245, 1.245)
 step = 0.1
 value = 100.0
 texture_progress = ExtResource("2_ol76l")
@@ -34,9 +53,23 @@ texture_progress = ExtResource("3_kbynf")
 
 [node name="expbar" type="TextureProgressBar" parent="."]
 texture_filter = 3
-offset_left = 238.156
-offset_top = 8.19462
-offset_right = 288.156
-offset_bottom = 21.1946
-texture_under = ExtResource("1_np1ih")
-texture_progress = ExtResource("3_v00mo")
+offset_left = 216.878
+offset_top = 3.038
+offset_right = 296.878
+offset_bottom = 19.038
+scale = Vector2(0.9, 0.9)
+step = 0.1
+texture_under = ExtResource("5_upksd")
+texture_progress = ExtResource("6_maie4")
+texture_progress_offset = Vector2(16, 0)
+
+[node name="level" type="Label" parent="."]
+texture_filter = 1
+offset_left = 219.0
+offset_top = 5.0
+offset_right = 245.0
+offset_bottom = 31.0
+scale = Vector2(0.41, 0.41)
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1

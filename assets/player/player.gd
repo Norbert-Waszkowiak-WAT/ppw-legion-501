@@ -45,6 +45,7 @@ func exp_bar_update():
 		exp_lvl += 1
 		MAX_EXP *= 1.5
 		expbar.max_value = MAX_EXP
+		$HUD/level.text = str(exp_lvl)
 	expbar.value = experience
 
 

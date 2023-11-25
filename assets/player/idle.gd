@@ -13,10 +13,11 @@ func enter():
 
 # Wywoływana na każdej klatce
 func process(delta: float) -> State:
-	if Input.is_action_just_pressed("jump") and player.is_on_floor():
-		return jump
-	if Input.is_action_pressed("move_right") or Input.is_action_pressed("move_left"):
-		return walk
+	if player.is_processing_input():
+		if Input.is_action_pressed("jump") and player.is_on_floor():
+			return jump
+		if Input.is_action_pressed("move_right") or Input.is_action_pressed("move_left"):
+			return walk
 	return null
 
 
@@ -30,4 +31,3 @@ func physics(delta: float) -> State:
 		return fall
 	
 	return null
-

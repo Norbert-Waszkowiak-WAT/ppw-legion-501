@@ -56,6 +56,7 @@ func _process(delta):
 	
 	# Ustawia pasek życia na aktualną wartość życia
 	healthbar.value = health
+	
 	exp_bar_update()
 
 
@@ -119,6 +120,7 @@ func set_direction(direction):
 			dir = 0
 
 
+# Poruszanie się gracza w poziomie
 func horizontal_movement():
 	if not taking_knockback:
 		velocity.x = dir * min(acceleration + abs(velocity.x), speed)
@@ -127,6 +129,14 @@ func horizontal_movement():
 # Skok
 func jump():
 	velocity.y = jump_speed
+
+
+# Wymuszenie chodu gracza (do przerywników)
+func walk(direction: String, duration: float):
+	set_direction(direction)
+	$state_machine.change_state($state_machine/walk)
+	await get_tree().create_timer(duration).timeout
+	$state_machine.change_state($state_machine/idle)
 
 
 # Zadaje obrażenia graczowi
@@ -151,6 +161,7 @@ func standard_color():
 	$AnimatedSprite2D.self_modulate = Color(1, 1, 1)
 
 
+# Aktualizacja paska i poziomu doświadczenia
 func exp_bar_update():
 	if experience >= MAX_EXP:
 		experience -= MAX_EXP
@@ -159,3 +170,6 @@ func exp_bar_update():
 		expbar.max_value = MAX_EXP
 		$HUD/level.text = str(exp_lvl)
 	expbar.value = experience
+
+
+

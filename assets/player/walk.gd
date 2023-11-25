@@ -16,19 +16,20 @@ func enter():
 
 # Wywoływana na każdej klatce
 func process(delta: float) -> State:
-	if Input.is_action_just_pressed("jump") and player.is_on_floor():
-		return jump
-	if Input.is_action_just_released("move_left") or Input.is_action_just_released("move_right"):
-		return idle
-	
-	if Input.is_action_pressed("move_right"):
-		player.set_direction("right")
-	elif Input.is_action_pressed("move_left"):
-		player.set_direction("left")
-	else:
-		player.set_direction("0")
+	if player.is_processing_input():
+		if Input.is_action_just_pressed("jump") and player.is_on_floor():
+			return jump
+		if Input.is_action_just_released("move_left") or Input.is_action_just_released("move_right"):
+			return idle
+		if Input.is_action_pressed("move_right"):
+			player.set_direction("right")
+		elif Input.is_action_pressed("move_left"):
+			player.set_direction("left")
+		else:
+			player.set_direction("0")
 	
 	return null
+
 
 # Wywoływana na każdej klatce, odpowiada za procesy fizyczne
 func physics(delta: float) -> State:

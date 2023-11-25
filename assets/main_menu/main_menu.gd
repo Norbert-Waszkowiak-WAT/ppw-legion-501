@@ -6,13 +6,14 @@ var startup_delay : float = 0.9
 
 var tween : Tween
 
-
 # | ============================================================================= |
 
 
 # Wywoływana na początku sceny
 func _ready():
 	startup_animation()
+	#Narzuca focus sterowania klawiszami na nowa_gra
+	$MarginContainer/VBoxContainer/new_game.grab_focus()
 
 
 func _on_new_game_pressed():

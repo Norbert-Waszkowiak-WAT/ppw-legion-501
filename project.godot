@@ -10,8 +10,8 @@ config_version=5
 
 [application]
 
-config/name="test"
-run/main_scene="res://assets/test_level/test_level.tscn"
+config/name="Galactic Vendetta"
+run/main_scene="res://assets/main_menu/main_menu.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
 config/icon="res://icon.svg"
 

@@ -39,15 +39,6 @@ var exp_lvl : int
 
 # | ============================================================================= |
 
-func exp_bar_update():
-	if experience >= MAX_EXP:
-		experience -= MAX_EXP
-		exp_lvl += 1
-		MAX_EXP *= 1.5
-		expbar.max_value = MAX_EXP
-		$HUD/level.text = str(exp_lvl)
-	expbar.value = experience
-
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -84,12 +75,18 @@ func _physics_process(delta):
 func disable_player():
 	set_physics_process(false)
 	set_process(false)
+	set_process_input(false)
+	$Camera2D.enabled = false
+	$HUD.visible = false
 
 
 # Włącza funkcjonalność gracza
 func enable_player():
 	set_physics_process(true)
 	set_process(true)
+	set_process_input(true)
+	$Camera2D.enabled = true
+	$HUD.visible = true
 
 
 # Pojawianie się gracza
@@ -152,3 +149,13 @@ func apply_knockback(strength, pos : Vector2):
 # Ustawienie koloru gracza na standardowy
 func standard_color():
 	$AnimatedSprite2D.self_modulate = Color(1, 1, 1)
+
+
+func exp_bar_update():
+	if experience >= MAX_EXP:
+		experience -= MAX_EXP
+		exp_lvl += 1
+		MAX_EXP *= 1.5
+		expbar.max_value = MAX_EXP
+		$HUD/level.text = str(exp_lvl)
+	expbar.value = experience

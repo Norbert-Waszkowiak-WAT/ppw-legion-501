@@ -14,6 +14,7 @@ func _ready():
 
 func _on_new_game_pressed():
 	new_game_animation()
+	await get_tree().create_timer(start_game_delay).timeout
 	get_tree().change_scene_to_file("res://assets/test_level/test_level.tscn")
 
 
@@ -51,4 +52,3 @@ func new_game_animation():
 	
 	# Gracz przeskakuje nad przepaścią
 	$player.jump()
-	await get_tree().create_timer(start_game_delay).timeout

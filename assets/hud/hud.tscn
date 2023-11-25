@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://clf8aqe0iy2if"]
+[gd_scene load_steps=9 format=3 uid="uid://clf8aqe0iy2if"]
 
 [ext_resource type="Texture2D" uid="uid://bacq5305whrcs" path="res://textures/test-bar/test_bar_under.png" id="1_np1ih"]
 [ext_resource type="Script" path="res://assets/hud/healthbar.gd" id="2_lxfns"]
@@ -6,6 +6,11 @@
 [ext_resource type="Texture2D" uid="uid://bxe1ri500rj2t" path="res://textures/test-bar/test-bar-damage.png" id="3_kbynf"]
 [ext_resource type="Texture2D" uid="uid://sb18qbt3iofr" path="res://textures/xp-bar/xp-bar-under.png" id="5_upksd"]
 [ext_resource type="Texture2D" uid="uid://r30e5nss0onf" path="res://textures/xp-bar/xp-bar-progress.png" id="6_maie4"]
+[ext_resource type="FontFile" uid="uid://c0ob1ayhkkquv" path="res://textures/main-menu/upheavtt.ttf" id="7_pp8d5"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_nessk"]
+font = ExtResource("7_pp8d5")
+font_size = 30
 
 [node name="HUD" type="CanvasLayer"]
 scale = Vector2(3.905, 3.905)
@@ -53,11 +58,11 @@ texture_progress = ExtResource("3_kbynf")
 
 [node name="expbar" type="TextureProgressBar" parent="."]
 texture_filter = 3
-offset_left = 216.878
-offset_top = 3.038
-offset_right = 296.878
-offset_bottom = 19.038
-scale = Vector2(0.9, 0.9)
+offset_left = 229.0
+offset_top = 5.0
+offset_right = 309.0
+offset_bottom = 21.0
+scale = Vector2(0.535, 0.535)
 step = 0.1
 texture_under = ExtResource("5_upksd")
 texture_progress = ExtResource("6_maie4")
@@ -65,11 +70,12 @@ texture_progress_offset = Vector2(16, 0)
 
 [node name="level" type="Label" parent="."]
 texture_filter = 1
-offset_left = 219.0
-offset_top = 5.0
-offset_right = 245.0
-offset_bottom = 31.0
-scale = Vector2(0.41, 0.41)
+offset_left = 230.0
+offset_top = 6.0
+offset_right = 264.0
+offset_bottom = 38.0
+scale = Vector2(0.2, 0.2)
 text = "0"
+label_settings = SubResource("LabelSettings_nessk")
 horizontal_alignment = 1
 vertical_alignment = 1

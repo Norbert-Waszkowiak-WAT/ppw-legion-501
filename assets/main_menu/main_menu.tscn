@@ -116,7 +116,7 @@ scale = Vector2(12.43, 12.43)
 
 [node name="player" parent="." instance=ExtResource("6_3b3xo")]
 scale = Vector2(8.155, 8.155)
-speed = 400.0
+speed = 600.0
 acceleration = 20.0
 jump_height = 200.0
 

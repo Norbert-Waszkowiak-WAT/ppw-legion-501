@@ -37,7 +37,7 @@ var starting_state : states = states.idle
 @onready var fall_gravity: float = ((-2.0 * jump_height) / (jump_descent * jump_descent)) * -1
 
 @onready var sprite = get_node("AnimatedSprite2D")
-@onready var player = get_node("../player")
+@onready var player = get_tree().get_root().find_child("player", true, false)
 @onready var weapon = sprite.find_children("*", "Weapon")[0]
 
 
@@ -88,7 +88,7 @@ func _physics_process(delta):
 	# Obsługuje poruszanie i kolizję
 	move_and_slide()
 	
-	if taking_knockback	and is_on_floor():
+	if taking_knockback and is_on_floor():
 		taking_knockback = false
 
 

@@ -52,7 +52,7 @@ knockback_multiplier = 2.0
 metadata/_edit_group_ = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(-7, 8, 7, 8, 7, -2, 0, -4, -7, -2)
+polygon = PackedVector2Array(-7, 8, 7, 8, 7, -3, -7, -3)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(5.485, 5.485)
@@ -63,7 +63,7 @@ drag_vertical_enabled = true
 drag_left_margin = 0.05
 drag_top_margin = 0.5
 drag_right_margin = 0.05
-drag_bottom_margin = 0.6
+drag_bottom_margin = 0.5
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1

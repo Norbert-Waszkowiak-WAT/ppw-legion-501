@@ -70,8 +70,6 @@ texture_filter = 1
 scale = Vector2(0.165, 0.165)
 sprite_frames = SubResource("SpriteFrames_lbsb1")
 animation = &"walk"
-frame = 1
-frame_progress = 0.961036
 
 [node name="weapons" parent="AnimatedSprite2D" instance=ExtResource("5_v6u64")]
 scale = Vector2(4, 4)

@@ -31,6 +31,7 @@ texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_uwqjm")
 animation = &"full"
 script = ExtResource("3_6r618")
+heal = 20.0
 heal_timer = 10.0
 
 [node name="Area2D" type="Area2D" parent="."]

@@ -17,7 +17,7 @@ func health_restoring():
 	if $Area2D.get_overlapping_bodies() and animation == "full":
 		animation = "empty"
 		play()
-		if player.health <= (player.MAX_HEALTH/2):
+		if player.health <= player.MAX_HEALTH - player.health:
 			player.health += heal
 		else:
 			player.health += player.MAX_HEALTH - player.health

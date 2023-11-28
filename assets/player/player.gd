@@ -36,7 +36,7 @@ var experience : float
 var exp_lvl : int
 @export var MAX_EXP : float = 100.0
 
-
+var damege_received: float = 0
 # | ============================================================================= |
 
 
@@ -58,6 +58,7 @@ func _process(delta):
 	healthbar.value = health
 	
 	exp_bar_update()
+	is_dead()
 
 
 # Obsługuje fizykę 
@@ -144,6 +145,7 @@ func apply_damage(damage, knockback, pos : Vector2):
 	if $damage_timer.is_stopped():
 		$AnimatedSprite2D.self_modulate = Color(1, 0, 0)
 		health -= damage
+		damege_received += damage
 		apply_knockback(knockback, pos)
 		$damage_timer.start()
 		taking_damage.emit()
@@ -171,5 +173,9 @@ func exp_bar_update():
 		$HUD/level.text = str(exp_lvl)
 	expbar.value = experience
 
+func is_dead():
+	if health == 0:
+		get_tree().change_scene_to_file("res://assets/death_menu/death_menu.tscn")
+	
 
 

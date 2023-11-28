@@ -11,7 +11,6 @@ func set_target(target):
 			set_collision_mask_value(2, true)
 		"enemies":
 			set_collision_mask_value(3, true)
-	print(get_parent(), collision_mask)
 
 
 # Atak

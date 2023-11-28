@@ -22,9 +22,9 @@ func _ready():
 	else:
 		print("No enemy spawnpoints node found.")
 	
-	if $spawn_health_restore:
-		for i in $spawn_health_restore.get_children():
-			spawn_health_restorer(i.health_restorer, i.position)
+	if $spawn_health_restorers:
+		for i in $spawn_health_restorers.get_children():
+			spawn_health_restorer(i.health_restorer_type, i.position)
 	else:
 		print("No health_restorer spawnpoints node found.")
 
@@ -49,14 +49,14 @@ func spawn_enemy(enemy_type : PackedScene, pos : Vector2):
 	# Dodaje nowo utworzonego wroga do sceny
 	add_child(enemy)
 
-func spawn_health_restorer(health_restorer : PackedScene, pos : Vector2):
-	var health_restore
+func spawn_health_restorer(health_restorer_type : PackedScene, pos : Vector2):
+	var health_restorer
 	
 	# Tworzy nową instancję sceny z odnawiaczem zdrowia
-	health_restore = health_restorer.instantiate()
+	health_restorer = health_restorer_type.instantiate()
 	
 	# Ustawia położenie odnawiaczem zdrowia na wybraną
-	health_restore.position = pos
+	health_restorer.position = pos
 	
 	# Dodaje nowo utworzonego odnawiaczem zdrowia do sceny
-	add_child(health_restore)
+	add_child(health_restorer)

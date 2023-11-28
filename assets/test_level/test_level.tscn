@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://jiyiuno0whkw"]
+[gd_scene load_steps=11 format=3 uid="uid://jiyiuno0whkw"]
 
 [ext_resource type="Script" path="res://assets/test_level/test_level.gd" id="1_j0jb0"]
 [ext_resource type="PackedScene" uid="uid://b8kl60fulqq1u" path="res://assets/player/player.tscn" id="2_w8aub"]
@@ -8,41 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://c4pttsv4c7wtw" path="res://textures/level1/Tlo1.png" id="6_d6y1e"]
 [ext_resource type="Texture2D" uid="uid://ulrs6xtx8r0r" path="res://textures/test-background/clouds.png" id="6_f8kjs"]
 [ext_resource type="PackedScene" uid="uid://8miuhs6420nd" path="res://assets/level_tools/enemy_spawnpoint.tscn" id="7_k47k2"]
-[ext_resource type="PackedScene" uid="uid://bvcmvs1kcd2y4" path="res://assets/level_tools/health_restore.tscn" id="9_i0p8c"]
-[ext_resource type="Texture2D" uid="uid://vs2idniyanx0" path="res://textures/test_health_restore/health_restorer_empty.png" id="10_fnpy0"]
-[ext_resource type="Texture2D" uid="uid://bitbv8qk4e62k" path="res://textures/test_health_restore/health_restorer_full.png" id="11_eihm8"]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_xkw0e"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("10_fnpy0")
-}],
-"loop": true,
-"name": &"empty",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("11_eihm8")
-}],
-"loop": true,
-"name": &"full",
-"speed": 5.0
-}]
-
-[sub_resource type="PackedScene" id="PackedScene_bcyov"]
-_bundled = {
-"conn_count": 0,
-"conns": PackedInt32Array(),
-"editable_instances": [],
-"names": PackedStringArray("Node2D", "Node2D", "AnimatedSprite2D", "AnimatedSprite2D", "texture_filter", "position", "sprite_frames", "animation"),
-"node_count": 2,
-"node_paths": [NodePath(".")],
-"nodes": PackedInt32Array(-1, -1, 1, 0, -1, 0, 0, 1073741824, 0, 3, 2, -1, 4, 4, 0, 5, 1, 6, 2, 7, 3, 0),
-"variants": [1, Vector2(0, -5), SubResource("SpriteFrames_xkw0e"), &"full"],
-"version": 3
-}
+[ext_resource type="PackedScene" uid="uid://62sdl3d1rkv0" path="res://assets/level_tools/health_restore_spawnpoint.tscn" id="9_i0p8c"]
+[ext_resource type="PackedScene" uid="uid://bydgx2tg4seyx" path="res://assets/health_boost/health_restorer.tscn" id="10_oa1bw"]
 
 [node name="Level" type="Node"]
 script = ExtResource("1_j0jb0")
@@ -93,7 +60,7 @@ position = Vector2(-13, -56)
 [node name="spawnpoints" type="Node" parent="."]
 
 [node name="enemy_spawnpoint" parent="spawnpoints" instance=ExtResource("7_k47k2")]
-position = Vector2(-153, 0)
+position = Vector2(-146, 0)
 enemy_type = ExtResource("3_r8es1")
 
 [node name="enemy_spawnpoint9" parent="spawnpoints" instance=ExtResource("7_k47k2")]
@@ -128,8 +95,12 @@ enemy_type = ExtResource("3_r8es1")
 position = Vector2(190, 0)
 enemy_type = ExtResource("3_r8es1")
 
-[node name="spawn_health_restore" type="Node" parent="."]
+[node name="spawn_health_restorers" type="Node" parent="."]
 
-[node name="health_restore" parent="spawn_health_restore" instance=ExtResource("9_i0p8c")]
-position = Vector2(-107, -70)
-health_restorer = SubResource("PackedScene_bcyov")
+[node name="health_restore_spawnpoint" parent="spawn_health_restorers" instance=ExtResource("9_i0p8c")]
+position = Vector2(-107, -77)
+health_restorer_type = ExtResource("10_oa1bw")
+
+[node name="health_restore_spawnpoint2" parent="spawn_health_restorers" instance=ExtResource("9_i0p8c")]
+position = Vector2(-73, -5)
+health_restorer_type = ExtResource("10_oa1bw")

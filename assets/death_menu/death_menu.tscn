@@ -84,6 +84,7 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="TextureRect" type="TextureRect" parent="."]
+visible = false
 modulate = Color(0.6, 0.6, 0.6, 1)
 z_index = -1
 texture_filter = 1

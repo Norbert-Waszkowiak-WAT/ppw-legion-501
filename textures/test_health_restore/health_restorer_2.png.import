@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://vs2idniyanx0"
-path="res://.godot/imported/health_restorer_empty.png-f672564ee06194678907c4320c5523d7.ctex"
+uid="uid://ck0lfnndyo0tk"
+path="res://.godot/imported/health_restorer_2.png-297d310435092e54ce110c8921ecb266.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/test_health_restore/health_restorer_empty.png"
-dest_files=["res://.godot/imported/health_restorer_empty.png-f672564ee06194678907c4320c5523d7.ctex"]
+source_file="res://textures/test_health_restore/health_restorer_2.png"
+dest_files=["res://.godot/imported/health_restorer_2.png-297d310435092e54ce110c8921ecb266.ctex"]
 
 [params]
 

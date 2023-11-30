@@ -37,6 +37,10 @@ var exp_lvl : int
 @export var MAX_EXP : float = 100.0
 
 var damege_received: float = 0
+@export var penetration_time: float = 1
+var blinking_timer: float = 0
+
+
 # | ============================================================================= |
 
 
@@ -58,6 +62,7 @@ func _process(delta):
 	healthbar.value = health
 	
 	exp_bar_update()
+	#changing_color()
 	is_dead()
 
 
@@ -143,13 +148,17 @@ func walk(direction: String, duration: float):
 # Zadaje obrażenia graczowi
 func apply_damage(damage, knockback, pos : Vector2):
 	if $damage_timer.is_stopped():
-		$AnimatedSprite2D.self_modulate = Color(1, 0, 0)
 		health -= damage
 		damege_received += damage
-		apply_knockback(knockback, pos)
 		$damage_timer.start()
 		taking_damage.emit()
-
+		apply_knockback(knockback, pos)
+		
+		# Wyłącza kolizję z wrogami
+		set_collision_layer_value(4, false)
+		set_collision_mask_value(3, false)
+		changing_color()
+		
 
 # Odrzucenie podczas otrzymywania obrażeń
 func apply_knockback(strength, pos : Vector2):
@@ -161,6 +170,10 @@ func apply_knockback(strength, pos : Vector2):
 # Ustawienie koloru gracza na standardowy
 func standard_color():
 	$AnimatedSprite2D.self_modulate = Color(1, 1, 1)
+	
+	# Wyłącza kolizję z wrogami
+	set_collision_layer_value(4, true)
+	set_collision_mask_value(3, true)
 
 
 # Aktualizacja paska i poziomu doświadczenia
@@ -170,12 +183,27 @@ func exp_bar_update():
 		exp_lvl += 1
 		MAX_EXP *= 1.5
 		expbar.max_value = MAX_EXP
+		#Odwołanie do HUD gracza i zmiana wartości liczbowej lvl exp-a
 		$HUD/level.text = str(exp_lvl)
 	expbar.value = experience
 
+
 func is_dead():
 	if health == 0:
+		#Przeniesienie do "menu po śmierci"
 		get_tree().change_scene_to_file("res://assets/death_menu/death_menu.tscn")
-	
 
+
+#Funkcja odpowiadająca za mruganie gracza po otrzymaniu obrażeń
+func changing_color():
+	blinking_timer = 0.1 * $damage_timer.wait_time
+	while not $damage_timer.is_stopped():
+		#Zmiana koloru gracza na czerwony(RGB)
+		$AnimatedSprite2D.self_modulate.a = 0.5
+		
+		#Program czeka czas okreslony przez zmienną "blinking_timer"
+		await get_tree().create_timer(blinking_timer).timeout
+		$AnimatedSprite2D.self_modulate.a = 1
+		blinking_timer -= blinking_timer * 0.1
+		await get_tree().create_timer(blinking_timer).timeout
 

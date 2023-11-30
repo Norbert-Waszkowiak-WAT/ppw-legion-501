@@ -87,6 +87,7 @@ expand_icon = true
 modulate = Color(0.6, 0.6, 0.6, 1)
 z_index = -1
 texture_filter = 1
+layout_mode = 0
 offset_right = 1194.0
 offset_bottom = 664.0
 mouse_filter = 2

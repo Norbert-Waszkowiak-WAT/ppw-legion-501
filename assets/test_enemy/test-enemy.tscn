@@ -61,11 +61,6 @@ value = 44.99
 show_percentage = false
 metadata/_edit_use_anchors_ = true
 
-[node name="dir_timer" type="Timer" parent="."]
-wait_time = 2.0
-
-[node name="mask_timer" type="Timer" parent="."]
-
 [node name="damage_timer" type="Timer" parent="."]
 wait_time = 0.1
 one_shot = true

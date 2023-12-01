@@ -62,8 +62,8 @@ func _process(delta):
 	healthbar.value = health
 	
 	exp_bar_update()
-	#changing_color()
-	is_dead()
+	if health <= 0:
+		die()
 
 
 # Obsługuje fizykę 
@@ -188,10 +188,14 @@ func exp_bar_update():
 	expbar.value = experience
 
 
-func is_dead():
-	if health == 0:
-		#Przeniesienie do "menu po śmierci"
-		get_tree().change_scene_to_file("res://assets/death_menu/death_menu.tscn")
+func die():
+	var death_menu = load("res://assets/death_menu/death_menu.tscn").instantiate()
+	get_tree().get_root().get_child(0).add_child(death_menu)
+	
+	await $damage_timer.timeout
+	set_process(false)
+	set_physics_process(false)
+	set_process_input(false)
 
 
 #Funkcja odpowiadająca za mruganie gracza po otrzymaniu obrażeń

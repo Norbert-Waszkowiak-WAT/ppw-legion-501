@@ -21,6 +21,7 @@ var knockback_multiplier : float = 1.7
 @export var memory_time : float
 
 @export var death_time: float = 0.4
+var dir_time : float = 2.0
 
 enum states {idle, chase, attack}
 var current_state : states
@@ -53,9 +54,6 @@ func _ready():
 		weapon.set_target("player")
 	health = MAX_HEALTH
 	
-	$dir_timer.timeout.connect(get_dir)
-	$dir_timer.start()
-	
 	$healthbar.max_value = MAX_HEALTH
 	$healthbar.hide()
 	$health_timer.timeout.connect(hide_health)
@@ -71,7 +69,7 @@ func _process(delta):
 func _physics_process(delta):
 	match current_state:
 		states.idle:
-			idle()
+			idle(delta)
 		states.chase:
 			chase()
 		states.attack:
@@ -117,14 +115,17 @@ func hide_health():
 
 
 func sees_player() -> bool:
-	var space_state = get_world_2d().direct_space_state
-	var query = PhysicsRayQueryParameters2D.create(global_position, player.position, 1)
-	query.exclude = [self]
-	var result = space_state.intersect_ray(query)
-	if result:
-		return false
+	if not player.health <= 0:
+		var space_state = get_world_2d().direct_space_state
+		var query = PhysicsRayQueryParameters2D.create(global_position, player.position, 1)
+		query.exclude = [self]
+		var result = space_state.intersect_ray(query)
+		if result:
+			return false
+		else:
+			return true
 	else:
-		return true
+		return false
 
 
 func get_gravity() -> float:
@@ -157,13 +158,16 @@ func change_state(state : states):
 
 
 # Odpowiada za zachowanie wroga poza walką
-func idle():
+func idle(delta: float):
+	dir_time -= delta
+	if dir_time <= 0:
+		dir_time = 2
+		get_dir()
+	
 	if position.distance_to(player.position) <= detection_range and sees_player():
 		speed = chase_speed
-		$dir_timer.stop()
 		change_state(states.chase)
 	if position.distance_to(player.position) <= attack_range and sees_player():
-		$dir_timer.stop()
 		change_state(states.attack)
 
 
@@ -181,7 +185,6 @@ func chase():
 	if position.distance_to(player.position) > detection_range or !sees_player():
 		await get_tree().create_timer(memory_time).timeout
 		speed = idle_speed
-		$dir_timer.start()
 		change_state(states.idle)
 	if position.distance_to(player.position) <= attack_range:
 		change_state(states.attack)
@@ -195,7 +198,6 @@ func attack():
 	if position.distance_to(player.position) > detection_range or !sees_player():
 		await get_tree().create_timer(memory_time).timeout
 		speed = idle_speed
-		$dir_timer.start()
 		change_state(states.idle)
 	if position.distance_to(player.position) <= detection_range:
 		speed = chase_speed

@@ -49,7 +49,6 @@ focus_neighbor_top = NodePath("../exit")
 focus_neighbor_bottom = NodePath("../restart")
 theme = ExtResource("3_k7ckg")
 text = "menu"
-flat = true
 icon_alignment = 1
 expand_icon = true
 
@@ -74,7 +73,6 @@ focus_neighbor_top = NodePath("../restart")
 focus_neighbor_bottom = NodePath("../main_menu")
 theme = ExtResource("3_k7ckg")
 text = "exit"
-flat = true
 icon_alignment = 1
 expand_icon = true
 

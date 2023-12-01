@@ -191,6 +191,7 @@ func exp_bar_update():
 func die():
 	var death_menu = load("res://assets/death_menu/death_menu.tscn").instantiate()
 	get_tree().get_root().get_child(0).add_child(death_menu)
+	$state_machine.change_state($state_machine/idle)
 	
 	await $damage_timer.timeout
 	set_process(false)

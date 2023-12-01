@@ -4,10 +4,7 @@
 
 ## Opis projektu
 
-XXX* jest grą wideo na PC. To platformówka 2D w motywie kosmicznym z elementami RPG.
-
-*nazwa WIP
-
+Galactic Vendetta jest grą wideo na PC. To platformówka 2D w motywie kosmicznym z elementami RPG.
 
 ## Cele projketu
 
@@ -24,6 +21,32 @@ _Grę rozwijamy w silniku Godot. W razie większych problemów jesteśmy gotowi 
 
 
 ## Dziennik
+
+### 30/11/2023
+
+Zaimplementowana funkcjonalność:
+- TileSet do tworzenia poziomów
+- Animowane menu główne 
+- Klasy ogólne dla wroga oraz broni
+- Poziom doświadczenia gracza
+- Dalszy rozwój zachowania wrogów
+- Warunek przegranej (śmierć gracza)
+
+Dzięki TileSetowi tworzenie nowych poziomów z gotową kolizją i teksturami jest bardzo proste i przyjemne.
+Dodano menu główne gry z animacją podczas włączania gry, a także przy zaczęciu nowej gry.
+Klasy ogólne pozwolą na szybsze dodawanie różnych rodzajów wrogów i broni.
+Poziom doświadczenia gracza: będzie używany do odblokowywania umiejętności. Doświadczenie zdobywa się przez
+zabijanie wrogów.
+Wrogowie są teraz w stanie przeskakiwać nad przeszkodami i przepaściami podczas gonienia gracza. Ucieczka
+przed nimi stanowi teraz większe wyzwanie niż wcześniej.
+Gracz może już umrzeć co kończy grę.
+
+Planowana funkcjonalność na następne tygodnie:
+- Więcej tekstur różnych elementów gry
+- Usprawnienia menu
+- Pierwsza broń dystansowa
+- Warunek wygranej poziomu
+- Pierwszy w pełni grywalny poziom
 
 ### 08/11/2023
 Zaimplementowana funkcjonalność:

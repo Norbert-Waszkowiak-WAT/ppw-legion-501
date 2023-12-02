@@ -231,7 +231,6 @@ func jump():
 
 func die():
 	set_process(false)
-	print("die")
 	sprite.self_modulate = Color(1.0, 0, 0, 1)
 	player.experience += dropped_experience
 	await get_tree().create_timer(death_time).timeout

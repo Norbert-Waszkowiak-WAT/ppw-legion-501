@@ -13,7 +13,6 @@ var tween : Tween
 func _ready():
 	startup_animation()
 	#Narzuca focus sterowania klawiszami na nowa_gra
-	$MarginContainer/VBoxContainer/new_game.grab_focus()
 
 
 func _on_new_game_pressed():
@@ -43,14 +42,13 @@ func startup_animation():
 	$MarginContainer/VBoxContainer.modulate.a = 0.0
 	animate()
 	tween.tween_property($MarginContainer/VBoxContainer, "modulate:a", 1.0, startup_delay)
-	
 	# Włącza przyciski po opóźnieniu
 	tween.tween_callback(set_buttons_disabled.bind(false))
+	tween.tween_callback($MarginContainer/VBoxContainer/new_game.grab_focus)
 	
 	# Pojawienie się gracza, wyłączenie kontroli nad nim
 	$player.spawn($player_spawnpoint.position)
 	$player.set_process_input(false)
-	
 	# Wyłączenie kamery i interfejsu gracza
 	$player/Camera2D.enabled = false
 	$player/HUD.visible = false
@@ -66,7 +64,8 @@ func new_game_animation():
 	
 	# Animacja przycisków w menu
 	animate()
-	tween.tween_property($MarginContainer/VBoxContainer, "modulate:a", 0.0, start_game_delay)
+	tween.tween_property($MarginContainer/VBoxContainer, "modulate:a", 0.0, 2 * start_game_delay / 3)
+	tween.tween_property(self, "modulate", Color.BLACK, start_game_delay / 3)
 	
 	# Gracz idzie w prawo
 	$player.walk("right", start_game_delay)
@@ -88,6 +87,8 @@ func set_buttons_disabled(value: bool):
 	for button in find_children("*", "Button", true):
 		match value:
 			true:
+				button.focus_mode = 0
 				button.set_mouse_filter(2)
 			false:
+				button.focus_mode = 2
 				button.set_mouse_filter(0)

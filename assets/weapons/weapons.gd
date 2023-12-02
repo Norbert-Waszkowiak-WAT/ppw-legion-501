@@ -19,9 +19,8 @@ func _ready():
 
 # Wywoływana na każdej klatce
 func _process(delta):
-	get_weapon()
-	if Input.is_action_just_pressed("attack") and selected_weapon:
-		selected_weapon.attack()
+	process_weapons()
+	
 
 
 # | ============================================================================= |
@@ -34,7 +33,10 @@ func hide_weapons():
 
 
 # Wybór broni
-func get_weapon():
+func process_weapons():
+	if Input.is_action_just_pressed("attack") and selected_weapon:
+		selected_weapon.attack()
+		
 	if Input.is_action_pressed("stick"):
 		hide_weapons()
 		selected_weapon = get_node("stick")

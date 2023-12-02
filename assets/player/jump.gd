@@ -8,7 +8,7 @@ extends State
 
 # Wywoływana gdy gracz wchodzi w stan
 func enter():
-	player.jump()
+	player.velocity.y = player.jump_speed
 
 
 # Wywoływana na każdej klatce

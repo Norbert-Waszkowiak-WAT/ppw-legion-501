@@ -21,6 +21,9 @@ func _ready():
 			spawn_enemy(i.enemy_type, i.position)
 	else:
 		print("No enemy spawnpoints node found.")
+		
+	var tween = create_tween()
+	tween.tween_property($player/HUD/tint, "color:a", 0.0, 1.3)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

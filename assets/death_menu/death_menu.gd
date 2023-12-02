@@ -14,12 +14,21 @@ func _ready():
 		tween.tween_property(i, "modulate:a", 0, 1.0)
 
 func _on_main_menu_pressed():
+	exit_animation()
+	await get_tree().create_timer(1).timeout
 	get_tree().change_scene_to_file("res://assets/main_menu/main_menu.tscn")
 
 
 func _on_restart_pressed():
+	exit_animation()
+	await get_tree().create_timer(1).timeout
 	get_tree().change_scene_to_file("res://assets/test_level/test_level.tscn")
 
 
 func _on_exit_pressed():
 	get_tree().quit()
+
+
+func exit_animation():
+	var tween = create_tween()
+	tween.tween_property($tint, "color:a", 1, 1)

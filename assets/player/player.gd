@@ -31,6 +31,9 @@ var taking_knockback : bool
 @onready var sprite = get_node("AnimatedSprite2D")
 @onready var healthbar = get_node("HUD/healthbar")
 @onready var expbar = get_node("HUD/expbar")
+@onready var weapons = $AnimatedSprite2D/weapons.get_children()
+
+var selected_weapon : Weapon
 
 var experience : float
 var exp_lvl : int
@@ -48,9 +51,16 @@ var blinking_timer: float = 0
 func _ready():
 	# Inicjalizuje state machine
 	$state_machine.init(self)
+	
 	$damage_timer.timeout.connect(standard_color)
+	
+	for i in weapons:
+		i.set_target("enemies")
+	hide_weapons()
+	
 	disable_player()
 	hide()
+	
 
 
 # Wywoływane podczas każdej klatki
@@ -64,6 +74,8 @@ func _process(delta):
 	exp_bar_update()
 	if health <= 0:
 		die()
+	
+	process_weapons()
 
 
 # Obsługuje fizykę 
@@ -134,7 +146,8 @@ func horizontal_movement():
 
 # Skok
 func jump():
-	velocity.y = jump_speed
+	print("jump")
+	$state_machine.change_state($state_machine/jump)
 
 
 # Wymuszenie chodu gracza (do przerywników)
@@ -212,3 +225,19 @@ func changing_color():
 		blinking_timer -= blinking_timer * 0.1
 		await get_tree().create_timer(blinking_timer).timeout
 
+
+func process_weapons():
+	if is_processing_input():
+		if Input.is_action_just_pressed("attack") and selected_weapon:
+			selected_weapon.attack()
+			
+		if Input.is_action_pressed("stick"):
+			hide_weapons()
+			selected_weapon = get_node("AnimatedSprite2D/weapons/stick")
+			selected_weapon.set_monitoring(true)
+			selected_weapon.show()
+
+
+func hide_weapons():
+	for i in weapons:
+		i.hide()

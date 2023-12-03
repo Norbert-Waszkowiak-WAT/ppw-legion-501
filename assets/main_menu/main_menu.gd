@@ -39,9 +39,11 @@ func startup_animation():
 	set_buttons_disabled(true)
 	
 	# Animacja przycisków w menu
+	modulate = Color.BLACK
 	$MarginContainer/VBoxContainer.modulate.a = 0.0
 	animate()
-	tween.tween_property($MarginContainer/VBoxContainer, "modulate:a", 1.0, startup_delay)
+	tween.tween_property(self, "modulate", Color.WHITE, startup_delay)
+	tween.tween_property($MarginContainer/VBoxContainer, "modulate:a", 1.0, 2 * startup_delay / 3)
 	# Włącza przyciski po opóźnieniu
 	tween.tween_callback(set_buttons_disabled.bind(false))
 	tween.tween_callback($MarginContainer/VBoxContainer/new_game.grab_focus)

@@ -22,6 +22,7 @@ func _ready():
 	else:
 		print("No enemy spawnpoints node found.")
 		
+	$player/HUD/tint.color.a = 1.0
 	var tween = create_tween()
 	tween.tween_property($player/HUD/tint, "color:a", 0.0, 1.3)
 

@@ -55,7 +55,7 @@ metadata/_edit_group_ = true
 polygon = PackedVector2Array(-7, 8, 7, 8, 7, -3, -7, -3)
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(5.485, 5.485)
+zoom = Vector2(8.04, 8.04)
 position_smoothing_enabled = true
 position_smoothing_speed = 9.0
 drag_horizontal_enabled = true
@@ -72,13 +72,13 @@ sprite_frames = SubResource("SpriteFrames_lbsb1")
 animation = &"walk"
 
 [node name="weapons" type="Node2D" parent="AnimatedSprite2D"]
-scale = Vector2(1, 1)
 
 [node name="stick" parent="AnimatedSprite2D/weapons" instance=ExtResource("5_n46lu")]
 position = Vector2(50.34, 0)
 scale = Vector2(3.77, 3.77)
 
 [node name="HUD" parent="." instance=ExtResource("5_e68ka")]
+visible = false
 
 [node name="damage_timer" type="Timer" parent="."]
 wait_time = 1.5

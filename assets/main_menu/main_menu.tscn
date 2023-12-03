@@ -40,7 +40,7 @@ theme_override_constants/margin_bottom = 30
 
 [node name="title" type="TextureRect" parent="MarginContainer/VBoxContainer/MarginContainer"]
 texture_filter = 1
-custom_minimum_size = Vector2(0, 150)
+custom_minimum_size = Vector2(0, 243.365)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -97,29 +97,32 @@ expand_icon = true
 [node name="TextureRect" type="TextureRect" parent="."]
 z_index = -1
 texture_filter = 1
-layout_mode = 2
-offset_right = 1194.0
-offset_bottom = 664.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 texture = ExtResource("1_vga8p")
 expand_mode = 1
 stretch_mode = 6
 
 [node name="TileMap" type="TileMap" parent="."]
-scale = Vector2(0.086, 0.086)
+scale = Vector2(0.145, 0.145)
 tile_set = ExtResource("5_3f52k")
 format = 2
 layer_0/tile_data = PackedInt32Array(458751, 0, 0, 393216, 0, 0, 393217, 0, 0, 393218, 0, 0, 393219, 0, 0, 393220, 0, 1, 393224, 65536, 1, 393225, 0, 0, 393226, 0, 0, 393227, 0, 0, 393228, 0, 0, 393229, 0, 0, 393230, 0, 0, 458755, 65536, 0, 458754, 65536, 0, 458753, 65536, 0, 458752, 65536, 0, 524287, 65536, 0, 458761, 65536, 0, 458762, 65536, 0, 458763, 65536, 0, 458764, 65536, 0, 458765, 65536, 0, 458766, 65536, 0, 524286, 65536, 0, 524285, 65536, 0, 458749, 0, 0, 458750, 0, 0, 393213, 1, 65536, 327677, 1, 65536, 262141, 1, 65536, 196605, 1, 65536, 327696, 1, 65536, 262160, 1, 65536, 196624, 1, 65536, 131088, 1, 65536, 393231, 0, 0, 393232, 0, 0, 458767, 65536, 0, 458768, 65536, 0)
 
 [node name="player_spawnpoint" parent="." instance=ExtResource("6_rucww")]
-position = Vector2(-95, 459)
+position = Vector2(-135, 708)
 scale = Vector2(12.43, 12.43)
 
 [node name="player" parent="." instance=ExtResource("6_3b3xo")]
-scale = Vector2(8.155, 8.155)
-speed = 600.0
-acceleration = 20.0
-jump_height = 200.0
+scale = Vector2(13.33, 13.33)
+speed = 900.0
+acceleration = 30.0
+jump_height = 300.0
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/new_game" to="." method="_on_new_game_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/continue" to="." method="_on_continue_pressed"]

@@ -41,10 +41,14 @@ func startup_animation():
 	$MarginContainer/VBoxContainer.modulate.a = 0.0
 	animate()
 	tween.tween_property(self, "modulate", Color.WHITE, startup_delay)
-	tween.tween_property($MarginContainer/VBoxContainer, "modulate:a", 1.0, 2 * startup_delay / 3)
+	
 	# Włącza przyciski po opóźnieniu
 	tween.tween_callback(set_buttons_disabled.bind(false))
 	tween.tween_callback($MarginContainer/VBoxContainer/new_game.grab_focus)
+	
+	tween.tween_property($MarginContainer/VBoxContainer, "modulate:a", 1.0, 2 * startup_delay / 3)
+	
+	
 	
 	# Pojawienie się gracza, wyłączenie kontroli nad nim
 	$player.spawn($player_spawnpoint.position)

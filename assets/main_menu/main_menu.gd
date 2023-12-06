@@ -5,7 +5,6 @@ var start_game_delay : float = 1.7
 var startup_delay : float = 0.9
 
 var tween : Tween
-
 # | ============================================================================= |
 
 
@@ -13,7 +12,6 @@ var tween : Tween
 func _ready():
 	startup_animation()
 	#Narzuca focus sterowania klawiszami na nowa_gra
-
 
 func _on_new_game_pressed():
 	new_game_animation()
@@ -71,7 +69,7 @@ func new_game_animation():
 	
 	# Gracz idzie w prawo
 	$player.walk("right", start_game_delay)
-	await get_tree().create_timer(0.4).timeout
+	await get_tree().create_timer(0.5).timeout
 	
 	# Gracz przeskakuje nad przepaścią
 	$player.jump()

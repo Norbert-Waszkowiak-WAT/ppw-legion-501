@@ -2,6 +2,9 @@ extends Node
 class_name Level
 
 
+signal pause(value : bool)
+
+
 # | ============================================================================= |
 
 
@@ -29,7 +32,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	check_paused()
 
 
 # | ============================================================================= |
@@ -49,7 +52,19 @@ func spawn_enemy(enemy_type : PackedScene, pos : Vector2):
 
 
 func set_paused(value : bool):
+	pause.emit(value)
+	value = !value
 	for i in get_children():
 		i.set_process(value)
 		i.set_physics_process(value)
 		i.set_process_input(value)
+	set_process(value)
+	set_physics_process(value)
+	set_process_input(value)
+
+
+func check_paused():
+	if Input.is_action_just_pressed("escape"):
+		set_paused(true)
+		var escape_menu = load("res://assets/esc_menu/esc_menu.tscn").instantiate()
+		get_tree().get_root().get_child(0).add_child(escape_menu)

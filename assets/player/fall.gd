@@ -8,11 +8,13 @@ extends State
 
 # Wywoływana gdy gracz wchodzi w stan
 func enter():
-	pass
+	player.sprite.animation = "fall"
 
 
 # Wywoływana na każdej klatce
 func process(delta: float) -> State:
+	if !player.sprite.is_playing():
+		player.sprite.play()
 	if player.is_processing_input():
 		if Input.is_action_pressed("move_right"):
 			player.set_direction("right")

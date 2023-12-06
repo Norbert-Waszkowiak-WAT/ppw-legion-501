@@ -32,6 +32,7 @@ var taking_knockback : bool
 @onready var healthbar = get_node("HUD/healthbar")
 @onready var expbar = get_node("HUD/expbar")
 @onready var weapons = $AnimatedSprite2D/weapons.get_children()
+@onready var level = get_tree().get_root().get_child(0)
 
 var selected_weapon : Weapon
 
@@ -43,7 +44,7 @@ var damege_received: float = 0
 @export var penetration_time: float = 1
 var blinking_timer: float = 0
 
-
+var esc_press = 0
 # | ============================================================================= |
 
 
@@ -53,6 +54,8 @@ func _ready():
 	$state_machine.init(self)
 	
 	$damage_timer.timeout.connect(standard_color)
+	if level is Level:
+		level.pause.connect(on_paused)
 	
 	for i in weapons:
 		i.set_target("enemies")
@@ -76,8 +79,6 @@ func _process(delta):
 		die()
 	
 	process_weapons()
-
-
 # Obsługuje fizykę 
 func _physics_process(delta):
 	# Wywołuje pętlę fizyczną state machine
@@ -241,3 +242,10 @@ func process_weapons():
 func hide_weapons():
 	for i in weapons:
 		i.hide()
+		
+
+func on_paused(value):
+	if value == true:
+		sprite.pause()
+#	else:
+#		sprite.play()

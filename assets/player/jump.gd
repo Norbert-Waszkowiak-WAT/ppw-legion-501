@@ -8,17 +8,21 @@ extends State
 
 # Wywoływana gdy gracz wchodzi w stan
 func enter():
-	player.jump()
+	player.sprite.animation = "jump"
+	player.velocity.y = player.jump_speed
 
 
 # Wywoływana na każdej klatce
 func process(delta: float) -> State:
-	if Input.is_action_pressed("move_right"):
-		player.set_direction("right")
-	elif Input.is_action_pressed("move_left"):
-		player.set_direction("left")
-	else:
-		player.set_direction("0")
+	if !player.sprite.is_playing():
+		player.sprite.play()
+	if player.is_processing_input():
+		if Input.is_action_pressed("move_right"):
+			player.set_direction("right")
+		elif Input.is_action_pressed("move_left"):
+			player.set_direction("left")
+		else:
+			player.set_direction("0")
 	return null
 
 

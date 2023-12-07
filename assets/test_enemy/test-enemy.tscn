@@ -1,0 +1,111 @@
+[gd_scene load_steps=7 format=3 uid="uid://c53i7mvtd0bbx"]
+
+[ext_resource type="Script" path="res://assets/test_enemy/test-enemy.gd" id="1_12jby"]
+[ext_resource type="Texture2D" uid="uid://smal4hmb1hlj" path="res://textures/test-enemy/enemy.png" id="1_k5m6p"]
+[ext_resource type="PackedScene" uid="uid://dh4fi820qxc7k" path="res://assets/stick/stick.tscn" id="3_6v6qr"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_imynt"]
+radius = 3.0
+height = 12.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ex46t"]
+bg_color = Color(0, 0, 0, 0.231373)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3l68f"]
+bg_color = Color(0.933333, 0.352941, 0.352941, 1)
+
+[node name="Enemy" type="CharacterBody2D" groups=["enemy"]]
+collision_layer = 4
+collision_mask = 13
+floor_constant_speed = true
+script = ExtResource("1_12jby")
+idle_speed = 20.0
+chase_speed = 45.0
+acceleration = 1.5
+MAX_HEALTH = 50.0
+dropped_experience = 60.0
+detection_range = 100.0
+attack_range = 20.0
+reaction_time = 0.3
+memory_time = 10.0
+jump_height = 25.0
+jump_descent = 0.3
+jump_peak = 0.4
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-3, 6, 3, 6, 3, -6, -3, -6)
+disabled = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_imynt")
+
+[node name="AnimatedSprite2D" type="Sprite2D" parent="."]
+texture_filter = 3
+texture = ExtResource("1_k5m6p")
+
+[node name="stick" parent="AnimatedSprite2D" instance=ExtResource("3_6v6qr")]
+position = Vector2(4.645, -2.55)
+scale = Vector2(0.48, 0.48)
+knockback = 15.0
+
+[node name="healthbar" type="ProgressBar" parent="."]
+texture_filter = 1
+offset_left = -4.0
+offset_top = -9.0
+offset_right = 12.0
+offset_bottom = -5.0
+scale = Vector2(0.5, 0.5)
+theme_override_styles/background = SubResource("StyleBoxFlat_ex46t")
+theme_override_styles/fill = SubResource("StyleBoxFlat_3l68f")
+value = 44.99
+show_percentage = false
+metadata/_edit_use_anchors_ = true
+
+[node name="damage_timer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[node name="health_timer" type="Timer" parent="."]
+wait_time = 3.0
+
+[node name="right_short" type="RayCast2D" parent="."]
+position = Vector2(4, 0)
+target_position = Vector2(0, 7)
+
+[node name="left_short" type="RayCast2D" parent="."]
+position = Vector2(-4, 0)
+target_position = Vector2(0, 7)
+
+[node name="left_long" type="RayCast2D" parent="."]
+position = Vector2(-3, 0)
+target_position = Vector2(0, 51)
+
+[node name="right_long" type="RayCast2D" parent="."]
+position = Vector2(3, 0)
+target_position = Vector2(0, 51)
+
+[node name="right_step_angle" type="RayCast2D" parent="."]
+position = Vector2(2, 5)
+target_position = Vector2(3, -3)
+collision_mask = 5
+
+[node name="right_step_down" type="RayCast2D" parent="."]
+position = Vector2(5, 0)
+target_position = Vector2(0, 9)
+
+[node name="left_step_angle" type="RayCast2D" parent="."]
+position = Vector2(-2, 5)
+target_position = Vector2(-3, -3)
+collision_mask = 5
+
+[node name="left_step_down" type="RayCast2D" parent="."]
+position = Vector2(-5, 0)
+target_position = Vector2(0, 9)
+
+[node name="right_wall" type="RayCast2D" parent="."]
+position = Vector2(1, -18)
+target_position = Vector2(8, 0)
+
+[node name="left_wall" type="RayCast2D" parent="."]
+position = Vector2(-1, -18)
+target_position = Vector2(-8, 0)

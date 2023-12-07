@@ -16,21 +16,25 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("4_12bbh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_2e3x7")
 }],
 "loop": false,
 "name": &"attack",
-"speed": 14.0
+"speed": 20.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_r5485"]
-radius = 9.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6mgrv"]
+radius = 7.12658
+height = 25.3833
 
 [node name="stick" type="Area2D"]
 collision_layer = 0
 collision_mask = 0
 monitoring = false
 script = ExtResource("1_a6xdd")
-damage = 10.0
+damage = 40.0
 knockback = 45.0
 
 [node name="stick_sprite" type="AnimatedSprite2D" parent="."]
@@ -40,8 +44,10 @@ sprite_frames = SubResource("SpriteFrames_1ay4k")
 animation = &"attack"
 
 [node name="stick_coll" type="CollisionShape2D" parent="."]
-position = Vector2(4, 2)
-shape = SubResource("CircleShape2D_r5485")
+position = Vector2(0, -2)
+rotation = -0.71733
+skew = -0.172788
+shape = SubResource("CapsuleShape2D_6mgrv")
 
 [node name="attack_timer" type="Timer" parent="."]
 wait_time = 0.3

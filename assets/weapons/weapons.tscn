@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 [gd_scene load_steps=3 format=3 uid="uid://sxa4031yuikd"]
 
 [ext_resource type="Script" path="res://assets/weapons/weapons.gd" id="1_u4xew"]
@@ -7,4 +8,15 @@
 script = ExtResource("1_u4xew")
 
 [node name="stick" parent="." groups=["weapons"] instance=ExtResource("2_u2inw")]
+=======
+[gd_scene load_steps=3 format=3 uid="uid://dj74demvny3ql"]
+
+[ext_resource type="Script" path="res://assets/weapons/weapons.gd" id="1_4d2sk"]
+[ext_resource type="PackedScene" uid="uid://dh4fi820qxc7k" path="res://assets/stick/stick.tscn" id="2_6vl4n"]
+
+[node name="weapons" type="Node2D"]
+script = ExtResource("1_4d2sk")
+
+[node name="stick" parent="." groups=["weapons"] instance=ExtResource("2_6vl4n")]
+>>>>>>> test
 position = Vector2(12.295, -0.09)

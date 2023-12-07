@@ -4,7 +4,15 @@ extends Control
 var start_game_delay : float = 1.7
 var startup_delay : float = 0.9
 
+@onready var new_game = $MarginContainer/VBoxContainer/new_game
+@onready var continue_button = $MarginContainer/VBoxContainer/continue
+@onready var settings = $MarginContainer/VBoxContainer/settings
+@onready var exit = $MarginContainer/VBoxContainer/exit
+@onready var buttons = $MarginContainer/VBoxContainer.find_children("*", "Button")
+
 var tween : Tween
+
+
 # | ============================================================================= |
 
 
@@ -12,6 +20,13 @@ var tween : Tween
 func _ready():
 	startup_animation()
 	#Narzuca focus sterowania klawiszami na nowa_gra
+
+
+func _process(delta):
+	for button in buttons:
+		if button.is_hovered():
+			button.grab_focus()
+
 
 func _on_new_game_pressed():
 	new_game_animation()

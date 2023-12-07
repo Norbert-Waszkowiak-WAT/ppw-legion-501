@@ -247,5 +247,3 @@ func hide_weapons():
 func on_paused(value):
 	if value == true:
 		sprite.pause()
-#	else:
-#		sprite.play()

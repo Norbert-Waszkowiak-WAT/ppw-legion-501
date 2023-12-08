@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://c53i7mvtd0bbx" path="res://assets/test_enemy/test-enemy.tscn" id="3_r8es1"]
 [ext_resource type="PackedScene" uid="uid://c4bbjae7r4w7y" path="res://assets/level_tools/player_spawnpoint.tscn" id="4_d4w2d"]
 [ext_resource type="TileSet" uid="uid://dfi3xlrx7twl8" path="res://assets/test_level/test_level.tres" id="5_v0352"]
-[ext_resource type="Texture2D" uid="uid://c4pttsv4c7wtw" path="res://textures/level1/Tlo1.png" id="6_d6y1e"]
+[ext_resource type="Texture2D" uid="uid://ctjk0fh1y7pbc" path="res://textures/level1/Tlo1.png" id="6_d6y1e"]
 [ext_resource type="Texture2D" uid="uid://ulrs6xtx8r0r" path="res://textures/test-background/clouds.png" id="6_f8kjs"]
 [ext_resource type="PackedScene" uid="uid://8miuhs6420nd" path="res://assets/level_tools/enemy_spawnpoint.tscn" id="7_k47k2"]
 

@@ -26,8 +26,9 @@ MAX_HEALTH = 50.0
 dropped_experience = 60.0
 detection_range = 100.0
 attack_range = 20.0
-reaction_time = 0.3
+reaction_time = 0.4
 memory_time = 10.0
+attack_time = 0.5
 jump_height = 25.0
 jump_descent = 0.3
 jump_peak = 0.4
@@ -44,8 +45,9 @@ texture_filter = 3
 texture = ExtResource("1_k5m6p")
 
 [node name="stick" parent="AnimatedSprite2D" instance=ExtResource("3_6v6qr")]
-position = Vector2(4.645, -2.55)
+position = Vector2(3, -1)
 scale = Vector2(0.48, 0.48)
+damage = 20.0
 knockback = 15.0
 
 [node name="healthbar" type="ProgressBar" parent="."]

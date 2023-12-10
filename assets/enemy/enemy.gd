@@ -19,6 +19,8 @@ var knockback_multiplier : float = 1.7
 @export var attack_range : float
 @export var reaction_time : float
 @export var memory_time : float
+@export var attack_time : float
+var attack_timer : float
 
 @export var death_time: float = 0.4
 var dir_time : float = 2.0
@@ -73,7 +75,7 @@ func _physics_process(delta):
 		states.chase:
 			chase()
 		states.attack:
-			attack()
+			attack(delta)
 	check_movement()
 	
 	# Dodanie grawitacji
@@ -153,8 +155,9 @@ func get_dir():
 
 # Zmiana stanu
 func change_state(state : states):
-	await get_tree().create_timer(reaction_time).timeout
-	current_state = state
+	if state != current_state:
+		await get_tree().create_timer(reaction_time).timeout
+		current_state = state
 
 
 # Odpowiada za zachowanie wroga poza walką
@@ -191,9 +194,13 @@ func chase():
 
 
 # Odpowiada za zachowanie wroga podczes ataku
-func attack():
+func attack(delta):
 	dir = 0
-	weapon.attack()
+	if attack_timer <= 0:
+		weapon.attack()
+		attack_timer = attack_time
+	attack_timer -= delta
+	
 	
 	if position.distance_to(player.position) > detection_range or !sees_player():
 		await get_tree().create_timer(memory_time).timeout

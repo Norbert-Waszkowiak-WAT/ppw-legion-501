@@ -11,6 +11,8 @@ class_name Player
 @export var jump_descent: float = 0.5
 @export var jump_peak: float = 0.7
 
+var queued_jump : bool = false
+
 # Kierunek poruszania się
 var dir: float = 0.0
 
@@ -44,7 +46,7 @@ var damege_received: float = 0
 @export var penetration_time: float = 1
 var blinking_timer: float = 0
 
-var esc_press = 0
+
 # | ============================================================================= |
 
 
@@ -235,7 +237,7 @@ func process_weapons():
 		if Input.is_action_pressed("stick"):
 			hide_weapons()
 			selected_weapon = get_node("AnimatedSprite2D/weapons/stick")
-			selected_weapon.set_monitoring(true)
+#			selected_weapon.set_monitoring(true)
 			selected_weapon.show()
 
 

@@ -17,8 +17,14 @@ func process(delta: float) -> State:
 	if !player.sprite.is_playing():
 		player.sprite.play()
 	if player.is_processing_input():
-		if Input.is_action_pressed("jump") and player.is_on_floor():
+		if Input.is_action_just_pressed("jump") and player.is_on_floor():
 			return jump
+		
+		# Kolejkowanie skoku
+		if player.queued_jump and player.is_on_floor():
+			player.queued_jump = false
+			return jump
+		
 		if Input.is_action_pressed("move_right") or Input.is_action_pressed("move_left"):
 			return walk
 	return null

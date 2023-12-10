@@ -9,11 +9,12 @@ var exceptions = []
 
 
 func _process(delta):
-	var targets = get_overlapping_bodies()
-	for i in targets:
-		if i not in exceptions:
-			i.apply_damage(damage, knockback, user.global_position)
-			exceptions.append(i)
+	if is_monitoring():
+		var targets = get_overlapping_bodies()
+		for i in targets:
+			if i not in exceptions:
+				i.apply_damage(damage, knockback, user.global_position)
+				exceptions.append(i)
 
 
 # Ustawia rodzaj celu dla broni (wróg, gracz, itp.)

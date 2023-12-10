@@ -7,9 +7,6 @@ extends Enemy
 # Wywoływana na początku sceny
 func _ready():
 	super()
-	
-	# Ustawia cel broni na gracza
-	weapon.set_monitoring(true)
 
 
 # Wywoływana na każdej klatce

@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://jiyiuno0whkw"]
+[gd_scene load_steps=11 format=3 uid="uid://jiyiuno0whkw"]
 
 [ext_resource type="Script" path="res://assets/test_level/test_level.gd" id="1_j0jb0"]
+[ext_resource type="PackedScene" uid="uid://dh4fi820qxc7k" path="res://assets/stick/stick.tscn" id="2_mkhl5"]
 [ext_resource type="PackedScene" uid="uid://b8kl60fulqq1u" path="res://assets/player/player.tscn" id="2_w8aub"]
 [ext_resource type="PackedScene" uid="uid://c53i7mvtd0bbx" path="res://assets/test_enemy/test-enemy.tscn" id="3_r8es1"]
 [ext_resource type="PackedScene" uid="uid://c4bbjae7r4w7y" path="res://assets/level_tools/player_spawnpoint.tscn" id="4_d4w2d"]
@@ -8,9 +9,11 @@
 [ext_resource type="Texture2D" uid="uid://ctjk0fh1y7pbc" path="res://textures/level1/Tlo1.png" id="6_d6y1e"]
 [ext_resource type="Texture2D" uid="uid://ulrs6xtx8r0r" path="res://textures/test-background/clouds.png" id="6_f8kjs"]
 [ext_resource type="PackedScene" uid="uid://8miuhs6420nd" path="res://assets/level_tools/enemy_spawnpoint.tscn" id="7_k47k2"]
+[ext_resource type="PackedScene" uid="uid://btj05ng28fe4m" path="res://assets/level_tools/winning_area.tscn" id="9_moel3"]
 
 [node name="Level" type="Node"]
 script = ExtResource("1_j0jb0")
+next_level = ExtResource("2_mkhl5")
 
 [node name="player" parent="." instance=ExtResource("2_w8aub")]
 visible = false
@@ -92,3 +95,8 @@ enemy_type = ExtResource("3_r8es1")
 [node name="enemy_spawnpoint4" parent="spawnpoints" instance=ExtResource("7_k47k2")]
 position = Vector2(190, 0)
 enemy_type = ExtResource("3_r8es1")
+
+[node name="winning_areas" type="Node" parent="."]
+
+[node name="winning_area" parent="winning_areas" instance=ExtResource("9_moel3")]
+position = Vector2(886, -10)

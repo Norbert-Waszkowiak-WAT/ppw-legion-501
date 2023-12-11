@@ -10,7 +10,7 @@
 
 [sub_resource type="LabelSettings" id="LabelSettings_nessk"]
 font = ExtResource("7_pp8d5")
-font_size = 30
+font_size = 20
 
 [node name="HUD" type="CanvasLayer"]
 scale = Vector2(3.905, 3.905)
@@ -40,7 +40,7 @@ offset_left = 10.225
 offset_top = 3.75
 offset_right = 60.225
 offset_bottom = 13.75
-scale = Vector2(1.245, 1.245)
+scale = Vector2(1.845, 1.845)
 step = 0.1
 value = 100.0
 texture_progress = ExtResource("2_ol76l")
@@ -61,12 +61,12 @@ texture_filter = 3
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -1480.35
+offset_left = -1525.0
 offset_top = 3.784
-offset_right = -1400.35
+offset_right = -1445.0
 offset_bottom = 19.784
 grow_horizontal = 0
-scale = Vector2(0.535, 0.535)
+scale = Vector2(1.065, 1.065)
 step = 0.1
 texture_under = ExtResource("5_upksd")
 texture_progress = ExtResource("6_maie4")
@@ -74,11 +74,11 @@ texture_progress_offset = Vector2(16, 0)
 
 [node name="level" type="Label" parent="."]
 texture_filter = 1
-offset_left = 440.973
-offset_top = 4.86556
-offset_right = 474.973
-offset_bottom = 36.8655
-scale = Vector2(0.2, 0.2)
+offset_left = 397.526
+offset_top = 3.8
+offset_right = 413.526
+offset_bottom = 24.8
+scale = Vector2(0.76, 0.76)
 text = "0"
 label_settings = SubResource("LabelSettings_nessk")
 horizontal_alignment = 1

@@ -4,6 +4,8 @@ extends Control
 var start_game_delay : float = 1.7
 var startup_delay : float = 0.9
 
+@export var first_level : PackedScene
+
 @onready var new_game = $MarginContainer/VBoxContainer/new_game
 @onready var continue_button = $MarginContainer/VBoxContainer/continue
 @onready var settings = $MarginContainer/VBoxContainer/settings
@@ -31,7 +33,7 @@ func _process(delta):
 func _on_new_game_pressed():
 	new_game_animation()
 	await get_tree().create_timer(start_game_delay).timeout
-	get_tree().change_scene_to_file("res://assets/test_level/test_level.tscn")
+	get_tree().change_scene_to_packed(first_level)
 
 
 func _on_continue_pressed():

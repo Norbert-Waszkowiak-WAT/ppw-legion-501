@@ -27,7 +27,7 @@ func _on_main_menu_pressed():
 func _on_restart_pressed():
 	exit_animation()
 	await get_tree().create_timer(exit_time).timeout
-	get_tree().change_scene_to_file("res://assets/test_level/test_level.tscn")
+	get_tree().reload_current_scene()
 
 
 func _on_exit_pressed():

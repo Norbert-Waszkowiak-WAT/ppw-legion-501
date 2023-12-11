@@ -1,17 +1,11 @@
-[gd_resource type="TileSet" load_steps=9 format=3 uid="uid://dfi3xlrx7twl8"]
+[gd_resource type="TileSet" load_steps=7 format=3 uid="uid://dda25ow3bujlq"]
 
-[ext_resource type="Texture2D" uid="uid://drgy1o1v6jbs3" path="res://textures/tileset/Tekstury1.png" id="1_nvsl1"]
-[ext_resource type="PackedScene" uid="uid://k6ed0568tuof" path="res://assets/level_tools/barrier.tscn" id="2_joxgu"]
-[ext_resource type="PackedScene" uid="uid://bydgx2tg4seyx" path="res://assets/health_boost/health_restorer.tscn" id="3_xhv54"]
-
-[sub_resource type="TileMapPattern" id="TileMapPattern_vn733"]
-tile_data = PackedInt32Array(0, 65536, 1, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 1)
-
-[sub_resource type="TileMapPattern" id="TileMapPattern_x2i3q"]
-tile_data = PackedInt32Array(0, 65536, 1, 1, 0, 0, 2, 0, 1)
+[ext_resource type="Texture2D" uid="uid://drgy1o1v6jbs3" path="res://textures/tileset/Tekstury1.png" id="1_d0ax0"]
+[ext_resource type="PackedScene" uid="uid://k6ed0568tuof" path="res://assets/level_tools/barrier.tscn" id="2_efmhl"]
+[ext_resource type="PackedScene" uid="uid://bydgx2tg4seyx" path="res://assets/health_boost/health_restorer.tscn" id="3_m8s7x"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8nm1w"]
-texture = ExtResource("1_nvsl1")
+texture = ExtResource("1_d0ax0")
 texture_region_size = Vector2i(1024, 1024)
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -51,11 +45,11 @@ texture_region_size = Vector2i(1024, 1024)
 1:2/0/physics_layer_0/angular_velocity = 0.0
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_bnq84"]
-scenes/1/scene = ExtResource("2_joxgu")
-scenes/2/scene = ExtResource("3_xhv54")
+scenes/1/scene = ExtResource("2_efmhl")
+scenes/2/scene = ExtResource("3_m8s7x")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_asvk4"]
-texture = ExtResource("1_nvsl1")
+texture = ExtResource("1_d0ax0")
 texture_region_size = Vector2i(1024, 1024)
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -80,5 +74,3 @@ physics_layer_0/collision_mask = 6
 sources/0 = SubResource("TileSetAtlasSource_8nm1w")
 sources/1 = SubResource("TileSetScenesCollectionSource_bnq84")
 sources/2 = SubResource("TileSetAtlasSource_asvk4")
-pattern_0 = SubResource("TileMapPattern_vn733")
-pattern_1 = SubResource("TileMapPattern_x2i3q")

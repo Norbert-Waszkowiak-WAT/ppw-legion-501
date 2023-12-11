@@ -8,6 +8,10 @@ var exceptions = []
 # | ============================================================================= |
 
 
+func _ready():
+	set_monitoring(false)
+
+
 func _process(delta):
 	if is_monitoring():
 		var targets = get_overlapping_bodies()
@@ -21,7 +25,7 @@ func _process(delta):
 func set_target(target):
 	match target:
 		"player":
-			set_collision_mask_value(2, true)
+			set_collision_mask_value(4, true)
 		"enemies":
 			set_collision_mask_value(3, true)
 

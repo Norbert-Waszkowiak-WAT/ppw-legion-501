@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://bgod5pyugdjn"]
+[gd_scene load_steps=9 format=3 uid="uid://bgod5pyugdjn"]
 
 [ext_resource type="Script" path="res://assets/main_menu/main_menu.gd" id="1_1ihm4"]
+[ext_resource type="PackedScene" uid="uid://cf3wk0airgvkk" path="res://assets/demo_level/demo_level.tscn" id="2_4crpy"]
 [ext_resource type="Texture2D" uid="uid://cdl2mva1ibxdu" path="res://textures/main-menu/logo.png" id="2_8ilsw"]
 [ext_resource type="Theme" uid="uid://dygspx1ouf0ul" path="res://assets/main_menu/main_menu.tres" id="3_6h6dh"]
 [ext_resource type="Texture2D" uid="uid://bt6mke8k7uhgg" path="res://textures/main-menu/MenuBackground.jpg" id="4_hvcef"]
@@ -16,6 +17,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_1ihm4")
+first_level = ExtResource("2_4crpy")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1

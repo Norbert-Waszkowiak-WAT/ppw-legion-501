@@ -39,17 +39,16 @@ texture = ExtResource("2_elwvq")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="main_menu" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="resume" type="Button" parent="MarginContainer/VBoxContainer"]
 texture_filter = 1
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+size_flags_stretch_ratio = 0.0
 focus_neighbor_top = NodePath("../exit")
 focus_neighbor_bottom = NodePath("../restart")
 theme = ExtResource("3_vrpeh")
-text = "menu"
-icon_alignment = 1
-expand_icon = true
+text = "resume"
 
 [node name="restart" type="Button" parent="MarginContainer/VBoxContainer"]
 texture_filter = 1
@@ -57,24 +56,30 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 size_flags_stretch_ratio = 0.0
-focus_neighbor_top = NodePath("../main_menu")
+focus_neighbor_top = NodePath("../resume")
+focus_neighbor_bottom = NodePath("../main_menu")
+theme = ExtResource("3_vrpeh")
+text = "restart"
+
+[node name="main_menu" type="Button" parent="MarginContainer/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_neighbor_top = NodePath("../restart")
 focus_neighbor_bottom = NodePath("../exit")
 theme = ExtResource("3_vrpeh")
-text = "Restart"
-icon_alignment = 1
-expand_icon = true
+text = "main menu"
 
 [node name="exit" type="Button" parent="MarginContainer/VBoxContainer"]
 texture_filter = 1
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-focus_neighbor_top = NodePath("../restart")
-focus_neighbor_bottom = NodePath("../main_menu")
+focus_neighbor_top = NodePath("../main_menu")
+focus_neighbor_bottom = NodePath("../resume")
 theme = ExtResource("3_vrpeh")
 text = "exit"
-icon_alignment = 1
-expand_icon = true
 
 [node name="background" type="ColorRect" parent="."]
 modulate = Color(1, 1, 1, 0)
@@ -95,6 +100,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0)
 
-[connection signal="pressed" from="MarginContainer/VBoxContainer/main_menu" to="." method="_on_main_menu_pressed" flags=18]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/restart" to="." method="_on_restart_pressed" flags=18]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/exit" to="." method="_on_exit_pressed" flags=18]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/resume" to="." method="unpause"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/main_menu" to="." method="_on_main_menu_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/exit" to="." method="_on_exit_pressed"]

@@ -18,7 +18,9 @@ var knockback_multiplier : float = 1.7
 @export var detection_range : float
 @export var attack_range : float
 @export var reaction_time : float
+var reaction_timer : float
 @export var memory_time : float
+var memory_timer : float
 @export var attack_time : float
 var attack_timer : float
 
@@ -73,7 +75,7 @@ func _physics_process(delta):
 		states.idle:
 			idle(delta)
 		states.chase:
-			chase()
+			chase(delta)
 		states.attack:
 			attack(delta)
 	check_movement()
@@ -156,57 +158,76 @@ func get_dir():
 # Zmiana stanu
 func change_state(state : states):
 	if state != current_state:
-		await get_tree().create_timer(reaction_time).timeout
+		#print(str(current_state) + " -> " + str(state))
+		reaction_timer = reaction_time
 		current_state = state
 
 
 # Odpowiada za zachowanie wroga poza walką
 func idle(delta: float):
-	dir_time -= delta
-	if dir_time <= 0:
-		dir_time = 2
-		get_dir()
+	if reaction_timer <= 0:
+		dir_time -= delta
+		if dir_time <= 0:
+			dir_time = 2
+			get_dir()
+	else:
+		reaction_timer -= delta
 	
 	if position.distance_to(player.position) <= detection_range and sees_player():
 		speed = chase_speed
 		change_state(states.chase)
 	if position.distance_to(player.position) <= attack_range and sees_player():
+		attack_timer = 0
 		change_state(states.attack)
 
 
 # Odpowiada za zachowanie wroga podczas gonienia gracza
-func chase():
-	if position.x > player.position.x - 10 and position.x < player.position.x + 10:
-		dir = 0
-	elif position.direction_to(player.position).x > 0:
-		dir = 1
-		sprite.scale.x = sprite.scale.y * dir
+func chase(delta: float):
+	if reaction_timer <= 0:
+		if position.x > player.position.x - 10 and position.x < player.position.x + 10:
+			dir = 0
+		elif position.direction_to(player.position).x > 0:
+			dir = 1
+			sprite.scale.x = sprite.scale.y * dir
+		else:
+			dir = -1
+			sprite.scale.x = sprite.scale.y * dir
 	else:
-		dir = -1
-		sprite.scale.x = sprite.scale.y * dir
+		reaction_timer -= delta
 	
 	if position.distance_to(player.position) > detection_range or !sees_player():
-		await get_tree().create_timer(memory_time).timeout
-		speed = idle_speed
-		change_state(states.idle)
+		if memory_timer <= 0:
+			speed = idle_speed
+			memory_timer = memory_time
+			change_state(states.idle)
+		else:
+			memory_timer -= delta
+		
 	if position.distance_to(player.position) <= attack_range:
+		attack_timer = 0
 		change_state(states.attack)
 
 
 # Odpowiada za zachowanie wroga podczes ataku
-func attack(delta):
-	dir = 0
-	if attack_timer <= 0:
-		weapon.attack()
-		attack_timer = attack_time
-	attack_timer -= delta
+func attack(delta: float):
+	if reaction_timer <= 0:
+		dir = 0
+		if attack_timer <= 0:
+			weapon.attack()
+			attack_timer = attack_time
+		attack_timer -= delta
+	else:
+		reaction_timer -= delta
 	
 	
 	if position.distance_to(player.position) > detection_range or !sees_player():
-		await get_tree().create_timer(memory_time).timeout
-		speed = idle_speed
-		change_state(states.idle)
-	if position.distance_to(player.position) <= detection_range:
+		if memory_timer <= 0:
+			speed = idle_speed
+			memory_timer = memory_time
+			change_state(states.idle)
+		else:
+			memory_timer -= delta
+	if position.distance_to(player.position) > attack_range:
 		speed = chase_speed
 		change_state(states.chase)
 

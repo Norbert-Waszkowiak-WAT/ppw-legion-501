@@ -4,12 +4,18 @@ class_name Level
 
 signal pause(value : bool)
 
+@export var next_level : PackedScene
+
 
 # | ============================================================================= |
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	# Konfiguruje warunek wygranej
+	for i in $winning_areas.get_children():
+		i.level_completed.connect(on_level_completed)
+	
 	# Dodaje gracza
 	if $player and $player_spawnpoint:
 		$player.spawn($player_spawnpoint.position)
@@ -68,3 +74,10 @@ func check_paused():
 		set_paused(true)
 		var escape_menu = load("res://assets/esc_menu/esc_menu.tscn").instantiate()
 		get_tree().get_root().get_child(0).add_child(escape_menu)
+
+
+func on_level_completed():
+	set_paused(true)
+	var winning_menu = load("res://assets/winning_menu/winning_menu.tscn").instantiate()
+	winning_menu.next_level = next_level
+	add_child(winning_menu)

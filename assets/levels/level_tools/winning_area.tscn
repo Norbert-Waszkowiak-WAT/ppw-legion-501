@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://btj05ng28fe4m"]
+
+[ext_resource type="Script" path="res://assets/levels/level_tools/winning_area.gd" id="1_5t5ed"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w7qgr"]
+size = Vector2(50, 40)
+
+[node name="winning_area" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_5t5ed")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("RectangleShape2D_w7qgr")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -25.0
+offset_top = -20.0
+offset_right = 25.0
+offset_bottom = 20.0
+color = Color(0, 0.784314, 0.341176, 0.392157)

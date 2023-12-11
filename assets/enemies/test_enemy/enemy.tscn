@@ -1,0 +1,57 @@
+[gd_scene load_steps=6 format=3 uid="uid://c53i7mvtd0bbx"]
+
+[ext_resource type="Script" path="res://assets/enemies/test_enemy/test-enemy.gd" id="1_i8oiu"]
+[ext_resource type="Texture2D" uid="uid://smal4hmb1hlj" path="res://textures/test-enemy/enemy.png" id="2_36qn5"]
+[ext_resource type="PackedScene" uid="uid://dh4fi820qxc7k" path="res://assets/weapons/stick/stick.tscn" id="3_3epha"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ex46t"]
+bg_color = Color(0, 0, 0, 0.231373)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3l68f"]
+bg_color = Color(0.933333, 0.352941, 0.352941, 1)
+
+[node name="CharacterBody2D" type="CharacterBody2D" groups=["enemy"]]
+collision_layer = 4
+collision_mask = 7
+floor_max_angle = 0.0872665
+script = ExtResource("1_i8oiu")
+speed = 40.0
+acceleration = 1.5
+MAX_HEALTH = 100.0
+detection_range = 70.0
+attack_range = 15.0
+reaction_time = 0.3
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-3, 5, 0, 6, 3, 5, 3, -5, 0, -6, -3, -5)
+
+[node name="AnimatedSprite2D" type="Sprite2D" parent="."]
+texture_filter = 3
+texture = ExtResource("2_36qn5")
+
+[node name="stick" parent="AnimatedSprite2D" instance=ExtResource("3_3epha")]
+position = Vector2(4.645, -2.55)
+scale = Vector2(0.48, 0.48)
+knockback = 15.0
+
+[node name="healthbar" type="ProgressBar" parent="."]
+texture_filter = 1
+offset_left = -4.0
+offset_top = -9.0
+offset_right = 12.0
+offset_bottom = -5.0
+scale = Vector2(0.5, 0.5)
+theme_override_styles/background = SubResource("StyleBoxFlat_ex46t")
+theme_override_styles/fill = SubResource("StyleBoxFlat_3l68f")
+value = 44.99
+show_percentage = false
+
+[node name="dir_timer" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="damage_timer" type="Timer" parent="."]
+wait_time = 0.6
+one_shot = true
+
+[node name="health_timer" type="Timer" parent="."]
+wait_time = 3.0

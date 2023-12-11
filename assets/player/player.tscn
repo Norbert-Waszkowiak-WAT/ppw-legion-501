@@ -5,12 +5,12 @@
 [ext_resource type="Texture2D" uid="uid://dm15wkrehblp5" path="res://textures/animated-player/ghost2.png" id="3_xkodq"]
 [ext_resource type="Texture2D" uid="uid://dwss7sxgcylxj" path="res://textures/animated-player/ghost3.png" id="4_oonk3"]
 [ext_resource type="PackedScene" uid="uid://clf8aqe0iy2if" path="res://assets/hud/hud.tscn" id="5_e68ka"]
-[ext_resource type="PackedScene" uid="uid://dh4fi820qxc7k" path="res://assets/stick/stick.tscn" id="5_n46lu"]
+[ext_resource type="PackedScene" uid="uid://dh4fi820qxc7k" path="res://assets/weapons/stick/stick.tscn" id="5_n46lu"]
 [ext_resource type="Script" path="res://assets/player/state_machine/state_machine.gd" id="7_tys86"]
-[ext_resource type="Script" path="res://assets/player/idle.gd" id="8_u7umh"]
-[ext_resource type="Script" path="res://assets/player/walk.gd" id="9_ye4cr"]
-[ext_resource type="Script" path="res://assets/player/jump.gd" id="10_x52e5"]
-[ext_resource type="Script" path="res://assets/player/fall.gd" id="11_h6ekv"]
+[ext_resource type="Script" path="res://assets/player/states/idle.gd" id="8_u7umh"]
+[ext_resource type="Script" path="res://assets/player/states/walk.gd" id="9_ye4cr"]
+[ext_resource type="Script" path="res://assets/player/states/jump.gd" id="10_x52e5"]
+[ext_resource type="Script" path="res://assets/player/states/fall.gd" id="11_h6ekv"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_lbsb1"]
 animations = [{

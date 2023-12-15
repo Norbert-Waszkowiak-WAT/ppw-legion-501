@@ -98,6 +98,3 @@ enemy_type = ExtResource("9_x4bq1")
 
 [node name="winning_area" parent="winning_areas" instance=ExtResource("9_moel3")]
 position = Vector2(886, -10)
-
-[node name="winning_area2" parent="winning_areas" instance=ExtResource("9_moel3")]
-position = Vector2(131, -25)

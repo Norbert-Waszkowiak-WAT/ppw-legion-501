@@ -42,8 +42,6 @@ var experience : float
 var exp_lvl : int
 @export var MAX_EXP : float = 100.0
 
-var damege_received: float = 0
-@export var penetration_time: float = 1
 var blinking_timer: float = 0
 
 
@@ -59,11 +57,11 @@ func _ready():
 	if level is Level:
 		level.pause.connect(on_paused)
 	
-	for i in weapons:
-		i.set_target("enemies")
+	for weapon in weapons:
+		weapon.set_target("enemies")
 	hide_weapons()
 	
-	disable_player()
+	set_enabled(false)
 	hide()
 	
 
@@ -94,28 +92,19 @@ func _physics_process(delta):
 
 
 # Wyłącza funkcjonalność gracza (fizyka, poruszanie się)
-func disable_player():
-	set_physics_process(false)
-	set_process(false)
-	set_process_input(false)
-	$Camera2D.enabled = false
-	$HUD.visible = false
-
-
-# Włącza funkcjonalność gracza
-func enable_player():
-	set_physics_process(true)
-	set_process(true)
-	set_process_input(true)
-	$Camera2D.enabled = true
-	$HUD.visible = true
+func set_enabled(value : bool):
+	set_physics_process(value)
+	set_process(value)
+	set_process_input(value)
+	$Camera2D.enabled = value
+	$HUD.visible = value
 
 
 # Pojawianie się gracza
 func spawn(pos):
 	position = pos
 	health = MAX_HEALTH
-	enable_player()
+	set_enabled(true)
 	show()
 
 
@@ -164,15 +153,11 @@ func walk(direction: String, duration: float):
 func apply_damage(damage, knockback, pos : Vector2):
 	if $damage_timer.is_stopped():
 		health -= damage
-		damege_received += damage
 		$damage_timer.start()
 		taking_damage.emit()
 		apply_knockback(knockback, pos)
 		
-		# Wyłącza kolizję z wrogami
-		set_collision_layer_value(4, false)
-		set_collision_mask_value(3, false)
-		changing_color()
+		invincibility_frames()
 		
 
 # Odrzucenie podczas otrzymywania obrażeń
@@ -203,11 +188,16 @@ func exp_bar_update():
 	expbar.value = experience
 
 
+# Śmierć gracza
 func die():
+	# Pojawia się menu śmierci
 	var death_menu = load("res://assets/death_menu/death_menu.tscn").instantiate()
 	get_tree().get_root().get_child(0).add_child(death_menu)
+	
+	# Zatrzymuje gracza jeśli chodził lub był w skoku
 	$state_machine.change_state($state_machine/idle)
 	
+	# Zatrzymuje proces gracza
 	await $damage_timer.timeout
 	set_process(false)
 	set_physics_process(false)
@@ -215,8 +205,12 @@ func die():
 
 
 #Funkcja odpowiadająca za mruganie gracza po otrzymaniu obrażeń
-func changing_color():
+func invincibility_frames():
+	# Wyłącza kolizję z wrogami
+	set_collision_layer_value(4, false)
+	set_collision_mask_value(3, false)
 	blinking_timer = 0.1 * $damage_timer.wait_time
+	
 	while not $damage_timer.is_stopped():
 		#Zmiana koloru gracza na czerwony(RGB)
 		$AnimatedSprite2D.self_modulate.a = 0.5
@@ -228,22 +222,23 @@ func changing_color():
 		await get_tree().create_timer(blinking_timer).timeout
 
 
+# Update broni
 func process_weapons():
 	if is_processing_input():
 		if Input.is_action_just_pressed("attack") and selected_weapon:
 			selected_weapon.attack()
 			
-		if Input.is_action_pressed("stick"):
-			hide_weapons()
-			selected_weapon = get_node("AnimatedSprite2D/weapons/stick")
-#			selected_weapon.set_monitoring(true)
+		if Input.is_action_pressed("stick") and weapons[0]:
+			if selected_weapon:
+				selected_weapon.hide()
+			selected_weapon = weapons[0]
 			selected_weapon.show()
 
 
 func hide_weapons():
 	for i in weapons:
 		i.hide()
-		
+
 
 func on_paused(value):
 	if value == true:

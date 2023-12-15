@@ -19,7 +19,6 @@ func process(delta: float) -> State:
 	if player.is_processing_input():
 		if Input.is_action_just_pressed("jump") and player.is_on_floor():
 			return jump
-		
 		# Kolejkowanie skoku
 		if player.queued_jump and player.is_on_floor():
 			player.queued_jump = false

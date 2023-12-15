@@ -23,13 +23,13 @@ func _ready():
 	for i in hud.get_children():
 		tween.tween_property(i, "modulate:a", 0, anim_time)
 	tween.set_parallel(false).set_trans(Tween.TRANS_QUAD)
-	tween.tween_property(Engine, "time_scale", 0.3, anim_time)
+	tween.tween_property(Engine, "time_scale", 0.0, anim_time)
 
 
 func _on_main_menu_pressed():
 	exit_animation()
 	await get_tree().create_timer(exit_time).timeout
-	get_tree().change_scene_to_file("res://assets/main_menu/main_menu.tscn")
+	get_tree().change_scene_to_file("res://assets/ui/main_menu/main_menu.tscn")
 
 
 func _on_restart_pressed():

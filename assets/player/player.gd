@@ -149,7 +149,6 @@ func horizontal_movement():
 
 # Skok
 func jump():
-	print("jump")
 	$state_machine.change_state($state_machine/jump)
 
 

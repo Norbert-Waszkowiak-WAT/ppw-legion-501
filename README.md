@@ -22,7 +22,7 @@ _Grę rozwijamy w silniku Godot. W razie większych problemów jesteśmy gotowi 
 
 ## Dziennik
 
-### 08/11/2023
+### 16/12/2023
 Zaimplementowana funkcjonalność:
 - Warunek wygranej poziomu
 - Pierwszy grywalny poziom

@@ -4,9 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://smal4hmb1hlj" path="res://textures/test-enemy/enemy.png" id="1_k5m6p"]
 [ext_resource type="PackedScene" uid="uid://dh4fi820qxc7k" path="res://assets/weapons/stick/stick.tscn" id="3_6v6qr"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_imynt"]
-radius = 3.0
-height = 12.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m1f3y"]
+size = Vector2(6, 12)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ex46t"]
 bg_color = Color(0, 0, 0, 0.231373)
@@ -33,12 +32,8 @@ jump_height = 25.0
 jump_descent = 0.3
 jump_peak = 0.4
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(-3, 6, 3, 6, 3, -6, -3, -6)
-disabled = true
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CapsuleShape2D_imynt")
+shape = SubResource("RectangleShape2D_m1f3y")
 
 [node name="AnimatedSprite2D" type="Sprite2D" parent="."]
 texture_filter = 3
@@ -86,28 +81,20 @@ target_position = Vector2(0, 51)
 position = Vector2(3, 0)
 target_position = Vector2(0, 51)
 
-[node name="right_step_angle" type="RayCast2D" parent="."]
+[node name="right_step" type="RayCast2D" parent="."]
 position = Vector2(2, 5)
-target_position = Vector2(3, -3)
+target_position = Vector2(5, -5)
 collision_mask = 5
 
-[node name="right_step_down" type="RayCast2D" parent="."]
-position = Vector2(5, 0)
-target_position = Vector2(0, 9)
-
-[node name="left_step_angle" type="RayCast2D" parent="."]
+[node name="left_step" type="RayCast2D" parent="."]
 position = Vector2(-2, 5)
-target_position = Vector2(-3, -3)
+target_position = Vector2(-5, -5)
 collision_mask = 5
-
-[node name="left_step_down" type="RayCast2D" parent="."]
-position = Vector2(-5, 0)
-target_position = Vector2(0, 9)
 
 [node name="right_wall" type="RayCast2D" parent="."]
-position = Vector2(1, -18)
-target_position = Vector2(8, 0)
+position = Vector2(1, 0)
+target_position = Vector2(6, 0)
 
 [node name="left_wall" type="RayCast2D" parent="."]
-position = Vector2(-1, -18)
-target_position = Vector2(-8, 0)
+position = Vector2(-1, 0)
+target_position = Vector2(-6, 0)

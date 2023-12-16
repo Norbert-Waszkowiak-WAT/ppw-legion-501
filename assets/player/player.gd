@@ -191,7 +191,7 @@ func exp_bar_update():
 # Śmierć gracza
 func die():
 	# Pojawia się menu śmierci
-	var death_menu = load("res://assets/death_menu/death_menu.tscn").instantiate()
+	var death_menu = load("res://assets/ui/death_menu/death_menu.tscn").instantiate()
 	get_tree().get_root().get_child(0).add_child(death_menu)
 	
 	# Zatrzymuje gracza jeśli chodził lub był w skoku

@@ -22,8 +22,26 @@ _Grę rozwijamy w silniku Godot. W razie większych problemów jesteśmy gotowi 
 
 ## Dziennik
 
-### 30/11/2023
+### 08/11/2023
+Zaimplementowana funkcjonalność:
+- Warunek wygranej poziomu
+- Pierwszy grywalny poziom
+- Usprawnienia menu
+- Poprawki, naprawa i refaktoryzacja całego kodu
 
+Gracz wygrywa poziom po wejściu w wyznaczoną strefę. Dodano nowy
+poziom demonstracyjny, który jest już w pełni grywalny. Nowy ekran wygranej
+po przejściu poziomu. Poprawki m.in. w zachowaniu wroga i różnych innych
+interakcjach między elementami gry.
+
+Planowana funkcjonalność na następne tygodnie:
+- Dodatkowe warunki ukończenia poziomu
+- Więcej tekstur różnych elementów gry
+- Pierwsza broń dystansowa
+- Usprawnienia w kodzie
+- Prototyp rozwoju postaci
+
+### 30/11/2023
 Zaimplementowana funkcjonalność:
 - TileSet do tworzenia poziomów
 - Animowane menu główne 

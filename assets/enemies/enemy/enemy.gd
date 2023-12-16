@@ -2,31 +2,27 @@ extends CharacterBody2D
 class_name Enemy
 
 
+# Movement
 var speed : float
 @export var idle_speed : float
 @export var chase_speed : float
 @export var acceleration : float
 var dir : int = 0
 
+# życie
 var health : float
 @export var MAX_HEALTH : float
 var taking_knockback : bool = false
 var knockback_multiplier : float = 1.7
 
+# Doświadczenie
 @export var dropped_experience : float
 
+# Zasięg
 @export var detection_range : float
 @export var attack_range : float
-@export var reaction_time : float
-var reaction_timer : float
-@export var memory_time : float
-var memory_timer : float
-@export var attack_time : float
-var attack_timer : float
 
-@export var death_time: float = 0.4
-var dir_time : float = 2.0
-
+# Stany
 enum states {idle, chase, attack}
 var current_state : states
 var starting_state : states = states.idle
@@ -40,6 +36,26 @@ var starting_state : states = states.idle
 @onready var jump_speed: float = ((2.0 * jump_height) / jump_peak) * -1
 @onready var jump_gravity: float = ((-2.0 * jump_height) / (jump_peak * jump_peak)) * -1
 @onready var fall_gravity: float = ((-2.0 * jump_height) / (jump_descent * jump_descent)) * -1
+
+
+# ----| Timery |----
+
+@export var reaction_time : float
+var reaction_timer : float
+
+@export var memory_time : float
+var memory_timer : float
+
+@export var attack_time : float
+var attack_timer : float
+
+var dir_time : float = 2.0
+var dir_timer : float
+
+@export var death_time: float = 0.4
+
+
+# ----| Odniesienia |----
 
 @onready var sprite = get_node("AnimatedSprite2D")
 @onready var player = get_tree().get_root().find_child("player", true, false)
@@ -61,6 +77,10 @@ func _ready():
 	$healthbar.max_value = MAX_HEALTH
 	$healthbar.hide()
 	$health_timer.timeout.connect(hide_health)
+	
+	# Daje wrogowi znać, jak wysoko może doskoczyć
+	$right_wall.position.y = -jump_height + 6
+	$left_wall.position.y = -jump_height + 6
 
 
 # Wywoływana na każdej klatce
@@ -68,7 +88,7 @@ func _process(delta):
 	$healthbar.value = health
 	if health <= 0:
 		die()
-		
+
 
 func _physics_process(delta):
 	match current_state:
@@ -118,6 +138,7 @@ func hide_health():
 	$health_timer.stop()
 
 
+# Zwraca true, jeśli bezpośrenio widzi gracza
 func sees_player() -> bool:
 	if not player.health <= 0:
 		var space_state = get_world_2d().direct_space_state
@@ -166,9 +187,10 @@ func change_state(state : states):
 # Odpowiada za zachowanie wroga poza walką
 func idle(delta: float):
 	if reaction_timer <= 0:
-		dir_time -= delta
-		if dir_time <= 0:
-			dir_time = 2
+		speed = idle_speed
+		dir_timer -= delta
+		if dir_timer <= 0:
+			dir_timer = dir_time
 			get_dir()
 	else:
 		reaction_timer -= delta
@@ -184,20 +206,13 @@ func idle(delta: float):
 # Odpowiada za zachowanie wroga podczas gonienia gracza
 func chase(delta: float):
 	if reaction_timer <= 0:
-		if position.x > player.position.x - 10 and position.x < player.position.x + 10:
-			dir = 0
-		elif position.direction_to(player.position).x > 0:
-			dir = 1
-			sprite.scale.x = sprite.scale.y * dir
-		else:
-			dir = -1
-			sprite.scale.x = sprite.scale.y * dir
+		speed = chase_speed
+		turn_towards_player()
 	else:
 		reaction_timer -= delta
 	
 	if position.distance_to(player.position) > detection_range or !sees_player():
 		if memory_timer <= 0:
-			speed = idle_speed
 			memory_timer = memory_time
 			change_state(states.idle)
 		else:
@@ -211,7 +226,7 @@ func chase(delta: float):
 # Odpowiada za zachowanie wroga podczes ataku
 func attack(delta: float):
 	if reaction_timer <= 0:
-		dir = 0
+		turn_towards_player()
 		if attack_timer <= 0:
 			weapon.attack()
 			attack_timer = attack_time
@@ -222,34 +237,43 @@ func attack(delta: float):
 	
 	if position.distance_to(player.position) > detection_range or !sees_player():
 		if memory_timer <= 0:
-			speed = idle_speed
 			memory_timer = memory_time
 			change_state(states.idle)
 		else:
 			memory_timer -= delta
 	if position.distance_to(player.position) > attack_range:
-		speed = chase_speed
 		change_state(states.chase)
 
 
 func check_movement():
 	match current_state:
 		states.chase:
-			if !$left_long.get_collider() or !$right_long.get_collider():
+			if (!$left_long.get_collider() and dir == -1) or (!$right_long.get_collider() and dir == 1):
 				jump()
-			if $left_step_angle.get_collider() and !$left_wall.get_collider() and dir == -1:
+			if $left_step.get_collider() and !$left_wall.get_collider() and dir == -1:
 				jump()
-			elif !$left_short.get_collider() and dir == -1 and !$left_wall.get_collider() and player.position.y < position.y and !$left_step_down.get_collider():
+			elif !$left_short.get_collider() and dir == -1 and !$left_wall.get_collider() and player.position.y < position.y:
 				jump()
-			if $right_step_angle.get_collider() and !$right_wall.get_collider() and dir == 1:
+			if $right_step.get_collider() and !$right_wall.get_collider() and dir == 1:
 				jump()
-			elif !$right_short.get_collider() and dir == 1 and !$right_wall.get_collider() and player.position.y < position.y and !$right_step_down.get_collider():
+			elif !$right_short.get_collider() and dir == 1 and !$right_wall.get_collider() and player.position.y < position.y:
 				jump()
 		states.idle:
 			if !$left_short.get_collider() and dir == -1 and is_on_floor():
 				dir = 0
 			if !$right_short.get_collider() and dir == 1 and is_on_floor():
 				dir = 0
+
+
+func turn_towards_player():
+	if position.x > player.position.x - 10 and position.x < player.position.x + 10:
+		dir = 0
+	elif position.direction_to(player.position).x > 0:
+		dir = 1
+		sprite.scale.x = sprite.scale.y * dir
+	else:
+		dir = -1
+		sprite.scale.x = sprite.scale.y * dir
 
 
 func jump():

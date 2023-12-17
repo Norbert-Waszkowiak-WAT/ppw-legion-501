@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://assets/ui/winning_menu/winning_menu.gd" id="1_e4kfp"]
 [ext_resource type="Texture2D" uid="uid://cdl2mva1ibxdu" path="res://textures/main-menu/logo.png" id="2_0ebxm"]
-[ext_resource type="Theme" uid="uid://dvgx4qpo87mdk" path="res://assets/ui/transparent_menu.tres" id="3_5nvmc"]
 [ext_resource type="FontFile" uid="uid://wlq1kryvxbf5" path="res://textures/main-menu/VCR_OSD_MONO_1.001.ttf" id="3_yx142"]
+[ext_resource type="Theme" uid="uid://dygspx1ouf0ul" path="res://assets/ui/main_menu/main_menu.tres" id="4_llyba"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_5nhfc"]
 font = ExtResource("3_yx142")
@@ -60,7 +60,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 focus_neighbor_top = NodePath("../exit")
 focus_neighbor_bottom = NodePath("../restart")
-theme = ExtResource("3_5nvmc")
+theme = ExtResource("4_llyba")
 text = "next level"
 
 [node name="restart" type="Button" parent="MarginContainer/VBoxContainer"]
@@ -71,7 +71,7 @@ size_flags_vertical = 4
 size_flags_stretch_ratio = 0.0
 focus_neighbor_top = NodePath("../next_level")
 focus_neighbor_bottom = NodePath("../main_menu")
-theme = ExtResource("3_5nvmc")
+theme = ExtResource("4_llyba")
 text = "restart"
 
 [node name="main_menu" type="Button" parent="MarginContainer/VBoxContainer"]
@@ -81,7 +81,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 focus_neighbor_top = NodePath("../restart")
 focus_neighbor_bottom = NodePath("../exit")
-theme = ExtResource("3_5nvmc")
+theme = ExtResource("4_llyba")
 text = "main menu"
 
 [node name="exit" type="Button" parent="MarginContainer/VBoxContainer"]
@@ -91,11 +91,10 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 focus_neighbor_top = NodePath("../main_menu")
 focus_neighbor_bottom = NodePath("../next_level")
-theme = ExtResource("3_5nvmc")
+theme = ExtResource("4_llyba")
 text = "exit"
 
 [node name="background" type="ColorRect" parent="."]
-modulate = Color(1, 1, 1, 0)
 z_index = -1
 anchors_preset = 15
 anchor_right = 1.0
@@ -103,15 +102,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-color = Color(0.341176, 0.545098, 0.337255, 1)
-
-[node name="tint" type="ColorRect" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 0)
+color = Color(0.341176, 0.545098, 0.337255, 0)
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/next_level" to="." method="_on_next_level_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/restart" to="." method="_on_restart_pressed"]

@@ -142,11 +142,21 @@ func jump():
 
 
 # Wymuszenie chodu gracza (do przerywników)
-func walk(direction: String, duration: float):
-	set_direction(direction)
-	$state_machine.change_state($state_machine/walk)
-	await get_tree().create_timer(duration).timeout
-	$state_machine.change_state($state_machine/idle)
+func walk(direction: String, distance: float):
+	if distance > 0:
+		var duration : float
+		var effective_acceleration : float = acceleration * Engine.physics_ticks_per_second
+		var acceleration_duration : float
+		var acceleration_distance : float
+		
+		acceleration_duration = speed / effective_acceleration
+		acceleration_distance = (effective_acceleration * pow(acceleration_duration, 2)) / 2
+		duration = ((distance - acceleration_distance) / speed) + acceleration_duration
+		
+		set_direction(direction)
+		$state_machine.change_state($state_machine/walk)
+		await get_tree().create_timer(duration).timeout
+		$state_machine.change_state($state_machine/idle)
 
 
 # Zadaje obrażenia graczowi
@@ -158,7 +168,7 @@ func apply_damage(damage, knockback, pos : Vector2):
 		apply_knockback(knockback, pos)
 		
 		invincibility_frames()
-		
+
 
 # Odrzucenie podczas otrzymywania obrażeń
 func apply_knockback(strength, pos : Vector2):
@@ -171,7 +181,7 @@ func apply_knockback(strength, pos : Vector2):
 func standard_color():
 	$AnimatedSprite2D.self_modulate = Color(1, 1, 1)
 	
-	# Wyłącza kolizję z wrogami
+	# Włącza kolizję z wrogami
 	set_collision_layer_value(4, true)
 	set_collision_mask_value(3, true)
 
@@ -243,3 +253,7 @@ func hide_weapons():
 func on_paused(value):
 	if value == true:
 		sprite.pause()
+
+
+func move_camera(new_position : Vector2):
+	$Camera2D.global_position = new_position

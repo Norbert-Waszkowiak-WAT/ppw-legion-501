@@ -75,7 +75,7 @@ func startup_animation():
 	$player/HUD.visible = false
 	
 	# Gracz wchodzi na ekran
-	$player.walk("right", startup_delay)
+	$player.walk("right", 650)
 
 
 # Animacja gracza przed rozpoczęciem gry
@@ -89,7 +89,7 @@ func new_game_animation():
 	tween.tween_property(self, "modulate", Color.BLACK, start_game_delay / 3)
 	
 	# Gracz idzie w prawo
-	$player.walk("right", start_game_delay)
+	$player.walk("right", 1700)
 	await get_tree().create_timer(0.5).timeout
 	
 	# Gracz przeskakuje nad przepaścią

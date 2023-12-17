@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bfqfqq7ggdc2o"]
+
+[ext_resource type="Texture2D" uid="uid://cdve25cd25dtp" path="res://textures/skill_tree/skill_button.png" id="1_2jp60"]
+[ext_resource type="Script" path="res://assets/ui/skill_tree/skill_button.gd" id="2_wmkxc"]
+
+[node name="skill_button" type="TextureButton"]
+z_index = 1
+scale = Vector2(6.41, 6.41)
+texture_normal = ExtResource("1_2jp60")
+script = ExtResource("2_wmkxc")
+
+[node name="Line2D" type="Line2D" parent="."]
+top_level = true
+default_color = Color(0.556863, 0.556863, 0.556863, 1)

@@ -1,0 +1,32 @@
+[gd_scene load_steps=2 format=3 uid="uid://dfn73ggqbgyt7"]
+
+[ext_resource type="PackedScene" uid="uid://bfqfqq7ggdc2o" path="res://assets/ui/skill_tree/skill_button.tscn" id="1_b46a3"]
+
+[node name="movement_tree" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="skill_button" parent="." instance=ExtResource("1_b46a3")]
+layout_mode = 0
+offset_left = 77.0
+offset_top = 440.0
+offset_right = 99.0
+offset_bottom = 462.0
+
+[node name="skill_button2" parent="." instance=ExtResource("1_b46a3")]
+layout_mode = 0
+offset_left = 497.0
+offset_top = 300.0
+offset_right = 519.0
+offset_bottom = 322.0
+
+[node name="skill_button3" parent="." instance=ExtResource("1_b46a3")]
+layout_mode = 0
+offset_left = 497.0
+offset_top = 581.0
+offset_right = 519.0
+offset_bottom = 603.0

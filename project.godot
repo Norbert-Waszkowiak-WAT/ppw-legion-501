@@ -13,6 +13,8 @@ config_version=5
 config/name="Galactic Vendetta"
 run/main_scene="res://assets/ui/main_menu/main_menu.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
+run/max_fps=144
+boot_splash/bg_color=Color(0.141176, 0.141176, 0.141176, 1)
 config/icon="res://icon.svg"
 
 [display]

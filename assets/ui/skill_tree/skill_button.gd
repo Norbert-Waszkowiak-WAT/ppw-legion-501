@@ -10,18 +10,12 @@ extends TextureButton
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	popup.title = skill_name
+	tooltip_text = skill_name + " | " + tooltip_text
 	pivot_offset = size/2
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	popup.position = get_global_mouse_position()
-	if is_hovered():
-		popup.show()
-	else:
-		popup.hide()
-	print(is_hovered())
 	
 	line.clear_points()
 	if previous_button:

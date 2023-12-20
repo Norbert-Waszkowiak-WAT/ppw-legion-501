@@ -31,3 +31,7 @@ width = 20.0
 default_color = Color(0.556863, 0.556863, 0.556863, 1)
 
 [node name="PopupPanel" type="PopupPanel" parent="."]
+title = "Skill Button"
+always_on_top = true
+transparent = true
+theme = ExtResource("1_ptanc")

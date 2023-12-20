@@ -1,14 +1,33 @@
-[gd_scene load_steps=3 format=3 uid="uid://bfqfqq7ggdc2o"]
+[gd_scene load_steps=4 format=3 uid="uid://bfqfqq7ggdc2o"]
 
 [ext_resource type="Texture2D" uid="uid://cdve25cd25dtp" path="res://textures/skill_tree/skill_button.png" id="1_2jp60"]
+[ext_resource type="Theme" uid="uid://di4l5lx6nd1kk" path="res://assets/ui/skill_tree/skill_tree.tres" id="1_ptanc"]
 [ext_resource type="Script" path="res://assets/ui/skill_tree/skill_button.gd" id="2_wmkxc"]
 
 [node name="skill_button" type="TextureButton"]
 z_index = 1
-scale = Vector2(6.41, 6.41)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -11.0
+offset_top = -11.0
+offset_right = 11.0
+offset_bottom = 11.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(6, 6)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("1_ptanc")
 texture_normal = ExtResource("1_2jp60")
+stretch_mode = 5
 script = ExtResource("2_wmkxc")
 
 [node name="Line2D" type="Line2D" parent="."]
 top_level = true
+width = 20.0
 default_color = Color(0.556863, 0.556863, 0.556863, 1)
+
+[node name="PopupPanel" type="PopupPanel" parent="."]

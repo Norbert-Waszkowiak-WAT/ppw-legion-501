@@ -49,54 +49,41 @@ layout_mode = 2
 theme_override_constants/separation = 319
 alignment = 1
 
-[node name="skill_button" parent="MarginContainer/Panel/MarginContainer/TabContainer/Movement" instance=ExtResource("2_1v6ce")]
+[node name="movement_1" parent="MarginContainer/Panel/MarginContainer/TabContainer/Movement" instance=ExtResource("2_1v6ce")]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-stretch_mode = 5
+skill_name = "movement_1"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Panel/MarginContainer/TabContainer/Movement"]
 layout_mode = 2
 theme_override_constants/separation = 220
 alignment = 1
 
-[node name="skill_button2" parent="MarginContainer/Panel/MarginContainer/TabContainer/Movement/VBoxContainer" node_paths=PackedStringArray("previous_button") instance=ExtResource("2_1v6ce")]
+[node name="movement_2" parent="MarginContainer/Panel/MarginContainer/TabContainer/Movement/VBoxContainer" node_paths=PackedStringArray("previous_button") instance=ExtResource("2_1v6ce")]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-stretch_mode = 5
-previous_button = NodePath("../../skill_button")
+previous_button = NodePath("../../movement_1")
+skill_name = "movement_2"
 
-[node name="skill_button3" parent="MarginContainer/Panel/MarginContainer/TabContainer/Movement/VBoxContainer" node_paths=PackedStringArray("previous_button") instance=ExtResource("2_1v6ce")]
+[node name="movement_3" parent="MarginContainer/Panel/MarginContainer/TabContainer/Movement/VBoxContainer" node_paths=PackedStringArray("previous_button") instance=ExtResource("2_1v6ce")]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-stretch_mode = 5
-previous_button = NodePath("../../skill_button")
+previous_button = NodePath("../../movement_1")
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/Panel/MarginContainer/TabContainer/Movement"]
 layout_mode = 2
 theme_override_constants/separation = 220
 alignment = 1
 
-[node name="skill_button2" parent="MarginContainer/Panel/MarginContainer/TabContainer/Movement/VBoxContainer2" node_paths=PackedStringArray("previous_button") instance=ExtResource("2_1v6ce")]
+[node name="movement_4" parent="MarginContainer/Panel/MarginContainer/TabContainer/Movement/VBoxContainer2" node_paths=PackedStringArray("previous_button") instance=ExtResource("2_1v6ce")]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-stretch_mode = 5
-previous_button = NodePath("../../VBoxContainer/skill_button2")
+previous_button = NodePath("../../VBoxContainer/movement_2")
 
-[node name="skill_button3" parent="MarginContainer/Panel/MarginContainer/TabContainer/Movement/VBoxContainer2" node_paths=PackedStringArray("previous_button") instance=ExtResource("2_1v6ce")]
+[node name="movement_5" parent="MarginContainer/Panel/MarginContainer/TabContainer/Movement/VBoxContainer2" node_paths=PackedStringArray("previous_button") instance=ExtResource("2_1v6ce")]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-stretch_mode = 5
-previous_button = NodePath(".")
+previous_button = NodePath("../../VBoxContainer/movement_3")
 
 [node name="Melee" type="HBoxContainer" parent="MarginContainer/Panel/MarginContainer/TabContainer"]
 visible = false
@@ -104,38 +91,29 @@ layout_mode = 2
 theme_override_constants/separation = 319
 alignment = 1
 
-[node name="skill_button" parent="MarginContainer/Panel/MarginContainer/TabContainer/Melee" instance=ExtResource("2_1v6ce")]
+[node name="melee_1" parent="MarginContainer/Panel/MarginContainer/TabContainer/Melee" instance=ExtResource("2_1v6ce")]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-stretch_mode = 5
 
-[node name="skill_button3" parent="MarginContainer/Panel/MarginContainer/TabContainer/Melee" instance=ExtResource("2_1v6ce")]
+[node name="melee_2" parent="MarginContainer/Panel/MarginContainer/TabContainer/Melee" node_paths=PackedStringArray("previous_button") instance=ExtResource("2_1v6ce")]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-stretch_mode = 5
+previous_button = NodePath("../melee_1")
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/Panel/MarginContainer/TabContainer/Melee"]
 layout_mode = 2
 theme_override_constants/separation = 220
 alignment = 1
 
-[node name="skill_button2" parent="MarginContainer/Panel/MarginContainer/TabContainer/Melee/VBoxContainer2" instance=ExtResource("2_1v6ce")]
+[node name="melee_3" parent="MarginContainer/Panel/MarginContainer/TabContainer/Melee/VBoxContainer2" node_paths=PackedStringArray("previous_button") instance=ExtResource("2_1v6ce")]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-stretch_mode = 5
+previous_button = NodePath("../../melee_2")
 
-[node name="skill_button3" parent="MarginContainer/Panel/MarginContainer/TabContainer/Melee/VBoxContainer2" instance=ExtResource("2_1v6ce")]
+[node name="melee_4" parent="MarginContainer/Panel/MarginContainer/TabContainer/Melee/VBoxContainer2" node_paths=PackedStringArray("previous_button") instance=ExtResource("2_1v6ce")]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-stretch_mode = 5
+previous_button = NodePath("../../melee_2")
 
 [node name="Ranged" type="HBoxContainer" parent="MarginContainer/Panel/MarginContainer/TabContainer"]
 visible = false
@@ -143,50 +121,35 @@ layout_mode = 2
 theme_override_constants/separation = 319
 alignment = 1
 
-[node name="skill_button" parent="MarginContainer/Panel/MarginContainer/TabContainer/Ranged" instance=ExtResource("2_1v6ce")]
+[node name="ranged_1" parent="MarginContainer/Panel/MarginContainer/TabContainer/Ranged" instance=ExtResource("2_1v6ce")]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-stretch_mode = 5
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Panel/MarginContainer/TabContainer/Ranged"]
 layout_mode = 2
 theme_override_constants/separation = 220
 alignment = 1
 
-[node name="skill_button2" parent="MarginContainer/Panel/MarginContainer/TabContainer/Ranged/VBoxContainer" instance=ExtResource("2_1v6ce")]
+[node name="ranged_2" parent="MarginContainer/Panel/MarginContainer/TabContainer/Ranged/VBoxContainer" instance=ExtResource("2_1v6ce")]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-stretch_mode = 5
 
-[node name="skill_button3" parent="MarginContainer/Panel/MarginContainer/TabContainer/Ranged/VBoxContainer" instance=ExtResource("2_1v6ce")]
+[node name="ranged_3" parent="MarginContainer/Panel/MarginContainer/TabContainer/Ranged/VBoxContainer" instance=ExtResource("2_1v6ce")]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-stretch_mode = 5
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/Panel/MarginContainer/TabContainer/Ranged"]
 layout_mode = 2
 theme_override_constants/separation = 220
 alignment = 1
 
-[node name="skill_button4" parent="MarginContainer/Panel/MarginContainer/TabContainer/Ranged/VBoxContainer2" instance=ExtResource("2_1v6ce")]
+[node name="ranged_4" parent="MarginContainer/Panel/MarginContainer/TabContainer/Ranged/VBoxContainer2" instance=ExtResource("2_1v6ce")]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-stretch_mode = 5
 
-[node name="skill_button3" parent="MarginContainer/Panel/MarginContainer/TabContainer/Ranged/VBoxContainer2" instance=ExtResource("2_1v6ce")]
+[node name="ranged_5" parent="MarginContainer/Panel/MarginContainer/TabContainer/Ranged/VBoxContainer2" instance=ExtResource("2_1v6ce")]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-stretch_mode = 5
 
 [node name="Magic" type="HBoxContainer" parent="MarginContainer/Panel/MarginContainer/TabContainer"]
 visible = false
@@ -197,9 +160,6 @@ alignment = 1
 [node name="skill_button" parent="MarginContainer/Panel/MarginContainer/TabContainer/Magic" instance=ExtResource("2_1v6ce")]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-stretch_mode = 5
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Panel/MarginContainer/TabContainer/Magic"]
 layout_mode = 2
@@ -209,23 +169,14 @@ alignment = 1
 [node name="skill_button2" parent="MarginContainer/Panel/MarginContainer/TabContainer/Magic/VBoxContainer" instance=ExtResource("2_1v6ce")]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-stretch_mode = 5
 
 [node name="skill_button3" parent="MarginContainer/Panel/MarginContainer/TabContainer/Magic/VBoxContainer" instance=ExtResource("2_1v6ce")]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-stretch_mode = 5
 
 [node name="skill_button4" parent="MarginContainer/Panel/MarginContainer/TabContainer/Magic/VBoxContainer" instance=ExtResource("2_1v6ce")]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-stretch_mode = 5
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/Panel/MarginContainer/TabContainer/Magic"]
 layout_mode = 2
@@ -235,20 +186,11 @@ alignment = 1
 [node name="skill_button2" parent="MarginContainer/Panel/MarginContainer/TabContainer/Magic/VBoxContainer2" instance=ExtResource("2_1v6ce")]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-stretch_mode = 5
 
 [node name="skill_button4" parent="MarginContainer/Panel/MarginContainer/TabContainer/Magic/VBoxContainer2" instance=ExtResource("2_1v6ce")]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-stretch_mode = 5
 
 [node name="skill_button3" parent="MarginContainer/Panel/MarginContainer/TabContainer/Magic/VBoxContainer2" instance=ExtResource("2_1v6ce")]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-stretch_mode = 5

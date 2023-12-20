@@ -25,12 +25,12 @@ MAX_HEALTH = 50.0
 dropped_experience = 60.0
 detection_range = 100.0
 attack_range = 20.0
-reaction_time = 0.25
-memory_time = 10.0
-attack_time = 0.5
 jump_height = 25.0
 jump_descent = 0.3
 jump_peak = 0.4
+reaction_time = 0.25
+memory_time = 10.0
+attack_time = 0.5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_m1f3y")

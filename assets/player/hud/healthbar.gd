@@ -10,14 +10,14 @@ var tween
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$damagebar.value = user.health
+	$damagebar.value = PlayerVariables.health
 	user.taking_damage.connect(update_bar)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if user.health > $damagebar.value:
-		$damagebar.value = user.health
+	if PlayerVariables.health > $damagebar.value:
+		$damagebar.value = PlayerVariables.health
 
 
 # Rozpoczyna nową animację i kończy poprzednią, jeśli istniała
@@ -31,5 +31,5 @@ func animate():
 func update_bar():
 	animate()
 	tween.tween_interval(damage_time)
-	tween.tween_property($damagebar, "value", user.health, 0.2)
+	tween.tween_property($damagebar, "value", PlayerVariables.health, 0.2)
 

@@ -1,0 +1,128 @@
+[gd_scene load_steps=13 format=3 uid="uid://b8kl60fulqq1u"]
+
+[ext_resource type="Script" path="res://assets/player/player.gd" id="1_xhwip"]
+[ext_resource type="Texture2D" uid="uid://3wf6gg78jrf" path="res://textures/animated-player/ghost1.png" id="2_e1h0m"]
+[ext_resource type="Texture2D" uid="uid://dm15wkrehblp5" path="res://textures/animated-player/ghost2.png" id="3_xkodq"]
+[ext_resource type="Texture2D" uid="uid://dwss7sxgcylxj" path="res://textures/animated-player/ghost3.png" id="4_oonk3"]
+[ext_resource type="PackedScene" uid="uid://clf8aqe0iy2if" path="res://assets/player/hud/hud.tscn" id="5_e68ka"]
+[ext_resource type="PackedScene" uid="uid://dh4fi820qxc7k" path="res://assets/weapons/stick/stick.tscn" id="5_n46lu"]
+[ext_resource type="Script" path="res://assets/player/state_machine/state_machine.gd" id="7_tys86"]
+[ext_resource type="Script" path="res://assets/player/states/idle.gd" id="8_u7umh"]
+[ext_resource type="Script" path="res://assets/player/states/walk.gd" id="9_ye4cr"]
+[ext_resource type="Script" path="res://assets/player/states/jump.gd" id="10_x52e5"]
+[ext_resource type="Script" path="res://assets/player/states/fall.gd" id="11_h6ekv"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lbsb1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_e1h0m")
+}],
+"loop": true,
+"name": &"fall",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_e1h0m")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_e1h0m")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_e1h0m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_xkodq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_oonk3")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 6.0
+}]
+
+[node name="player" type="CharacterBody2D"]
+z_index = 1
+collision_layer = 10
+collision_mask = 5
+floor_constant_speed = true
+script = ExtResource("1_xhwip")
+speed = 75.0
+acceleration = 8.0
+jump_height = 35.0
+jump_descent = 0.2
+jump_peak = 0.3
+knockback_multiplier = 1.5
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-7, 8, 7, 8, 7, -3, -7, -3)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(8.04, 8.04)
+position_smoothing_enabled = true
+position_smoothing_speed = 9.0
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+drag_left_margin = 0.05
+drag_top_margin = 0.5
+drag_right_margin = 0.05
+drag_bottom_margin = 0.5
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(0.165, 0.165)
+sprite_frames = SubResource("SpriteFrames_lbsb1")
+animation = &"fall"
+
+[node name="weapons" type="Node2D" parent="AnimatedSprite2D"]
+
+[node name="stick" parent="AnimatedSprite2D/weapons" instance=ExtResource("5_n46lu")]
+position = Vector2(38, 18)
+scale = Vector2(3.77, 3.77)
+
+[node name="HUD" parent="." instance=ExtResource("5_e68ka")]
+visible = false
+
+[node name="damage_timer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
+[node name="state_machine" type="Node" parent="." node_paths=PackedStringArray("starting_state")]
+script = ExtResource("7_tys86")
+starting_state = NodePath("idle")
+
+[node name="idle" type="Node" parent="state_machine" node_paths=PackedStringArray("walk", "jump", "fall")]
+script = ExtResource("8_u7umh")
+walk = NodePath("../walk")
+jump = NodePath("../jump")
+fall = NodePath("../fall")
+
+[node name="walk" type="Node" parent="state_machine" node_paths=PackedStringArray("idle", "jump", "fall")]
+script = ExtResource("9_ye4cr")
+idle = NodePath("../idle")
+jump = NodePath("../jump")
+fall = NodePath("../fall")
+
+[node name="jump" type="Node" parent="state_machine" node_paths=PackedStringArray("idle", "walk", "fall")]
+script = ExtResource("10_x52e5")
+idle = NodePath("../idle")
+walk = NodePath("../walk")
+fall = NodePath("../fall")
+
+[node name="fall" type="Node" parent="state_machine" node_paths=PackedStringArray("idle", "walk", "jump")]
+script = ExtResource("11_h6ekv")
+idle = NodePath("../idle")
+walk = NodePath("../walk")
+jump = NodePath("../jump")

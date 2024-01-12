@@ -17,9 +17,10 @@ var queued_jump : bool = false
 var dir: float = 0.0
 
 # Wartości życia
-var health : float
 @export var MAX_HEALTH: float = 100.0
 signal taking_damage
+
+@export var MAX_EXP : float = 100.0
 
 var taking_knockback : bool
 @export var knockback_multiplier : float = 1.0
@@ -37,10 +38,6 @@ var taking_knockback : bool
 @onready var level = get_tree().get_root().get_child(0)
 
 var selected_weapon : Weapon
-
-var experience : float
-var exp_lvl : int
-@export var MAX_EXP : float = 100.0
 
 var blinking_timer: float = 0
 
@@ -72,10 +69,10 @@ func _process(delta):
 	$state_machine.process(delta)
 	
 	# Ustawia pasek życia na aktualną wartość życia
-	healthbar.value = health
+	healthbar.value = PlayerVariables.health
 	
 	exp_bar_update()
-	if health <= 0:
+	if PlayerVariables.health <= 0:
 		die()
 	
 	process_weapons()
@@ -103,7 +100,7 @@ func set_enabled(value : bool):
 # Pojawianie się gracza
 func spawn(pos):
 	position = pos
-	health = MAX_HEALTH
+	PlayerVariables.health = MAX_HEALTH
 	set_enabled(true)
 	show()
 
@@ -162,7 +159,7 @@ func walk(direction: String, distance: float):
 # Zadaje obrażenia graczowi
 func apply_damage(damage, knockback, pos : Vector2):
 	if $damage_timer.is_stopped():
-		health -= damage
+		PlayerVariables.health -= damage
 		$damage_timer.start()
 		taking_damage.emit()
 		apply_knockback(knockback, pos)
@@ -188,14 +185,14 @@ func standard_color():
 
 # Aktualizacja paska i poziomu doświadczenia
 func exp_bar_update():
-	if experience >= MAX_EXP:
-		experience -= MAX_EXP
-		exp_lvl += 1
+	if PlayerVariables.experience >= MAX_EXP:
+		PlayerVariables.experience -= MAX_EXP
+		PlayerVariables.exp_lvl += 1
 		MAX_EXP *= 1.5
 		expbar.max_value = MAX_EXP
 		#Odwołanie do HUD gracza i zmiana wartości liczbowej lvl exp-a
-		$HUD/level.text = str(exp_lvl)
-	expbar.value = experience
+		$HUD/level.text = str(PlayerVariables.exp_lvl)
+	expbar.value = PlayerVariables.experience
 
 
 # Śmierć gracza

@@ -17,6 +17,10 @@ run/max_fps=144
 boot_splash/bg_color=Color(0.141176, 0.141176, 0.141176, 1)
 config/icon="res://icon.svg"
 
+[autoload]
+
+PlayerVariables="*res://assets/player/player_variables.gd"
+
 [display]
 
 window/size/viewport_width=1920

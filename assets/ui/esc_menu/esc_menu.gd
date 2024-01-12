@@ -7,8 +7,6 @@ var exit_time : float = 1.0
 var anim_time : float = 0.5
 
 func _ready():
-	get_parent().set_paused(true)
-	
 	set_process(true)
 	
 	$MarginContainer/VBoxContainer/resume.grab_focus()

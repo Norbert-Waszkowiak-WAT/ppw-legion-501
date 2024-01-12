@@ -74,7 +74,7 @@ func check_paused():
 	if Input.is_action_just_pressed("escape"):
 		set_paused(true)
 		var escape_menu = load("res://assets/ui/esc_menu/esc_menu.tscn").instantiate()
-		get_tree().get_root().get_child(0).add_child(escape_menu)
+		add_child(escape_menu)
 
 
 func on_level_completed():

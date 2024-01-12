@@ -140,7 +140,7 @@ func hide_health():
 
 # Zwraca true, jeśli bezpośrenio widzi gracza
 func sees_player() -> bool:
-	if not player.health <= 0:
+	if not PlayerVariables.health <= 0:
 		var space_state = get_world_2d().direct_space_state
 		var query = PhysicsRayQueryParameters2D.create(global_position, player.position, 1)
 		query.exclude = [self]
@@ -284,6 +284,6 @@ func jump():
 func die():
 	set_process(false)
 	sprite.self_modulate = Color(1.0, 0, 0, 1)
-	player.experience += dropped_experience
+	PlayerVariables.experience += dropped_experience
 	await get_tree().create_timer(death_time).timeout
 	queue_free()

@@ -49,26 +49,26 @@ layout_mode = 2
 theme_override_constants/separation = 319
 alignment = 1
 
-[node name="movement_1" parent="MarginContainer/Panel/MarginContainer/TabContainer/Movement" instance=ExtResource("2_1v6ce")]
+[node name="double_jump" parent="MarginContainer/Panel/MarginContainer/TabContainer/Movement" instance=ExtResource("2_1v6ce")]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
-skill_name = "movement_1"
+ability_name = "double_jump"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Panel/MarginContainer/TabContainer/Movement"]
 layout_mode = 2
 theme_override_constants/separation = 220
 alignment = 1
 
-[node name="movement_2" parent="MarginContainer/Panel/MarginContainer/TabContainer/Movement/VBoxContainer" node_paths=PackedStringArray("previous_button") instance=ExtResource("2_1v6ce")]
+[node name="dash" parent="MarginContainer/Panel/MarginContainer/TabContainer/Movement/VBoxContainer" node_paths=PackedStringArray("previous_button") instance=ExtResource("2_1v6ce")]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
-previous_button = NodePath("../../movement_1")
-skill_name = "movement_2"
+previous_button = NodePath("../../double_jump")
+ability_name = "dash"
 
 [node name="movement_3" parent="MarginContainer/Panel/MarginContainer/TabContainer/Movement/VBoxContainer" node_paths=PackedStringArray("previous_button") instance=ExtResource("2_1v6ce")]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
-previous_button = NodePath("../../movement_1")
+previous_button = NodePath("../../double_jump")
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/Panel/MarginContainer/TabContainer/Movement"]
 layout_mode = 2
@@ -78,7 +78,7 @@ alignment = 1
 [node name="movement_4" parent="MarginContainer/Panel/MarginContainer/TabContainer/Movement/VBoxContainer2" node_paths=PackedStringArray("previous_button") instance=ExtResource("2_1v6ce")]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
-previous_button = NodePath("../../VBoxContainer/movement_2")
+previous_button = NodePath("../../VBoxContainer/dash")
 
 [node name="movement_5" parent="MarginContainer/Panel/MarginContainer/TabContainer/Movement/VBoxContainer2" node_paths=PackedStringArray("previous_button") instance=ExtResource("2_1v6ce")]
 custom_minimum_size = Vector2(150, 150)

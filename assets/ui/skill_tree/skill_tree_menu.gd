@@ -10,7 +10,7 @@ var anim_time : float = 0.5
 func _ready():
 	set_process(true)
 	
-	var tween = create_tween().set_parallel(true).set_trans(Tween.TRANS_BACK)
+	var tween = create_tween().set_parallel(true).set_trans(Tween.TRANS_CUBIC)
 	tween.tween_property($background, "color:a", 0.3, anim_time)
 	tween.tween_property($MarginContainer, "position", Vector2(0, 0), 2 * anim_time)
 	if hud:

@@ -30,7 +30,7 @@ func _process(delta):
 		line.add_point(global_position + size/2)
 		line.add_point(previous_button.global_position + size/2)
 		# Blokuje umiejętność jeśli poprzednia nie jest odblokowana
-		if previous_button.button_pressed:
+		if (PlayerVariables.skill_points > 0 or button_pressed) and (previous_button and previous_button.button_pressed):
 			disabled = false
 		else:
 			disabled = true
@@ -47,7 +47,7 @@ func _process(delta):
 		line.self_modulate = Color(1, 1, 1)
 	else:
 		# Możliwa do kupienia
-		self_modulate = Color(0.8, 0.8, 0.8)
+		self_modulate = Color(0.7, 0.7, 0.7)
 		line.self_modulate = Color(0.5, 0.5, 0.5)
 	if is_hovered() and !disabled:
 		# Najechana myszką

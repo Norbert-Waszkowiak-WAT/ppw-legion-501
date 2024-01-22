@@ -192,6 +192,7 @@ func exp_bar_update():
 		expbar.max_value = MAX_EXP
 		#Odwołanie do HUD gracza i zmiana wartości liczbowej lvl exp-a
 		$HUD/level.text = str(PlayerVariables.exp_lvl)
+		PlayerVariables.skill_points += 1
 	expbar.value = PlayerVariables.experience
 
 

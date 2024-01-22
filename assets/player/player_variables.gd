@@ -1,24 +1,19 @@
 extends Node
 
 var abilities = {
-	"movement":
-		{
-			"double_jump": false,
-			"dash": false
-		},
-	"melee":
-		{
-			"deflect": false
-		},
-	"ranged":
-		{
-			
-		},
-	"magic":
-		{
-			
-		}
+	# Movement
+	"double_jump": false,
+	"dash": false,
+	
+	# Melee
+	"deflect": false
+	
+	# Ranged
+	
+	# Magic
 }
+
+var skill_points : float = 5
 
 var health : float
 

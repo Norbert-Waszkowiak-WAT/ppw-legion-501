@@ -21,33 +21,16 @@ scale = Vector2(6, 6)
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = ExtResource("1_ptanc")
+toggle_mode = true
+action_mode = 0
 texture_normal = ExtResource("1_2jp60")
 stretch_mode = 5
 script = ExtResource("2_wmkxc")
-popup_time = 1.0
 
 [node name="Line2D" type="Line2D" parent="."]
+show_behind_parent = true
 top_level = true
 width = 20.0
 default_color = Color(0.556863, 0.556863, 0.556863, 1)
 
-[node name="PopupPanel" type="PopupPanel" parent="."]
-transparent_bg = true
-title = "Skill Button"
-size = Vector2i(500, 215)
-always_on_top = true
-transparent = true
-mouse_passthrough = true
-theme = ExtResource("1_ptanc")
-
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 1
-offset_right = 200.0
-offset_bottom = 100.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-mouse_filter = 2
-theme = ExtResource("1_ptanc")
-bbcode_enabled = true
-fit_content = true
+[connection signal="toggled" from="." to="." method="_on_toggled"]

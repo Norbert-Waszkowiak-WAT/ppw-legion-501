@@ -75,6 +75,10 @@ func check_paused():
 		set_paused(true)
 		var escape_menu = load("res://assets/ui/esc_menu/esc_menu.tscn").instantiate()
 		add_child(escape_menu)
+	if Input.is_action_just_pressed("skill_tree"):
+		set_paused(true)
+		var skill_tree = load("res://assets/ui/skill_tree/skill_tree_menu.tscn").instantiate()
+		add_child(skill_tree)
 
 
 func on_level_completed():

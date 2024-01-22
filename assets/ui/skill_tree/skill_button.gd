@@ -15,7 +15,7 @@ extends TextureButton
 func _ready():
 	# Jeśli gracz posiada już tą umiejętność, zaznaczyć to w drzewku
 	if ability_name and PlayerVariables.abilities[ability_name]:
-		button_pressed = true
+		set_pressed_no_signal(true)
 	# Ustawienie tekstu przy hoverze nad umiejętnością
 	tooltip_text = "[b]" + ability_name.capitalize() + "[/b] \n" + description
 
@@ -37,16 +37,20 @@ func _process(delta):
 	
 	# Wizualne efekty przycisku (tymczasowe)
 	if disabled:
+		# Zablokowana
 		button_pressed = false
 		self_modulate = Color(0.2, 0.2, 0.2)
 		line.self_modulate = Color(0.2, 0.2, 0.2)
 	elif button_pressed:
+		# Odblokowana
 		self_modulate = Color(1.5, 1.5, 1.5)
 		line.self_modulate = Color(1, 1, 1)
 	else:
+		# Możliwa do kupienia
 		self_modulate = Color(0.8, 0.8, 0.8)
 		line.self_modulate = Color(0.5, 0.5, 0.5)
-	if is_hovered():
+	if is_hovered() and !disabled:
+		# Najechana myszką
 		self_modulate = Color(2, 2, 2)
 	
 	# Wyłącza możliwość odblokowania umiejętności, jeśli gracza na to nie stać

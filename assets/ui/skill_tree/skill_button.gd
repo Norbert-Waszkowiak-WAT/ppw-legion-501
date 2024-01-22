@@ -17,7 +17,7 @@ func _ready():
 	if ability_name and PlayerVariables.abilities[ability_name]:
 		button_pressed = true
 	# Ustawienie tekstu przy hoverze nad umiejętnością
-	tooltip_text = "[b]" + ability_name.capitalize() + " | [/b]" + description
+	tooltip_text = "[b]" + ability_name.capitalize() + "[/b] \n" + description
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -42,9 +42,12 @@ func _process(delta):
 		line.self_modulate = Color(0.2, 0.2, 0.2)
 	elif button_pressed:
 		self_modulate = Color(1.5, 1.5, 1.5)
-	else:
-		self_modulate = Color(1, 1, 1)
 		line.self_modulate = Color(1, 1, 1)
+	else:
+		self_modulate = Color(0.8, 0.8, 0.8)
+		line.self_modulate = Color(0.5, 0.5, 0.5)
+	if is_hovered():
+		self_modulate = Color(2, 2, 2)
 	
 	# Wyłącza możliwość odblokowania umiejętności, jeśli gracza na to nie stać
 	if PlayerVariables.skill_points <= 0 and !button_pressed:

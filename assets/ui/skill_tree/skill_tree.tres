@@ -1,6 +1,7 @@
-[gd_resource type="Theme" load_steps=10 format=3 uid="uid://di4l5lx6nd1kk"]
+[gd_resource type="Theme" load_steps=11 format=3 uid="uid://di4l5lx6nd1kk"]
 
 [ext_resource type="FontFile" uid="uid://c0ob1ayhkkquv" path="res://textures/main-menu/upheavtt.ttf" id="1_brbwk"]
+[ext_resource type="FontFile" uid="uid://wlq1kryvxbf5" path="res://textures/main-menu/VCR_OSD_MONO_1.001.ttf" id="2_c0tvi"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_388x4"]
 content_margin_left = 49.0
@@ -18,13 +19,13 @@ corner_detail = 1
 anti_aliasing = false
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_74g0j"]
-content_margin_left = 50.0
-content_margin_top = 50.0
-content_margin_right = 50.0
-content_margin_bottom = 50.0
+content_margin_left = 20.0
+content_margin_top = 20.0
+content_margin_right = 20.0
+content_margin_bottom = 20.0
 bg_color = Color(0.109804, 0.109804, 0.109804, 0.764706)
-corner_radius_top_right = 50
-corner_radius_bottom_left = 50
+corner_radius_top_right = 15
+corner_radius_bottom_left = 15
 corner_detail = 1
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_344va"]
@@ -61,6 +62,11 @@ Label/fonts/font = ExtResource("1_brbwk")
 Label/styles/normal = SubResource("StyleBoxFlat_388x4")
 Panel/styles/panel = SubResource("StyleBoxFlat_xipkh")
 PopupPanel/styles/panel = SubResource("StyleBoxFlat_74g0j")
+RichTextLabel/constants/line_separation = 5
+RichTextLabel/font_sizes/bold_font_size = 30
+RichTextLabel/font_sizes/normal_font_size = 20
+RichTextLabel/fonts/bold_font = ExtResource("2_c0tvi")
+RichTextLabel/fonts/normal_font = ExtResource("2_c0tvi")
 TabContainer/colors/font_selected_color = Color(1, 1, 1, 1)
 TabContainer/font_sizes/font_size = 65
 TabContainer/fonts/font = ExtResource("1_brbwk")

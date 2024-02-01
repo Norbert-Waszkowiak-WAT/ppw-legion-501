@@ -59,7 +59,6 @@ alignment = 1
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 ability_name = "double_jump"
-description = "Allows you to jump midair"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Panel/MarginContainer/TabContainer/Movement"]
 layout_mode = 2

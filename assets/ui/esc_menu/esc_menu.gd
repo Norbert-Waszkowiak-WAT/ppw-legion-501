@@ -15,6 +15,8 @@ func _ready():
 	tween.tween_property($MarginContainer, "position", Vector2(0, 0), 2 * anim_time)
 	for i in hud.get_children():
 		tween.tween_property(i, "modulate:a", 0, anim_time)
+	tween.set_parallel(false)
+	tween.tween_callback(Engine.set_time_scale.bind(0))
 	
 
 func _process(delta):
@@ -51,6 +53,7 @@ func exit_animation():
 	
 	
 func unpause():
+	Engine.set_time_scale(1)
 	get_parent().set_paused(false)
 	
 	var tween = create_tween().set_parallel(true).set_trans(Tween.TRANS_CUBIC)

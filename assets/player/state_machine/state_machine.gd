@@ -7,13 +7,14 @@ extends Node
 
 # Stan bieżący
 var current_state: State
-
+var player1 : Player
 
 # Inicjalizuje state machine
 func init(player: Player):
 	# Daje wszystkim stanom odniesienie do gracza
 	for state in get_children():
 		state.player = player
+	player1 = player
 	
 	# Ustawia stan na stan początkowy
 	change_state(starting_state)
@@ -39,3 +40,5 @@ func change_state(state: State):
 		current_state.exit()
 	current_state = state
 	current_state.enter()
+	print(current_state)
+	print(player1.get_node("AnimatedSprite2D").animation)

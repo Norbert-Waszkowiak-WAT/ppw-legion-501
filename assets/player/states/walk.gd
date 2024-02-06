@@ -11,6 +11,8 @@ extends State
 # Wywoływana gdy gracz wchodzi w stan
 func enter():
 	player.sprite.animation = "walk"
+	player.gun.animation = "walk"
+	player.gun.play()
 
 
 # Wywoływana na każdej klatce

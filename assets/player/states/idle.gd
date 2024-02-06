@@ -9,6 +9,8 @@ extends State
 # Wywoływana gdy gracz wchodzi w stan
 func enter():
 	player.sprite.animation = "idle"
+	player.gun.animation = "idle"
+	player.gun.play()
 	player.dir = 0
 
 

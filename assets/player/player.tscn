@@ -1,9 +1,13 @@
-[gd_scene load_steps=18 format=3 uid="uid://b8kl60fulqq1u"]
+[gd_scene load_steps=35 format=3 uid="uid://b8kl60fulqq1u"]
 
 [ext_resource type="Script" path="res://assets/player/player.gd" id="1_xhwip"]
+[ext_resource type="Texture2D" uid="uid://bg1sjscorno7f" path="res://textures/player/idle/Standing-1.png" id="2_5gioq"]
 [ext_resource type="Texture2D" uid="uid://dfyto435cnmm4" path="res://textures/player/running/Grafika_bez_nazwy-1 2.png" id="2_5s25u"]
 [ext_resource type="Texture2D" uid="uid://1nn7k62hhxpt" path="res://textures/player/running/Grafika_bez_nazwy-2 2.png" id="3_50rl1"]
+[ext_resource type="Texture2D" uid="uid://clcglwvf1ke3t" path="res://textures/player/idle/Standing-2.png" id="3_fetoq"]
+[ext_resource type="Texture2D" uid="uid://gjxwrumqh7be" path="res://textures/player/idle/Standing-3.png" id="4_83mgy"]
 [ext_resource type="Texture2D" uid="uid://6m0nqbllrx5h" path="res://textures/player/running/Grafika_bez_nazwy-3.png" id="4_qgrgg"]
+[ext_resource type="Texture2D" uid="uid://ulkg4oelvyat" path="res://textures/player/idle/Standing-4.png" id="5_be2kw"]
 [ext_resource type="PackedScene" uid="uid://clf8aqe0iy2if" path="res://assets/player/hud/hud.tscn" id="5_e68ka"]
 [ext_resource type="Texture2D" uid="uid://4lt62j0pkmxm" path="res://textures/player/running/Grafika_bez_nazwy-4.png" id="5_i8yvi"]
 [ext_resource type="PackedScene" uid="uid://dh4fi820qxc7k" path="res://assets/weapons/stick/stick.tscn" id="5_n46lu"]
@@ -16,26 +20,50 @@
 [ext_resource type="Script" path="res://assets/player/states/walk.gd" id="9_ye4cr"]
 [ext_resource type="Script" path="res://assets/player/states/jump.gd" id="10_x52e5"]
 [ext_resource type="Script" path="res://assets/player/states/fall.gd" id="11_h6ekv"]
+[ext_resource type="Texture2D" uid="uid://bwi13qcvamlk8" path="res://textures/gun/idle/Standding_Hand-1.png" id="15_g0wso"]
+[ext_resource type="Texture2D" uid="uid://d0374bqjl6nk6" path="res://textures/gun/idle/Standding_Hand-2.png" id="16_oy2cl"]
+[ext_resource type="Texture2D" uid="uid://bdut13xx4hwuq" path="res://textures/gun/idle/Standding_Hand-3.png" id="17_ca26a"]
+[ext_resource type="Texture2D" uid="uid://dfveknqnxv5su" path="res://textures/gun/idle/Standding_Hand-4.png" id="18_oa3dg"]
+[ext_resource type="Texture2D" uid="uid://c37spm3ts65t4" path="res://textures/gun/running/Grafika_bez_nazwy-1 3.png" id="19_5sned"]
+[ext_resource type="Texture2D" uid="uid://0bvgnjk4b1j0" path="res://textures/gun/running/Grafika_bez_nazwy-1 4.png" id="20_7lxg7"]
+[ext_resource type="Texture2D" uid="uid://57t8n1a8gecm" path="res://textures/gun/running/Grafika_bez_nazwy-1 5.png" id="21_fulwq"]
+[ext_resource type="Texture2D" uid="uid://x0yoqqrsrs8l" path="res://textures/gun/running/Grafika_bez_nazwy-1 6.png" id="22_bsshx"]
+[ext_resource type="Texture2D" uid="uid://d4h0cdat7qx58" path="res://textures/gun/running/Grafika_bez_nazwy-1 7.png" id="23_6qjuc"]
+[ext_resource type="Texture2D" uid="uid://csaxpo8pkwudy" path="res://textures/gun/running/Grafika_bez_nazwy-1 8.png" id="24_danam"]
+[ext_resource type="Texture2D" uid="uid://b26pjsfei162b" path="res://textures/gun/running/Grafika_bez_nazwy-1 9.png" id="25_kciun"]
+[ext_resource type="Texture2D" uid="uid://cdec5tkl5i8ol" path="res://textures/gun/running/Grafika_bez_nazwy-1.png" id="26_mquof"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_lbsb1"]
 animations = [{
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_5gioq")
+}],
 "loop": true,
 "name": &"fall",
 "speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_5s25u")
+"texture": ExtResource("2_5gioq")
 }, {
 "duration": 1.0,
-"texture": ExtResource("6_dkbhb")
+"texture": ExtResource("3_fetoq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_83mgy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_be2kw")
 }],
 "loop": true,
 "name": &"idle",
-"speed": 5.0
+"speed": 6.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_5gioq")
+}],
 "loop": true,
 "name": &"jump",
 "speed": 5.0
@@ -67,7 +95,56 @@ animations = [{
 }],
 "loop": true,
 "name": &"walk",
-"speed": 14.0
+"speed": 12.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_78r3p"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("15_g0wso")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_oy2cl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_ca26a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_oa3dg")
+}],
+"loop": false,
+"name": &"idle",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("19_5sned")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_7lxg7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_fulwq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_bsshx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_6qjuc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_danam")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_kciun")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_mquof")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 12.0
 }]
 
 [node name="player" type="CharacterBody2D"]
@@ -103,13 +180,17 @@ texture_filter = 1
 scale = Vector2(0.125, 0.125)
 sprite_frames = SubResource("SpriteFrames_lbsb1")
 animation = &"walk"
-frame_progress = 0.120356
 
 [node name="weapons" type="Node2D" parent="AnimatedSprite2D"]
 
 [node name="stick" parent="AnimatedSprite2D/weapons" instance=ExtResource("5_n46lu")]
+visible = false
 position = Vector2(38, 18)
 scale = Vector2(3.77, 3.77)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_78r3p")
+animation = &"walk"
 
 [node name="HUD" parent="." instance=ExtResource("5_e68ka")]
 visible = false

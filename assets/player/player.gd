@@ -37,6 +37,8 @@ var taking_knockback : bool
 @onready var weapons = $AnimatedSprite2D/weapons.get_children()
 @onready var level = get_tree().get_root().get_child(0)
 
+@onready var gun = $AnimatedSprite2D/AnimatedSprite2D
+
 var selected_weapon : Weapon
 
 var blinking_timer: float = 0
@@ -55,7 +57,8 @@ func _ready():
 		level.pause.connect(on_paused)
 	
 	for weapon in weapons:
-		weapon.set_target("enemies")
+		if weapon.has_method("set_target"):
+			weapon.set_target("enemies")
 	hide_weapons()
 	
 	set_enabled(false)

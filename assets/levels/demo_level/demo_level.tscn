@@ -20,6 +20,7 @@ visible = false
 position = Vector2(28, -16)
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+visible = false
 scale = Vector2(0.3, 0.3)
 transform = Transform2D(0.3, 0, 0, 0.3, 0, 0)
 

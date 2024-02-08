@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 [gd_scene load_steps=37 format=3 uid="uid://b8kl60fulqq1u"]
+=======
+[gd_scene load_steps=36 format=3 uid="uid://b8kl60fulqq1u"]
+>>>>>>> 8ad3cc5 (Poprawki w animacjach)
 
 [ext_resource type="Script" path="res://assets/player/player.gd" id="1_xhwip"]
 [ext_resource type="Texture2D" uid="uid://bg1sjscorno7f" path="res://textures/player/idle/Standing-1.png" id="2_5gioq"]
@@ -32,8 +36,12 @@
 [ext_resource type="Texture2D" uid="uid://csaxpo8pkwudy" path="res://textures/gun/running/Grafika_bez_nazwy-1 8.png" id="24_danam"]
 [ext_resource type="Texture2D" uid="uid://b26pjsfei162b" path="res://textures/gun/running/Grafika_bez_nazwy-1 9.png" id="25_kciun"]
 [ext_resource type="Texture2D" uid="uid://cdec5tkl5i8ol" path="res://textures/gun/running/Grafika_bez_nazwy-1.png" id="26_mquof"]
+<<<<<<< HEAD
 [ext_resource type="Script" path="res://assets/player/bullet_spawn.gd" id="27_dudeq"]
 [ext_resource type="PackedScene" uid="uid://dduxakukeehn4" path="res://assets/weapons/bullet.tscn" id="28_2ivh7"]
+=======
+[ext_resource type="Script" path="res://assets/player/gun.gd" id="27_c173s"]
+>>>>>>> 8ad3cc5 (Poprawki w animacjach)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_lbsb1"]
 animations = [{
@@ -60,7 +68,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle",
-"speed": 6.0
+"speed": 4.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -115,11 +123,14 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("18_oa3dg")
 }],
-"loop": false,
+"loop": true,
 "name": &"idle",
-"speed": 6.0
+"speed": 4.0
 }, {
 "frames": [{
+"duration": 1.0,
+"texture": ExtResource("26_mquof")
+}, {
 "duration": 1.0,
 "texture": ExtResource("19_5sned")
 }, {
@@ -140,9 +151,6 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("25_kciun")
-}, {
-"duration": 1.0,
-"texture": ExtResource("26_mquof")
 }],
 "loop": true,
 "name": &"walk",
@@ -181,7 +189,7 @@ drag_bottom_margin = 0.5
 texture_filter = 1
 scale = Vector2(0.125, 0.125)
 sprite_frames = SubResource("SpriteFrames_lbsb1")
-animation = &"walk"
+animation = &"idle"
 
 [node name="weapons" type="Node2D" parent="AnimatedSprite2D"]
 
@@ -193,11 +201,15 @@ scale = Vector2(3.77, 3.77)
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_78r3p")
 animation = &"idle"
+<<<<<<< HEAD
 
 [node name="bullet" type="Marker2D" parent="AnimatedSprite2D/AnimatedSprite2D"]
 position = Vector2(112, -19.99)
 script = ExtResource("27_dudeq")
 bullet_type = ExtResource("28_2ivh7")
+=======
+script = ExtResource("27_c173s")
+>>>>>>> 8ad3cc5 (Poprawki w animacjach)
 
 [node name="HUD" parent="." instance=ExtResource("5_e68ka")]
 visible = false

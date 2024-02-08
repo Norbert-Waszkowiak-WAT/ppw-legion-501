@@ -42,8 +42,6 @@ var taking_knockback : bool
 var selected_weapon : Weapon
 
 var blinking_timer: float = 0
-
-
 # | ============================================================================= |
 
 

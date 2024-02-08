@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://b8kl60fulqq1u"]
+[gd_scene load_steps=37 format=3 uid="uid://b8kl60fulqq1u"]
 
 [ext_resource type="Script" path="res://assets/player/player.gd" id="1_xhwip"]
 [ext_resource type="Texture2D" uid="uid://bg1sjscorno7f" path="res://textures/player/idle/Standing-1.png" id="2_5gioq"]
@@ -32,8 +32,8 @@
 [ext_resource type="Texture2D" uid="uid://csaxpo8pkwudy" path="res://textures/gun/running/Grafika_bez_nazwy-1 8.png" id="24_danam"]
 [ext_resource type="Texture2D" uid="uid://b26pjsfei162b" path="res://textures/gun/running/Grafika_bez_nazwy-1 9.png" id="25_kciun"]
 [ext_resource type="Texture2D" uid="uid://cdec5tkl5i8ol" path="res://textures/gun/running/Grafika_bez_nazwy-1.png" id="26_mquof"]
-[ext_resource type="Texture2D" uid="uid://r52wxhkrjxr2" path="res://textures/gun/bullets/bullet.png" id="27_bdjsy"]
-[ext_resource type="Script" path="res://assets/player/Bullet.gd" id="27_m516a"]
+[ext_resource type="Script" path="res://assets/player/bullet_spawn.gd" id="27_dudeq"]
+[ext_resource type="PackedScene" uid="uid://dduxakukeehn4" path="res://assets/weapons/bullet.tscn" id="28_2ivh7"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_lbsb1"]
 animations = [{
@@ -149,20 +149,6 @@ animations = [{
 "speed": 12.0
 }]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_xewgp"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("27_bdjsy")
-}],
-"loop": true,
-"name": &"shoot",
-"speed": 5.0
-}]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_2f2sk"]
-size = Vector2(28.7134, 18.7134)
-
 [node name="player" type="CharacterBody2D"]
 z_index = 1
 scale = Vector2(0.5, 0.5)
@@ -208,26 +194,10 @@ scale = Vector2(3.77, 3.77)
 sprite_frames = SubResource("SpriteFrames_78r3p")
 animation = &"idle"
 
-[node name="Bullet" type="CharacterBody2D" parent="AnimatedSprite2D/AnimatedSprite2D"]
-collision_layer = 16
-collision_mask = 0
-script = ExtResource("27_m516a")
-
-[node name="Shoot" type="AnimatedSprite2D" parent="AnimatedSprite2D/AnimatedSprite2D/Bullet"]
-position = Vector2(112, -22.3)
-scale = Vector2(0.855, 0.855)
-sprite_frames = SubResource("SpriteFrames_xewgp")
-animation = &"shoot"
-
-[node name="Area2D" type="Area2D" parent="AnimatedSprite2D/AnimatedSprite2D/Bullet"]
-collision_layer = 16
-collision_mask = 4
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/AnimatedSprite2D/Bullet/Area2D"]
-position = Vector2(114.385, -20.2454)
-scale = Vector2(0.303525, 0.380475)
-shape = SubResource("RectangleShape2D_2f2sk")
-debug_color = Color(0, 0.6, 0.701961, 0.419608)
+[node name="bullet" type="Marker2D" parent="AnimatedSprite2D/AnimatedSprite2D"]
+position = Vector2(112, -19.99)
+script = ExtResource("27_dudeq")
+bullet_type = ExtResource("28_2ivh7")
 
 [node name="HUD" parent="." instance=ExtResource("5_e68ka")]
 visible = false

@@ -16,8 +16,11 @@ func _process(delta):
 	gun_sprite.frame = sprite.frame
 	gun_sprite.frame_progress = sprite.frame_progress
 
+
 func attack():
 	gun_sprite.animation = "attack"
+	$AudioStreamPlayer2D.play()
+	
 	var bullet = bullet_type.instantiate()
 	bullet.direction = sprite.scale.x / abs(sprite.scale.x)
 	bullet.global_position = $Marker2D.global_position

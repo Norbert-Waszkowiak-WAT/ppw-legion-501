@@ -1,13 +1,13 @@
 [gd_scene load_steps=5 format=3 uid="uid://cwenyi5fjdao4"]
 
-[ext_resource type="Script" path="res://assets/player/Bullet.gd" id="1_2rctm"]
-[ext_resource type="Texture2D" uid="uid://r52wxhkrjxr2" path="res://textures/gun/bullets/bullet.png" id="2_gr4df"]
+[ext_resource type="Script" path="res://assets/player/Bullet.gd" id="1_wmqo0"]
+[ext_resource type="Texture2D" uid="uid://r52wxhkrjxr2" path="res://textures/gun/bullets/bullet.png" id="2_rmo66"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_q7j54"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_gr4df")
+"texture": ExtResource("2_rmo66")
 }],
 "loop": true,
 "name": &"shoot",
@@ -20,7 +20,7 @@ size = Vector2(52.7139, 21.0263)
 [node name="Bullet" type="CharacterBody2D"]
 collision_layer = 16
 collision_mask = 5
-script = ExtResource("1_2rctm")
+script = ExtResource("1_wmqo0")
 speed_of_bullet = 250.0
 
 [node name="Area2D" type="Area2D" parent="."]

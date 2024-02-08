@@ -1,8 +1,8 @@
-[gd_scene load_steps=16 format=3 uid="uid://bt3ngcbslwttq"]
+[gd_scene load_steps=17 format=3 uid="uid://bt3ngcbslwttq"]
 
 [ext_resource type="Texture2D" uid="uid://bwi13qcvamlk8" path="res://textures/gun/idle/Standding_Hand-1.png" id="1_elibc"]
 [ext_resource type="Texture2D" uid="uid://d0374bqjl6nk6" path="res://textures/gun/idle/Standding_Hand-2.png" id="2_8ilnh"]
-[ext_resource type="PackedScene" uid="uid://cwenyi5fjdao4" path="res://assets/weapons/bullet.tscn" id="2_gp414"]
+[ext_resource type="PackedScene" uid="uid://cwenyi5fjdao4" path="res://assets/weapons/gun/bullet.tscn" id="2_12ug1"]
 [ext_resource type="Texture2D" uid="uid://bdut13xx4hwuq" path="res://textures/gun/idle/Standding_Hand-3.png" id="3_xudxc"]
 [ext_resource type="Texture2D" uid="uid://dfveknqnxv5su" path="res://textures/gun/idle/Standding_Hand-4.png" id="4_oawqw"]
 [ext_resource type="Texture2D" uid="uid://cdec5tkl5i8ol" path="res://textures/gun/running/Grafika_bez_nazwy-1.png" id="5_av12r"]
@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://csaxpo8pkwudy" path="res://textures/gun/running/Grafika_bez_nazwy-1 8.png" id="11_500km"]
 [ext_resource type="Texture2D" uid="uid://b26pjsfei162b" path="res://textures/gun/running/Grafika_bez_nazwy-1 9.png" id="12_ecebx"]
 [ext_resource type="Script" path="res://assets/player/gun.gd" id="13_wcs15"]
+[ext_resource type="AudioStream" uid="uid://bbtlh8jbqpfbu" path="res://assets/weapons/gun/gunshot.wav" id="15_dv016"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_78r3p"]
 animations = [{
@@ -21,7 +22,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("7_k7g7a")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack",
 "speed": 5.0
 }, {
@@ -90,12 +91,15 @@ animations = [{
 
 [node name="gun" type="Area2D"]
 script = ExtResource("13_wcs15")
-bullet_type = ExtResource("2_gp414")
+bullet_type = ExtResource("2_12ug1")
 damage = 20.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_78r3p")
-animation = &"fall"
+animation = &"attack"
 
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(100, -20)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("15_dv016")

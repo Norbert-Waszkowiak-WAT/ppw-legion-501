@@ -34,10 +34,9 @@ var taking_knockback : bool
 @onready var sprite = get_node("AnimatedSprite2D")
 @onready var healthbar = get_node("HUD/healthbar")
 @onready var expbar = get_node("HUD/expbar")
-@onready var weapons = $AnimatedSprite2D/weapons.get_children()
+@onready var weapons = $AnimatedSprite2D.get_children()
 @onready var level = get_tree().get_root().get_child(0)
 
-@onready var gun = $AnimatedSprite2D/AnimatedSprite2D
 
 var selected_weapon : Weapon
 
@@ -223,11 +222,11 @@ func invincibility_frames():
 	while not $damage_timer.is_stopped():
 		#Zmiana koloru gracza na czerwony(RGB)
 		$AnimatedSprite2D.self_modulate.a = 0.5
-		$AnimatedSprite2D/AnimatedSprite2D.self_modulate.a = 0.5
+		selected_weapon.self_modulate.a = 0.5
 		
 		#Program czeka czas okreslony przez zmienną "blinking_timer"
 		await get_tree().create_timer(blinking_timer).timeout
-		$AnimatedSprite2D/AnimatedSprite2D.self_modulate.a = 1
+		selected_weapon.self_modulate.a = 1
 		blinking_timer -= blinking_timer * 0.1
 		await get_tree().create_timer(blinking_timer).timeout
 

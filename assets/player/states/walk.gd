@@ -10,17 +10,13 @@ extends State
 
 # Wywoływana gdy gracz wchodzi w stan
 func enter():
-	player.gun.set_frame_progress(player.sprite.get_frame_progress())
-	player.gun.set_frame(player.sprite.get_frame())
 	player.sprite.animation = "walk"
-	player.gun.animation = "walk"
 
 
 # Wywoływana na każdej klatce
 func process(delta: float) -> State:
 	if !player.sprite.is_playing():
 		player.sprite.play()
-		player.gun.play()
 	if player.is_processing_input():
 		if Input.is_action_just_pressed("jump") and player.is_on_floor():
 			return jump

@@ -1,0 +1,101 @@
+[gd_scene load_steps=16 format=3 uid="uid://bt3ngcbslwttq"]
+
+[ext_resource type="Texture2D" uid="uid://bwi13qcvamlk8" path="res://textures/gun/idle/Standding_Hand-1.png" id="1_elibc"]
+[ext_resource type="Texture2D" uid="uid://d0374bqjl6nk6" path="res://textures/gun/idle/Standding_Hand-2.png" id="2_8ilnh"]
+[ext_resource type="PackedScene" uid="uid://cwenyi5fjdao4" path="res://assets/weapons/bullet.tscn" id="2_gp414"]
+[ext_resource type="Texture2D" uid="uid://bdut13xx4hwuq" path="res://textures/gun/idle/Standding_Hand-3.png" id="3_xudxc"]
+[ext_resource type="Texture2D" uid="uid://dfveknqnxv5su" path="res://textures/gun/idle/Standding_Hand-4.png" id="4_oawqw"]
+[ext_resource type="Texture2D" uid="uid://cdec5tkl5i8ol" path="res://textures/gun/running/Grafika_bez_nazwy-1.png" id="5_av12r"]
+[ext_resource type="Texture2D" uid="uid://c37spm3ts65t4" path="res://textures/gun/running/Grafika_bez_nazwy-1 3.png" id="6_s750t"]
+[ext_resource type="Texture2D" uid="uid://0bvgnjk4b1j0" path="res://textures/gun/running/Grafika_bez_nazwy-1 4.png" id="7_k7g7a"]
+[ext_resource type="Texture2D" uid="uid://57t8n1a8gecm" path="res://textures/gun/running/Grafika_bez_nazwy-1 5.png" id="8_aqcuk"]
+[ext_resource type="Texture2D" uid="uid://x0yoqqrsrs8l" path="res://textures/gun/running/Grafika_bez_nazwy-1 6.png" id="9_me6j7"]
+[ext_resource type="Texture2D" uid="uid://d4h0cdat7qx58" path="res://textures/gun/running/Grafika_bez_nazwy-1 7.png" id="10_cavtc"]
+[ext_resource type="Texture2D" uid="uid://csaxpo8pkwudy" path="res://textures/gun/running/Grafika_bez_nazwy-1 8.png" id="11_500km"]
+[ext_resource type="Texture2D" uid="uid://b26pjsfei162b" path="res://textures/gun/running/Grafika_bez_nazwy-1 9.png" id="12_ecebx"]
+[ext_resource type="Script" path="res://assets/player/gun.gd" id="13_wcs15"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_78r3p"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_k7g7a")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_elibc")
+}],
+"loop": true,
+"name": &"fall",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_elibc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_8ilnh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_xudxc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_oawqw")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_elibc")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_av12r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_s750t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_k7g7a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_aqcuk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_me6j7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_cavtc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_500km")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_ecebx")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 12.0
+}]
+
+[node name="gun" type="Area2D"]
+script = ExtResource("13_wcs15")
+bullet_type = ExtResource("2_gp414")
+damage = 20.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_78r3p")
+animation = &"fall"
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(100, -20)

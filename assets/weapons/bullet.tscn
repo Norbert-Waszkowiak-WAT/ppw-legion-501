@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://dduxakukeehn4"]
+[gd_scene load_steps=5 format=3 uid="uid://cwenyi5fjdao4"]
 
 [ext_resource type="Script" path="res://assets/player/Bullet.gd" id="1_2rctm"]
 [ext_resource type="Texture2D" uid="uid://r52wxhkrjxr2" path="res://textures/gun/bullets/bullet.png" id="2_gr4df"]
@@ -15,27 +15,25 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_88vtq"]
-size = Vector2(28.7134, 18.7134)
+size = Vector2(52.7139, 21.0263)
 
 [node name="Bullet" type="CharacterBody2D"]
-position = Vector2(0.045, 0)
 collision_layer = 16
 collision_mask = 5
 script = ExtResource("1_2rctm")
+speed_of_bullet = 250.0
 
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2(-0.045, 0)
 collision_layer = 16
-collision_mask = 4
+collision_mask = 5
 
 [node name="Shoot" type="AnimatedSprite2D" parent="Area2D"]
-position = Vector2(-1.815, -2.015)
-scale = Vector2(0.855, 0.855)
 sprite_frames = SubResource("SpriteFrames_q7j54")
 animation = &"shoot"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(0.225, 0)
+position = Vector2(1.19209e-07, 1.78814e-07)
 scale = Vector2(0.303525, 0.380475)
 shape = SubResource("RectangleShape2D_88vtq")
 debug_color = Color(0, 0.6, 0.701961, 0.419608)

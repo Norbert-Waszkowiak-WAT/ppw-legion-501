@@ -225,10 +225,11 @@ func invincibility_frames():
 	while not $damage_timer.is_stopped():
 		#Zmiana koloru gracza na czerwony(RGB)
 		$AnimatedSprite2D.self_modulate.a = 0.5
+		$AnimatedSprite2D/AnimatedSprite2D.self_modulate.a = 0.5
 		
 		#Program czeka czas okreslony przez zmienną "blinking_timer"
 		await get_tree().create_timer(blinking_timer).timeout
-		$AnimatedSprite2D.self_modulate.a = 1
+		$AnimatedSprite2D/AnimatedSprite2D.self_modulate.a = 1
 		blinking_timer -= blinking_timer * 0.1
 		await get_tree().create_timer(blinking_timer).timeout
 

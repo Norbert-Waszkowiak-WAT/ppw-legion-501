@@ -85,6 +85,11 @@ func _physics_process(delta):
 		taking_knockback = false
 
 
+func _input(event):
+	if event is InputEventKey and event.keycode in range(49, 58):
+		switch_weapons(event.keycode - 49)
+
+
 # | ============================================================================= |
 
 
@@ -200,7 +205,7 @@ func exp_bar_update():
 func die():
 	# Pojawia się menu śmierci
 	var death_menu = load("res://assets/ui/death_menu/death_menu.tscn").instantiate()
-	get_tree().get_root().get_child(0).add_child(death_menu)
+	get_tree().get_root().get_child(1).add_child(death_menu)
 	
 	# Zatrzymuje gracza jeśli chodził lub był w skoku
 	$state_machine.change_state($state_machine/idle)
@@ -236,12 +241,14 @@ func process_weapons():
 	if is_processing_input():
 		if Input.is_action_just_pressed("attack") and selected_weapon:
 			selected_weapon.attack()
-			
-		if Input.is_action_pressed("stick") and weapons[0]:
-			if selected_weapon:
-				selected_weapon.hide()
-			selected_weapon = weapons[0]
-			selected_weapon.show()
+
+
+func switch_weapons(weapon : int):
+	if selected_weapon:
+		selected_weapon.hide()
+	if weapon <= weapons.size():
+		selected_weapon = weapons[weapon]
+		selected_weapon.show()
 
 
 func hide_weapons():

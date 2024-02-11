@@ -61,10 +61,15 @@ func spawn_enemy(enemy_type : PackedScene, pos : Vector2):
 func set_paused(value : bool):
 	pause.emit(value)
 	value = !value
-	for i in get_children():
+	for i in find_children("*"):
 		i.set_process(value)
 		i.set_physics_process(value)
 		i.set_process_input(value)
+		if i is AnimatedSprite2D:
+			if value == true:
+				i.pause()
+			else:
+				i.play()
 	set_process(value)
 	set_physics_process(value)
 	set_process_input(value)

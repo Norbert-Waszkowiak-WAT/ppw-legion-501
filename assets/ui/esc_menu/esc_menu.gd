@@ -29,12 +29,14 @@ func _process(delta):
 
 
 func _on_main_menu_pressed():
+	Engine.set_time_scale(1)
 	exit_animation()
 	await get_tree().create_timer(exit_time).timeout
 	get_tree().change_scene_to_file("res://assets/ui/main_menu/main_menu.tscn")
 
 
 func _on_restart_pressed():
+	Engine.set_time_scale(1)
 	exit_animation()
 	await get_tree().create_timer(exit_time).timeout
 	get_tree().reload_current_scene()

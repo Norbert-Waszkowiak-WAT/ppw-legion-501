@@ -7,6 +7,15 @@
 [node name="skill_tree_menu" type="CanvasLayer"]
 script = ExtResource("1_wct68")
 
+[node name="background" type="ColorRect" parent="."]
+z_index = -1
+offset_left = 40.0
+offset_top = -1040.0
+offset_right = 1880.0
+offset_bottom = -40.0
+mouse_filter = 2
+color = Color(0, 0, 0, 0)
+
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
@@ -200,9 +209,3 @@ layout_mode = 2
 [node name="skill_button3" parent="MarginContainer/VBoxContainer/Panel/MarginContainer/TabContainer/Magic/VBoxContainer2" instance=ExtResource("2_1v6ce")]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
-
-[node name="background" type="ColorRect" parent="MarginContainer"]
-z_index = -1
-layout_mode = 2
-mouse_filter = 2
-color = Color(0, 0, 0, 0)

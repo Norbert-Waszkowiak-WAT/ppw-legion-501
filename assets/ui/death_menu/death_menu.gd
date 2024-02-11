@@ -42,6 +42,7 @@ func _on_exit_pressed():
 
 
 func exit_animation():
+	Engine.set_time_scale(1)
 	$background.color = Color.BLACK
 	$background.color.a = 0.3
 	$background.z_index = 1

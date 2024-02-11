@@ -12,7 +12,6 @@ func _ready():
 
 func _physics_process(delta):
 	for target in $Area2D.get_overlapping_bodies():
-		print("hit")
 		if target is Enemy:
 			target.apply_damage(damage, knockback, global_position)
 		queue_free()

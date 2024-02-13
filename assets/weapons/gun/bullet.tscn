@@ -1,21 +1,36 @@
-[gd_scene load_steps=5 format=3 uid="uid://cwenyi5fjdao4"]
+[gd_scene load_steps=9 format=3 uid="uid://cwenyi5fjdao4"]
 
 [ext_resource type="Script" path="res://assets/player/Bullet.gd" id="1_wmqo0"]
-[ext_resource type="Texture2D" uid="uid://r52wxhkrjxr2" path="res://textures/gun/bullets/bullet.png" id="2_rmo66"]
+[ext_resource type="Texture2D" uid="uid://b8rjgj3jjrmoj" path="res://textures/gun/bullets/pixil-frame-0.png" id="2_hdhi5"]
+[ext_resource type="Texture2D" uid="uid://l74ntk48kxae" path="res://textures/gun/bullets/pixil-frame-1.png" id="3_jffeu"]
+[ext_resource type="Texture2D" uid="uid://b0wgq4n6r66st" path="res://textures/gun/bullets/pixil-frame-2.png" id="4_jlfly"]
+[ext_resource type="Texture2D" uid="uid://bwibp4g8s2ykn" path="res://textures/gun/bullets/pixil-frame-3.png" id="5_tgerf"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_q7j54"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_rmo66")
+"texture": ExtResource("2_hdhi5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_jffeu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_jlfly")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_tgerf")
 }],
-"loop": true,
-"name": &"shoot",
-"speed": 5.0
+"loop": false,
+"name": &"hit",
+"speed": 30.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_88vtq"]
-size = Vector2(52.7139, 21.0263)
+size = Vector2(59.3032, 26.2829)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1pxdx"]
+size = Vector2(16, 8)
 
 [node name="Bullet" type="CharacterBody2D"]
 collision_layer = 16
@@ -28,12 +43,16 @@ position = Vector2(-0.045, 0)
 collision_layer = 16
 collision_mask = 5
 
-[node name="Shoot" type="AnimatedSprite2D" parent="Area2D"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Area2D"]
+position = Vector2(-7.955, 0)
 sprite_frames = SubResource("SpriteFrames_q7j54")
-animation = &"shoot"
+animation = &"hit"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(1.19209e-07, 1.78814e-07)
+position = Vector2(0.0449999, 1.78814e-07)
 scale = Vector2(0.303525, 0.380475)
 shape = SubResource("RectangleShape2D_88vtq")
 debug_color = Color(0, 0.6, 0.701961, 0.419608)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_1pxdx")

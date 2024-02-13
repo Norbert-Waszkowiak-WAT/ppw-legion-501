@@ -25,6 +25,8 @@ signal taking_damage
 var taking_knockback : bool
 @export var knockback_multiplier : float = 1.0
 
+@export var default_weapon : int
+
 # Wartości prędkości podczas skoku na podstawie równania rzutu pionowego
 @onready var jump_speed: float = ((2.0 * jump_height) / jump_peak) * -1
 @onready var jump_gravity: float = ((-2.0 * jump_height) / (jump_peak * jump_peak)) * -1
@@ -56,7 +58,7 @@ func _ready():
 	for weapon in weapons:
 		if weapon.has_method("set_target"):
 			weapon.set_target("enemies")
-	hide_weapons()
+	switch_weapon(default_weapon)
 	
 	set_enabled(false)
 	hide()
@@ -87,7 +89,7 @@ func _physics_process(delta):
 
 func _input(event):
 	if event is InputEventKey and event.keycode in range(49, 58):
-		switch_weapons(event.keycode - 49)
+		switch_weapon(event.keycode - 49)
 
 
 # | ============================================================================= |
@@ -243,10 +245,10 @@ func process_weapons():
 			selected_weapon.attack()
 
 
-func switch_weapons(weapon : int):
-	if selected_weapon:
-		selected_weapon.hide()
-	if weapon <= weapons.size():
+func switch_weapon(weapon : int):
+	if weapon <= weapons.size() - 1:
+		if selected_weapon:
+			selected_weapon.hide()
 		selected_weapon = weapons[weapon]
 		selected_weapon.show()
 

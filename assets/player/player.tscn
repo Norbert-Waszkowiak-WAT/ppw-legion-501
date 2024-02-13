@@ -126,7 +126,7 @@ animation = &"idle"
 [node name="stick" parent="AnimatedSprite2D" instance=ExtResource("5_n46lu")]
 visible = false
 position = Vector2(38, 18)
-scale = Vector2(3.77, 3.77)
+scale = Vector2(9.215, 9.215)
 
 [node name="HUD" parent="." instance=ExtResource("5_e68ka")]
 visible = false

@@ -8,18 +8,18 @@ func _ready():
 	animation = "full"
 	play()
 
-func _process(delta):
+func _process(_delta):
 	health_restoring()
 
 #Funkcja odpowiadająca za leczenie gracza
 func health_restoring():
 	#if sprawdza czy gracz jest w zasięgu leczenia i czy nie ma pełnego zdrowia
-	if $Area2D.get_overlapping_bodies() and animation == "full" and PlayerVariables.health < player.MAX_HEALTH:
+	if $Area2D.get_overlapping_bodies() and animation == "full" and PlayerVariables.health < PlayerVariables.MAX_HEALTH:
 		#zmiana animacji na pusty odnawiacz zdrowia
 		animation = "empty"
 		#odgrywa animację
 		play()
-		if PlayerVariables.health <= player.MAX_HEALTH - PlayerVariables.health:
+		if PlayerVariables.health <= PlayerVariables.MAX_HEALTH - PlayerVariables.health:
 			PlayerVariables.health += heal
 		else:
-			PlayerVariables.health += player.MAX_HEALTH - PlayerVariables.health
+			PlayerVariables.health += PlayerVariables.MAX_HEALTH - PlayerVariables.health

@@ -1,7 +1,7 @@
 extends CanvasLayer
 
 
-var next_level : PackedScene
+var next_level : String
 
 var tween
 
@@ -14,6 +14,7 @@ var anim_time : float = 0.5
 
 
 func _ready():
+	PlayerVariables.save_game(PlayerVariables.loaded_save)
 	player.set_process_input(false)
 	
 	$MarginContainer/VBoxContainer/next_level.grab_focus()
@@ -31,7 +32,7 @@ func _ready():
 	tween.tween_callback(get_parent().set_paused.bind(true))
 
 
-func _process(delta):
+func _process(_delta):
 	for button in buttons:
 		if button.is_hovered():
 			button.grab_focus()
@@ -70,6 +71,6 @@ func _on_next_level_pressed():
 	if next_level:
 		exit_animation()
 		await get_tree().create_timer(exit_time).timeout
-		get_tree().change_scene_to_packed(next_level)
+		get_tree().change_scene_to_file(next_level)
 	else:
 		print("ERROR: No next level attached")

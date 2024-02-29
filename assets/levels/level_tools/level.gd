@@ -4,7 +4,7 @@ class_name Level
 
 signal pause(value : bool)
 
-@export var next_level : PackedScene
+@export var next_level : String
 
 
 # | ============================================================================= |
@@ -38,7 +38,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	check_paused()
 
 

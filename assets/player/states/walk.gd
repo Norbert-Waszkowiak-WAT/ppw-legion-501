@@ -14,7 +14,7 @@ func enter():
 
 
 # Wywoływana na każdej klatce
-func process(delta: float) -> State:
+func process(_delta: float) -> State:
 	if !player.sprite.is_playing():
 		player.sprite.play()
 	if player.is_processing_input():

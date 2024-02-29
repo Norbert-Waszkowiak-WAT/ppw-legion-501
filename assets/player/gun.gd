@@ -11,7 +11,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	gun_sprite.animation = sprite.animation
 	gun_sprite.frame = sprite.frame
 	gun_sprite.frame_progress = sprite.frame_progress

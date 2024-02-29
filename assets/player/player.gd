@@ -16,11 +16,8 @@ var queued_jump : bool = false
 # Kierunek poruszania się
 var dir: float = 0.0
 
-# Wartości życia
-@export var MAX_HEALTH: float = 100.0
 signal taking_damage
 
-@export var MAX_EXP : float = 100.0
 
 var taking_knockback : bool
 @export var knockback_multiplier : float = 1.0
@@ -107,7 +104,7 @@ func set_enabled(value : bool):
 # Pojawianie się gracza
 func spawn(pos):
 	position = pos
-	PlayerVariables.health = MAX_HEALTH
+	PlayerVariables.health = PlayerVariables.MAX_HEALTH
 	set_enabled(true)
 	show()
 
@@ -192,15 +189,15 @@ func standard_color():
 
 # Aktualizacja paska i poziomu doświadczenia
 func exp_bar_update():
-	if PlayerVariables.experience >= MAX_EXP:
-		PlayerVariables.experience -= MAX_EXP
+	if PlayerVariables.experience >= PlayerVariables.MAX_EXP:
+		PlayerVariables.experience -= PlayerVariables.MAX_EXP
 		PlayerVariables.exp_lvl += 1
-		MAX_EXP *= 1.5
-		expbar.max_value = MAX_EXP
+		PlayerVariables.MAX_EXP *= 1.5
 		#Odwołanie do HUD gracza i zmiana wartości liczbowej lvl exp-a
-		$HUD/level.text = str(PlayerVariables.exp_lvl)
 		PlayerVariables.skill_points += 1
 	expbar.value = PlayerVariables.experience
+	expbar.max_value = PlayerVariables.MAX_EXP
+	$HUD/level.text = str(PlayerVariables.exp_lvl)
 
 
 # Śmierć gracza

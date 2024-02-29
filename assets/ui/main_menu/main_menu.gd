@@ -6,10 +6,6 @@ var startup_delay : float = 0.9
 
 @export var first_level : PackedScene
 
-@onready var new_game = $MarginContainer/VBoxContainer/new_game
-@onready var continue_button = $MarginContainer/VBoxContainer/continue
-@onready var settings = $MarginContainer/VBoxContainer/settings
-@onready var exit = $MarginContainer/VBoxContainer/exit
 @onready var buttons = $MarginContainer/VBoxContainer.find_children("*", "Button")
 
 var tween : Tween
@@ -20,24 +16,31 @@ var tween : Tween
 
 # Wywoływana na początku sceny
 func _ready():
+	
 	startup_animation()
 	#Narzuca focus sterowania klawiszami na nowa_gra
 
 
-func _process(delta):
+func _process(_delta):
 	for button in buttons:
-		if button.is_hovered():
+		if button.is_hovered() and !button.disabled:
 			button.grab_focus()
 
 
 func _on_new_game_pressed():
+	$MarginContainer/VBoxContainer/main_screen.hide()
+	$MarginContainer/VBoxContainer/new_game_screen.show()
+
+
+func start_new_game():
 	new_game_animation()
 	await get_tree().create_timer(start_game_delay).timeout
 	get_tree().change_scene_to_packed(first_level)
 
 
 func _on_continue_pressed():
-	get_tree().change_scene_to_file("res://assets/levels/test_level/test_level.tscn")
+	$MarginContainer/VBoxContainer/main_screen.hide()
+	$MarginContainer/VBoxContainer/load_screen.show()
 
 
 func _on_settings_pressed():
@@ -46,6 +49,12 @@ func _on_settings_pressed():
 
 func _on_exit_pressed():
 	get_tree().quit()
+
+
+func _on_back_pressed():
+	$MarginContainer/VBoxContainer/load_screen.hide()
+	$MarginContainer/VBoxContainer/new_game_screen.hide()
+	$MarginContainer/VBoxContainer/main_screen.show()
 
 
 # Animacja gracza po włączeniu gry
@@ -61,7 +70,8 @@ func startup_animation():
 	
 	# Włącza przyciski po opóźnieniu
 	tween.tween_callback(set_buttons_disabled.bind(false))
-	tween.tween_callback($MarginContainer/VBoxContainer/new_game.grab_focus)
+	if $MarginContainer/VBoxContainer/main_screen/new_game:
+		tween.tween_callback($MarginContainer/VBoxContainer/main_screen/new_game.grab_focus)
 	
 	tween.tween_property($MarginContainer/VBoxContainer, "modulate:a", 1.0, 2 * startup_delay / 3)
 	
@@ -82,6 +92,7 @@ func startup_animation():
 func new_game_animation():
 	# Wyłącza przyciski
 	set_buttons_disabled(true)
+	set_process(false)
 	
 	# Animacja przycisków w menu
 	animate()
@@ -113,3 +124,5 @@ func set_buttons_disabled(value: bool):
 			false:
 				button.focus_mode = 2
 				button.set_mouse_filter(0)
+
+

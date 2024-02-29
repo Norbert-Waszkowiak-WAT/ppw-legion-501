@@ -8,13 +8,11 @@ extends State
 
 # Wywoływana gdy gracz wchodzi w stan
 func enter():
-	player.sprite.animation = "fall"
+	player.sprite.play("fall")
 
 
 # Wywoływana na każdej klatce
-func process(delta: float) -> State:
-	if !player.sprite.is_playing():
-		player.sprite.play()
+func process(_delta: float) -> State:
 	if player.is_processing_input():
 		# Kolejkowanie skoku
 		if Input.is_action_just_pressed("jump") and not player.is_on_floor():

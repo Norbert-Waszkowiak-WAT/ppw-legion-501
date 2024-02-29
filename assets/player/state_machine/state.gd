@@ -17,9 +17,9 @@ func exit():
 	pass
 
 # Wywoływana na każdej klatce, odpowiada za procesy fizyczne
-func physics(delta: float) -> State:
+func physics(_delta: float) -> State:
 	return null
 
 # Wywoływana na każdej klatce
-func process(delta: float) -> State:
+func process(_delta: float) -> State:
 	return null

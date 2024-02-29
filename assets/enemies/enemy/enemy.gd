@@ -12,6 +12,7 @@ var dir : int = 0
 # życie
 var health : float
 @export var MAX_HEALTH : float
+var is_dead : bool = false
 var taking_knockback : bool = false
 var knockback_multiplier : float = 1.7
 
@@ -67,6 +68,7 @@ var dir_timer : float
 
 # Wywoływana na początku sceny
 func _ready():
+	is_dead = false
 	change_state(starting_state)
 	speed = idle_speed
 	
@@ -84,28 +86,28 @@ func _ready():
 
 
 # Wywoływana na każdej klatce
-func _process(delta):
+func _process(_delta):
 	$healthbar.value = health
 	if health <= 0:
 		die()
 
 
 func _physics_process(delta):
-	match current_state:
-		states.idle:
-			idle(delta)
-		states.chase:
-			chase(delta)
-		states.attack:
-			attack(delta)
-	check_movement()
+	if !is_dead:
+		match current_state:
+			states.idle:
+				idle(delta)
+			states.chase:
+				chase(delta)
+			states.attack:
+				attack(delta)
+		check_movement()
+		# Nadanie prędkości poziomej
+		if not taking_knockback:
+			velocity.x = dir * min(acceleration + abs(velocity.x), speed)
 	
 	# Dodanie grawitacji
 	velocity.y += get_gravity() * delta
-	
-	# Nadanie prędkości poziomej
-	if not taking_knockback:
-		velocity.x = dir * min(acceleration + abs(velocity.x), speed)
 	
 	# Obsługuje poruszanie i kolizję
 	move_and_slide()
@@ -283,6 +285,7 @@ func jump():
 
 func die():
 	set_process(false)
+	is_dead = true
 	sprite.self_modulate = Color(1.0, 0, 0, 1)
 	PlayerVariables.experience += dropped_experience
 	await get_tree().create_timer(death_time).timeout

@@ -8,6 +8,7 @@
 script = ExtResource("1_ktlqa")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
+z_index = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -78,7 +79,6 @@ expand_icon = true
 
 [node name="background" type="ColorRect" parent="."]
 modulate = Color(1, 1, 1, 0)
-z_index = -1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

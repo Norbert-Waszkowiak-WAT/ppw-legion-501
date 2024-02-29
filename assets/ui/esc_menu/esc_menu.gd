@@ -7,8 +7,7 @@ var exit_time : float = 1.0
 var anim_time : float = 0.5
 
 func _ready():
-	set_process(true)
-	
+	set_process(false)
 	$MarginContainer/VBoxContainer/resume.grab_focus()
 	var tween = create_tween().set_parallel(true).set_trans(Tween.TRANS_BACK)
 	tween.tween_property($background, "color:a", 0.3, anim_time)
@@ -16,10 +15,11 @@ func _ready():
 	for i in hud.get_children():
 		tween.tween_property(i, "modulate:a", 0, anim_time)
 	tween.set_parallel(false)
+	tween.tween_callback(set_process.bind(true))
 	tween.tween_callback(Engine.set_time_scale.bind(0))
 	
 
-func _process(delta):
+func _process(_delta):
 	for button in buttons:
 		if button.is_hovered():
 			button.grab_focus()
@@ -56,7 +56,6 @@ func exit_animation():
 	
 func unpause():
 	Engine.set_time_scale(1)
-	get_parent().set_paused(false)
 	
 	var tween = create_tween().set_parallel(true).set_trans(Tween.TRANS_CUBIC)
 	tween.tween_property($background, "modulate:a", 0.0, anim_time)
@@ -64,4 +63,5 @@ func unpause():
 	for i in hud.get_children():
 		tween.tween_property(i, "modulate:a", 1, anim_time)
 	tween.set_parallel(false)
+	tween.tween_callback(get_parent().set_paused.bind(false))
 	tween.tween_callback(queue_free)

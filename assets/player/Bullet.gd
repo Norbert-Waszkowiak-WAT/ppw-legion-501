@@ -13,7 +13,7 @@ func _ready():
 	velocity.x = speed_of_bullet * direction
 	
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	for target in $Area2D.get_overlapping_bodies():
 		set_physics_process(false)
 		if target is Enemy:

@@ -12,7 +12,7 @@ func _ready():
 	set_monitoring(false)
 
 
-func _process(delta):
+func _process(_delta):
 	if is_monitoring():
 		var targets = get_overlapping_bodies()
 		for i in targets:

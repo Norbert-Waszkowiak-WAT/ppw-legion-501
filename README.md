@@ -26,6 +26,7 @@ poziom doświadczenia. Każdy można wydać na jedną umiejętność. Posiadane 
 opcji "nowa gra" jest możliwość wybrania jednego z nich. Po przejściu każdego poziomu stan gry zapisuje się automatycznie. Po wybraniu opcji
 "kontynuuj" można wybrać jeden ze slotów (o ile istnieje w nim zapis).
 - Tekstury i animacje gracza przyjęły już prawie finalną formę, zostały nam tylko ostatnie szlify.
+- Oprócz tego eksperymentalnie dodaliśmy pierwszy efekt dźwiękowy - wystrzał z broni dystansowej.
 
 ![image](https://github.com/Norbert-Waszkowiak-WAT/ppw-legion-501/assets/59392489/288a6232-3c6f-42d7-9580-f6623d7817a5)
 

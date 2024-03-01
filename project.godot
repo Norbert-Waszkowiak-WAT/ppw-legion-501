@@ -30,7 +30,8 @@ window/stretch/mode="viewport"
 
 [editor]
 
-movie_writer/movie_file="C:/Users/Nbyte/Videos/Galactic Vendetta/movie.avi"
+movie_writer/movie_file="C:/informatyka/projekt/movie.avi"
+movie_writer/disable_vsync=true
 
 [filesystem]
 

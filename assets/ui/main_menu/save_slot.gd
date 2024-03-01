@@ -11,6 +11,7 @@ func _ready():
 		text = "slot " + file_index
 		if get_parent().get_parent().name == "load_screen":
 			disabled = true
+			focus_mode = Control.FOCUS_NONE
 
 
 func _on_pressed():

@@ -18,15 +18,17 @@ func _process(_delta):
 
 
 func attack():
-	gun_sprite.animation = "attack"
-	$AudioStreamPlayer2D.play()
-	
-	var bullet = bullet_type.instantiate()
-	bullet.direction = sprite.scale.x / abs(sprite.scale.x)
-	bullet.global_position = $Marker2D.global_position
-	bullet.scale = sprite.scale * 0.5
-	
-	bullet.damage = damage
-	bullet.knockback = knockback
-	
-	get_tree().get_root().add_child(bullet)
+	if $attack_timer.is_stopped():
+		gun_sprite.animation = "attack"
+		$AudioStreamPlayer2D.play()
+		
+		var bullet = bullet_type.instantiate()
+		bullet.direction = sprite.scale.x / abs(sprite.scale.x)
+		bullet.global_position = $Marker2D.global_position
+		bullet.scale = sprite.scale * 0.5
+		
+		bullet.damage = damage
+		bullet.knockback = knockback
+		
+		get_tree().get_root().add_child(bullet)
+		$attack_timer.start()

@@ -4,8 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://smal4hmb1hlj" path="res://textures/test-enemy/enemy.png" id="1_k5m6p"]
 [ext_resource type="PackedScene" uid="uid://dh4fi820qxc7k" path="res://assets/weapons/stick/stick.tscn" id="3_6v6qr"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_m1f3y"]
-size = Vector2(6, 12)
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_agwa1"]
+points = PackedVector2Array(-1.5, 0, -2.5, 0, -2.5, 6, 2.5, 6, 2.5, 0, 1.5, 0, 1.5, -6, -1.5, -6)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ex46t"]
 bg_color = Color(0, 0, 0, 0.231373)
@@ -33,7 +33,7 @@ memory_time = 10.0
 attack_time = 0.5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_m1f3y")
+shape = SubResource("ConvexPolygonShape2D_agwa1")
 
 [node name="AnimatedSprite2D" type="Sprite2D" parent="."]
 texture_filter = 3

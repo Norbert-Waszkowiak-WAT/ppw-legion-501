@@ -39,7 +39,7 @@ func _on_restart_pressed():
 	Engine.set_time_scale(1)
 	exit_animation()
 	await get_tree().create_timer(exit_time).timeout
-	get_tree().reload_current_scene()
+	PlayerVariables.load_game(PlayerVariables.loaded_save)
 
 
 func _on_exit_pressed():

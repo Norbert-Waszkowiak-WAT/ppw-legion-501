@@ -19,6 +19,16 @@ Galactic Vendetta jest grą wideo na PC. To platformówka 2D w motywie kosmiczny
 
 _Grę rozwijamy w silniku Godot. W razie większych problemów jesteśmy gotowi przerzucić się na inny silnik._
 
+![image](https://github.com/Norbert-Waszkowiak-WAT/ppw-legion-501/assets/59392489/288a6232-3c6f-42d7-9580-f6623d7817a5)
+
+![image](https://github.com/Norbert-Waszkowiak-WAT/ppw-legion-501/assets/59392489/dc22d669-d986-4249-96b0-4d6bb5521023)
+
+![image](https://github.com/Norbert-Waszkowiak-WAT/ppw-legion-501/assets/59392489/6e383a3e-e90f-439a-ad4f-a433605e9288)
+
+![image](https://github.com/Norbert-Waszkowiak-WAT/ppw-legion-501/assets/59392489/2494fa14-2b17-489c-b4f0-dc2a3181d23a)
+
+![image](https://github.com/Norbert-Waszkowiak-WAT/ppw-legion-501/assets/59392489/02a60ebf-1180-489c-aae6-73078dbba10a)
+
 
 ## Dziennik
 

@@ -21,13 +21,21 @@ _Grę rozwijamy w silniku Godot. W razie większych problemów jesteśmy gotowi 
 
 ![image](https://github.com/Norbert-Waszkowiak-WAT/ppw-legion-501/assets/59392489/288a6232-3c6f-42d7-9580-f6623d7817a5)
 
+![image](https://github.com/Norbert-Waszkowiak-WAT/ppw-legion-501/assets/59392489/5e16c276-1e58-48bc-b8e2-e0e16b8263b4)
+
 ![image](https://github.com/Norbert-Waszkowiak-WAT/ppw-legion-501/assets/59392489/dc22d669-d986-4249-96b0-4d6bb5521023)
 
+![image](https://github.com/Norbert-Waszkowiak-WAT/ppw-legion-501/assets/59392489/d8db5b24-216c-43bd-922d-ad9c46a2cf20)
+
 ![image](https://github.com/Norbert-Waszkowiak-WAT/ppw-legion-501/assets/59392489/6e383a3e-e90f-439a-ad4f-a433605e9288)
+
+![image](https://github.com/Norbert-Waszkowiak-WAT/ppw-legion-501/assets/59392489/155ae2f6-c0fc-40ce-bce7-025956291677)
 
 ![image](https://github.com/Norbert-Waszkowiak-WAT/ppw-legion-501/assets/59392489/2494fa14-2b17-489c-b4f0-dc2a3181d23a)
 
 ![image](https://github.com/Norbert-Waszkowiak-WAT/ppw-legion-501/assets/59392489/02a60ebf-1180-489c-aae6-73078dbba10a)
+
+![image](https://github.com/Norbert-Waszkowiak-WAT/ppw-legion-501/assets/59392489/b19c68e4-8c8e-492c-a275-fceeb206aee2)
 
 
 ## Dziennik

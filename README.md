@@ -15,9 +15,17 @@ Galactic Vendetta jest grą wideo na PC. To platformówka 2D w motywie kosmiczny
 	5. Wrogowie
 	6. Rozwój postaci
 	7. Więcej zawartości (różne rodzaje broni, wrogów, więcej poziomów)
-	
 
-_Grę rozwijamy w silniku Godot. W razie większych problemów jesteśmy gotowi przerzucić się na inny silnik._
+## Progress update
+### 01/03/2024
+
+- Drzewko rozwoju postaci jest w pełni funkcjonalne, lecz nie w pełni wypełnione umiejętnościami. Punkty umięjętności są przyznawane za każdy kolejny
+poziom doświadczenia. Każdy można wydać na jedną umiejętność. Posiadane umiejętności są przechowywane w globalnej tabeli słownikowej.
+- Broń dystansowa działa zgodnie z zamiarem, w przyszłości zamierzamy ograniczyć dostępną amunicję.
+- Zapis gry także działa - są dostępne 3 sloty na zapis. Dane każdego z nich są przechowywane w osobnym pliku w formacie binarnym. Przy wyborze
+opcji "nowa gra" jest możliwość wybrania jednego z nich. Po przejściu każdego poziomu stan gry zapisuje się automatycznie. Po wybraniu opcji
+"kontynuuj" można wybrać jeden ze slotów (o ile istnieje w nim zapis).
+- Tekstury i animacje gracza przyjęły już prawie finalną formę, zostały nam tylko ostatnie szlify.
 
 ![image](https://github.com/Norbert-Waszkowiak-WAT/ppw-legion-501/assets/59392489/288a6232-3c6f-42d7-9580-f6623d7817a5)
 

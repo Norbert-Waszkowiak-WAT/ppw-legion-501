@@ -111,6 +111,7 @@ jump_peak = 0.3
 knockback_multiplier = 1.5
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(2, 0)
 polygon = PackedVector2Array(-13, 21, 9, 21, 9, -11, -13, -11)
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -126,11 +127,13 @@ drag_bottom_margin = 0.5
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
+position = Vector2(1, 0)
 scale = Vector2(0.125, 0.125)
 sprite_frames = SubResource("SpriteFrames_lbsb1")
 animation = &"jump"
 
 [node name="gun" parent="AnimatedSprite2D" instance=ExtResource("15_scggg")]
+position = Vector2(8, 0)
 
 [node name="stick" parent="AnimatedSprite2D" instance=ExtResource("5_n46lu")]
 visible = false

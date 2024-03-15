@@ -8,6 +8,7 @@ var speed : float
 @export var chase_speed : float
 @export var acceleration : float
 var dir : int = 0
+var path = {}
 
 # życie
 var health : float
@@ -61,6 +62,7 @@ var dir_timer : float
 @onready var sprite = get_node("AnimatedSprite2D")
 @onready var player = get_tree().get_root().find_child("player", true, false)
 @onready var weapon = sprite.find_children("*", "Weapon")[0]
+@onready var terrain = get_node("../terrain")
 
 
 # | ============================================================================= |
@@ -86,10 +88,14 @@ func _ready():
 
 
 # Wywoływana na każdej klatce
-func _process(_delta):
+func _process(delta):
 	$healthbar.value = health
 	if health <= 0:
 		die()
+		
+	if is_on_floor():
+		#$navigation_component.calculate_trajectory(delta, dir, global_position)
+		pass
 
 
 func _physics_process(delta):
@@ -104,7 +110,8 @@ func _physics_process(delta):
 		check_movement()
 		# Nadanie prędkości poziomej
 		if not taking_knockback:
-			velocity.x = dir * min(acceleration + abs(velocity.x), speed)
+			#velocity.x = dir * min(acceleration + abs(velocity.x), speed)
+			velocity.x = dir * speed
 	
 	# Dodanie grawitacji
 	velocity.y += get_gravity() * delta
@@ -197,6 +204,8 @@ func idle(delta: float):
 	else:
 		reaction_timer -= delta
 	
+	$navigation_timer.stop()
+	
 	if position.distance_to(player.position) <= detection_range and sees_player():
 		speed = chase_speed
 		change_state(states.chase)
@@ -209,9 +218,12 @@ func idle(delta: float):
 func chase(delta: float):
 	if reaction_timer <= 0:
 		speed = chase_speed
-		turn_towards_player()
+#		turn_towards_player()
 	else:
 		reaction_timer -= delta
+	
+	if $navigation_timer.is_stopped():
+		$navigation_timer.start()
 	
 	if position.distance_to(player.position) > detection_range or !sees_player():
 		if memory_timer <= 0:
@@ -236,6 +248,7 @@ func attack(delta: float):
 	else:
 		reaction_timer -= delta
 	
+	$navigation_timer.stop()
 	
 	if position.distance_to(player.position) > detection_range or !sees_player():
 		if memory_timer <= 0:
@@ -250,16 +263,30 @@ func attack(delta: float):
 func check_movement():
 	match current_state:
 		states.chase:
-			if (!$left_long.get_collider() and dir == -1) or (!$right_long.get_collider() and dir == 1):
-				jump()
-			if $left_step.get_collider() and !$left_wall.get_collider() and dir == -1:
-				jump()
-			elif !$left_short.get_collider() and dir == -1 and !$left_wall.get_collider() and player.position.y < position.y:
-				jump()
-			if $right_step.get_collider() and !$right_wall.get_collider() and dir == 1:
-				jump()
-			elif !$right_short.get_collider() and dir == 1 and !$right_wall.get_collider() and player.position.y < position.y:
-				jump()
+#			if (!$left_long.get_collider() and dir == -1) or (!$right_long.get_collider() and dir == 1):
+#				jump()
+#			if $left_step.get_collider() and !$left_wall.get_collider() and dir == -1:
+#				jump()
+#			elif !$left_short.get_collider() and dir == -1 and !$left_wall.get_collider() and player.position.y < position.y:
+#				jump()
+#			if $right_step.get_collider() and !$right_wall.get_collider() and dir == 1:
+#				jump()
+#			elif !$right_short.get_collider() and dir == 1 and !$right_wall.get_collider() and player.position.y < position.y:
+#				jump()
+			if not path.is_empty():
+				var waypoint = terrain.to_global(terrain.map_to_local(path[0][0]))
+				var action = path[0][1]
+				
+#				print(terrain.local_to_map(terrain.to_local(global_position)))
+				if terrain.local_to_map(terrain.to_local(global_position)).x == path[0][0].x:
+					path.remove_at(0)
+					
+				if global_position.x > waypoint.x:
+					dir = -1
+				elif global_position.x < waypoint.x:
+					dir = 1
+				if action == "jump":
+					jump()
 		states.idle:
 			if !$left_short.get_collider() and dir == -1 and is_on_floor():
 				dir = 0
@@ -281,6 +308,12 @@ func turn_towards_player():
 func jump():
 	if is_on_floor():
 		velocity.y = jump_speed
+
+
+func update_path():
+	path = $navigation_component.A_Star(terrain.local_to_map(terrain.to_local(global_position)), terrain.local_to_map(terrain.to_local(player.global_position)) + Vector2i(0, 1))
+#	print($navigation_component.get_neighbors(terrain.local_to_map(terrain.to_local(global_position))))
+	print(path)
 
 
 func die():

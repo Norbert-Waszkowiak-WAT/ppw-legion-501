@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dlt4q6xtgb6p2"]
+
+[ext_resource type="Texture2D" uid="uid://c8uo2pdp6knwu" path="res://textures/level-tools/enemy-spawnpoint.png" id="1_ej2cd"]
+
+[node name="Marker2D" type="Marker2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(10, 10)
+texture = ExtResource("1_ej2cd")

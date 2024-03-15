@@ -1,8 +1,9 @@
-[gd_resource type="TileSet" load_steps=7 format=3 uid="uid://dfi3xlrx7twl8"]
+[gd_resource type="TileSet" load_steps=8 format=3 uid="uid://dfi3xlrx7twl8"]
 
 [ext_resource type="Texture2D" uid="uid://drgy1o1v6jbs3" path="res://textures/tileset/Tekstury1.png" id="1_nvsl1"]
 [ext_resource type="PackedScene" uid="uid://k6ed0568tuof" path="res://assets/levels/level_tools/barrier.tscn" id="2_joxgu"]
 [ext_resource type="PackedScene" uid="uid://bydgx2tg4seyx" path="res://assets/levels/level_tools/health_boost/health_restorer.tscn" id="3_xhv54"]
+[ext_resource type="PackedScene" uid="uid://dlt4q6xtgb6p2" path="res://assets/levels/level_tools/waypoint.tscn" id="4_te8ij"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8nm1w"]
 texture = ExtResource("1_nvsl1")
@@ -47,6 +48,7 @@ texture_region_size = Vector2i(1024, 1024)
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_bnq84"]
 scenes/1/scene = ExtResource("2_joxgu")
 scenes/2/scene = ExtResource("3_xhv54")
+scenes/3/scene = ExtResource("4_te8ij")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_asvk4"]
 texture = ExtResource("1_nvsl1")

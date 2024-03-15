@@ -31,7 +31,9 @@ func _ready():
 			spawn_enemy(i.enemy_type, i.position)
 	else:
 		print("No enemy spawnpoints node found.")
-		
+	
+	generate_waypoints()
+	
 	$player/HUD/tint.color.a = 1.0
 	var tween = create_tween()
 	tween.tween_property($player/HUD/tint, "color:a", 0.0, 1.3)
@@ -90,3 +92,19 @@ func on_level_completed():
 	var winning_menu = load("res://assets/ui/winning_menu/winning_menu.tscn").instantiate()
 	winning_menu.next_level = next_level
 	add_child(winning_menu)
+
+
+func generate_waypoints():
+	var tiles = $terrain.get_used_cells(0)
+	var waypoint_cells = []
+	var waypoint_scene = load("res://assets/levels/level_tools/waypoint.tscn")
+	for tile in tiles:
+		if $terrain.get_cell_source_id(0, tile) == 1:
+			continue
+		var neighbor = tile + Vector2i(0, -1)
+		if not neighbor in tiles or $terrain.get_cell_source_id(0, neighbor) == 1:
+			waypoint_cells.append(neighbor)
+	
+	for cell in waypoint_cells:
+		$terrain.set_cell(3, cell, 1, Vector2i(0, 0), 3)
+	

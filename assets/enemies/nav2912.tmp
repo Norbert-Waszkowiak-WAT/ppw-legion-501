@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://cpb5mre4u13vt"]
+
+[ext_resource type="Script" path="res://assets/enemies/navigation_component.gd" id="1_y12uh"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_esddw"]
+b = Vector2(0, 0)
+
+[node name="navigation_component" type="Line2D"]
+width = 1.0
+script = ExtResource("1_y12uh")
+point_amount = 50.0
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+shape = SubResource("SegmentShape2D_esddw")

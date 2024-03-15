@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://wcctuo741cj8"]
+
+[ext_resource type="Script" path="res://assets/enemies/trajectory_component.gd" id="1_71vvg"]
+
+[node name="trajectory_component" type="Line2D"]
+width = 1.0
+script = ExtResource("1_71vvg")
+point_amount = 50.0
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]

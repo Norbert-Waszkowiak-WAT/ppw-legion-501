@@ -72,50 +72,50 @@ layer_3/tile_data = PackedInt32Array()
 [node name="player_spawnpoint" parent="." instance=ExtResource("7_cqmuc")]
 position = Vector2(-127, -18)
 
-[node name="enemy_spawnpoint2" parent="." instance=ExtResource("8_fpu64")]
-position = Vector2(108, -39)
-enemy_type = ExtResource("9_qusl4")
-
-[node name="enemy_spawnpoint3" parent="." instance=ExtResource("8_fpu64")]
-position = Vector2(335, 3)
-enemy_type = ExtResource("9_qusl4")
-
-[node name="enemy_spawnpoint4" parent="." instance=ExtResource("8_fpu64")]
-position = Vector2(351, 3)
-enemy_type = ExtResource("9_qusl4")
-
-[node name="enemy_spawnpoint5" parent="." instance=ExtResource("8_fpu64")]
-position = Vector2(441, -17)
-enemy_type = ExtResource("9_qusl4")
-
-[node name="enemy_spawnpoint6" parent="." instance=ExtResource("8_fpu64")]
-position = Vector2(346, -37)
-enemy_type = ExtResource("9_qusl4")
-
-[node name="enemy_spawnpoint7" parent="." instance=ExtResource("8_fpu64")]
-position = Vector2(461, -76)
-enemy_type = ExtResource("9_qusl4")
-
-[node name="enemy_spawnpoint8" parent="." instance=ExtResource("8_fpu64")]
-position = Vector2(546, -26)
-enemy_type = ExtResource("9_qusl4")
-
-[node name="enemy_spawnpoint9" parent="." instance=ExtResource("8_fpu64")]
-position = Vector2(701, -16)
-enemy_type = ExtResource("9_qusl4")
-
-[node name="enemy_spawnpoint10" parent="." instance=ExtResource("8_fpu64")]
-position = Vector2(764, -26)
-enemy_type = ExtResource("9_qusl4")
-
-[node name="enemy_spawnpoint11" parent="." instance=ExtResource("8_fpu64")]
-position = Vector2(629, -97)
-enemy_type = ExtResource("9_qusl4")
-
 [node name="spawnpoints" type="Node" parent="."]
 
 [node name="enemy_spawnpoint" parent="spawnpoints" instance=ExtResource("8_fpu64")]
-position = Vector2(-180, 0)
+position = Vector2(-65, 2)
+enemy_type = ExtResource("9_qusl4")
+
+[node name="enemy_spawnpoint2" parent="spawnpoints" instance=ExtResource("8_fpu64")]
+position = Vector2(108, -39)
+enemy_type = ExtResource("9_qusl4")
+
+[node name="enemy_spawnpoint3" parent="spawnpoints" instance=ExtResource("8_fpu64")]
+position = Vector2(335, 3)
+enemy_type = ExtResource("9_qusl4")
+
+[node name="enemy_spawnpoint4" parent="spawnpoints" instance=ExtResource("8_fpu64")]
+position = Vector2(351, 3)
+enemy_type = ExtResource("9_qusl4")
+
+[node name="enemy_spawnpoint5" parent="spawnpoints" instance=ExtResource("8_fpu64")]
+position = Vector2(441, -17)
+enemy_type = ExtResource("9_qusl4")
+
+[node name="enemy_spawnpoint6" parent="spawnpoints" instance=ExtResource("8_fpu64")]
+position = Vector2(346, -37)
+enemy_type = ExtResource("9_qusl4")
+
+[node name="enemy_spawnpoint7" parent="spawnpoints" instance=ExtResource("8_fpu64")]
+position = Vector2(461, -76)
+enemy_type = ExtResource("9_qusl4")
+
+[node name="enemy_spawnpoint8" parent="spawnpoints" instance=ExtResource("8_fpu64")]
+position = Vector2(546, -26)
+enemy_type = ExtResource("9_qusl4")
+
+[node name="enemy_spawnpoint9" parent="spawnpoints" instance=ExtResource("8_fpu64")]
+position = Vector2(701, -16)
+enemy_type = ExtResource("9_qusl4")
+
+[node name="enemy_spawnpoint10" parent="spawnpoints" instance=ExtResource("8_fpu64")]
+position = Vector2(764, -26)
+enemy_type = ExtResource("9_qusl4")
+
+[node name="enemy_spawnpoint11" parent="spawnpoints" instance=ExtResource("8_fpu64")]
+position = Vector2(629, -97)
 enemy_type = ExtResource("9_qusl4")
 
 [node name="winning_areas" type="Node" parent="."]

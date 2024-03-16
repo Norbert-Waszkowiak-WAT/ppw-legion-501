@@ -9,11 +9,11 @@
 [ext_resource type="Texture2D" uid="uid://c37spm3ts65t4" path="res://textures/gun/running/Grafika_bez_nazwy-1 3.png" id="6_s750t"]
 [ext_resource type="Texture2D" uid="uid://0bvgnjk4b1j0" path="res://textures/gun/running/Grafika_bez_nazwy-1 4.png" id="7_k7g7a"]
 [ext_resource type="Texture2D" uid="uid://57t8n1a8gecm" path="res://textures/gun/running/Grafika_bez_nazwy-1 5.png" id="8_aqcuk"]
-[ext_resource type="Texture2D" uid="uid://cos1fxatgtewy" path="res://textures/gun/jump/Wersja_Git_1-reka.png" id="8_y3h7c"]
+[ext_resource type="Texture2D" uid="uid://hf82ttprobqg" path="res://textures/gun/jump/Wersja_Git_1-reka.png" id="8_y3h7c"]
 [ext_resource type="Texture2D" uid="uid://x0yoqqrsrs8l" path="res://textures/gun/running/Grafika_bez_nazwy-1 6.png" id="9_me6j7"]
-[ext_resource type="Texture2D" uid="uid://c1660sp1h6x3u" path="res://textures/gun/jump/Wersja_Git_2-reka.png" id="9_ortee"]
+[ext_resource type="Texture2D" uid="uid://blhbc4vqfi2r3" path="res://textures/gun/jump/Wersja_Git_2-reka.png" id="9_ortee"]
 [ext_resource type="Texture2D" uid="uid://d4h0cdat7qx58" path="res://textures/gun/running/Grafika_bez_nazwy-1 7.png" id="10_cavtc"]
-[ext_resource type="Texture2D" uid="uid://dj3s3eh8ga30d" path="res://textures/gun/jump/Wersja_Git_3-reka.png" id="10_eah6x"]
+[ext_resource type="Texture2D" uid="uid://c5cokkip3681b" path="res://textures/gun/jump/Wersja_Git_3-reka.png" id="10_eah6x"]
 [ext_resource type="Texture2D" uid="uid://csaxpo8pkwudy" path="res://textures/gun/running/Grafika_bez_nazwy-1 8.png" id="11_500km"]
 [ext_resource type="Texture2D" uid="uid://b26pjsfei162b" path="res://textures/gun/running/Grafika_bez_nazwy-1 9.png" id="12_ecebx"]
 [ext_resource type="Script" path="res://assets/player/gun.gd" id="13_wcs15"]
@@ -105,7 +105,7 @@ damage = 20.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_78r3p")
-animation = &"jump"
+animation = &"walk"
 
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(100, -20)

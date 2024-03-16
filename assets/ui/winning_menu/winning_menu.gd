@@ -60,10 +60,10 @@ func exit_animation():
 	get_parent().set_paused(true)
 	Engine.set_time_scale(1.0)
 	tween = create_tween()
-	$background.color = Color.BLACK
-	$background.color.a = 0.3
-	$background.z_index = 1
-	tween.tween_property($background, "color:a", 1, exit_time)
+	$tint.color = Color.BLACK
+	$tint.color.a = 0.3
+	$tint.z_index = 1
+	tween.tween_property($tint, "color:a", 1, exit_time)
 	
 
 

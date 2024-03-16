@@ -5,8 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://dh4fi820qxc7k" path="res://assets/weapons/stick/stick.tscn" id="3_6v6qr"]
 [ext_resource type="PackedScene" uid="uid://cpb5mre4u13vt" path="res://assets/enemies/navigation_component.tscn" id="4_bpcea"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_5msyh"]
-size = Vector2(4, 12)
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_rap3y"]
+points = PackedVector2Array(-3, 6, 3, 6, 3, -2, 0, -6, -3, -2)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ex46t"]
 bg_color = Color(0, 0, 0, 0.231373)
@@ -16,7 +16,7 @@ bg_color = Color(0.933333, 0.352941, 0.352941, 1)
 
 [node name="Enemy" type="CharacterBody2D" groups=["enemy"]]
 collision_layer = 4
-collision_mask = 13
+collision_mask = 9
 floor_constant_speed = true
 script = ExtResource("1_12jby")
 idle_speed = 20.0
@@ -26,15 +26,15 @@ MAX_HEALTH = 50.0
 dropped_experience = 60.0
 detection_range = 100.0
 attack_range = 20.0
-jump_height = 25.0
+jump_height = 35.0
 jump_descent = 0.3
 jump_peak = 0.4
 reaction_time = 0.25
-memory_time = 10.0
+memory_time = 20.0
 attack_time = 0.5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_5msyh")
+shape = SubResource("ConvexPolygonShape2D_rap3y")
 
 [node name="AnimatedSprite2D" type="Sprite2D" parent="."]
 texture_filter = 3
@@ -67,6 +67,7 @@ one_shot = true
 wait_time = 3.0
 
 [node name="navigation_component" parent="." instance=ExtResource("4_bpcea")]
+debug_mode = false
 
 [node name="navigation_timer" type="Timer" parent="."]
 wait_time = 1.5

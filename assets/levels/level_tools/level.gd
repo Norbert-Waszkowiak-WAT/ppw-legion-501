@@ -63,15 +63,16 @@ func spawn_enemy(enemy_type : PackedScene, pos : Vector2):
 func set_paused(value : bool):
 	pause.emit(value)
 	value = !value
+#	print(find_children("*"))
 	for i in find_children("*"):
-		i.set_process(value)
-		i.set_physics_process(value)
-		i.set_process_input(value)
 		if i is AnimatedSprite2D:
-			if value == true:
+			if value == false:
 				i.pause()
 			else:
 				i.play()
+		i.set_process(value)
+		i.set_physics_process(value)
+		i.set_process_input(value)
 	set_process(value)
 	set_physics_process(value)
 	set_process_input(value)
@@ -101,9 +102,9 @@ func generate_waypoints():
 	for tile in tiles:
 		if $terrain.get_cell_source_id(0, tile) == 1:
 			continue
-		var neighbor = tile + Vector2i(0, -1)
-		if not neighbor in tiles or $terrain.get_cell_source_id(0, neighbor) == 1:
-			waypoint_cells.append(neighbor)
+		var neighbors = [tile + Vector2i(0, -1), tile + Vector2i(0, -2)]
+		if (not neighbors[0] in tiles and not neighbors[1] in tiles) or $terrain.get_cell_source_id(0, neighbors[0]) == 1:
+			waypoint_cells.append(neighbors[0])
 	
 	for cell in waypoint_cells:
 		$terrain.set_cell(3, cell, 1, Vector2i(0, 0), 3)

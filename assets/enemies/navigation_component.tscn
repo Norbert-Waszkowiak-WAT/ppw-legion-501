@@ -6,9 +6,12 @@
 b = Vector2(0, 0)
 
 [node name="navigation_component" type="Line2D"]
+z_index = 2
 width = 1.0
+default_color = Color(0.470588, 1, 0.470588, 1)
 script = ExtResource("1_y12uh")
-point_amount = 40.0
+point_amount = 60.0
+debug_mode = true
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 collision_layer = 0

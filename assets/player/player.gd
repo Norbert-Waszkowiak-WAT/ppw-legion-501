@@ -75,6 +75,8 @@ func _process(delta):
 		die()
 	
 	process_weapons()
+
+
 # Obsługuje fizykę 
 func _physics_process(delta):
 	# Wywołuje pętlę fizyczną state machine

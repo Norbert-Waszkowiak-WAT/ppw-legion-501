@@ -8,6 +8,7 @@ var speed : float
 @export var chase_speed : float
 @export var acceleration : float
 var dir : int = 0
+var in_movement : bool = false
 var path = {}
 
 # życie
@@ -96,6 +97,9 @@ func _process(delta):
 	if is_on_floor():
 		#$navigation_component.calculate_trajectory(delta, dir, global_position)
 		pass
+	
+	if dir != 0:
+		sprite.scale.x = sprite.scale.y * dir
 
 
 func _physics_process(delta):
@@ -208,6 +212,7 @@ func idle(delta: float):
 	
 	if position.distance_to(player.position) <= detection_range and sees_player():
 		speed = chase_speed
+		update_path()
 		change_state(states.chase)
 	if position.distance_to(player.position) <= attack_range and sees_player():
 		attack_timer = 0
@@ -217,8 +222,7 @@ func idle(delta: float):
 # Odpowiada za zachowanie wroga podczas gonienia gracza
 func chase(delta: float):
 	if reaction_timer <= 0:
-		speed = chase_speed
-#		turn_towards_player()
+		pass
 	else:
 		reaction_timer -= delta
 	
@@ -273,20 +277,32 @@ func check_movement():
 #				jump()
 #			elif !$right_short.get_collider() and dir == 1 and !$right_wall.get_collider() and player.position.y < position.y:
 #				jump()
-			if not path.is_empty():
-				var waypoint = terrain.to_global(terrain.map_to_local(path[0][0]))
+			if path.size() > 1 and !in_movement and is_on_floor():
+				var waypoint = $navigation_component.map_to_global(path[1][0])
 				var action = path[0][1]
+				var distance = abs(waypoint.x - global_position.x)
 				
-#				print(terrain.local_to_map(terrain.to_local(global_position)))
-				if terrain.local_to_map(terrain.to_local(global_position)).x == path[0][0].x:
-					path.remove_at(0)
-					
-				if global_position.x > waypoint.x:
-					dir = -1
-				elif global_position.x < waypoint.x:
-					dir = 1
-				if action == "jump":
+				if action == "walk_right":
+					walk(distance, 1, chase_speed)
+				elif action == "jump_right":
 					jump()
+					walk(distance, 1, chase_speed)
+				elif action == "jump_slow_right":
+					jump()
+					walk(distance, 1, idle_speed)
+				
+				if action == "walk_left":
+					walk(distance, -1, chase_speed)
+				elif action == "jump_left":
+					jump()
+					walk(distance, -1, chase_speed)
+				elif action == "jump_slow_left":
+					jump()
+					walk(distance, -1, idle_speed)
+				
+				path.remove_at(0)
+			elif path.size() == 1:
+				update_path()
 		states.idle:
 			if !$left_short.get_collider() and dir == -1 and is_on_floor():
 				dir = 0
@@ -299,10 +315,18 @@ func turn_towards_player():
 		dir = 0
 	elif position.direction_to(player.position).x > 0:
 		dir = 1
-		sprite.scale.x = sprite.scale.y * dir
 	else:
 		dir = -1
-		sprite.scale.x = sprite.scale.y * dir
+
+
+func walk(distance : float, direction : int, current_speed : float):
+	var duration = distance / current_speed
+	
+	in_movement = true
+	dir = direction
+	await get_tree().create_timer(duration).timeout
+	dir = 0
+	in_movement = false
 
 
 func jump():
@@ -311,9 +335,11 @@ func jump():
 
 
 func update_path():
-	path = $navigation_component.A_Star(terrain.local_to_map(terrain.to_local(global_position)), terrain.local_to_map(terrain.to_local(player.global_position)) + Vector2i(0, 1))
-#	print($navigation_component.get_neighbors(terrain.local_to_map(terrain.to_local(global_position))))
-	print(path)
+	if is_on_floor() and player.is_on_floor():
+		var working_path = $navigation_component.A_Star($navigation_component.global_to_map(global_position), $navigation_component.global_to_map(player.global_position) + Vector2i(0, 1))
+		if not working_path.is_empty():
+			path = working_path
+#		print($navigation_component.get_neighbors(Vector2i(52, -8)))
 
 
 func die():

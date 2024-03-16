@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dlastvpbnx1rw"
-path="res://.godot/imported/Wersja_Git_1.png .png-bd31e9c97b9c252861895aaff1a8b7d0.ctex"
+path="res://.godot/imported/Wersja_Git_1.png.png-b8054da75517ab2c01274a0955587587.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/player/jump/Wersja_Git_1.png .png"
-dest_files=["res://.godot/imported/Wersja_Git_1.png .png-bd31e9c97b9c252861895aaff1a8b7d0.ctex"]
+source_file="res://textures/player/jump/Wersja_Git_1.png.png"
+dest_files=["res://.godot/imported/Wersja_Git_1.png.png-b8054da75517ab2c01274a0955587587.ctex"]
 
 [params]
 

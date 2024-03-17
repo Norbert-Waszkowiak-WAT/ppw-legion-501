@@ -10,6 +10,7 @@ extends State
 func enter():
 	player.sprite.animation = "idle"
 	player.dir = 0
+	PlayerVariables.double_jumped = false
 
 
 # Wywoływana na każdej klatce

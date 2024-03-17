@@ -14,9 +14,15 @@ func enter():
 # Wywoływana na każdej klatce
 func process(_delta: float) -> State:
 	if player.is_processing_input():
-		# Kolejkowanie skoku
-		if Input.is_action_just_pressed("jump") and not player.is_on_floor():
-			player.queued_jump = true
+		if Input.is_action_just_pressed("jump"):
+			# Double jump
+			if PlayerVariables.abilities.double_jump and not PlayerVariables.double_jumped:
+				PlayerVariables.double_jumped = true
+				return jump
+			# Kolejkowanie skoku
+			elif not player.is_on_floor():
+				player.queued_jump = true
+		
 		
 		if Input.is_action_pressed("move_right"):
 			player.set_direction("right")

@@ -13,6 +13,8 @@ var abilities = {
 	# Magic
 }
 
+var double_jumped : bool = false
+
 var skill_points : float
 
 var health : float

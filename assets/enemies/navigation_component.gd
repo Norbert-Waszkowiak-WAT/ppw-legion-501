@@ -80,8 +80,14 @@ func A_Star(starting_point : Vector2i, goal : Vector2i) -> Array:
 		open_set.erase(current)
 		f_score.erase(current)
 		for neighbor in neighbors.keys():
-			var tentative_g_score = g_score[current] + heuristic(current, neighbor)
-			if neighbors[neighbor] != "walk_left" or neighbors[neighbor] != "walk_right": tentative_g_score *= 6
+			var distance = 1
+			if neighbors[neighbor] == "jump_left" or neighbors[neighbor] == "jump_right":
+				distance += 5
+			elif neighbors[neighbor] == "jump_slow_left" or neighbors[neighbor] == "jump_slow_right":
+				distance += 5
+				
+			var tentative_g_score = g_score[current] + distance
+			
 			if (g_score.has(neighbor) and tentative_g_score < g_score[neighbor]) or !g_score.has(neighbor):
 				came_from[neighbor] = [current, neighbors[neighbor]]
 				g_score[neighbor] = tentative_g_score
@@ -96,30 +102,9 @@ func get_neighbors(waypoint : Vector2i) -> Dictionary:
 	var waypoints = terrain.get_used_cells(3)
 	
 	var waypoint_position = map_to_global(waypoint)
-	#print(waypoint_position)
 	var jump_right = calculate_trajectory(get_physics_process_delta_time(), 1, waypoint_position, parent.chase_speed)
 	var jump_left = calculate_trajectory(get_physics_process_delta_time(), -1, waypoint_position, parent.chase_speed)
-	var jump_slow_right = calculate_trajectory(get_physics_process_delta_time(), 1, waypoint_position, parent.idle_speed)
-	var jump_slow_left = calculate_trajectory(get_physics_process_delta_time(), -1, waypoint_position, parent.idle_speed)
 	
-	
-	
-	if jump_right:
-		var collision_position = global_to_map(jump_right.get_position() + Vector2(0, -1))
-		if collision_position in waypoints:
-			neighbors[collision_position] = "jump_right"
-	if jump_left:
-		var collision_position = global_to_map(jump_left.get_position() + Vector2(0, -1))
-		if collision_position in waypoints:
-			neighbors[collision_position] = "jump_left"
-	if jump_slow_right:
-		var collision_position = global_to_map(jump_slow_right.get_position() + Vector2(0, -1))
-		if collision_position in waypoints:
-			neighbors[collision_position] = "jump_slow_right"
-	if jump_slow_left:
-		var collision_position = global_to_map(jump_slow_left.get_position() + Vector2(0, -1))
-		if collision_position in waypoints:
-			neighbors[collision_position] = "jump_slow_left"
 	
 	if terrain.get_neighbor_cell(waypoint, 0) in waypoints:
 		neighbors[terrain.get_neighbor_cell(waypoint, 0)] = "walk_right"
@@ -141,6 +126,15 @@ func get_neighbors(waypoint : Vector2i) -> Dictionary:
 		collision_position = global_to_map(result.position) + Vector2i(0, -1)
 		if collision_position in waypoints and collision_position not in neighbors:
 			neighbors[collision_position] = "walk_left"
+	
+	if jump_right:
+		collision_position = global_to_map(jump_right.get_position() + Vector2(0, -1))
+		if collision_position in waypoints:
+			neighbors[collision_position] = "jump_right"
+	if jump_left:
+		collision_position = global_to_map(jump_left.get_position() + Vector2(0, -1))
+		if collision_position in waypoints:
+			neighbors[collision_position] = "jump_left"
 	
 	return neighbors
 

@@ -21,6 +21,10 @@ func process(_delta: float) -> State:
 			player.set_direction("left")
 		else:
 			player.set_direction("0")
+		# Double jump
+		if Input.is_action_just_pressed("jump") and PlayerVariables.abilities.double_jump and not PlayerVariables.double_jumped:
+			PlayerVariables.double_jumped = true
+			return self
 	return null
 
 

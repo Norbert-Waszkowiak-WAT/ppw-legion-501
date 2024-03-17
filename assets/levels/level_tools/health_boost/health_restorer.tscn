@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bydgx2tg4seyx"]
+[gd_scene load_steps=13 format=3 uid="uid://bydgx2tg4seyx"]
 
 [ext_resource type="Texture2D" uid="uid://drakothn578x7" path="res://textures/test_health_restore/health_restorer_1.png" id="1_seeor"]
 [ext_resource type="Texture2D" uid="uid://ck0lfnndyo0tk" path="res://textures/test_health_restore/health_restorer_2.png" id="2_d2sl5"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://b5qs656l34hv1" path="res://textures/test_health_restore/health_restorer_6.png" id="6_ufbbe"]
 [ext_resource type="Texture2D" uid="uid://dkkxfyns1jw5n" path="res://textures/test_health_restore/health_restorer_empty_new.png" id="7_u5kk8"]
 [ext_resource type="Texture2D" uid="uid://dkjupsogc4axj" path="res://textures/test_health_restore/health_restorer_full_new.png" id="8_duntc"]
+[ext_resource type="Texture2D" uid="uid://cw20phvyknlb4" path="res://textures/test_health_restore/point_light.webp" id="10_37dib"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_uwqjm"]
 animations = [{
@@ -57,6 +58,7 @@ scale = Vector2(64, 64)
 sprite_frames = SubResource("SpriteFrames_uwqjm")
 animation = &"empty"
 script = ExtResource("3_6r618")
+animation_timer = 0.7
 
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2(-0.5, 5.5)
@@ -66,3 +68,10 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0.546875, -3.46875)
 shape = SubResource("RectangleShape2D_d7ws6")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(0, 0.980392, 0, 1)
+range_z_max = 0
+shadow_enabled = true
+texture = ExtResource("10_37dib")
+texture_scale = 0.3

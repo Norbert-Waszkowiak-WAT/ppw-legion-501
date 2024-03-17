@@ -11,6 +11,7 @@ extends State
 # Wywoływana gdy gracz wchodzi w stan
 func enter():
 	player.sprite.animation = "walk"
+	PlayerVariables.double_jumped = false
 
 
 # Wywoływana na każdej klatce

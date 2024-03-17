@@ -4,6 +4,8 @@ extends Weapon
 
 @onready var sprite = get_parent()
 @onready var gun_sprite = get_node("AnimatedSprite2D")
+@onready var camera = get_node("../../Camera2D")
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -19,6 +21,7 @@ func _process(_delta):
 
 func attack():
 	if $attack_timer.is_stopped():
+		#camera.add_trauma(0.2)
 		gun_sprite.animation = "attack"
 		$AudioStreamPlayer2D.play()
 		

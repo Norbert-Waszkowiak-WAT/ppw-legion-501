@@ -287,22 +287,20 @@ func check_movement():
 				elif action == "jump_right":
 					jump()
 					walk(distance, 1, chase_speed)
-				elif action == "jump_slow_right":
-					jump()
-					walk(distance, 1, idle_speed)
 				
 				if action == "walk_left":
 					walk(distance, -1, chase_speed)
 				elif action == "jump_left":
 					jump()
 					walk(distance, -1, chase_speed)
-				elif action == "jump_slow_left":
-					jump()
-					walk(distance, -1, idle_speed)
 				
 				path.remove_at(0)
-			elif path.size() == 1:
-				update_path()
+			if path.size() == 1:
+				path = []
+				$navigation_timer.wait_time = 0.05
+			elif path.size() > 1:
+				$navigation_timer.wait_time = 1
+
 		states.idle:
 			if !$left_short.get_collider() and dir == -1 and is_on_floor():
 				dir = 0
@@ -311,9 +309,9 @@ func check_movement():
 
 
 func turn_towards_player():
-	if position.x > player.position.x - 10 and position.x < player.position.x + 10:
+	if global_position.x > player.global_position.x - 5 and global_position.x < player.global_position.x + 5:
 		dir = 0
-	elif position.direction_to(player.position).x > 0:
+	elif global_position.direction_to(player.global_position).x > 0:
 		dir = 1
 	else:
 		dir = -1
@@ -339,7 +337,8 @@ func update_path():
 		var working_path = $navigation_component.A_Star($navigation_component.global_to_map(global_position), $navigation_component.global_to_map(player.global_position) + Vector2i(0, 1))
 		if not working_path.is_empty():
 			path = working_path
-#		print($navigation_component.get_neighbors(Vector2i(52, -8)))
+		else:
+			$navigation_timer.wait_time = 2
 
 
 func die():

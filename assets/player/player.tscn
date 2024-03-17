@@ -1,6 +1,7 @@
-[gd_scene load_steps=26 format=3 uid="uid://b8kl60fulqq1u"]
+[gd_scene load_steps=28 format=3 uid="uid://b8kl60fulqq1u"]
 
 [ext_resource type="Script" path="res://assets/player/player.gd" id="1_xhwip"]
+[ext_resource type="Script" path="res://assets/player/Camera2D.gd" id="2_2bp8c"]
 [ext_resource type="Texture2D" uid="uid://bg1sjscorno7f" path="res://textures/player/idle/Standing-1.png" id="2_5gioq"]
 [ext_resource type="Texture2D" uid="uid://dfyto435cnmm4" path="res://textures/player/running/Grafika_bez_nazwy-1 2.png" id="2_5s25u"]
 [ext_resource type="Texture2D" uid="uid://1nn7k62hhxpt" path="res://textures/player/running/Grafika_bez_nazwy-2 2.png" id="3_50rl1"]
@@ -24,6 +25,8 @@
 [ext_resource type="Script" path="res://assets/player/states/jump.gd" id="10_x52e5"]
 [ext_resource type="Script" path="res://assets/player/states/fall.gd" id="11_h6ekv"]
 [ext_resource type="PackedScene" uid="uid://bt3ngcbslwttq" path="res://assets/weapons/gun/gun.tscn" id="15_scggg"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_w7ylu"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_lbsb1"]
 animations = [{
@@ -124,6 +127,10 @@ drag_left_margin = 0.05
 drag_top_margin = 0.5
 drag_right_margin = 0.05
 drag_bottom_margin = 0.5
+script = ExtResource("2_2bp8c")
+decay = 0.5
+max_offset = Vector2(50, 20)
+noise = SubResource("FastNoiseLite_w7ylu")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1

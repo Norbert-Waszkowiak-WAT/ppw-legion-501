@@ -5,8 +5,9 @@ var damage : float
 var knockback : float
 var direction : float
 
-@onready var sprite = get_node("Area2D/AnimatedSprite2D")
+@onready var sprite = get_node("Sprite2D")
 
+var emitting : bool = false
 
 
 func _ready():
@@ -18,8 +19,13 @@ func _physics_process(_delta):
 		set_physics_process(false)
 		if target is Enemy:
 			target.apply_damage(damage, knockback, global_position)
-		sprite.play("hit")
-		await sprite.animation_finished
-		queue_free()
+		sprite.hide()
+		$GPUParticles2D.emitting = true
+		emitting = true
 	
 	move_and_slide()
+
+
+func _process(delta):
+	if emitting == true and $GPUParticles2D.emitting == false:
+		queue_free()

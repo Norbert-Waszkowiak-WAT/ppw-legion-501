@@ -59,6 +59,7 @@ func _on_back_pressed():
 
 # Animacja gracza po włączeniu gry
 func startup_animation():
+	set_process(false)
 	# Wyłącza przyciski
 	set_buttons_disabled(true)
 	
@@ -74,7 +75,7 @@ func startup_animation():
 		tween.tween_callback($MarginContainer/VBoxContainer/main_screen/new_game.grab_focus)
 	
 	tween.tween_property($MarginContainer/VBoxContainer, "modulate:a", 1.0, 2 * startup_delay / 3)
-	
+	tween.tween_callback(set_process.bind(true))
 	
 	
 	# Pojawienie się gracza, wyłączenie kontroli nad nim

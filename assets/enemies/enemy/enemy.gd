@@ -338,7 +338,7 @@ func update_path():
 		if not working_path.is_empty():
 			path = working_path
 		else:
-			$navigation_timer.wait_time = 2
+			$navigation_timer.wait_time = 1
 
 
 func die():

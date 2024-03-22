@@ -58,22 +58,26 @@ theme_override_constants/separation = 17
 
 [node name="new_game" type="Button" parent="MarginContainer/VBoxContainer/main_screen"]
 texture_filter = 1
+custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 size_flags_stretch_ratio = 0.0
 focus_neighbor_top = NodePath("../exit")
 theme = ExtResource("3_6h6dh")
+theme_override_font_sizes/font_size = 70
 text = "new game"
 icon_alignment = 1
 expand_icon = true
 
 [node name="continue" type="Button" parent="MarginContainer/VBoxContainer/main_screen"]
 texture_filter = 1
+custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = ExtResource("3_6h6dh")
+theme_override_font_sizes/font_size = 70
 text = "continue"
 flat = true
 icon_alignment = 1
@@ -81,10 +85,12 @@ expand_icon = true
 
 [node name="settings" type="Button" parent="MarginContainer/VBoxContainer/main_screen"]
 texture_filter = 1
+custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = ExtResource("3_6h6dh")
+theme_override_font_sizes/font_size = 70
 text = "settings"
 flat = true
 icon_alignment = 1
@@ -92,11 +98,13 @@ expand_icon = true
 
 [node name="exit" type="Button" parent="MarginContainer/VBoxContainer/main_screen"]
 texture_filter = 1
+custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 focus_neighbor_bottom = NodePath("../new_game")
 theme = ExtResource("3_6h6dh")
+theme_override_font_sizes/font_size = 70
 text = "exit"
 flat = true
 icon_alignment = 1

@@ -11,6 +11,10 @@
 [ext_resource type="PackedScene" uid="uid://c53i7mvtd0bbx" path="res://assets/enemies/test_enemy/test-enemy.tscn" id="9_x4bq1"]
 
 [sub_resource type="Environment" id="Environment_gw4jw"]
+background_mode = 3
+tonemap_mode = 3
+glow_enabled = true
+glow_hdr_threshold = 1.5
 
 [node name="Level" type="Node"]
 script = ExtResource("1_j0jb0")

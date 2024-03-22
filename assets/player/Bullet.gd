@@ -12,6 +12,7 @@ var emitting : bool = false
 
 func _ready():
 	velocity.x = speed_of_bullet * direction
+	velocity.y = ((randf() - 0.5) / 9) * speed_of_bullet
 	
 
 func _physics_process(_delta):

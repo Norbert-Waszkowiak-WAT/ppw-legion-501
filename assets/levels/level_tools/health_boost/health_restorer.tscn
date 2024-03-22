@@ -1,39 +1,43 @@
-[gd_scene load_steps=13 format=3 uid="uid://bydgx2tg4seyx"]
+[gd_scene load_steps=14 format=3 uid="uid://bydgx2tg4seyx"]
 
-[ext_resource type="Texture2D" uid="uid://drakothn578x7" path="res://textures/test_health_restore/health_restorer_1.png" id="1_seeor"]
-[ext_resource type="Texture2D" uid="uid://ck0lfnndyo0tk" path="res://textures/test_health_restore/health_restorer_2.png" id="2_d2sl5"]
+[ext_resource type="Texture2D" uid="uid://bqmspq8jhhirp" path="res://textures/test_health_restore/health_booster_1.png" id="1_c7vrw"]
+[ext_resource type="Texture2D" uid="uid://dgpkhf6tm7ija" path="res://textures/test_health_restore/health_booster_2.png" id="2_e3tij"]
 [ext_resource type="Script" path="res://assets/levels/level_tools/health_boost/health_restorer.gd" id="3_6r618"]
-[ext_resource type="Texture2D" uid="uid://cwvix314kuota" path="res://textures/test_health_restore/health_restorer_3.png" id="3_byt4q"]
-[ext_resource type="Texture2D" uid="uid://uxbk4w1s0fwm" path="res://textures/test_health_restore/health_restorer_4.png" id="4_eysnv"]
-[ext_resource type="Texture2D" uid="uid://j5edrsjhocna" path="res://textures/test_health_restore/health_restorer_5.png" id="5_3nwuu"]
-[ext_resource type="Texture2D" uid="uid://b5qs656l34hv1" path="res://textures/test_health_restore/health_restorer_6.png" id="6_ufbbe"]
-[ext_resource type="Texture2D" uid="uid://dkkxfyns1jw5n" path="res://textures/test_health_restore/health_restorer_empty_new.png" id="7_u5kk8"]
-[ext_resource type="Texture2D" uid="uid://dkjupsogc4axj" path="res://textures/test_health_restore/health_restorer_full_new.png" id="8_duntc"]
+[ext_resource type="Texture2D" uid="uid://dt04274vwk18j" path="res://textures/test_health_restore/health_booster_3.png" id="3_8f0r2"]
+[ext_resource type="Texture2D" uid="uid://cu72i4q3hs3cr" path="res://textures/test_health_restore/health_booster_4.png" id="4_k1utj"]
+[ext_resource type="Texture2D" uid="uid://d4ktvd5bkdr7b" path="res://textures/test_health_restore/health_booster_5.png" id="5_v7hrm"]
+[ext_resource type="Texture2D" uid="uid://31x3ttnpsppf" path="res://textures/test_health_restore/health_booster_6.png" id="6_66fqn"]
+[ext_resource type="Texture2D" uid="uid://c70fvkvym16bt" path="res://textures/test_health_restore/health_booster_7.png" id="7_p7gtu"]
+[ext_resource type="Texture2D" uid="uid://dxjcl3d88tb83" path="res://textures/test_health_restore/health_booster_8.png" id="8_d360t"]
 [ext_resource type="Texture2D" uid="uid://cw20phvyknlb4" path="res://textures/test_health_restore/point_light.webp" id="10_37dib"]
+[ext_resource type="Texture2D" uid="uid://b6j8v18pp3mf8" path="res://textures/test_health_restore/health_booster_base.png" id="10_67ja1"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_uwqjm"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_seeor")
+"texture": ExtResource("1_c7vrw")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_d2sl5")
+"texture": ExtResource("2_e3tij")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_byt4q")
+"texture": ExtResource("3_8f0r2")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_eysnv")
+"texture": ExtResource("4_k1utj")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_3nwuu")
+"texture": ExtResource("5_v7hrm")
 }, {
 "duration": 1.0,
-"texture": ExtResource("6_ufbbe")
+"texture": ExtResource("6_66fqn")
 }, {
 "duration": 1.0,
-"texture": ExtResource("7_u5kk8")
+"texture": ExtResource("7_p7gtu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_d360t")
 }],
 "loop": false,
 "name": &"empty",
@@ -41,7 +45,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("8_duntc")
+"texture": ExtResource("1_c7vrw")
 }],
 "loop": true,
 "name": &"full",
@@ -61,6 +65,10 @@ animation = &"empty"
 script = ExtResource("3_6r618")
 animation_timer = 0.7
 
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -1
+texture = ExtResource("10_67ja1")
+
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2(-0.5, 5.5)
 collision_layer = 0
@@ -71,7 +79,9 @@ position = Vector2(0.546875, -3.46875)
 shape = SubResource("RectangleShape2D_d7ws6")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
+visible = false
 color = Color(0, 0.980392, 0, 1)
+energy = 0.45
 range_z_max = 0
 shadow_enabled = true
 texture = ExtResource("10_37dib")

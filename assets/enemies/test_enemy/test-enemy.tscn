@@ -12,6 +12,7 @@ bg_color = Color(0, 0, 0, 0.231373)
 bg_color = Color(0.933333, 0.352941, 0.352941, 1)
 
 [node name="Enemy" type="CharacterBody2D" groups=["enemy"]]
+scale = Vector2(1.2, 1.2)
 collision_layer = 4
 collision_mask = 9
 floor_stop_on_slope = false
@@ -32,7 +33,7 @@ memory_time = 20.0
 attack_time = 0.5
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(-2, -2, 0, -6, 2, -2, 2, 5, 0, 6, -2, 5)
+polygon = PackedVector2Array(-2, -3, 0, -6, 2, -3, 2, 5, 0, 6, -2, 5)
 
 [node name="AnimatedSprite2D" type="Sprite2D" parent="."]
 texture_filter = 3

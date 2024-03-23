@@ -4,6 +4,7 @@ class_name Level
 
 signal pause(value : bool)
 
+var was_playing = {}
 @export var next_level : String
 
 
@@ -63,13 +64,18 @@ func spawn_enemy(enemy_type : PackedScene, pos : Vector2):
 func set_paused(value : bool):
 	pause.emit(value)
 	value = !value
-#	print(find_children("*"))`
 	for i in find_children("*", "Node", true, false):
 		if i is AnimatedSprite2D:
-			if value == false:
-				i.pause()
-			else:
-				i.play()
+			match value:
+				false:
+					if i.is_playing():
+						was_playing[i] = true
+						i.pause()
+					else:
+						was_playing[i] = false
+				true:
+					if was_playing[i] == true:
+						i.play()
 		i.set_process(value)
 		i.set_physics_process(value)
 		i.set_process_input(value)

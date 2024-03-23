@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cf3wk0airgvkk"]
+[gd_scene load_steps=11 format=3 uid="uid://cf3wk0airgvkk"]
 
 [ext_resource type="Script" path="res://assets/levels/demo_level/demo_level.gd" id="1_fv6t2"]
 [ext_resource type="PackedScene" uid="uid://b8kl60fulqq1u" path="res://assets/player/player.tscn" id="3_31jct"]
@@ -9,6 +9,20 @@
 [ext_resource type="PackedScene" uid="uid://8miuhs6420nd" path="res://assets/levels/level_tools/enemy_spawnpoint.tscn" id="8_fpu64"]
 [ext_resource type="PackedScene" uid="uid://c53i7mvtd0bbx" path="res://assets/enemies/test_enemy/test-enemy.tscn" id="9_qusl4"]
 [ext_resource type="PackedScene" uid="uid://btj05ng28fe4m" path="res://assets/levels/level_tools/winning_area.tscn" id="10_3elq4"]
+
+[sub_resource type="Environment" id="Environment_smyx4"]
+background_mode = 3
+ambient_light_source = 1
+ambient_light_energy = 4.2
+reflected_light_source = 1
+tonemap_mode = 3
+glow_enabled = true
+glow_levels/1 = 1.0
+glow_intensity = 0.4
+glow_bloom = 0.1
+glow_blend_mode = 1
+glow_hdr_threshold = 1.5
+glow_hdr_scale = 1.5
 
 [node name="Level" type="Node"]
 script = ExtResource("1_fv6t2")
@@ -111,3 +125,6 @@ enemy_type = ExtResource("9_qusl4")
 
 [node name="winning_area" parent="winning_areas" instance=ExtResource("10_3elq4")]
 position = Vector2(955, -10)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_smyx4")

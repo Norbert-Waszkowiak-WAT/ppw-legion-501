@@ -26,7 +26,7 @@ glow_hdr_scale = 1.5
 
 [node name="Level" type="Node"]
 script = ExtResource("1_j0jb0")
-next_level = "res://assets/levels/demo_level/demo_level.tscn"
+next_level = "res://assets/levels/tutorial_level/tutorial_level.tscn"
 
 [node name="player" parent="." instance=ExtResource("2_w8aub")]
 visible = false
@@ -35,6 +35,7 @@ position = Vector2(28, -16)
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 scale = Vector2(0.3, 0.3)
 transform = Transform2D(0.3, 0, 0, 0.3, 0, 0)
+scroll_offset = Vector2(388.38, 552.64)
 
 [node name="background_layer" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_scale = Vector2(0.5, 3)
@@ -56,19 +57,6 @@ texture = ExtResource("6_f8kjs")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_gw4jw")
-
-[node name="CanvasModulate" type="CanvasModulate" parent="."]
-visible = false
-scale = Vector2(0.01, 0.01)
-color = Color(0.709804, 0.694118, 0.694118, 1)
-
-[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
-visible = false
-rotation = -0.127409
-energy = 0.42
-shadow_enabled = true
-shadow_filter = 1
-max_distance = 100.0
 
 [node name="terrain" type="TileMap" parent="."]
 scale = Vector2(0.01, 0.01)

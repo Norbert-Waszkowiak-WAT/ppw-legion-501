@@ -10,7 +10,7 @@ func _ready():
 	set_process(false)
 	$MarginContainer/VBoxContainer/resume.grab_focus()
 	var tween = create_tween().set_parallel(true).set_trans(Tween.TRANS_BACK)
-	tween.tween_property($background, "color:a", 0.3, anim_time)
+	tween.tween_property($background, "color:a", 0.7, anim_time)
 	tween.tween_property($MarginContainer, "position", Vector2(0, 0), 2 * anim_time)
 	for i in hud.get_children():
 		tween.tween_property(i, "modulate:a", 0, anim_time)

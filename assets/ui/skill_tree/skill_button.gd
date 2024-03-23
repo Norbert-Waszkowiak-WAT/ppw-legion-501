@@ -2,6 +2,9 @@ extends TextureButton
 
 # Odniesienie do poprzedniej umiejętności
 @export var previous_button : Node
+# Wykluczające się umiejętności
+@export var excluded_buttons : Array[Node]
+var excluded : bool = false
 # Nazwa umiejętności (musi się zgadzać z player_variables.gd)
 @export var ability_name : String
 # Opis umiejętności
@@ -30,10 +33,20 @@ func _process(delta):
 		line.add_point(global_position + size/2)
 		line.add_point(previous_button.global_position + size/2)
 		# Blokuje umiejętność jeśli poprzednia nie jest odblokowana
-		if (PlayerVariables.skill_points > 0 or button_pressed) and (previous_button and previous_button.button_pressed):
+		if (PlayerVariables.skill_points > 0 or button_pressed) and (previous_button and previous_button.button_pressed) and !excluded:
 			disabled = false
 		else:
 			disabled = true
+	elif excluded:
+		disabled = true
+	else:
+		disabled = false
+	
+	for excluded_button in excluded_buttons:
+		if button_pressed:
+			excluded_button.excluded = true
+		else:
+			excluded_button.excluded = false
 	
 	# Wizualne efekty przycisku (tymczasowe)
 	if disabled:
@@ -43,7 +56,7 @@ func _process(delta):
 		line.self_modulate = Color(0.2, 0.2, 0.2)
 	elif button_pressed:
 		# Odblokowana
-		self_modulate = Color(1.5, 1.5, 1.5)
+		self_modulate = Color(1.2, 1.2, 1.2)
 		line.self_modulate = Color(1, 1, 1)
 	else:
 		# Możliwa do kupienia
@@ -51,7 +64,7 @@ func _process(delta):
 		line.self_modulate = Color(0.5, 0.5, 0.5)
 	if is_hovered() and !disabled:
 		# Najechana myszką
-		self_modulate = Color(2, 2, 2)
+		self_modulate = Color(1.4, 1.4, 1.4)
 	
 	# Wyłącza możliwość odblokowania umiejętności, jeśli gracza na to nie stać
 	if PlayerVariables.skill_points <= 0 and !button_pressed:

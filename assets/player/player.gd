@@ -175,9 +175,10 @@ func apply_damage(damage, knockback, pos : Vector2):
 
 # Odrzucenie podczas otrzymywania obrażeń
 func apply_knockback(strength, pos : Vector2):
-	taking_knockback = true
-	var direction = pos.direction_to(global_position) + Vector2(0, -1.5)
-	velocity = direction.normalized() * strength * knockback_multiplier
+	if strength != 0:
+		taking_knockback = true
+		var direction = pos.direction_to(global_position) + Vector2(0, -1.5)
+		velocity = direction.normalized() * strength * knockback_multiplier
 
 
 # Ustawienie koloru gracza na standardowy
@@ -240,8 +241,12 @@ func invincibility_frames():
 # Update broni
 func process_weapons():
 	if is_processing_input():
-		if Input.is_action_just_pressed("attack") and selected_weapon:
-			selected_weapon.attack()
+		if selected_weapon and selected_weapon.automatic == false:
+			if Input.is_action_just_pressed("attack"):
+				selected_weapon.attack()
+		elif selected_weapon:
+			if Input.is_action_pressed("attack"):
+				selected_weapon.attack()
 
 
 func switch_weapon(weapon : int):

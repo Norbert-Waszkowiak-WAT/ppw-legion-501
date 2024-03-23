@@ -137,9 +137,24 @@ layout_mode = 2
 theme_override_constants/separation = 319
 alignment = 1
 
-[node name="ranged_1" parent="MarginContainer/VBoxContainer/Panel/MarginContainer/TabContainer/Ranged" instance=ExtResource("2_1v6ce")]
+[node name="VBoxContainer3" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Panel/MarginContainer/TabContainer/Ranged"]
+layout_mode = 2
+theme_override_constants/separation = 220
+alignment = 1
+
+[node name="high_speed" parent="MarginContainer/VBoxContainer/Panel/MarginContainer/TabContainer/Ranged/VBoxContainer3" node_paths=PackedStringArray("excluded_buttons") instance=ExtResource("2_1v6ce")]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
+excluded_buttons = [NodePath("../heavy_hitter")]
+ability_name = "high_speed_low_drag"
+description = "Increases rate of fire, decreases damage and accuracy."
+
+[node name="heavy_hitter" parent="MarginContainer/VBoxContainer/Panel/MarginContainer/TabContainer/Ranged/VBoxContainer3" node_paths=PackedStringArray("excluded_buttons") instance=ExtResource("2_1v6ce")]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+excluded_buttons = [NodePath("../high_speed")]
+ability_name = "heavy_hitter"
+description = "Increases damage and accuracy, decreases rate of fire."
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Panel/MarginContainer/TabContainer/Ranged"]
 layout_mode = 2

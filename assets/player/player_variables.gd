@@ -6,9 +6,11 @@ var abilities = {
 	"dash": false,
 	
 	# Melee
-	"deflect": false
+	"deflect": false,
 	
 	# Ranged
+	"high_speed_low_drag": false,
+	"heavy_hitter": false
 	
 	# Magic
 }
@@ -49,7 +51,7 @@ func load_game(file_index : String):
 	if FileAccess.file_exists("user://save_slot_" + file_index + ".save"):
 		var file = FileAccess.open("user://save_slot_" + file_index + ".save", FileAccess.READ)
 
-		abilities = file.get_var()
+		abilities.merge(file.get_var(), true)
 		exp_lvl = file.get_var()
 		MAX_EXP = file.get_var()
 		experience = file.get_var()

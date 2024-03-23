@@ -1,0 +1,77 @@
+[gd_scene load_steps=10 format=3 uid="uid://wen0jsa5rxm4"]
+
+[ext_resource type="Script" path="res://assets/levels/demo_level/demo_level.gd" id="1_kofr6"]
+[ext_resource type="PackedScene" uid="uid://b8kl60fulqq1u" path="res://assets/player/player.tscn" id="2_7xbbf"]
+[ext_resource type="Texture2D" uid="uid://ctjk0fh1y7pbc" path="res://textures/level1/Tlo1.png" id="3_vs4xt"]
+[ext_resource type="TileSet" uid="uid://dfi3xlrx7twl8" path="res://assets/levels/test_level/test_level.tres" id="4_pb5m5"]
+[ext_resource type="PackedScene" uid="uid://c4bbjae7r4w7y" path="res://assets/levels/level_tools/player_spawnpoint.tscn" id="5_x2hfn"]
+[ext_resource type="PackedScene" uid="uid://8miuhs6420nd" path="res://assets/levels/level_tools/enemy_spawnpoint.tscn" id="6_od3nh"]
+[ext_resource type="PackedScene" uid="uid://c53i7mvtd0bbx" path="res://assets/enemies/test_enemy/test-enemy.tscn" id="7_j722c"]
+[ext_resource type="PackedScene" uid="uid://btj05ng28fe4m" path="res://assets/levels/level_tools/winning_area.tscn" id="8_6fdr3"]
+
+[sub_resource type="Environment" id="Environment_smyx4"]
+background_mode = 3
+ambient_light_source = 1
+ambient_light_energy = 4.2
+reflected_light_source = 1
+tonemap_mode = 3
+glow_enabled = true
+glow_levels/1 = 1.0
+glow_intensity = 0.4
+glow_bloom = 0.1
+glow_blend_mode = 1
+glow_hdr_threshold = 1.5
+glow_hdr_scale = 1.5
+
+[node name="Level" type="Node"]
+script = ExtResource("1_kofr6")
+next_level = "res://assets/levels/test_level/test_level.tscn"
+
+[node name="player" parent="." instance=ExtResource("2_7xbbf")]
+visible = false
+position = Vector2(28, -16)
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+visible = false
+scale = Vector2(0.3, 0.3)
+transform = Transform2D(0.3, 0, 0, 0.3, 0, 0)
+
+[node name="background_layer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.5, 3)
+motion_offset = Vector2(0, -150)
+motion_mirroring = Vector2(2027, 0)
+
+[node name="Tlo1" type="Sprite2D" parent="ParallaxBackground/background_layer"]
+scale = Vector2(0.495, 0.495)
+texture = ExtResource("3_vs4xt")
+
+[node name="terrain" type="TileMap" parent="."]
+scale = Vector2(0.01, 0.01)
+tile_set = ExtResource("4_pb5m5")
+format = 2
+layer_0/name = "terrain"
+layer_0/z_index = 1
+layer_1/name = "background2"
+layer_1/modulate = Color(0.443137, 0.443137, 0.443137, 1)
+layer_1/z_index = -1
+layer_1/tile_data = PackedInt32Array()
+layer_2/name = "background1"
+layer_2/modulate = Color(0.682353, 0.682353, 0.682353, 1)
+layer_2/tile_data = PackedInt32Array()
+layer_3/name = "navigation"
+layer_3/z_index = 2
+layer_3/tile_data = PackedInt32Array()
+
+[node name="player_spawnpoint" parent="." instance=ExtResource("5_x2hfn")]
+
+[node name="spawnpoints" type="Node" parent="."]
+
+[node name="enemy_spawnpoint" parent="spawnpoints" instance=ExtResource("6_od3nh")]
+enemy_type = ExtResource("7_j722c")
+
+[node name="winning_areas" type="Node" parent="."]
+
+[node name="winning_area" parent="winning_areas" instance=ExtResource("8_6fdr3")]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_smyx4")

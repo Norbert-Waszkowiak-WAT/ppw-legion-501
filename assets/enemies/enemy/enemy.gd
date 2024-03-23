@@ -129,20 +129,20 @@ func _physics_process(delta):
 
 # Zadaje obrażenia oraz pokazuje pasek życia
 func apply_damage(damage, knockback, pos : Vector2):
-	if $damage_timer.is_stopped():
-		health -= damage
-		apply_knockback(knockback, pos)
-		$healthbar.show()
-		$health_timer.start()
-		$damage_timer.start()
-#		print("Enemy receives " + str(damage) + " damage.")
+	#if $damage_timer.is_stopped():
+	health -= damage
+	apply_knockback(knockback, pos)
+	$healthbar.show()
+	$health_timer.start()
+	$damage_timer.start()
 
 
 # Odrzucenie podczas otrzymywania obrażeń
 func apply_knockback(strength, pos : Vector2):
-	taking_knockback = true
-	var direction = pos.direction_to(position) + Vector2(0, -1.5)
-	velocity = direction * strength * knockback_multiplier
+	if strength != 0:
+		taking_knockback = true
+		var direction = pos.direction_to(position) + Vector2(0, -1.5)
+		velocity = direction * strength * knockback_multiplier
 
 
 # Ukrywa pasek życia po określonym czasie

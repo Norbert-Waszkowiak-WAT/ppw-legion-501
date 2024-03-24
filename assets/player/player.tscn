@@ -29,6 +29,9 @@
 [ext_resource type="AudioStream" uid="uid://bdis33wsr81xy" path="res://assets/player/sounds/gravel_land.ogg" id="21_vv04n"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_w7ylu"]
+noise_type = 3
+frequency = 0.0249
+metadata/_preview_in_3d_space_ = true
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_lbsb1"]
 animations = [{
@@ -120,6 +123,7 @@ position = Vector2(2, 0)
 polygon = PackedVector2Array(-12, 21, 8, 21, 8, 2, -2, -12, -12, 2)
 
 [node name="Camera2D" type="Camera2D" parent="."]
+ignore_rotation = false
 zoom = Vector2(8.04, 8.04)
 position_smoothing_enabled = true
 position_smoothing_speed = 6.0
@@ -129,8 +133,8 @@ drag_top_margin = 0.5
 drag_right_margin = 0.05
 drag_bottom_margin = 0.1
 script = ExtResource("2_2bp8c")
-decay = 0.5
-max_offset = Vector2(50, 20)
+max_offset = Vector2(10, 5)
+max_roll = 0.001
 noise = SubResource("FastNoiseLite_w7ylu")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

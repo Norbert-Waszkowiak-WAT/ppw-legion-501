@@ -2,6 +2,7 @@ extends Weapon
 
 @export var bullet_type : PackedScene
 var spread : float
+var trauma : float
 
 @export var gunshot_light : AudioStreamPlayer2D
 @export var gunshot_standard : AudioStreamPlayer2D
@@ -35,6 +36,7 @@ func _process(delta):
 		damage = 20
 		spread = 0.3
 		knockback = 15
+		trauma = 0.4
 		gunshot_sound = gunshot_heavy
 	elif PlayerVariables.abilities["high_speed_low_drag"] == true:
 		automatic = true
@@ -42,19 +44,21 @@ func _process(delta):
 		damage = 5
 		spread = 1.3
 		knockback = 0
+		trauma = 0.3
 		gunshot_sound = gunshot_light
 	else:
 		automatic = true
-		fire_rate = 400
-		damage = 10
+		fire_rate = 500
+		damage = 8
 		spread = 0.8
 		knockback = 0
+		trauma = 0.4
 		gunshot_sound = gunshot_standard
 
 
 func attack():
 	if attack_time <= 0:
-		#camera.add_trauma(0.2)
+		camera.add_trauma(trauma)
 		gun_sprite.animation = "attack"
 		gunshot_sound.play()
 		

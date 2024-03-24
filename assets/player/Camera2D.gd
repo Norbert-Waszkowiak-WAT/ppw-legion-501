@@ -8,8 +8,8 @@ extends Camera2D
 
 var noise_y = 0
 
-var trauma := 0.0
-var trauma_pwr := 3
+var trauma = 0.0
+var trauma_pwr = 2
 
 
 func _ready():
@@ -28,7 +28,8 @@ func _process(delta):
 
 
 func add_trauma(amount : float):
-	trauma = min(trauma + amount, 1.0)
+	#trauma = min(trauma + amount, 1.0)
+	trauma = min(amount, 1.0)
 
 
 func shake(): 

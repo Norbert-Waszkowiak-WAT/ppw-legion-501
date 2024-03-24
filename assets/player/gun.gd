@@ -33,19 +33,22 @@ func _process(delta):
 		automatic = false
 		fire_rate = 150
 		damage = 20
-		spread = 0.1
+		spread = 0.3
+		knockback = 15
 		gunshot_sound = gunshot_heavy
 	elif PlayerVariables.abilities["high_speed_low_drag"] == true:
 		automatic = true
 		fire_rate = 950
-		damage = 2
-		spread = 1
+		damage = 5
+		spread = 1.3
+		knockback = 0
 		gunshot_sound = gunshot_light
 	else:
 		automatic = true
 		fire_rate = 400
 		damage = 10
-		spread = 0.5
+		spread = 0.8
+		knockback = 0
 		gunshot_sound = gunshot_standard
 
 

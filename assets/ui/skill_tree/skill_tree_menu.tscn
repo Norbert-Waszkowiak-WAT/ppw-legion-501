@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://crl4bl20w7j5i"]
+[gd_scene load_steps=6 format=3 uid="uid://crl4bl20w7j5i"]
 
 [ext_resource type="Theme" uid="uid://di4l5lx6nd1kk" path="res://assets/ui/skill_tree/skill_tree.tres" id="1_qahuc"]
 [ext_resource type="Script" path="res://assets/ui/skill_tree/skill_tree_menu.gd" id="1_wct68"]
 [ext_resource type="PackedScene" uid="uid://bfqfqq7ggdc2o" path="res://assets/ui/skill_tree/skill_button.tscn" id="2_1v6ce"]
+[ext_resource type="Texture2D" uid="uid://ditdkglwr8n8c" path="res://textures/skill_tree/skill_buttons/high_speed.png" id="4_37r7e"]
+[ext_resource type="Texture2D" uid="uid://7lifsi78fvkm" path="res://textures/skill_tree/skill_buttons/heavy_hitter.png" id="5_vqvfa"]
 
 [node name="skill_tree_menu" type="CanvasLayer"]
 script = ExtResource("1_wct68")
@@ -145,6 +147,7 @@ alignment = 1
 [node name="high_speed" parent="MarginContainer/VBoxContainer/Panel/MarginContainer/TabContainer/Ranged/VBoxContainer3" node_paths=PackedStringArray("excluded_buttons") instance=ExtResource("2_1v6ce")]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
+texture_normal = ExtResource("4_37r7e")
 excluded_buttons = [NodePath("../heavy_hitter")]
 ability_name = "high_speed_low_drag"
 description = "Increases rate of fire, decreases damage and accuracy."
@@ -152,6 +155,7 @@ description = "Increases rate of fire, decreases damage and accuracy."
 [node name="heavy_hitter" parent="MarginContainer/VBoxContainer/Panel/MarginContainer/TabContainer/Ranged/VBoxContainer3" node_paths=PackedStringArray("excluded_buttons") instance=ExtResource("2_1v6ce")]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
+texture_normal = ExtResource("5_vqvfa")
 excluded_buttons = [NodePath("../high_speed")]
 ability_name = "heavy_hitter"
 description = "Increases damage and accuracy, decreases rate of fire."
@@ -161,26 +165,30 @@ layout_mode = 2
 theme_override_constants/separation = 220
 alignment = 1
 
-[node name="ranged_2" parent="MarginContainer/VBoxContainer/Panel/MarginContainer/TabContainer/Ranged/VBoxContainer" instance=ExtResource("2_1v6ce")]
+[node name="ranged_2" parent="MarginContainer/VBoxContainer/Panel/MarginContainer/TabContainer/Ranged/VBoxContainer" node_paths=PackedStringArray("previous_button") instance=ExtResource("2_1v6ce")]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
+previous_button = NodePath("../../VBoxContainer3/high_speed")
 
-[node name="ranged_3" parent="MarginContainer/VBoxContainer/Panel/MarginContainer/TabContainer/Ranged/VBoxContainer" instance=ExtResource("2_1v6ce")]
+[node name="ranged_3" parent="MarginContainer/VBoxContainer/Panel/MarginContainer/TabContainer/Ranged/VBoxContainer" node_paths=PackedStringArray("previous_button") instance=ExtResource("2_1v6ce")]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
+previous_button = NodePath("../../VBoxContainer3/heavy_hitter")
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Panel/MarginContainer/TabContainer/Ranged"]
 layout_mode = 2
 theme_override_constants/separation = 220
 alignment = 1
 
-[node name="ranged_4" parent="MarginContainer/VBoxContainer/Panel/MarginContainer/TabContainer/Ranged/VBoxContainer2" instance=ExtResource("2_1v6ce")]
+[node name="ranged_4" parent="MarginContainer/VBoxContainer/Panel/MarginContainer/TabContainer/Ranged/VBoxContainer2" node_paths=PackedStringArray("previous_button") instance=ExtResource("2_1v6ce")]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
+previous_button = NodePath("../../VBoxContainer/ranged_2")
 
-[node name="ranged_5" parent="MarginContainer/VBoxContainer/Panel/MarginContainer/TabContainer/Ranged/VBoxContainer2" instance=ExtResource("2_1v6ce")]
+[node name="ranged_5" parent="MarginContainer/VBoxContainer/Panel/MarginContainer/TabContainer/Ranged/VBoxContainer2" node_paths=PackedStringArray("previous_button") instance=ExtResource("2_1v6ce")]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
+previous_button = NodePath("../../VBoxContainer/ranged_3")
 
 [node name="Magic" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Panel/MarginContainer/TabContainer"]
 visible = false

@@ -3,14 +3,15 @@ extends CanvasLayer
 @onready var hud = get_node("../player/HUD")
 @onready var buttons = $MarginContainer/VBoxContainer.find_children("*", "Button")
 
-var exit_time : float = 1.0
-var anim_time : float = 0.5
+var exit_time : float = 0.5
+var anim_time : float = 0.3
 
 func _ready():
 	set_process(false)
 	$MarginContainer/VBoxContainer/resume.grab_focus()
-	var tween = create_tween().set_parallel(true).set_trans(Tween.TRANS_BACK)
+	var tween = create_tween().set_parallel(true).set_trans(Tween.TRANS_CIRC).set_ease(Tween.EASE_IN_OUT)
 	tween.tween_property($background, "color:a", 0.7, anim_time)
+	tween.tween_property($blur.material, "shader_parameter/lod", 3, anim_time)
 	tween.tween_property($MarginContainer, "position", Vector2(0, 0), 2 * anim_time)
 	for i in hud.get_children():
 		tween.tween_property(i, "modulate:a", 0, anim_time)
@@ -59,6 +60,7 @@ func unpause():
 	
 	var tween = create_tween().set_parallel(true).set_trans(Tween.TRANS_CUBIC)
 	tween.tween_property($background, "modulate:a", 0.0, anim_time)
+	tween.tween_property($blur.material, "shader_parameter/lod", 0, anim_time)
 	tween.tween_property($MarginContainer, "position", Vector2(0, -648), 2 * anim_time)
 	for i in hud.get_children():
 		tween.tween_property(i, "modulate:a", 1, anim_time)

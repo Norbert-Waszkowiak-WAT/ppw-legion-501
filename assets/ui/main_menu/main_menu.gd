@@ -16,9 +16,7 @@ var tween : Tween
 
 # Wywoływana na początku sceny
 func _ready():
-	
 	startup_animation()
-	#Narzuca focus sterowania klawiszami na nowa_gra
 
 
 func _process(_delta):

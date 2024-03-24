@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://r52wxhkrjxr2" path="res://textures/gun/bullets/bullet.png" id="3_v6xov"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_88vtq"]
-size = Vector2(65.8924, 31.5395)
+size = Vector2(92.2494, 42.0527)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1pxdx"]
 size = Vector2(16, 8)
@@ -16,6 +16,7 @@ collision_layer = 16
 collision_mask = 5
 script = ExtResource("1_wmqo0")
 speed_of_bullet = 250.0
+range = 170.0
 
 [node name="GPUParticles2D" parent="." instance=ExtResource("2_1lnd8")]
 
@@ -28,7 +29,7 @@ collision_layer = 16
 collision_mask = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(0.0450002, 0)
+position = Vector2(0.0449999, 1.78814e-07)
 scale = Vector2(0.303525, 0.380475)
 shape = SubResource("RectangleShape2D_88vtq")
 debug_color = Color(0, 0.6, 0.701961, 0.419608)

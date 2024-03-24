@@ -18,6 +18,7 @@ var dir: float = 0.0
 
 signal taking_damage
 
+var previous_frame : int = 0
 
 var taking_knockback : bool
 @export var knockback_multiplier : float = 1.0
@@ -75,6 +76,7 @@ func _process(delta):
 		die()
 	
 	process_weapons()
+	process_footstep_audio()
 
 
 # Obsługuje fizykę 
@@ -92,6 +94,12 @@ func _input(event):
 
 
 # | ============================================================================= |
+
+
+func process_footstep_audio():
+	if ((previous_frame == 1 and sprite.frame == 2) or (previous_frame == 5 and sprite.frame == 6)) and sprite.animation == "walk":
+		$footstep.play()
+	previous_frame = sprite.frame
 
 
 # Wyłącza funkcjonalność gracza (fizyka, poruszanie się)
@@ -176,8 +184,9 @@ func apply_damage(damage, knockback, pos : Vector2):
 # Odrzucenie podczas otrzymywania obrażeń
 func apply_knockback(strength, pos : Vector2):
 	if strength != 0:
+		pos += Vector2(0, 10)
 		taking_knockback = true
-		var direction = pos.direction_to(global_position) + Vector2(0, -1.5)
+		var direction = pos.direction_to(global_position)
 		velocity = direction.normalized() * strength * knockback_multiplier
 
 
@@ -207,7 +216,7 @@ func exp_bar_update():
 func die():
 	# Pojawia się menu śmierci
 	var death_menu = load("res://assets/ui/death_menu/death_menu.tscn").instantiate()
-	get_tree().get_root().get_child(1).add_child(death_menu)
+	get_parent().add_child(death_menu)
 	
 	# Zatrzymuje gracza jeśli chodził lub był w skoku
 	$state_machine.change_state($state_machine/idle)

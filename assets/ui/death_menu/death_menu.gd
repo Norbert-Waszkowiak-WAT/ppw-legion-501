@@ -10,13 +10,16 @@ var exit_time : float = 1.0
 
 
 func _ready():
-	get_parent().set_paused(true)
+	if get_parent().has_method("set_paused"):
+		get_parent().set_paused(true)
 	$MarginContainer/VBoxContainer/restart.grab_focus()
 	var tween = create_tween().set_parallel(true).set_trans(Tween.TRANS_BACK)
 	tween.tween_property($background, "color:a", 0.3, 1.0)
+	tween.tween_property($blur.material, "shader_parameter/lod", 2, 1.0)
 	tween.tween_property($MarginContainer, "position", Vector2(0, 0), 2.0)
-	for i in hud.get_children():
-		tween.tween_property(i, "modulate:a", 0, 1.0)
+	if hud:
+		for i in hud.get_children():
+			tween.tween_property(i, "modulate:a", 0, 1.0)
 
 
 func _process(delta):

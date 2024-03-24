@@ -20,14 +20,15 @@ func _ready():
 	$MarginContainer/VBoxContainer/next_level.grab_focus()
 	tween = create_tween().set_parallel(true).set_trans(Tween.TRANS_BACK)
 	tween.tween_property($background, "color:a", 0.3, anim_time)
+	tween.tween_property($blur.material, "shader_parameter/lod", 1, 1.0)
 	tween.tween_property($MarginContainer, "position", Vector2(0, 0), 2 * anim_time)
 	for i in hud.get_children():
 		tween.tween_property(i, "modulate:a", 0, anim_time)
 	tween.set_parallel(false)
 	tween.tween_interval(anim_time)
 	tween.set_parallel(true)
-	tween.tween_method(tween.set_speed_scale, 1, 1 / Engine.time_scale, anim_time)
 	tween.tween_property(Engine, "time_scale", 0.0, anim_time)
+	tween.tween_property(player.get_node("Camera2D"), "position_smoothing_speed", 0, anim_time)
 	tween.set_parallel(false)
 	tween.tween_callback(get_parent().set_paused.bind(true))
 

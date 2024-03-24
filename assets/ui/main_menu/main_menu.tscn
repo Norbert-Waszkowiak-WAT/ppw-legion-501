@@ -1,7 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://bgod5pyugdjn"]
+[gd_scene load_steps=11 format=3 uid="uid://bgod5pyugdjn"]
 
 [ext_resource type="Script" path="res://assets/ui/main_menu/main_menu.gd" id="1_1ihm4"]
-[ext_resource type="PackedScene" uid="uid://cf3wk0airgvkk" path="res://assets/levels/demo_level/demo_level.tscn" id="2_4crpy"]
+[ext_resource type="PackedScene" uid="uid://d0gw6cbir28d3" path="res://assets/levels/tutorial_level/tutorial_level.tscn" id="2_3dh6f"]
 [ext_resource type="Texture2D" uid="uid://cdl2mva1ibxdu" path="res://textures/main-menu/logo.png" id="2_8ilsw"]
 [ext_resource type="Theme" uid="uid://dygspx1ouf0ul" path="res://assets/ui/main_menu/main_menu.tres" id="3_6h6dh"]
 [ext_resource type="Texture2D" uid="uid://bt6mke8k7uhgg" path="res://textures/main-menu/MenuBackground.jpg" id="4_hvcef"]
@@ -9,6 +9,24 @@
 [ext_resource type="PackedScene" uid="uid://xhjx4f7178cn" path="res://assets/ui/main_menu/save_slot.tscn" id="5_rj1ys"]
 [ext_resource type="PackedScene" uid="uid://b8kl60fulqq1u" path="res://assets/player/player.tscn" id="6_3b3xo"]
 [ext_resource type="PackedScene" uid="uid://c4bbjae7r4w7y" path="res://assets/levels/level_tools/player_spawnpoint.tscn" id="6_rucww"]
+
+[sub_resource type="Environment" id="Environment_ugoqb"]
+background_mode = 3
+ambient_light_source = 1
+ambient_light_energy = 4.2
+reflected_light_source = 1
+tonemap_mode = 3
+glow_enabled = true
+glow_levels/2 = 1.0
+glow_levels/3 = 0.0
+glow_levels/4 = 1.0
+glow_levels/5 = 0.0
+glow_levels/6 = 1.0
+glow_intensity = 0.4
+glow_bloom = 0.1
+glow_blend_mode = 1
+glow_hdr_threshold = 1.5
+glow_hdr_scale = 0.0
 
 [node name="main_menu" type="Control"]
 layout_mode = 3
@@ -18,7 +36,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_1ihm4")
-first_level = ExtResource("2_4crpy")
+first_level = ExtResource("2_3dh6f")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -219,6 +237,9 @@ scale = Vector2(7, 7)
 speed = 900.0
 acceleration = 60.0
 jump_height = 300.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ugoqb")
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/main_screen/new_game" to="." method="_on_new_game_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/main_screen/continue" to="." method="_on_continue_pressed"]

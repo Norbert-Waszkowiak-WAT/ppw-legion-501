@@ -1,8 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://cqbudavifcd8g"]
+[gd_scene load_steps=6 format=3 uid="uid://cqbudavifcd8g"]
 
 [ext_resource type="Script" path="res://assets/ui/esc_menu/esc_menu.gd" id="1_jse3w"]
 [ext_resource type="Texture2D" uid="uid://cdl2mva1ibxdu" path="res://textures/main-menu/logo.png" id="2_elwvq"]
 [ext_resource type="Theme" uid="uid://dygspx1ouf0ul" path="res://assets/ui/main_menu/main_menu.tres" id="3_hqllu"]
+[ext_resource type="Shader" path="res://assets/ui/screen_blur.gdshader" id="4_3n8pe"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bl6dj"]
+shader = ExtResource("4_3n8pe")
+shader_parameter/lod = 0.0
 
 [node name="esc_menu" type="CanvasLayer"]
 script = ExtResource("1_jse3w")
@@ -80,6 +85,17 @@ focus_neighbor_top = NodePath("../main_menu")
 focus_neighbor_bottom = NodePath("../resume")
 theme = ExtResource("3_hqllu")
 text = "exit"
+
+[node name="blur" type="ColorRect" parent="."]
+z_index = -1
+material = SubResource("ShaderMaterial_bl6dj")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 1, 1, 0)
 
 [node name="background" type="ColorRect" parent="."]
 z_index = -1

@@ -70,10 +70,11 @@ func reset_player():
 	"dash": false,
 	
 	# Melee
-	"deflect": false
+	"deflect": false,
 	
 	# Ranged
-	
+	"high_speed_low_drag": false,
+	"heavy_hitter": false
 	# Magic
 	}
 	exp_lvl = 0

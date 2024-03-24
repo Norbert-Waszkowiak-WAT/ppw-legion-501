@@ -245,6 +245,7 @@ func chase(delta: float):
 func attack(delta: float):
 	if reaction_timer <= 0:
 		turn_towards_player()
+		speed = 0
 		if attack_timer <= 0:
 			weapon.attack()
 			attack_timer = attack_time
@@ -299,7 +300,7 @@ func check_movement():
 				path = []
 				$navigation_timer.wait_time = 0.05
 			elif path.size() > 1:
-				$navigation_timer.wait_time = 1
+				$navigation_timer.wait_time = 0.2
 
 		states.idle:
 			if !$left_short.get_collider() and dir == -1 and is_on_floor():
@@ -318,6 +319,7 @@ func turn_towards_player():
 
 
 func walk(distance : float, direction : int, current_speed : float):
+	speed = current_speed
 	var duration = distance / current_speed
 	
 	in_movement = true
@@ -333,12 +335,12 @@ func jump():
 
 
 func update_path():
-	if is_on_floor() and player.is_on_floor():
+	if is_on_floor():
 		var working_path = $navigation_component.A_Star($navigation_component.global_to_map(global_position), $navigation_component.global_to_map(player.global_position) + Vector2i(0, 1))
 		if not working_path.is_empty():
 			path = working_path
 		else:
-			$navigation_timer.wait_time = 1
+			$navigation_timer.wait_time = 0.5
 
 
 func die():

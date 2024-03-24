@@ -42,8 +42,10 @@ func physics(delta: float) -> State:
 	if player.velocity.y < 0:
 		return jump
 	if player.is_on_floor() and player.dir == 0:
+		player.get_node("land").play()
 		return idle
 	elif player.is_on_floor():
+		player.get_node("land").play()
 		return walk
 	
 	return null

@@ -1,13 +1,18 @@
-[gd_scene load_steps=6 format=3 uid="uid://ddq4hjwbfxe7a"]
+[gd_scene load_steps=8 format=3 uid="uid://ddq4hjwbfxe7a"]
 
 [ext_resource type="Script" path="res://assets/ui/winning_menu/winning_menu.gd" id="1_e4kfp"]
 [ext_resource type="Texture2D" uid="uid://cdl2mva1ibxdu" path="res://textures/main-menu/logo.png" id="2_0ebxm"]
 [ext_resource type="FontFile" uid="uid://wlq1kryvxbf5" path="res://textures/main-menu/VCR_OSD_MONO_1.001.ttf" id="3_yx142"]
 [ext_resource type="Theme" uid="uid://dygspx1ouf0ul" path="res://assets/ui/main_menu/main_menu.tres" id="4_llyba"]
+[ext_resource type="Shader" path="res://assets/ui/screen_blur.gdshader" id="5_oguov"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_5nhfc"]
 font = ExtResource("3_yx142")
 font_size = 176
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rrbiv"]
+shader = ExtResource("5_oguov")
+shader_parameter/lod = 0.0
 
 [node name="winning_menu" type="CanvasLayer"]
 script = ExtResource("1_e4kfp")
@@ -113,6 +118,17 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(0.341176, 0.545098, 0.337255, 0)
+
+[node name="blur" type="ColorRect" parent="."]
+z_index = -1
+material = SubResource("ShaderMaterial_rrbiv")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 1, 1, 0)
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/next_level" to="." method="_on_next_level_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/restart" to="." method="_on_restart_pressed"]

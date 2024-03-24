@@ -24,10 +24,11 @@ acceleration = 1.5
 MAX_HEALTH = 50.0
 dropped_experience = 60.0
 detection_range = 100.0
-attack_range = 20.0
+attack_range = 15.0
 jump_height = 35.0
 jump_descent = 0.3
 jump_peak = 0.4
+reaction_time = 0.25
 memory_time = 20.0
 attack_time = 0.5
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://bt3ngcbslwttq"]
+[gd_scene load_steps=21 format=3 uid="uid://bt3ngcbslwttq"]
 
 [ext_resource type="Texture2D" uid="uid://bwi13qcvamlk8" path="res://textures/gun/idle/Standding_Hand-1.png" id="1_elibc"]
 [ext_resource type="Texture2D" uid="uid://d0374bqjl6nk6" path="res://textures/gun/idle/Standding_Hand-2.png" id="2_8ilnh"]
@@ -18,7 +18,6 @@
 [ext_resource type="Texture2D" uid="uid://b26pjsfei162b" path="res://textures/gun/running/Grafika_bez_nazwy-1 9.png" id="12_ecebx"]
 [ext_resource type="Script" path="res://assets/player/gun.gd" id="13_wcs15"]
 [ext_resource type="AudioStream" uid="uid://c707or5donwo7" path="res://assets/weapons/gun/gunshot_light.wav" id="18_wyf2a"]
-[ext_resource type="AudioStream" uid="uid://de700n6dsq4v" path="res://assets/weapons/gun/gunshot_standard.wav" id="19_bvois"]
 [ext_resource type="AudioStream" uid="uid://dgkkyokvfu262" path="res://assets/weapons/gun/gunshot_heavy.wav" id="20_3a6wi"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_78r3p"]
@@ -120,14 +119,19 @@ position = Vector2(100, -20)
 [node name="gunshot_light" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("18_wyf2a")
 volume_db = -10.0
+max_polyphony = 5
 
 [node name="gunshot_standard" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("19_bvois")
-volume_db = -10.0
+stream = ExtResource("20_3a6wi")
+volume_db = -20.0
+pitch_scale = 1.2
+max_polyphony = 5
 
 [node name="gunshot_heavy" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("20_3a6wi")
 volume_db = -15.0
+pitch_scale = 0.9
+max_polyphony = 5
 
 [node name="attack_timer" type="Timer" parent="."]
 wait_time = 0.15

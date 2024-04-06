@@ -1,9 +1,9 @@
 [gd_scene load_steps=9 format=3 uid="uid://clf8aqe0iy2if"]
 
-[ext_resource type="Texture2D" uid="uid://bacq5305whrcs" path="res://textures/test-bar/test_bar_under.png" id="1_np1ih"]
+[ext_resource type="Texture2D" uid="uid://d2banh24fhpa3" path="res://textures/health_bar/health_bar_progress.png" id="1_hm0mi"]
 [ext_resource type="Script" path="res://assets/player/hud/healthbar.gd" id="2_lxfns"]
-[ext_resource type="Texture2D" uid="uid://krio4m6k7bkc" path="res://textures/test-bar/test-bar-progress.png" id="2_ol76l"]
-[ext_resource type="Texture2D" uid="uid://bxe1ri500rj2t" path="res://textures/test-bar/test-bar-damage.png" id="3_kbynf"]
+[ext_resource type="Texture2D" uid="uid://c40srbnx37yjn" path="res://textures/health_bar/health_bar_under.png" id="3_e1bs1"]
+[ext_resource type="Texture2D" uid="uid://cfxmk3x4g6lsa" path="res://textures/health_bar/health_bar_damage.png" id="4_0rx5m"]
 [ext_resource type="Texture2D" uid="uid://sb18qbt3iofr" path="res://textures/xp-bar/xp-bar-under.png" id="5_upksd"]
 [ext_resource type="Texture2D" uid="uid://r30e5nss0onf" path="res://textures/xp-bar/xp-bar-progress.png" id="6_maie4"]
 [ext_resource type="FontFile" uid="uid://c0ob1ayhkkquv" path="res://textures/main-menu/upheavtt.ttf" id="7_pp8d5"]
@@ -36,14 +36,11 @@ grow_vertical = 2
 
 [node name="healthbar" type="TextureProgressBar" parent="."]
 texture_filter = 1
-offset_left = 10.225
-offset_top = 3.75
-offset_right = 60.225
-offset_bottom = 13.75
-scale = Vector2(1.845, 1.845)
+offset_right = 50.0
+offset_bottom = 10.0
+scale = Vector2(1.31, 1.31)
 step = 0.1
-value = 100.0
-texture_progress = ExtResource("2_ol76l")
+texture_progress = ExtResource("1_hm0mi")
 script = ExtResource("2_lxfns")
 
 [node name="damagebar" type="TextureProgressBar" parent="healthbar"]
@@ -52,9 +49,18 @@ layout_mode = 0
 offset_right = 50.0
 offset_bottom = 10.0
 step = 0.1
+texture_under = ExtResource("3_e1bs1")
+texture_progress = ExtResource("4_0rx5m")
+
+[node name="healing_bar" type="TextureProgressBar" parent="healthbar"]
+self_modulate = Color(0.588235, 1, 0.588235, 1)
+z_index = -1
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+step = 0.1
 value = 100.0
-texture_under = ExtResource("1_np1ih")
-texture_progress = ExtResource("3_kbynf")
+texture_progress = ExtResource("4_0rx5m")
 
 [node name="expbar" type="TextureProgressBar" parent="."]
 texture_filter = 3

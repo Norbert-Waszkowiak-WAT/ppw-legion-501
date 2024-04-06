@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://c8uo2pdp6knwu" path="res://textures/level-tools/enemy-spawnpoint.png" id="1_ej2cd"]
 
-[node name="Marker2D" type="Marker2D"]
+[node name="Marker2D" type="Marker2D" groups=["waypoints"]]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false

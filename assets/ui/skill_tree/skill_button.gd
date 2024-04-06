@@ -1,5 +1,6 @@
 extends TextureButton
 
+
 # Odniesienie do poprzedniej umiejętności
 @export var previous_button : Node
 # Wykluczające się umiejętności
@@ -51,15 +52,18 @@ func _process(delta):
 	# Wizualne efekty przycisku (tymczasowe)
 	if disabled:
 		# Zablokowana
+		#material.set_shader_parameter("enabled", true)
 		button_pressed = false
 		self_modulate = Color(0.2, 0.2, 0.2)
 		line.self_modulate = Color(0.2, 0.2, 0.2)
 	elif button_pressed:
 		# Odblokowana
+		#material.set_shader_parameter("enabled", false)
 		self_modulate = Color(1.2, 1.2, 1.2)
 		line.self_modulate = Color(1, 1, 1)
 	else:
 		# Możliwa do kupienia
+		#material.set_shader_parameter("enabled", true)
 		self_modulate = Color(0.7, 0.7, 0.7)
 		line.self_modulate = Color(0.5, 0.5, 0.5)
 	if is_hovered() and !disabled:
@@ -90,3 +94,4 @@ func _on_toggled(button_pressed):
 		PlayerVariables.skill_points += 1
 	# Aktualizuje globalną zmienną umiejętności
 	PlayerVariables.abilities[ability_name] = button_pressed
+

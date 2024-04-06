@@ -4,6 +4,7 @@ var abilities = {
 	# Movement
 	"double_jump": false,
 	"dash": false,
+	"air_dash": false,
 	
 	# Melee
 	"deflect": false,
@@ -68,6 +69,7 @@ func reset_player():
 	# Movement
 	"double_jump": false,
 	"dash": false,
+	"air_dash": false,
 	
 	# Melee
 	"deflect": false,

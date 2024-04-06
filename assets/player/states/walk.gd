@@ -27,6 +27,9 @@ func process(_delta: float) -> State:
 			player.queued_jump = false
 			return jump
 		
+		if Input.is_action_just_pressed("dash") and PlayerVariables.abilities.dash:
+			player.dash()
+		
 		if !Input.is_action_pressed("move_left") and !Input.is_action_pressed("move_right"):
 			return idle
 		if Input.is_action_pressed("move_right"):
@@ -42,7 +45,8 @@ func process(_delta: float) -> State:
 # Wywoływana na każdej klatce, odpowiada za procesy fizyczne
 func physics(delta: float) -> State:
 	# Nadanie prędkości poziomej i grawitacji
-	player.horizontal_movement()
+	if !player.dashing:
+		player.horizontal_movement()
 	player.velocity.y += player.get_gravity() * delta
 	
 	# Obsługuje fizykę gracza

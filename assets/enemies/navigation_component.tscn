@@ -1,20 +1,39 @@
-[gd_scene load_steps=3 format=3 uid="uid://cpb5mre4u13vt"]
+[gd_scene load_steps=4 format=3 uid="uid://cpb5mre4u13vt"]
 
 [ext_resource type="Script" path="res://assets/enemies/navigation_component.gd" id="1_y12uh"]
 
-[sub_resource type="SegmentShape2D" id="SegmentShape2D_esddw"]
-b = Vector2(0, 0)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_es15n"]
+size = Vector2(4, 9)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_anthi"]
+a = Vector2(0, 1)
+b = Vector2(0, -1)
 
 [node name="navigation_component" type="Line2D"]
 z_index = 2
 width = 1.0
 default_color = Color(0.470588, 1, 0.470588, 1)
 script = ExtResource("1_y12uh")
-point_amount = 60.0
-debug_mode = true
+point_amount = 40.0
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 collision_layer = 0
 
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CharacterBody2D"]
+position = Vector2(0, 1.5)
+polygon = PackedVector2Array(-1, 4.5, 1, 4.5, 0, -4.5)
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
-shape = SubResource("SegmentShape2D_esddw")
+position = Vector2(0, 1.5)
+shape = SubResource("RectangleShape2D_es15n")
+disabled = true
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="CharacterBody2D"]
+shape = SubResource("SegmentShape2D_anthi")
+disabled = true
+
+[node name="restricted_timer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[connection signal="timeout" from="restricted_timer" to="." method="_on_restricted_timer_timeout"]

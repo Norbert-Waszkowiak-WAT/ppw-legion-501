@@ -9,7 +9,6 @@ extends State
 # Wywoływana gdy gracz wchodzi w stan
 func enter():
 	player.sprite.animation = "idle"
-	player.dir = 0
 	PlayerVariables.double_jumped = false
 
 
@@ -25,6 +24,9 @@ func process(_delta: float) -> State:
 			player.queued_jump = false
 			return jump
 		
+		if Input.is_action_just_pressed("dash") and PlayerVariables.abilities.dash:
+			player.dash()
+		
 		if Input.is_action_pressed("move_right") or Input.is_action_pressed("move_left"):
 			return walk
 	return null
@@ -32,9 +34,13 @@ func process(_delta: float) -> State:
 
 # Wywoływana na każdej klatce, odpowiada za procesy fizyczne
 func physics(delta: float) -> State:
-	player.horizontal_movement()
+	if !player.dashing:
+		player.velocity.x = 0
 	player.velocity.y += player.get_gravity() * delta
+	
+	
 	player.move_and_slide()
+	
 	
 	if not player.is_on_floor():
 		return fall

@@ -75,6 +75,8 @@ func _ready():
 	change_state(starting_state)
 	speed = idle_speed
 	
+	randomize_stats()
+	
 	if weapon:
 		weapon.set_target("player")
 	health = MAX_HEALTH
@@ -125,6 +127,14 @@ func _physics_process(delta):
 	
 	if taking_knockback and is_on_floor():
 		taking_knockback = false
+
+
+func randomize_stats():
+	randomize()
+	idle_speed = idle_speed * randf_range(0.85, 1.15)
+	#chase_speed = chase_speed * randf_range(1, 1.1)
+	attack_range = attack_range * randf_range(0.85, 1.05)
+	reaction_time = reaction_time  * randf_range(0.85, 1.15)
 
 
 # Zadaje obrażenia oraz pokazuje pasek życia
@@ -235,6 +245,8 @@ func chase(delta: float):
 			change_state(states.idle)
 		else:
 			memory_timer -= delta
+	else:
+		memory_timer = memory_time
 		
 	if position.distance_to(player.position) <= attack_range:
 		attack_timer = 0
@@ -261,6 +273,8 @@ func attack(delta: float):
 			change_state(states.idle)
 		else:
 			memory_timer -= delta
+	else:
+		memory_timer = memory_time
 	if position.distance_to(player.position) > attack_range:
 		change_state(states.chase)
 
@@ -268,16 +282,6 @@ func attack(delta: float):
 func check_movement():
 	match current_state:
 		states.chase:
-#			if (!$left_long.get_collider() and dir == -1) or (!$right_long.get_collider() and dir == 1):
-#				jump()
-#			if $left_step.get_collider() and !$left_wall.get_collider() and dir == -1:
-#				jump()
-#			elif !$left_short.get_collider() and dir == -1 and !$left_wall.get_collider() and player.position.y < position.y:
-#				jump()
-#			if $right_step.get_collider() and !$right_wall.get_collider() and dir == 1:
-#				jump()
-#			elif !$right_short.get_collider() and dir == 1 and !$right_wall.get_collider() and player.position.y < position.y:
-#				jump()
 			if path.size() > 1 and !in_movement and is_on_floor():
 				var waypoint = $navigation_component.map_to_global(path[1][0])
 				var action = path[0][1]
@@ -288,18 +292,25 @@ func check_movement():
 				elif action == "jump_right":
 					jump()
 					walk(distance, 1, chase_speed)
+				elif action == "jump_slow_right":
+					jump()
+					walk(distance, 1, chase_speed / 4)
 				
 				if action == "walk_left":
 					walk(distance, -1, chase_speed)
 				elif action == "jump_left":
 					jump()
 					walk(distance, -1, chase_speed)
+				elif action == "jump_slow_left":
+					jump()
+					walk(distance, -1, chase_speed / 4)
 				
 				path.remove_at(0)
 			if path.size() == 1:
 				path = []
-				$navigation_timer.wait_time = 0.05
-			elif path.size() > 1:
+				if $navigation_timer.wait_time != 0.05:
+					$navigation_timer.wait_time = 0.05
+			elif path.size() > 1 and $navigation_timer.wait_time != 0.2:
 				$navigation_timer.wait_time = 0.2
 
 		states.idle:
@@ -336,11 +347,12 @@ func jump():
 
 func update_path():
 	if is_on_floor():
-		var working_path = $navigation_component.A_Star($navigation_component.global_to_map(global_position), $navigation_component.global_to_map(player.global_position) + Vector2i(0, 1))
+		var destination = $navigation_component.global_to_map(player.global_position) + Vector2i(0, 1)
+		var working_path = $navigation_component.A_Star($navigation_component.global_to_map(global_position), destination)
 		if not working_path.is_empty():
 			path = working_path
-		else:
-			$navigation_timer.wait_time = 0.5
+		elif $navigation_timer.wait_time != 1:
+			$navigation_timer.wait_time = 1
 
 
 func die():

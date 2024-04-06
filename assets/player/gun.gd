@@ -32,7 +32,7 @@ func _process(delta):
 	
 	if PlayerVariables.abilities["heavy_hitter"] == true:
 		automatic = false
-		fire_rate = 150
+		fire_rate = 200
 		damage = 20
 		spread = 0.3
 		knockback = 15
@@ -52,7 +52,7 @@ func _process(delta):
 		damage = 8
 		spread = 0.8
 		knockback = 0
-		trauma = 0.4
+		trauma = 0.35
 		gunshot_sound = gunshot_standard
 
 

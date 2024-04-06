@@ -30,15 +30,19 @@ func process(_delta: float) -> State:
 			player.set_direction("left")
 		else:
 			player.set_direction("0")
+		
+		if Input.is_action_just_pressed("dash") and PlayerVariables.abilities.air_dash:
+			player.dash()
 	return null
 
 
 # Wywoływana na każdej klatce, odpowiada za procesy fizyczne
 func physics(delta: float) -> State:
-	player.horizontal_movement()
+	if !player.dashing:
+		player.horizontal_movement()
 	player.velocity.y += player.get_gravity() * delta
 	player.move_and_slide()
-		
+	
 	if player.velocity.y < 0:
 		return jump
 	if player.is_on_floor() and player.dir == 0:

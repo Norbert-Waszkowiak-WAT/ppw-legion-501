@@ -13,6 +13,11 @@ class_name Player
 
 var queued_jump : bool = false
 
+var dashing : bool = false
+@export var ghost_time : float = 0.01
+var ghost_timer : float
+@export var ghost_node : PackedScene
+
 # Kierunek poruszania się
 var dir: float = 0.0
 
@@ -68,8 +73,6 @@ func _process(delta):
 	# Wywołuje pętle state machine
 	$state_machine.process(delta)
 	
-	# Ustawia pasek życia na aktualną wartość życia
-	healthbar.value = PlayerVariables.health
 	
 	exp_bar_update()
 	if PlayerVariables.health <= 0:
@@ -77,6 +80,7 @@ func _process(delta):
 	
 	process_weapons()
 	process_footstep_audio()
+	process_ghosting()
 
 
 # Obsługuje fizykę 
@@ -94,6 +98,18 @@ func _input(event):
 
 
 # | ============================================================================= |
+
+
+func process_ghosting():
+	if dashing:
+		if ghost_timer <= 0:
+			var ghost = ghost_node.instantiate()
+			ghost.player = self
+			ghost.global_position = global_position
+			ghost.scale = sprite.scale * scale
+			get_tree().current_scene.add_child(ghost)
+			ghost_timer = ghost_time
+		ghost_timer -= get_process_delta_time()
 
 
 func process_footstep_audio():
@@ -150,6 +166,27 @@ func horizontal_movement():
 # Skok
 func jump():
 	$state_machine.change_state($state_machine/jump)
+
+
+func dash():
+	if !taking_knockback:
+		dashing = true
+		#set_collision_mask_value(2, false)
+		#set_collision_layer_value(1, false)
+		#set_collision_layer_value(3, false)
+		
+		$dash.play()
+		$Camera2D.add_trauma(0.5)
+		
+		dir = sprite.scale.x / abs(sprite.scale.x)
+		velocity.x = dir * speed * 8
+		
+		await get_tree().create_timer(0.09).timeout
+		
+		#set_collision_mask_value(2, true)
+		#set_collision_layer_value(1, true)
+		#set_collision_layer_value(3, true)
+		dashing = false
 
 
 # Wymuszenie chodu gracza (do przerywników)

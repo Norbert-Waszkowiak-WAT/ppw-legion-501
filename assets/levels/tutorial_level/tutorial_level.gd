@@ -12,7 +12,7 @@ func _ready():
 	super()
 	$player.apply_damage(PlayerVariables.health / 2, 0, Vector2.ZERO)
 	
-	await get_tree().create_timer(1).timeout
+	await get_tree().create_timer(0.5).timeout
 	$tutorial.show_tutorial(0)
 
 

@@ -9,7 +9,7 @@ extends Camera2D
 var noise_y = 0
 
 var trauma = 0.0
-var trauma_pwr = 2
+var trauma_pwr = 3
 
 
 func _ready():
@@ -30,11 +30,12 @@ func _process(delta):
 func add_trauma(amount : float):
 	#trauma = min(trauma + amount, 1.0)
 	trauma = min(amount, 1.0)
+	#noise.seed = randi()
 
 
 func shake(): 
 	var amt = pow(trauma, trauma_pwr)
 	noise_y += 1
-	rotation = max_roll * amt * noise.get_noise_2d(noise.seed,noise_y)
-	offset.x = max_offset.x * amt * noise.get_noise_2d(noise.seed*2,noise_y)
-	offset.y = max_offset.y * amt * noise.get_noise_2d(noise.seed*3,noise_y)
+	rotation = max_roll * amt * clamp(noise.get_noise_2d(noise.seed,noise_y), -1, 1)
+	offset.x = max_offset.x * amt * clamp(noise.get_noise_2d(noise.seed*2,noise_y), -1, 1)
+	offset.y = max_offset.y * amt * clamp(noise.get_noise_2d(noise.seed*3,noise_y), -1, 1)

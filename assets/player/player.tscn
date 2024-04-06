@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://b8kl60fulqq1u"]
+[gd_scene load_steps=32 format=3 uid="uid://b8kl60fulqq1u"]
 
 [ext_resource type="Script" path="res://assets/player/player.gd" id="1_xhwip"]
 [ext_resource type="Script" path="res://assets/player/Camera2D.gd" id="2_2bp8c"]
@@ -27,10 +27,13 @@
 [ext_resource type="PackedScene" uid="uid://bt3ngcbslwttq" path="res://assets/weapons/gun/gun.tscn" id="15_scggg"]
 [ext_resource type="AudioStream" uid="uid://bfxypqbbuwu4v" path="res://assets/player/sounds/gravel_footstep.wav" id="21_0dmyl"]
 [ext_resource type="AudioStream" uid="uid://bdis33wsr81xy" path="res://assets/player/sounds/gravel_land.ogg" id="21_vv04n"]
+[ext_resource type="AudioStream" uid="uid://c4d3bsd1sea1q" path="res://assets/player/sounds/dash.wav" id="24_irtn5"]
+[ext_resource type="PackedScene" uid="uid://d1n7jvmbhf7oo" path="res://assets/player/dash_effect.tscn" id="28_70ip8"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_w7ylu"]
 noise_type = 3
-frequency = 0.0249
+frequency = 0.1068
+fractal_type = 0
 metadata/_preview_in_3d_space_ = true
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_lbsb1"]
@@ -62,13 +65,13 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("8_6x21o")
+}, {
+"duration": 1.0,
 "texture": ExtResource("7_2558i")
 }, {
 "duration": 1.0,
 "texture": ExtResource("8_5mgx4")
-}, {
-"duration": 1.0,
-"texture": ExtResource("8_6x21o")
 }],
 "loop": false,
 "name": &"jump",
@@ -116,6 +119,8 @@ acceleration = 8.0
 jump_height = 35.0
 jump_descent = 0.2
 jump_peak = 0.3
+ghost_time = 0.015
+ghost_node = ExtResource("28_70ip8")
 knockback_multiplier = 4.0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
@@ -133,8 +138,9 @@ drag_top_margin = 0.5
 drag_right_margin = 0.05
 drag_bottom_margin = 0.1
 script = ExtResource("2_2bp8c")
-max_offset = Vector2(10, 5)
-max_roll = 0.001
+decay = 0.5
+max_offset = Vector2(15, 10)
+max_roll = 0.08
 noise = SubResource("FastNoiseLite_w7ylu")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -168,6 +174,20 @@ max_polyphony = 2
 [node name="land" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("21_vv04n")
 volume_db = -18.0
+
+[node name="dash" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(1, 0)
+scale = Vector2(0.125, 0.125)
+stream = ExtResource("24_irtn5")
+volume_db = -15.0
+pitch_scale = 0.75
+
+[node name="jump" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(1.125, 0)
+scale = Vector2(0.015625, 0.015625)
+stream = ExtResource("24_irtn5")
+volume_db = -15.0
+pitch_scale = 0.9
 
 [node name="state_machine" type="Node" parent="." node_paths=PackedStringArray("starting_state")]
 script = ExtResource("7_tys86")

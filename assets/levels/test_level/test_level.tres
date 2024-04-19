@@ -1,9 +1,12 @@
-[gd_resource type="TileSet" load_steps=11 format=3 uid="uid://dfi3xlrx7twl8"]
+[gd_resource type="TileSet" load_steps=12 format=3 uid="uid://dfi3xlrx7twl8"]
 
 [ext_resource type="Texture2D" uid="uid://drgy1o1v6jbs3" path="res://textures/tileset/Tekstury1.png" id="1_nvsl1"]
 [ext_resource type="PackedScene" uid="uid://k6ed0568tuof" path="res://assets/levels/level_tools/barrier.tscn" id="2_joxgu"]
 [ext_resource type="PackedScene" uid="uid://bydgx2tg4seyx" path="res://assets/levels/level_tools/health_boost/health_restorer.tscn" id="3_xhv54"]
 [ext_resource type="PackedScene" uid="uid://dlt4q6xtgb6p2" path="res://assets/levels/level_tools/waypoint.tscn" id="4_te8ij"]
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_dmpgt"]
+tile_data = PackedInt32Array(0, 65536, 1, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 1)
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_pqyab"]
 polygon = PackedVector2Array(-512, -512, 512, -512, 512, 512, -512, 512)
@@ -93,3 +96,4 @@ physics_layer_0/collision_mask = 6
 sources/0 = SubResource("TileSetAtlasSource_8nm1w")
 sources/1 = SubResource("TileSetScenesCollectionSource_bnq84")
 sources/2 = SubResource("TileSetAtlasSource_asvk4")
+pattern_0 = SubResource("TileMapPattern_dmpgt")

@@ -100,7 +100,6 @@ func on_level_completed():
 	winning_menu.next_level = next_level
 	add_child(winning_menu)
 
-
 func generate_waypoints():
 	var tiles = $terrain.get_used_cells(0)
 	var waypoint_cells = []

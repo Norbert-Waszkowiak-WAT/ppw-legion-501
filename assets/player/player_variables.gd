@@ -18,6 +18,9 @@ var abilities = {
 
 var double_jumped : bool = false
 
+var dash_charges : int
+var MAX_DASH_CHARGES : int = 2
+
 var skill_points : float
 
 var health : float

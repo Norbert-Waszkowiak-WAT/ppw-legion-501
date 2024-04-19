@@ -42,6 +42,13 @@ func _process(delta):
 			if Input.is_action_just_pressed("attack"):
 				$tutorial.hide_tutorial()
 				current_tutorial_page += 1
+		4:
+			if $player.global_position.x >= 1150 and not $tutorial.visible:
+				$tutorial.show_tutorial(current_tutorial_page)
+				
+			if PlayerVariables.abilities.values().has(true):
+				$tutorial.hide_tutorial()
+				current_tutorial_page += 1
 		
 
 

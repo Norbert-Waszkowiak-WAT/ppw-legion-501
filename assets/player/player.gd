@@ -78,6 +78,11 @@ func _process(delta):
 	if PlayerVariables.health <= 0:
 		die()
 	
+	if PlayerVariables.dash_charges == PlayerVariables.MAX_DASH_CHARGES:
+		$dash_cooldown.stop()
+	elif $dash_cooldown.is_stopped():
+		$dash_cooldown.start()
+	
 	process_weapons()
 	process_footstep_audio()
 	process_ghosting()
@@ -169,7 +174,8 @@ func jump():
 
 
 func dash():
-	if !taking_knockback:
+	if !taking_knockback and PlayerVariables.dash_charges > 0:
+		PlayerVariables.dash_charges -= 1
 		dashing = true
 		#set_collision_mask_value(2, false)
 		#set_collision_layer_value(1, false)
@@ -244,8 +250,6 @@ func exp_bar_update():
 		PlayerVariables.MAX_EXP *= 1.5
 		#Odwołanie do HUD gracza i zmiana wartości liczbowej lvl exp-a
 		PlayerVariables.skill_points += 1
-	expbar.value = PlayerVariables.experience
-	expbar.max_value = PlayerVariables.MAX_EXP
 	$HUD/level.text = str(PlayerVariables.exp_lvl)
 
 
@@ -315,3 +319,8 @@ func on_paused(value):
 
 func move_camera(new_position : Vector2):
 	$Camera2D.global_position = new_position
+
+
+func _on_dash_cooldown_timeout():
+	if PlayerVariables.dash_charges < PlayerVariables.MAX_DASH_CHARGES:
+		PlayerVariables.dash_charges += 1

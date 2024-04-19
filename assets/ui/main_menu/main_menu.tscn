@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bgod5pyugdjn"]
+[gd_scene load_steps=12 format=3 uid="uid://bgod5pyugdjn"]
 
 [ext_resource type="Script" path="res://assets/ui/main_menu/main_menu.gd" id="1_1ihm4"]
 [ext_resource type="PackedScene" uid="uid://d0gw6cbir28d3" path="res://assets/levels/tutorial_level/tutorial_level.tscn" id="2_3dh6f"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://xhjx4f7178cn" path="res://assets/ui/main_menu/save_slot.tscn" id="5_rj1ys"]
 [ext_resource type="PackedScene" uid="uid://b8kl60fulqq1u" path="res://assets/player/player.tscn" id="6_3b3xo"]
 [ext_resource type="PackedScene" uid="uid://c4bbjae7r4w7y" path="res://assets/levels/level_tools/player_spawnpoint.tscn" id="6_rucww"]
+[ext_resource type="AudioStream" uid="uid://ecwyoyf7u4qs" path="res://assets/ui/menu_hover.wav" id="10_r3chd"]
 
 [sub_resource type="Environment" id="Environment_ugoqb"]
 background_mode = 3
@@ -240,6 +241,9 @@ jump_height = 300.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ugoqb")
+
+[node name="hover_tick" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_r3chd")
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/main_screen/new_game" to="." method="_on_new_game_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/main_screen/continue" to="." method="_on_continue_pressed"]

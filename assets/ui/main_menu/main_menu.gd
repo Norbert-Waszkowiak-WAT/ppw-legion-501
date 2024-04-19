@@ -17,12 +17,18 @@ var tween : Tween
 # Wywoływana na początku sceny
 func _ready():
 	startup_animation()
+	for button in buttons as Array[Button]:
+		button.focus_entered.connect(_on_focus_entered)
 
 
 func _process(_delta):
-	for button in buttons:
+	for button in buttons as Array[Button]:
 		if button.is_hovered() and !button.disabled:
 			button.grab_focus()
+
+
+func _on_focus_entered():
+	$hover_tick.play()
 
 
 func _on_new_game_pressed():

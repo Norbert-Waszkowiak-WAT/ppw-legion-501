@@ -16,7 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://c5cokkip3681b" path="res://textures/gun/jump/Wersja_Git_3-reka.png" id="10_eah6x"]
 [ext_resource type="Texture2D" uid="uid://csaxpo8pkwudy" path="res://textures/gun/running/Grafika_bez_nazwy-1 8.png" id="11_500km"]
 [ext_resource type="Texture2D" uid="uid://b26pjsfei162b" path="res://textures/gun/running/Grafika_bez_nazwy-1 9.png" id="12_ecebx"]
-[ext_resource type="Script" path="res://assets/player/gun.gd" id="13_wcs15"]
+[ext_resource type="Script" path="res://assets/weapons/gun/gun.gd" id="16_2gvc7"]
 [ext_resource type="AudioStream" uid="uid://c707or5donwo7" path="res://assets/weapons/gun/gunshot_light.wav" id="18_wyf2a"]
 [ext_resource type="AudioStream" uid="uid://dgkkyokvfu262" path="res://assets/weapons/gun/gunshot_heavy.wav" id="20_3a6wi"]
 
@@ -99,19 +99,14 @@ animations = [{
 "speed": 12.0
 }]
 
-[node name="gun" type="Area2D" node_paths=PackedStringArray("gunshot_light", "gunshot_standard", "gunshot_heavy")]
-script = ExtResource("13_wcs15")
-bullet_type = ExtResource("2_12ug1")
+[node name="gun" type="AnimatedSprite2D" node_paths=PackedStringArray("gunshot_light", "gunshot_standard", "gunshot_heavy")]
+sprite_frames = SubResource("SpriteFrames_78r3p")
+animation = &"walk"
+script = ExtResource("16_2gvc7")
 gunshot_light = NodePath("gunshot_light")
 gunshot_standard = NodePath("gunshot_standard")
 gunshot_heavy = NodePath("gunshot_heavy")
-damage = 5.0
-automatic = true
-fire_rate = 400.0
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_78r3p")
-animation = &"walk"
+bullet_type = ExtResource("2_12ug1")
 
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(100, -20)
@@ -120,18 +115,21 @@ position = Vector2(100, -20)
 stream = ExtResource("18_wyf2a")
 volume_db = -10.0
 max_polyphony = 5
+bus = &"Gameplay"
 
 [node name="gunshot_standard" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("20_3a6wi")
 volume_db = -20.0
 pitch_scale = 1.2
 max_polyphony = 5
+bus = &"Gameplay"
 
 [node name="gunshot_heavy" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("20_3a6wi")
 volume_db = -15.0
 pitch_scale = 0.9
 max_polyphony = 5
+bus = &"Gameplay"
 
 [node name="attack_timer" type="Timer" parent="."]
 wait_time = 0.15

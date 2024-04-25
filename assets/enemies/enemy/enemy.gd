@@ -20,6 +20,7 @@ var knockback_multiplier : float = 1.7
 
 # Doświadczenie
 @export var dropped_experience : float
+@export var dropped_ammo := 5
 
 # Zasięg
 @export var detection_range : float
@@ -360,5 +361,6 @@ func die():
 	is_dead = true
 	sprite.self_modulate = Color(1.0, 0, 0, 1)
 	PlayerVariables.experience += dropped_experience
+	PlayerVariables.ammo += dropped_ammo
 	await get_tree().create_timer(death_time).timeout
 	queue_free()

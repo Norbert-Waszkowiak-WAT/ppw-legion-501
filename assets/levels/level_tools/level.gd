@@ -103,7 +103,6 @@ func on_level_completed():
 func generate_waypoints():
 	var tiles = $terrain.get_used_cells(0)
 	var waypoint_cells = []
-	var waypoint_scene = load("res://assets/levels/level_tools/waypoint.tscn")
 	for tile in tiles:
 		if $terrain.get_cell_source_id(0, tile) == 1:
 			continue

@@ -1,4 +1,4 @@
-extends Area2D
+extends AnimatedSprite2D
 class_name Weapon
 
 

@@ -112,6 +112,23 @@ custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 previous_button = NodePath("../../VBoxContainer/movement_3")
 
+[node name="VBoxContainer3" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Panel/MarginContainer/TabContainer/Movement"]
+layout_mode = 2
+theme_override_constants/separation = 220
+alignment = 1
+
+[node name="dash_charge" parent="MarginContainer/VBoxContainer/Panel/MarginContainer/TabContainer/Movement/VBoxContainer3" node_paths=PackedStringArray("previous_button") instance=ExtResource("2_1v6ce")]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+previous_button = NodePath("../../VBoxContainer2/air_dash")
+ability_name = "dash_charge"
+description = "Provides and extra dash charge for the Dash ability."
+
+[node name="movement_5" parent="MarginContainer/VBoxContainer/Panel/MarginContainer/TabContainer/Movement/VBoxContainer3" node_paths=PackedStringArray("previous_button") instance=ExtResource("2_1v6ce")]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+previous_button = NodePath("../../VBoxContainer/movement_3")
+
 [node name="Melee" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Panel/MarginContainer/TabContainer"]
 visible = false
 layout_mode = 2

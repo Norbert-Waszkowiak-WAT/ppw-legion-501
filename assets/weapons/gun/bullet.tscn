@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://cwenyi5fjdao4"]
 
-[ext_resource type="Script" path="res://assets/player/Bullet.gd" id="1_wmqo0"]
+[ext_resource type="Script" path="res://assets/weapons/gun/Bullet.gd" id="1_wmqo0"]
 [ext_resource type="PackedScene" uid="uid://bea7s73djggv1" path="res://assets/weapons/gun/impact.tscn" id="2_1lnd8"]
 [ext_resource type="Texture2D" uid="uid://r52wxhkrjxr2" path="res://textures/gun/bullets/bullet.png" id="3_v6xov"]
 
@@ -16,7 +16,7 @@ collision_layer = 16
 collision_mask = 5
 script = ExtResource("1_wmqo0")
 speed_of_bullet = 250.0
-range = 170.0
+bullet_range = 150.0
 
 [node name="GPUParticles2D" parent="." instance=ExtResource("2_1lnd8")]
 

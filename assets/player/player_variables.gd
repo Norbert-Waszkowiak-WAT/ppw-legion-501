@@ -5,6 +5,7 @@ var abilities = {
 	"double_jump": false,
 	"dash": false,
 	"air_dash": false,
+	"dash_charge": false,
 	
 	# Melee
 	"deflect": false,
@@ -19,7 +20,11 @@ var abilities = {
 var double_jumped : bool = false
 
 var dash_charges : int
-var MAX_DASH_CHARGES : int = 2
+var MAX_DASH_CHARGES : int = 1
+
+var ammo : float
+var MAX_AMMO : int = 100
+
 
 var skill_points : float
 
@@ -28,30 +33,30 @@ var MAX_HEALTH: float = 100.0
 
 var experience : float
 var exp_lvl : int
-var MAX_EXP : float = 100.0
+var MAX_EXP : float = 200
 
 var loaded_save : String
 
 
 func save_game(file_index : String):
 	var level = get_parent().get_node("Level")
+	var next_level
 	
+	var file = FileAccess.open("user://save_slot_" + file_index + ".save", FileAccess.WRITE)
 	if level:
-		var file = FileAccess.open("user://save_slot_" + file_index + ".save", FileAccess.WRITE)
-
-		var next_level = level.next_level
-		file.store_var(abilities)
-		file.store_var(exp_lvl)
-		file.store_var(MAX_EXP)
-		file.store_var(experience)
-		file.store_var(skill_points)
-		file.store_var(next_level)
+		next_level = level.next_level
+	file.store_var(abilities)
+	file.store_var(exp_lvl)
+	file.store_var(MAX_EXP)
+	file.store_var(experience)
+	file.store_var(skill_points)
+	file.store_var(next_level)
 		
-		file.close()
+	file.close()
 
 
 func load_game(file_index : String):
-	var next_level : String
+	var next_level
 	if FileAccess.file_exists("user://save_slot_" + file_index + ".save"):
 		var file = FileAccess.open("user://save_slot_" + file_index + ".save", FileAccess.READ)
 
@@ -64,7 +69,10 @@ func load_game(file_index : String):
 		
 		file.close()
 		loaded_save = file_index
-	get_tree().change_scene_to_file(next_level)
+	if next_level:
+		get_tree().change_scene_to_file(next_level)
+	else:
+		get_tree().reload_current_scene()
 
 
 func reset_player():
@@ -73,6 +81,7 @@ func reset_player():
 	"double_jump": false,
 	"dash": false,
 	"air_dash": false,
+	"dash_charge": false,
 	
 	# Melee
 	"deflect": false,
@@ -83,7 +92,7 @@ func reset_player():
 	# Magic
 	}
 	exp_lvl = 0
-	MAX_EXP = 100.0
+	MAX_EXP = 200.0
 	experience = 0
 	skill_points = 0
 	MAX_HEALTH = 100.0

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://du47dophaj8eg"
-path="res://.godot/imported/xp-bar-under.png-14312e001295d836b95990271afb090e.ctex"
+uid="uid://dkx2bx7d4rnq8"
+path="res://.godot/imported/pixil-layer-1.png-fa49ceeac03b860f560ae79016b97aa8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/xp-bar/xp-bar-under.png"
-dest_files=["res://.godot/imported/xp-bar-under.png-14312e001295d836b95990271afb090e.ctex"]
+source_file="res://textures/xp-bar/pixil-layer-1.png"
+dest_files=["res://.godot/imported/pixil-layer-1.png-fa49ceeac03b860f560ae79016b97aa8.ctex"]
 
 [params]
 

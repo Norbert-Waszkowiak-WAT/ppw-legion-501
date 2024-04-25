@@ -86,12 +86,12 @@ func _make_custom_tooltip(for_text):
 	return label
 
 
-func _on_toggled(button_pressed):
+func _on_toggled(pressed_button):
 	# Odejmuje / dodaje punkty umiejętności
-	if button_pressed:
+	if pressed_button:
 		PlayerVariables.skill_points -= 1
 	else:
 		PlayerVariables.skill_points += 1
 	# Aktualizuje globalną zmienną umiejętności
-	PlayerVariables.abilities[ability_name] = button_pressed
+	PlayerVariables.abilities[ability_name] = pressed_button
 

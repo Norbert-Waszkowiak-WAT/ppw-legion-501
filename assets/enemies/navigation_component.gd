@@ -75,9 +75,7 @@ func A_Star(starting_point : Vector2i, goal : Vector2i) -> Array:
 	goal = verification
 	
 	starting_point = verify_goal(starting_point)
-	
-	var enemies = get_tree().get_nodes_in_group("enemies")
-	
+
 	if starting_point == goal:
 		return []
 	

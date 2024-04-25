@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://du47dophaj8eg"
-path="res://.godot/imported/xp-bar-under.png-14312e001295d836b95990271afb090e.ctex"
+uid="uid://cl0a2uq6jkkmi"
+path="res://.godot/imported/ammo_bar_under.png-7dba609eb59b7bc83de29b0e596bb8cc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/xp-bar/xp-bar-under.png"
-dest_files=["res://.godot/imported/xp-bar-under.png-14312e001295d836b95990271afb090e.ctex"]
+source_file="res://textures/ammo_bar/ammo_bar_under.png"
+dest_files=["res://.godot/imported/ammo_bar_under.png-7dba609eb59b7bc83de29b0e596bb8cc.ctex"]
 
 [params]
 

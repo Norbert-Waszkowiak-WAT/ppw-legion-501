@@ -244,6 +244,7 @@ environment = SubResource("Environment_ugoqb")
 
 [node name="hover_tick" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("10_r3chd")
+bus = &"Menu"
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/main_screen/new_game" to="." method="_on_new_game_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/main_screen/continue" to="." method="_on_continue_pressed"]

@@ -5,7 +5,7 @@ var damage : float
 var knockback : float
 var direction : float
 var spread : float
-@export var range : float
+@export var bullet_range : float
 var lifetime : float
 var life_timer : float = 0.0
 
@@ -15,7 +15,7 @@ var emitting : bool = false
 
 
 func _ready():
-	lifetime = range / speed_of_bullet
+	lifetime = bullet_range / speed_of_bullet
 
 
 func _physics_process(_delta):

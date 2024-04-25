@@ -20,4 +20,7 @@ func _on_pressed():
 	elif get_parent().get_parent().name == "new_game_screen":
 		PlayerVariables.reset_player()
 		PlayerVariables.loaded_save = file_index
+		#var save = FileAccess.open("user://save_slot_" + file_index + ".save", FileAccess.WRITE)
+		#save.close()
+		PlayerVariables.save_game(file_index)
 		get_tree().get_root().get_node("main_menu").start_new_game()

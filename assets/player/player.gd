@@ -63,6 +63,8 @@ func _ready():
 			weapon.set_target("enemies")
 	switch_weapon(default_weapon)
 	
+	PlayerVariables.ammo = PlayerVariables.MAX_AMMO
+	
 	set_enabled(false)
 	hide()
 	
@@ -82,6 +84,11 @@ func _process(delta):
 		$dash_cooldown.stop()
 	elif $dash_cooldown.is_stopped():
 		$dash_cooldown.start()
+	if PlayerVariables.abilities.dash_charge:
+		PlayerVariables.MAX_DASH_CHARGES = 2
+	else:
+		PlayerVariables.MAX_DASH_CHARGES = 1
+	PlayerVariables.dash_charges = min(PlayerVariables.dash_charges, PlayerVariables.MAX_DASH_CHARGES)
 	
 	process_weapons()
 	process_footstep_audio()
@@ -247,7 +254,7 @@ func exp_bar_update():
 	if PlayerVariables.experience >= PlayerVariables.MAX_EXP:
 		PlayerVariables.experience -= PlayerVariables.MAX_EXP
 		PlayerVariables.exp_lvl += 1
-		PlayerVariables.MAX_EXP *= 1.5
+		PlayerVariables.MAX_EXP *= 1.3
 		#Odwołanie do HUD gracza i zmiana wartości liczbowej lvl exp-a
 		PlayerVariables.skill_points += 1
 	$HUD/level.text = str(PlayerVariables.exp_lvl)

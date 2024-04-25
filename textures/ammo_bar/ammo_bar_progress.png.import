@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://du47dophaj8eg"
-path="res://.godot/imported/xp-bar-under.png-14312e001295d836b95990271afb090e.ctex"
+uid="uid://dwpxprrded7ra"
+path="res://.godot/imported/ammo_bar_progress.png-0e342a7042a2870b8d96463f35a59ae9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/xp-bar/xp-bar-under.png"
-dest_files=["res://.godot/imported/xp-bar-under.png-14312e001295d836b95990271afb090e.ctex"]
+source_file="res://textures/ammo_bar/ammo_bar_progress.png"
+dest_files=["res://.godot/imported/ammo_bar_progress.png-0e342a7042a2870b8d96463f35a59ae9.ctex"]
 
 [params]
 

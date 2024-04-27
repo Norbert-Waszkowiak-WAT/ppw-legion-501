@@ -1,7 +1,7 @@
 extends CanvasLayer
 
 
-var anim_time : float = 0.3
+var anim_time : float = 0.05
 
 @onready var hud = get_node("../player/HUD")
 @onready var label = get_node("MarginContainer/VBoxContainer/Label")
@@ -11,7 +11,7 @@ func _ready():
 	set_process(true)
 	
 	var tween = create_tween().set_parallel(true).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT)
-	tween.tween_property($background, "color:a", 0.3, anim_time)
+	tween.tween_property($background, "color:a", 0.5, anim_time)
 	tween.tween_property($MarginContainer, "position", Vector2(0, 0), 2 * anim_time)
 	if hud:
 		for i in hud.get_children():

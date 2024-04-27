@@ -1,7 +1,8 @@
-[gd_scene load_steps=16 format=3 uid="uid://clf8aqe0iy2if"]
+[gd_scene load_steps=21 format=3 uid="uid://clf8aqe0iy2if"]
 
 [ext_resource type="Texture2D" uid="uid://3if66flyxnfp" path="res://textures/dash_bar/dash_bar_under.png" id="1_80og5"]
 [ext_resource type="Texture2D" uid="uid://d2banh24fhpa3" path="res://textures/health_bar/health_bar_progress.png" id="1_hm0mi"]
+[ext_resource type="Script" path="res://assets/player/hud/hud.gd" id="1_ynyae"]
 [ext_resource type="Texture2D" uid="uid://24idyw5i75rb" path="res://textures/dash_bar/dash_bar_progress.png" id="2_7aed4"]
 [ext_resource type="Script" path="res://assets/player/hud/healthbar.gd" id="2_lxfns"]
 [ext_resource type="Script" path="res://assets/player/hud/dash_bar.gd" id="3_3qi17"]
@@ -14,14 +15,23 @@
 [ext_resource type="Texture2D" uid="uid://cl0a2uq6jkkmi" path="res://textures/ammo_bar/ammo_bar_under.png" id="8_olg7i"]
 [ext_resource type="Texture2D" uid="uid://dwpxprrded7ra" path="res://textures/ammo_bar/ammo_bar_progress.png" id="9_cdav7"]
 [ext_resource type="Script" path="res://assets/player/hud/expbar.gd" id="10_1xy4g"]
+[ext_resource type="PackedScene" uid="uid://dwqkmdjdqdjmt" path="res://assets/ui/radial_ability_menu/radial_ability_menu.tscn" id="15_sxjd0"]
+[ext_resource type="Texture2D" uid="uid://cdve25cd25dtp" path="res://textures/skill_tree/skill_button.png" id="16_4jb8o"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_nessk"]
 font = ExtResource("7_pp8d5")
 font_size = 20
 font_color = Color(0.662745, 0.898039, 0.686275, 1)
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ehlcu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jxqe2"]
+bg_color = Color(0, 0, 0, 0.709804)
+
 [node name="HUD" type="CanvasLayer"]
 follow_viewport_scale = 3.0
+script = ExtResource("1_ynyae")
+ability_cooldown = 5.0
 
 [node name="Control" type="Control" parent="."]
 visible = false
@@ -126,3 +136,27 @@ script = ExtResource("10_1xy4g")
 offset_right = 40.0
 offset_bottom = 40.0
 color = Color(0, 0, 0, 0)
+
+[node name="radial_ability_menu" parent="." instance=ExtResource("15_sxjd0")]
+visible = false
+disabled_color = null
+
+[node name="selected_ability" type="TextureRect" parent="."]
+offset_left = 13.0
+offset_top = 190.0
+offset_right = 53.0
+offset_bottom = 230.0
+scale = Vector2(3, 3)
+texture = ExtResource("16_4jb8o")
+
+[node name="ProgressBar" type="ProgressBar" parent="selected_ability"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxEmpty_ehlcu")
+theme_override_styles/fill = SubResource("StyleBoxFlat_jxqe2")
+fill_mode = 3
+show_percentage = false

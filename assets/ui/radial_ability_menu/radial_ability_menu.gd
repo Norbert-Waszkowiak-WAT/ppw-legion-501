@@ -1,3 +1,4 @@
+@tool
 extends Control
 
 const IMAGE_SIZE = Vector2(22, 22)
@@ -85,7 +86,7 @@ func _process(delta):
 	if !disabled_options.has(options[tentative_selected_option]):
 		selected_option = tentative_selected_option
 	
-	if PlayerVariables.abilities:
+	if not Engine.is_editor_hint():
 		for option in options:
 			if PlayerVariables.abilities.keys().has(option.name) and PlayerVariables.abilities[option.name] == false:
 				if not disabled_options.has(option):

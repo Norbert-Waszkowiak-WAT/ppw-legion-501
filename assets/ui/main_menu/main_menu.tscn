@@ -86,8 +86,6 @@ focus_neighbor_top = NodePath("../exit")
 theme = ExtResource("3_6h6dh")
 theme_override_font_sizes/font_size = 70
 text = "new game"
-icon_alignment = 1
-expand_icon = true
 
 [node name="continue" type="Button" parent="MarginContainer/VBoxContainer/main_screen"]
 texture_filter = 1

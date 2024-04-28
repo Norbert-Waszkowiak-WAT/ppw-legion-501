@@ -68,6 +68,7 @@ offset_right = 50.0
 offset_bottom = 10.0
 scale = Vector2(5, 5)
 step = 0.1
+value = 100.0
 texture_progress = ExtResource("1_hm0mi")
 script = ExtResource("2_lxfns")
 
@@ -99,9 +100,10 @@ offset_right = 100.0
 offset_bottom = -80.0
 grow_vertical = 0
 scale = Vector2(5, 5)
-value = 63.0
+value = 100.0
 texture_under = ExtResource("8_olg7i")
 texture_progress = ExtResource("9_cdav7")
+texture_progress_offset = Vector2(2, 2)
 script = ExtResource("8_oepgp")
 
 [node name="level" type="Label" parent="."]
@@ -130,6 +132,7 @@ scale = Vector2(5, 5)
 step = 0.1
 texture_under = ExtResource("5_upksd")
 texture_progress = ExtResource("6_maie4")
+texture_progress_offset = Vector2(2, 2)
 script = ExtResource("10_1xy4g")
 
 [node name="tint" type="ColorRect" parent="."]
@@ -139,7 +142,7 @@ color = Color(0, 0, 0, 0)
 
 [node name="radial_ability_menu" parent="." instance=ExtResource("15_sxjd0")]
 visible = false
-disabled_color = null
+disabled_color = Color(0, 0, 0, 1)
 
 [node name="selected_ability" type="TextureRect" parent="."]
 offset_left = 13.0

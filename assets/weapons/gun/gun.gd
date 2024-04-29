@@ -46,7 +46,7 @@ func _process(delta):
 		fire_rate = 500
 		damage = 8
 		spread = 0.8
-		knockback = 1
+		knockback = 0
 		trauma = 0.35
 		ammo_cost = 0.5
 		gunshot_sound = gunshot_standard

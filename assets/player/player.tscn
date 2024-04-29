@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://b8kl60fulqq1u"]
+[gd_scene load_steps=33 format=3 uid="uid://b8kl60fulqq1u"]
 
 [ext_resource type="Script" path="res://assets/player/player.gd" id="1_xhwip"]
 [ext_resource type="Script" path="res://assets/player/Camera2D.gd" id="2_2bp8c"]
@@ -25,6 +25,7 @@
 [ext_resource type="Script" path="res://assets/player/states/jump.gd" id="10_x52e5"]
 [ext_resource type="Script" path="res://assets/player/states/fall.gd" id="11_h6ekv"]
 [ext_resource type="PackedScene" uid="uid://bt3ngcbslwttq" path="res://assets/weapons/gun/gun.tscn" id="15_scggg"]
+[ext_resource type="PackedScene" uid="uid://ch6mplaghrax4" path="res://assets/weapons/saber/saber.tscn" id="19_vg4rd"]
 [ext_resource type="AudioStream" uid="uid://bfxypqbbuwu4v" path="res://assets/player/sounds/gravel_footstep.wav" id="21_0dmyl"]
 [ext_resource type="AudioStream" uid="uid://bdis33wsr81xy" path="res://assets/player/sounds/gravel_land.ogg" id="21_vv04n"]
 [ext_resource type="AudioStream" uid="uid://c4d3bsd1sea1q" path="res://assets/player/sounds/dash.wav" id="24_irtn5"]
@@ -148,9 +149,12 @@ texture_filter = 1
 position = Vector2(1, 0)
 scale = Vector2(0.125, 0.125)
 sprite_frames = SubResource("SpriteFrames_lbsb1")
-animation = &"walk"
+animation = &"idle"
+
+[node name="saber" parent="AnimatedSprite2D" instance=ExtResource("19_vg4rd")]
 
 [node name="gun" parent="AnimatedSprite2D" instance=ExtResource("15_scggg")]
+visible = false
 
 [node name="stick" parent="AnimatedSprite2D" instance=ExtResource("5_n46lu")]
 visible = false

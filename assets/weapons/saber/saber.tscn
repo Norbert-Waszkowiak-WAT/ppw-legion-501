@@ -1,0 +1,59 @@
+[gd_scene load_steps=9 format=3 uid="uid://ch6mplaghrax4"]
+
+[ext_resource type="Texture2D" uid="uid://76dgdih7oknv" path="res://textures/saber/Grafika_bez_nazwy-1.png" id="1_t4k54"]
+[ext_resource type="Texture2D" uid="uid://byiw7t6wkst5k" path="res://textures/saber/Grafika_bez_nazwy-2.png" id="2_klypd"]
+[ext_resource type="Texture2D" uid="uid://ok357un1rn2c" path="res://textures/saber/Grafika_bez_nazwy-3.png" id="3_idn2v"]
+[ext_resource type="Texture2D" uid="uid://dvi1fvr1kkexy" path="res://textures/saber/Grafika_bez_nazwy-4.png" id="4_mhcqj"]
+[ext_resource type="Texture2D" uid="uid://8la35qhh4srl" path="res://textures/saber/Grafika_bez_nazwy-5.png" id="5_gmr8f"]
+[ext_resource type="Script" path="res://assets/weapons/saber/saber.gd" id="6_j3lt1"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_x02f2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_t4k54")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_klypd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_idn2v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_mhcqj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_gmr8f")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 20.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_gmr8f")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vnfl5"]
+radius = 134.004
+
+[node name="saber" type="AnimatedSprite2D"]
+position = Vector2(56, 0)
+sprite_frames = SubResource("SpriteFrames_x02f2")
+animation = &"attack"
+frame = 4
+frame_progress = 1.0
+script = ExtResource("6_j3lt1")
+damage = 15.0
+knockback = 40.0
+
+[node name="hitbox" type="Area2D" parent="."]
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+position = Vector2(59, -16)
+shape = SubResource("CircleShape2D_vnfl5")

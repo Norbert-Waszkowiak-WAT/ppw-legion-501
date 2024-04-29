@@ -1,0 +1,65 @@
+[gd_scene load_steps=3 format=3 uid="uid://dodot8o48a5wu"]
+
+[ext_resource type="PackedScene" uid="uid://bfqfqq7ggdc2o" path="res://assets/ui/skill_tree/skill_button.tscn" id="1_glv2x"]
+[ext_resource type="Texture2D" uid="uid://c3b3jt3utfc3t" path="res://textures/skill_tree/skill_buttons/ability_time.png" id="2_leutk"]
+
+[node name="Magic" type="HBoxContainer"]
+visible = false
+theme_override_constants/separation = 319
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 80
+alignment = 1
+
+[node name="bullet_time" parent="VBoxContainer" instance=ExtResource("1_glv2x")]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+texture_normal = ExtResource("2_leutk")
+ability_name = "bullet_time"
+
+[node name="quake" parent="VBoxContainer" instance=ExtResource("1_glv2x")]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+ability_name = "quake"
+
+[node name="skill_button4" parent="VBoxContainer" instance=ExtResource("1_glv2x")]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 80
+alignment = 1
+
+[node name="skill_button2" parent="VBoxContainer2" node_paths=PackedStringArray("previous_button") instance=ExtResource("1_glv2x")]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+previous_button = NodePath("../../VBoxContainer/bullet_time")
+
+[node name="skill_button4" parent="VBoxContainer2" node_paths=PackedStringArray("previous_button") instance=ExtResource("1_glv2x")]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+previous_button = NodePath("../../VBoxContainer/quake")
+
+[node name="skill_button3" parent="VBoxContainer2" instance=ExtResource("1_glv2x")]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 80
+alignment = 1
+
+[node name="skill_button2" parent="VBoxContainer3" instance=ExtResource("1_glv2x")]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+
+[node name="skill_button4" parent="VBoxContainer3" instance=ExtResource("1_glv2x")]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+
+[node name="skill_button3" parent="VBoxContainer3" instance=ExtResource("1_glv2x")]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2

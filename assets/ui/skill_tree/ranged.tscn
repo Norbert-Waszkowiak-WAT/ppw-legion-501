@@ -1,0 +1,57 @@
+[gd_scene load_steps=4 format=3 uid="uid://c58ee86830p4l"]
+
+[ext_resource type="PackedScene" uid="uid://bfqfqq7ggdc2o" path="res://assets/ui/skill_tree/skill_button.tscn" id="1_uelf4"]
+[ext_resource type="Texture2D" uid="uid://ditdkglwr8n8c" path="res://textures/skill_tree/skill_buttons/high_speed.png" id="2_cxdsd"]
+[ext_resource type="Texture2D" uid="uid://7lifsi78fvkm" path="res://textures/skill_tree/skill_buttons/heavy_hitter.png" id="3_p0ypv"]
+
+[node name="Ranged" type="HBoxContainer"]
+visible = false
+theme_override_constants/separation = 319
+alignment = 1
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 220
+alignment = 1
+
+[node name="high_speed" parent="VBoxContainer3" node_paths=PackedStringArray("excluded_buttons") instance=ExtResource("1_uelf4")]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+texture_normal = ExtResource("2_cxdsd")
+excluded_buttons = [NodePath("../heavy_hitter")]
+ability_name = "high_speed_low_drag"
+description = "Increases rate of fire, decreases damage and accuracy."
+
+[node name="heavy_hitter" parent="VBoxContainer3" node_paths=PackedStringArray("excluded_buttons") instance=ExtResource("1_uelf4")]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+texture_normal = ExtResource("3_p0ypv")
+excluded_buttons = [NodePath("../high_speed")]
+ability_name = "heavy_hitter"
+description = "Increases damage and accuracy, decreases rate of fire."
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 220
+alignment = 1
+
+[node name="ranged_2" parent="VBoxContainer" instance=ExtResource("1_uelf4")]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+
+[node name="ranged_3" parent="VBoxContainer" instance=ExtResource("1_uelf4")]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 220
+alignment = 1
+
+[node name="ranged_4" parent="VBoxContainer2" instance=ExtResource("1_uelf4")]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+
+[node name="ranged_5" parent="VBoxContainer2" instance=ExtResource("1_uelf4")]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2

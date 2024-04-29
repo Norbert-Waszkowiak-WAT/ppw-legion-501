@@ -1,13 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://crl4bl20w7j5i"]
+[gd_scene load_steps=7 format=3 uid="uid://crl4bl20w7j5i"]
 
 [ext_resource type="Theme" uid="uid://di4l5lx6nd1kk" path="res://assets/ui/skill_tree/skill_tree.tres" id="1_qahuc"]
 [ext_resource type="Script" path="res://assets/ui/skill_tree/skill_tree_menu.gd" id="1_wct68"]
-[ext_resource type="PackedScene" uid="uid://bfqfqq7ggdc2o" path="res://assets/ui/skill_tree/skill_button.tscn" id="2_1v6ce"]
-[ext_resource type="Texture2D" uid="uid://ditdkglwr8n8c" path="res://textures/skill_tree/skill_buttons/high_speed.png" id="4_37r7e"]
-[ext_resource type="Texture2D" uid="uid://b18jf7u7jng3f" path="res://textures/skill_tree/skill_buttons/double_jump.png" id="4_vyuox"]
-[ext_resource type="Texture2D" uid="uid://7lifsi78fvkm" path="res://textures/skill_tree/skill_buttons/heavy_hitter.png" id="5_vqvfa"]
-[ext_resource type="Texture2D" uid="uid://bkltun7srpg2m" path="res://textures/skill_tree/skill_buttons/dash.png" id="5_wxkb4"]
-[ext_resource type="Texture2D" uid="uid://bogkct2i6o7pu" path="res://textures/skill_tree/skill_buttons/air_dash.png" id="6_vu0kj"]
+[ext_resource type="PackedScene" uid="uid://bmkahn7gmxy3f" path="res://assets/ui/skill_tree/movement.tscn" id="3_lqewx"]
+[ext_resource type="PackedScene" uid="uid://b2exxvumi4f4t" path="res://assets/ui/skill_tree/melee.tscn" id="4_o3rub"]
+[ext_resource type="PackedScene" uid="uid://c58ee86830p4l" path="res://assets/ui/skill_tree/ranged.tscn" id="5_ct6cl"]
+[ext_resource type="PackedScene" uid="uid://dodot8o48a5wu" path="res://assets/ui/skill_tree/magic.tscn" id="6_n02c6"]
 
 [node name="skill_tree_menu" type="CanvasLayer"]
 script = ExtResource("1_wct68")
@@ -65,198 +63,14 @@ layout_mode = 2
 theme = ExtResource("1_qahuc")
 tab_alignment = 1
 
-[node name="Movement" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Panel/MarginContainer/TabContainer"]
-layout_mode = 2
-theme_override_constants/separation = 319
-alignment = 1
-
-[node name="double_jump" parent="MarginContainer/VBoxContainer/Panel/MarginContainer/TabContainer/Movement" instance=ExtResource("2_1v6ce")]
-custom_minimum_size = Vector2(150, 150)
-layout_mode = 2
-texture_normal = ExtResource("4_vyuox")
-ability_name = "double_jump"
-description = "Allows you to jump midair. Press [u]Space[/u] while in the air to activate."
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Panel/MarginContainer/TabContainer/Movement"]
-layout_mode = 2
-theme_override_constants/separation = 220
-alignment = 1
-
-[node name="dash" parent="MarginContainer/VBoxContainer/Panel/MarginContainer/TabContainer/Movement/VBoxContainer" node_paths=PackedStringArray("previous_button") instance=ExtResource("2_1v6ce")]
-custom_minimum_size = Vector2(150, 150)
-layout_mode = 2
-texture_normal = ExtResource("5_wxkb4")
-previous_button = NodePath("../../double_jump")
-ability_name = "dash"
-description = "Allows you to quickly dash forward. Press [u]Shift[/u] to activate."
-
-[node name="movement_3" parent="MarginContainer/VBoxContainer/Panel/MarginContainer/TabContainer/Movement/VBoxContainer" node_paths=PackedStringArray("previous_button") instance=ExtResource("2_1v6ce")]
-custom_minimum_size = Vector2(150, 150)
-layout_mode = 2
-previous_button = NodePath("../../double_jump")
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Panel/MarginContainer/TabContainer/Movement"]
-layout_mode = 2
-theme_override_constants/separation = 220
-alignment = 1
-
-[node name="air_dash" parent="MarginContainer/VBoxContainer/Panel/MarginContainer/TabContainer/Movement/VBoxContainer2" node_paths=PackedStringArray("previous_button") instance=ExtResource("2_1v6ce")]
-custom_minimum_size = Vector2(150, 150)
-layout_mode = 2
-texture_normal = ExtResource("6_vu0kj")
-previous_button = NodePath("../../VBoxContainer/dash")
-ability_name = "air_dash"
-description = "Allows you to dash midair."
-
-[node name="movement_5" parent="MarginContainer/VBoxContainer/Panel/MarginContainer/TabContainer/Movement/VBoxContainer2" node_paths=PackedStringArray("previous_button") instance=ExtResource("2_1v6ce")]
-custom_minimum_size = Vector2(150, 150)
-layout_mode = 2
-previous_button = NodePath("../../VBoxContainer/movement_3")
-
-[node name="VBoxContainer3" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Panel/MarginContainer/TabContainer/Movement"]
-layout_mode = 2
-theme_override_constants/separation = 220
-alignment = 1
-
-[node name="dash_charge" parent="MarginContainer/VBoxContainer/Panel/MarginContainer/TabContainer/Movement/VBoxContainer3" node_paths=PackedStringArray("previous_button") instance=ExtResource("2_1v6ce")]
-custom_minimum_size = Vector2(150, 150)
-layout_mode = 2
-previous_button = NodePath("../../VBoxContainer2/air_dash")
-ability_name = "dash_charge"
-description = "Provides and extra dash charge for the Dash ability."
-
-[node name="movement_5" parent="MarginContainer/VBoxContainer/Panel/MarginContainer/TabContainer/Movement/VBoxContainer3" node_paths=PackedStringArray("previous_button") instance=ExtResource("2_1v6ce")]
-custom_minimum_size = Vector2(150, 150)
-layout_mode = 2
-previous_button = NodePath("../../VBoxContainer/movement_3")
-
-[node name="Melee" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Panel/MarginContainer/TabContainer"]
-visible = false
-layout_mode = 2
-theme_override_constants/separation = 319
-alignment = 1
-
-[node name="melee_1" parent="MarginContainer/VBoxContainer/Panel/MarginContainer/TabContainer/Melee" instance=ExtResource("2_1v6ce")]
-custom_minimum_size = Vector2(150, 150)
+[node name="Movement" parent="MarginContainer/VBoxContainer/Panel/MarginContainer/TabContainer" instance=ExtResource("3_lqewx")]
 layout_mode = 2
 
-[node name="melee_2" parent="MarginContainer/VBoxContainer/Panel/MarginContainer/TabContainer/Melee" node_paths=PackedStringArray("previous_button") instance=ExtResource("2_1v6ce")]
-custom_minimum_size = Vector2(150, 150)
-layout_mode = 2
-previous_button = NodePath("../melee_1")
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Panel/MarginContainer/TabContainer/Melee"]
-layout_mode = 2
-theme_override_constants/separation = 220
-alignment = 1
-
-[node name="melee_3" parent="MarginContainer/VBoxContainer/Panel/MarginContainer/TabContainer/Melee/VBoxContainer2" node_paths=PackedStringArray("previous_button") instance=ExtResource("2_1v6ce")]
-custom_minimum_size = Vector2(150, 150)
-layout_mode = 2
-previous_button = NodePath("../../melee_2")
-
-[node name="melee_4" parent="MarginContainer/VBoxContainer/Panel/MarginContainer/TabContainer/Melee/VBoxContainer2" node_paths=PackedStringArray("previous_button") instance=ExtResource("2_1v6ce")]
-custom_minimum_size = Vector2(150, 150)
-layout_mode = 2
-previous_button = NodePath("../../melee_2")
-
-[node name="Ranged" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Panel/MarginContainer/TabContainer"]
-visible = false
-layout_mode = 2
-theme_override_constants/separation = 319
-alignment = 1
-
-[node name="VBoxContainer3" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Panel/MarginContainer/TabContainer/Ranged"]
-layout_mode = 2
-theme_override_constants/separation = 220
-alignment = 1
-
-[node name="high_speed" parent="MarginContainer/VBoxContainer/Panel/MarginContainer/TabContainer/Ranged/VBoxContainer3" node_paths=PackedStringArray("excluded_buttons") instance=ExtResource("2_1v6ce")]
-custom_minimum_size = Vector2(150, 150)
-layout_mode = 2
-texture_normal = ExtResource("4_37r7e")
-excluded_buttons = [NodePath("../heavy_hitter")]
-ability_name = "high_speed_low_drag"
-description = "Increases rate of fire, decreases damage and accuracy."
-
-[node name="heavy_hitter" parent="MarginContainer/VBoxContainer/Panel/MarginContainer/TabContainer/Ranged/VBoxContainer3" node_paths=PackedStringArray("excluded_buttons") instance=ExtResource("2_1v6ce")]
-custom_minimum_size = Vector2(150, 150)
-layout_mode = 2
-texture_normal = ExtResource("5_vqvfa")
-excluded_buttons = [NodePath("../high_speed")]
-ability_name = "heavy_hitter"
-description = "Increases damage and accuracy, decreases rate of fire."
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Panel/MarginContainer/TabContainer/Ranged"]
-layout_mode = 2
-theme_override_constants/separation = 220
-alignment = 1
-
-[node name="ranged_2" parent="MarginContainer/VBoxContainer/Panel/MarginContainer/TabContainer/Ranged/VBoxContainer" node_paths=PackedStringArray("previous_button") instance=ExtResource("2_1v6ce")]
-custom_minimum_size = Vector2(150, 150)
-layout_mode = 2
-previous_button = NodePath("../../VBoxContainer3/high_speed")
-
-[node name="ranged_3" parent="MarginContainer/VBoxContainer/Panel/MarginContainer/TabContainer/Ranged/VBoxContainer" node_paths=PackedStringArray("previous_button") instance=ExtResource("2_1v6ce")]
-custom_minimum_size = Vector2(150, 150)
-layout_mode = 2
-previous_button = NodePath("../../VBoxContainer3/heavy_hitter")
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Panel/MarginContainer/TabContainer/Ranged"]
-layout_mode = 2
-theme_override_constants/separation = 220
-alignment = 1
-
-[node name="ranged_4" parent="MarginContainer/VBoxContainer/Panel/MarginContainer/TabContainer/Ranged/VBoxContainer2" node_paths=PackedStringArray("previous_button") instance=ExtResource("2_1v6ce")]
-custom_minimum_size = Vector2(150, 150)
-layout_mode = 2
-previous_button = NodePath("../../VBoxContainer/ranged_2")
-
-[node name="ranged_5" parent="MarginContainer/VBoxContainer/Panel/MarginContainer/TabContainer/Ranged/VBoxContainer2" node_paths=PackedStringArray("previous_button") instance=ExtResource("2_1v6ce")]
-custom_minimum_size = Vector2(150, 150)
-layout_mode = 2
-previous_button = NodePath("../../VBoxContainer/ranged_3")
-
-[node name="Magic" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Panel/MarginContainer/TabContainer"]
-visible = false
-layout_mode = 2
-theme_override_constants/separation = 319
-alignment = 1
-
-[node name="skill_button" parent="MarginContainer/VBoxContainer/Panel/MarginContainer/TabContainer/Magic" instance=ExtResource("2_1v6ce")]
-custom_minimum_size = Vector2(150, 150)
+[node name="Melee" parent="MarginContainer/VBoxContainer/Panel/MarginContainer/TabContainer" instance=ExtResource("4_o3rub")]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Panel/MarginContainer/TabContainer/Magic"]
-layout_mode = 2
-theme_override_constants/separation = 80
-alignment = 1
-
-[node name="skill_button2" parent="MarginContainer/VBoxContainer/Panel/MarginContainer/TabContainer/Magic/VBoxContainer" instance=ExtResource("2_1v6ce")]
-custom_minimum_size = Vector2(150, 150)
+[node name="Ranged" parent="MarginContainer/VBoxContainer/Panel/MarginContainer/TabContainer" instance=ExtResource("5_ct6cl")]
 layout_mode = 2
 
-[node name="skill_button3" parent="MarginContainer/VBoxContainer/Panel/MarginContainer/TabContainer/Magic/VBoxContainer" instance=ExtResource("2_1v6ce")]
-custom_minimum_size = Vector2(150, 150)
-layout_mode = 2
-
-[node name="skill_button4" parent="MarginContainer/VBoxContainer/Panel/MarginContainer/TabContainer/Magic/VBoxContainer" instance=ExtResource("2_1v6ce")]
-custom_minimum_size = Vector2(150, 150)
-layout_mode = 2
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Panel/MarginContainer/TabContainer/Magic"]
-layout_mode = 2
-theme_override_constants/separation = 80
-alignment = 1
-
-[node name="skill_button2" parent="MarginContainer/VBoxContainer/Panel/MarginContainer/TabContainer/Magic/VBoxContainer2" instance=ExtResource("2_1v6ce")]
-custom_minimum_size = Vector2(150, 150)
-layout_mode = 2
-
-[node name="skill_button4" parent="MarginContainer/VBoxContainer/Panel/MarginContainer/TabContainer/Magic/VBoxContainer2" instance=ExtResource("2_1v6ce")]
-custom_minimum_size = Vector2(150, 150)
-layout_mode = 2
-
-[node name="skill_button3" parent="MarginContainer/VBoxContainer/Panel/MarginContainer/TabContainer/Magic/VBoxContainer2" instance=ExtResource("2_1v6ce")]
-custom_minimum_size = Vector2(150, 150)
+[node name="Magic" parent="MarginContainer/VBoxContainer/Panel/MarginContainer/TabContainer" instance=ExtResource("6_n02c6")]
 layout_mode = 2

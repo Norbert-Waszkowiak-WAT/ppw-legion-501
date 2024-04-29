@@ -12,9 +12,12 @@ var abilities = {
 	
 	# Ranged
 	"high_speed_low_drag": false,
-	"heavy_hitter": false
+	"heavy_hitter": false,
 	
 	# Magic
+	"bullet_time": false,
+	"quake": false
+	
 }
 
 var double_jumped : bool = false
@@ -88,8 +91,11 @@ func reset_player():
 	
 	# Ranged
 	"high_speed_low_drag": false,
-	"heavy_hitter": false
+	"heavy_hitter": false,
 	# Magic
+	"bullet_time": false,
+	"quake": false
+	
 	}
 	exp_lvl = 0
 	MAX_EXP = 200.0

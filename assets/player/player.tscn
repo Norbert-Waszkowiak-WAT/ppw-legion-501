@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://b8kl60fulqq1u"]
+[gd_scene load_steps=32 format=3 uid="uid://b8kl60fulqq1u"]
 
 [ext_resource type="Script" path="res://assets/player/player.gd" id="1_xhwip"]
 [ext_resource type="Script" path="res://assets/player/Camera2D.gd" id="2_2bp8c"]
@@ -11,7 +11,6 @@
 [ext_resource type="Texture2D" uid="uid://ulkg4oelvyat" path="res://textures/player/idle/Standing-4.png" id="5_be2kw"]
 [ext_resource type="PackedScene" uid="uid://clf8aqe0iy2if" path="res://assets/player/hud/hud.tscn" id="5_e68ka"]
 [ext_resource type="Texture2D" uid="uid://4lt62j0pkmxm" path="res://textures/player/running/Grafika_bez_nazwy-4.png" id="5_i8yvi"]
-[ext_resource type="PackedScene" uid="uid://dh4fi820qxc7k" path="res://assets/weapons/stick/stick.tscn" id="5_n46lu"]
 [ext_resource type="Texture2D" uid="uid://bxwf3pa8j6xas" path="res://textures/player/running/Grafika_bez_nazwy-5.png" id="6_dkbhb"]
 [ext_resource type="Texture2D" uid="uid://cj3eh4eyj87nu" path="res://textures/player/jump/Wersja_Git_2.png" id="7_2558i"]
 [ext_resource type="Script" path="res://assets/player/state_machine/state_machine.gd" id="7_tys86"]
@@ -155,11 +154,6 @@ animation = &"idle"
 
 [node name="gun" parent="AnimatedSprite2D" instance=ExtResource("15_scggg")]
 visible = false
-
-[node name="stick" parent="AnimatedSprite2D" instance=ExtResource("5_n46lu")]
-visible = false
-position = Vector2(38, 18)
-scale = Vector2(9.215, 9.215)
 
 [node name="HUD" parent="." instance=ExtResource("5_e68ka")]
 visible = false

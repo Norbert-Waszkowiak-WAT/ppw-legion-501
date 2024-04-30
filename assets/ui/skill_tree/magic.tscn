@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://dodot8o48a5wu"]
+[gd_scene load_steps=5 format=3 uid="uid://dodot8o48a5wu"]
 
 [ext_resource type="PackedScene" uid="uid://bfqfqq7ggdc2o" path="res://assets/ui/skill_tree/skill_button.tscn" id="1_glv2x"]
 [ext_resource type="Texture2D" uid="uid://c3b3jt3utfc3t" path="res://textures/skill_tree/skill_buttons/ability_time.png" id="2_leutk"]
+[ext_resource type="Texture2D" uid="uid://c2etsx5htti41" path="res://textures/skill_tree/skill_buttons/ability_push_one_side.png" id="3_lqfhw"]
+[ext_resource type="Texture2D" uid="uid://b4nq5cnb8gnwl" path="res://textures/skill_tree/skill_buttons/ability_push_two_sides.png" id="4_bxol1"]
 
 [node name="Magic" type="HBoxContainer"]
 visible = false
@@ -22,6 +24,7 @@ ability_name = "bullet_time"
 [node name="quake" parent="VBoxContainer" instance=ExtResource("1_glv2x")]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
+texture_normal = ExtResource("3_lqfhw")
 ability_name = "quake"
 
 [node name="skill_button4" parent="VBoxContainer" instance=ExtResource("1_glv2x")]
@@ -38,9 +41,10 @@ custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 previous_button = NodePath("../../VBoxContainer/bullet_time")
 
-[node name="skill_button4" parent="VBoxContainer2" node_paths=PackedStringArray("previous_button") instance=ExtResource("1_glv2x")]
+[node name="quake_2" parent="VBoxContainer2" node_paths=PackedStringArray("previous_button") instance=ExtResource("1_glv2x")]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
+texture_normal = ExtResource("4_bxol1")
 previous_button = NodePath("../../VBoxContainer/quake")
 
 [node name="skill_button3" parent="VBoxContainer2" instance=ExtResource("1_glv2x")]
@@ -56,9 +60,10 @@ alignment = 1
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 
-[node name="skill_button4" parent="VBoxContainer3" instance=ExtResource("1_glv2x")]
+[node name="quake_3" parent="VBoxContainer3" node_paths=PackedStringArray("previous_button") instance=ExtResource("1_glv2x")]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
+previous_button = NodePath("../../VBoxContainer2/quake_2")
 
 [node name="skill_button3" parent="VBoxContainer3" instance=ExtResource("1_glv2x")]
 custom_minimum_size = Vector2(150, 150)

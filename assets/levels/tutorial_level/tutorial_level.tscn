@@ -30,7 +30,7 @@ next_level = "res://assets/levels/demo_level/demo_level.tscn"
 
 [node name="tutorial" parent="." instance=ExtResource("2_2lul3")]
 titles = Array[String](["Walking", "Healing", "Jumping", "Attacking", "Abilities"])
-instructions = Array[String](["Use A and D or arrow keys to move.", "You're hurt! Grab that health booster to heal yourself up.", "Press SPACE, W or UP Arrow to jump.", "Press Left Mouse Button to use your weapon.", "Leveling up gives skill points. Press TAB to open your skill tree and buy an ability. You can sell them at any time."])
+instructions = Array[String](["Use A and D or arrow keys to move.", "You're hurt! Grab that health booster to heal yourself up.", "Press SPACE, W or UP Arrow to jump.", "Press buttons 1 and 2 to cycle between weapons. Press Left Mouse Button to use your selected weapon.", "Leveling up gives skill points. Press TAB to open your skill tree and buy an ability. You can sell them at any time."])
 
 [node name="player" parent="." instance=ExtResource("2_ijqwx")]
 visible = false

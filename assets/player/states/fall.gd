@@ -40,7 +40,7 @@ func process(_delta: float) -> State:
 func physics(delta: float) -> State:
 	if !player.dashing:
 		player.horizontal_movement()
-	player.velocity.y += player.get_gravity() * delta
+	player.velocity.y += player.get_gravity() * delta * player.speed_modifier
 	player.move_and_slide()
 	
 	if player.velocity.y < 0:

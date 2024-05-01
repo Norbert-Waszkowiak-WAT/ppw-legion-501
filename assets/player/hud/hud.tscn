@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://clf8aqe0iy2if"]
+[gd_scene load_steps=27 format=3 uid="uid://clf8aqe0iy2if"]
 
 [ext_resource type="Texture2D" uid="uid://3if66flyxnfp" path="res://textures/dash_bar/dash_bar_under.png" id="1_80og5"]
 [ext_resource type="Texture2D" uid="uid://d2banh24fhpa3" path="res://textures/health_bar/health_bar_progress.png" id="1_hm0mi"]
@@ -17,6 +17,10 @@
 [ext_resource type="Script" path="res://assets/player/hud/expbar.gd" id="10_1xy4g"]
 [ext_resource type="PackedScene" uid="uid://dwqkmdjdqdjmt" path="res://assets/ui/radial_ability_menu/radial_ability_menu.tscn" id="15_sxjd0"]
 [ext_resource type="Texture2D" uid="uid://cdve25cd25dtp" path="res://textures/skill_tree/skill_button.png" id="16_4jb8o"]
+[ext_resource type="Shader" path="res://assets/player/hud/quake_effect.gdshader" id="18_1bjgt"]
+[ext_resource type="Script" path="res://assets/player/hud/quake_effect.gd" id="19_bbe2m"]
+[ext_resource type="Shader" path="res://assets/player/hud/bullet_time.gdshader" id="19_ykqrt"]
+[ext_resource type="Script" path="res://assets/player/hud/bullet_time_effect.gd" id="20_oldrq"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_nessk"]
 font = ExtResource("7_pp8d5")
@@ -28,10 +32,26 @@ font_color = Color(0.662745, 0.898039, 0.686275, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jxqe2"]
 bg_color = Color(0, 0, 0, 0.709804)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fbovx"]
+shader = ExtResource("18_1bjgt")
+shader_parameter/strength = 0.05
+shader_parameter/center = Vector2(0.5, 0.5)
+shader_parameter/radius = 0.0
+shader_parameter/aberration = 0.425
+shader_parameter/width = 0.05
+shader_parameter/feather = 0.2
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5r4pi"]
+shader = ExtResource("19_ykqrt")
+shader_parameter/blur_radius = 0.413
+shader_parameter/blur_amount = 2.5
+shader_parameter/blur_inner = 0.5
+shader_parameter/blur_outer = 0.8
+shader_parameter/alpha_modifier = 1.0
+
 [node name="HUD" type="CanvasLayer"]
 follow_viewport_scale = 3.0
 script = ExtResource("1_ynyae")
-ability_cooldown = 5.0
 
 [node name="Control" type="Control" parent="."]
 visible = false
@@ -63,6 +83,7 @@ texture_progress = ExtResource("2_7aed4")
 script = ExtResource("3_3qi17")
 
 [node name="healthbar" type="TextureProgressBar" parent="."]
+z_index = 1
 texture_filter = 1
 offset_right = 50.0
 offset_bottom = 10.0
@@ -107,6 +128,7 @@ texture_progress_offset = Vector2(2, 2)
 script = ExtResource("8_oepgp")
 
 [node name="level" type="Label" parent="."]
+z_index = 1
 texture_filter = 1
 offset_left = 1834.0
 offset_top = 9.0
@@ -119,7 +141,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="expbar" type="TextureProgressBar" parent="."]
-z_index = -1
 texture_filter = 3
 anchors_preset = 1
 anchor_left = 1.0
@@ -163,3 +184,25 @@ theme_override_styles/background = SubResource("StyleBoxEmpty_ehlcu")
 theme_override_styles/fill = SubResource("StyleBoxFlat_jxqe2")
 fill_mode = 3
 show_percentage = false
+
+[node name="quake_effect" type="ColorRect" parent="."]
+visible = false
+z_index = -1
+material = SubResource("ShaderMaterial_fbovx")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("19_bbe2m")
+
+[node name="bullet_time_effect" type="ColorRect" parent="."]
+visible = false
+z_index = -1
+material = SubResource("ShaderMaterial_5r4pi")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("20_oldrq")

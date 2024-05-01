@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://8la35qhh4srl"
-path="res://.godot/imported/Grafika_bez_nazwy-5.png-f5dabc060338164e5d284420f2914bae.ctex"
+uid="uid://dp5j7nll7x6jc"
+path="res://.godot/imported/Walking-lightsaber-7.png-aa21253261a06f41329629fe55505637.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/saber/Grafika_bez_nazwy-5.png"
-dest_files=["res://.godot/imported/Grafika_bez_nazwy-5.png-f5dabc060338164e5d284420f2914bae.ctex"]
+source_file="res://textures/saber/Arm-lightsaber-walking/Walking-lightsaber-7.png"
+dest_files=["res://.godot/imported/Walking-lightsaber-7.png-aa21253261a06f41329629fe55505637.ctex"]
 
 [params]
 

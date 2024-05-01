@@ -5,6 +5,8 @@ class_name Player
 # Prędkość oraz przyspieszenie chodzenia
 @export var speed: float = 40.0
 @export var acceleration: float = 1.0
+var speed_modifier : float = 1.0
+var accel_modifier : float = 1.0
 
 # Wysokość oraz prędkość skoku
 @export var jump_height: float = 100.0
@@ -29,6 +31,10 @@ var taking_knockback : bool
 @export var knockback_multiplier : float = 1.0
 
 @export var default_weapon : int
+
+@export var ability_cooldown : float
+var ability_cooldown_timer : float
+var using_ability : bool = false
 
 # Wartości prędkości podczas skoku na podstawie równania rzutu pionowego
 @onready var jump_speed: float = ((2.0 * jump_height) / jump_peak) * -1
@@ -64,7 +70,6 @@ func _ready():
 	switch_weapon(default_weapon)
 	
 	PlayerVariables.ammo = PlayerVariables.MAX_AMMO
-	
 	set_enabled(false)
 	hide()
 	
@@ -90,9 +95,12 @@ func _process(delta):
 		PlayerVariables.MAX_DASH_CHARGES = 1
 	PlayerVariables.dash_charges = min(PlayerVariables.dash_charges, PlayerVariables.MAX_DASH_CHARGES)
 	
+	clamp(PlayerVariables.ammo, 0, PlayerVariables.MAX_AMMO)
+	
 	process_weapons()
 	process_footstep_audio()
 	process_ghosting()
+	process_abilities()
 
 
 # Obsługuje fizykę 
@@ -172,7 +180,7 @@ func set_direction(direction):
 # Poruszanie się gracza w poziomie
 func horizontal_movement():
 	if not taking_knockback:
-		velocity.x = dir * min(acceleration + abs(velocity.x), speed)
+		velocity.x = dir * min(acceleration * accel_modifier + abs(velocity.x), speed * speed_modifier)
 
 
 # Skok
@@ -237,7 +245,7 @@ func apply_knockback(strength, pos : Vector2):
 		pos += Vector2(0, 10)
 		taking_knockback = true
 		var direction = pos.direction_to(global_position)
-		velocity = direction.normalized() * strength * knockback_multiplier
+		velocity = direction.normalized() * strength * knockback_multiplier * speed_modifier
 
 
 # Ustawienie koloru gracza na standardowy
@@ -331,3 +339,51 @@ func move_camera(new_position : Vector2):
 func _on_dash_cooldown_timeout():
 	if PlayerVariables.dash_charges < PlayerVariables.MAX_DASH_CHARGES:
 		PlayerVariables.dash_charges += 1
+
+
+func set_player_time_scale(new_scale : float):
+	speed_modifier = new_scale
+	accel_modifier = new_scale
+	sprite.speed_scale = new_scale
+	for weapon in weapons:
+		weapon.speed_scale = new_scale
+
+
+func process_abilities():
+	
+	if Input.is_action_just_pressed("use_ability") and ability_cooldown_timer <= 0 and $HUD.selected_ability and !using_ability:
+		match $HUD.selected_ability.name:
+			"quake":
+				using_ability = true
+				
+				$HUD/quake_effect.fire()
+				var enemies = get_tree().get_nodes_in_group("enemies")
+				for enemy in enemies as Array[Enemy]:
+					if enemy.position.distance_to(position) <= PlayerVariables.quake_range:
+						if (enemy.position.x - position.x) / abs(enemy.position.x - position.x) == sprite.scale.x / abs(sprite.scale.x):
+							var strength = randf_range(0.75 * PlayerVariables.quake_strength, 1.25 * PlayerVariables.quake_strength)
+							enemy.apply_knockback(strength, position)
+				
+				ability_cooldown_timer = ability_cooldown
+				using_ability = false
+			"bullet_time":
+				using_ability = true
+				
+				var time_mod = 0.5
+				Engine.time_scale = time_mod
+				set_player_time_scale(0.8 / time_mod)
+				
+				$HUD/bullet_time_effect.enable()
+				
+				await get_tree().create_timer(PlayerVariables.bullet_time_duration).timeout
+				
+				$HUD/bullet_time_effect.disable()
+				
+				Engine.time_scale = 1
+				set_player_time_scale(1)
+				
+				ability_cooldown_timer = ability_cooldown
+				using_ability = false
+	
+	if ability_cooldown_timer > 0:
+		ability_cooldown_timer -= get_process_delta_time()

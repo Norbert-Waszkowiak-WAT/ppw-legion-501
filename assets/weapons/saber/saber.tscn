@@ -1,59 +1,167 @@
-[gd_scene load_steps=9 format=3 uid="uid://ch6mplaghrax4"]
+[gd_scene load_steps=29 format=3 uid="uid://ch6mplaghrax4"]
 
-[ext_resource type="Texture2D" uid="uid://76dgdih7oknv" path="res://textures/saber/Grafika_bez_nazwy-1.png" id="1_t4k54"]
-[ext_resource type="Texture2D" uid="uid://byiw7t6wkst5k" path="res://textures/saber/Grafika_bez_nazwy-2.png" id="2_klypd"]
-[ext_resource type="Texture2D" uid="uid://ok357un1rn2c" path="res://textures/saber/Grafika_bez_nazwy-3.png" id="3_idn2v"]
-[ext_resource type="Texture2D" uid="uid://dvi1fvr1kkexy" path="res://textures/saber/Grafika_bez_nazwy-4.png" id="4_mhcqj"]
-[ext_resource type="Texture2D" uid="uid://8la35qhh4srl" path="res://textures/saber/Grafika_bez_nazwy-5.png" id="5_gmr8f"]
+[ext_resource type="Texture2D" uid="uid://76dgdih7oknv" path="res://textures/saber/saber_attack/Grafika_bez_nazwy-1.png" id="1_64bgr"]
+[ext_resource type="Texture2D" uid="uid://byiw7t6wkst5k" path="res://textures/saber/saber_attack/Grafika_bez_nazwy-2.png" id="2_s2thh"]
+[ext_resource type="Texture2D" uid="uid://ok357un1rn2c" path="res://textures/saber/saber_attack/Grafika_bez_nazwy-3.png" id="3_8cxy0"]
+[ext_resource type="Texture2D" uid="uid://dvi1fvr1kkexy" path="res://textures/saber/saber_attack/Grafika_bez_nazwy-4.png" id="4_s7xnj"]
+[ext_resource type="Texture2D" uid="uid://8la35qhh4srl" path="res://textures/saber/saber_attack/Grafika_bez_nazwy-5.png" id="5_vlw8f"]
 [ext_resource type="Script" path="res://assets/weapons/saber/saber.gd" id="6_j3lt1"]
+[ext_resource type="Texture2D" uid="uid://d0wm7g6qa6xf5" path="res://textures/saber/Arm-lightsaber-standing/Arm-lightsaber-standing-1.png" id="6_kw7ea"]
+[ext_resource type="Texture2D" uid="uid://3aee1opkpay5" path="res://textures/saber/Arm-lightsaber-standing/Arm-lightsaber-standing-2.png" id="7_yl1x0"]
+[ext_resource type="Texture2D" uid="uid://c426bf2jthmlc" path="res://textures/saber/Arm-lightsaber-standing/Arm-lightsaber-standing-3.png" id="8_anfw5"]
+[ext_resource type="Texture2D" uid="uid://befl8asovl8kk" path="res://textures/saber/Arm-lightsaber-standing/Arm-lightsaber-standing-4.png" id="9_6eofb"]
+[ext_resource type="Texture2D" uid="uid://c6gdmpcy1048" path="res://textures/saber/Arm-lightsaber-walking/Walking-lightsaber-1.png" id="10_fggld"]
+[ext_resource type="Texture2D" uid="uid://b7dfdx4s8oeen" path="res://textures/saber/Arm-lightsaber-walking/Walking-lightsaber-2.png" id="11_rnl6t"]
+[ext_resource type="Texture2D" uid="uid://brveeb2a8vtwg" path="res://textures/saber/Arm-lightsaber-walking/Walking-lightsaber-3.png" id="12_7j50m"]
+[ext_resource type="Texture2D" uid="uid://0omg60fukubc" path="res://textures/saber/Arm-lightsaber-walking/Walking-lightsaber-4.png" id="13_ffw24"]
+[ext_resource type="Texture2D" uid="uid://cy4d057n7uy2y" path="res://textures/saber/Arm-lightsaber-walking/Walking-lightsaber-5.png" id="14_p1462"]
+[ext_resource type="Texture2D" uid="uid://cu7whxkd132wt" path="res://textures/saber/Arm-lightsaber-walking/Walking-lightsaber-6.png" id="15_576al"]
+[ext_resource type="Texture2D" uid="uid://dp5j7nll7x6jc" path="res://textures/saber/Arm-lightsaber-walking/Walking-lightsaber-7.png" id="16_jpvlo"]
+[ext_resource type="Texture2D" uid="uid://bc6swl4ucm30w" path="res://textures/saber/Arm-lightsaber-walking/Walking-lightsaber-8.png" id="17_b3og5"]
+[ext_resource type="AudioStream" uid="uid://le6dqt24qsi0" path="res://assets/weapons/saber/swing1.mp3" id="19_7wm88"]
+[ext_resource type="AudioStream" uid="uid://cby0g4rs5dcqa" path="res://assets/weapons/saber/swing2.mp3" id="20_ewqha"]
+[ext_resource type="AudioStream" uid="uid://csl2si7wt1osy" path="res://assets/weapons/saber/swing3.mp3" id="21_148gg"]
+[ext_resource type="AudioStream" uid="uid://dfkc3ae5nbwcg" path="res://assets/weapons/saber/impact1.mp3" id="22_g0y0x"]
+[ext_resource type="AudioStream" uid="uid://bkut5anqrl41" path="res://assets/weapons/saber/impact2.mp3" id="23_exv2a"]
+[ext_resource type="AudioStream" uid="uid://dbbdv5im3qvm2" path="res://assets/weapons/saber/saber_idle.mp3" id="24_kf766"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_x02f2"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_t4k54")
+"texture": ExtResource("1_64bgr")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_klypd")
+"texture": ExtResource("2_s2thh")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_idn2v")
+"texture": ExtResource("3_8cxy0")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_mhcqj")
+"texture": ExtResource("4_s7xnj")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_gmr8f")
+"texture": ExtResource("5_vlw8f")
 }],
 "loop": false,
 "name": &"attack",
-"speed": 20.0
+"speed": 17.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("5_gmr8f")
+"texture": ExtResource("6_kw7ea")
+}],
+"loop": true,
+"name": &"fall",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_kw7ea")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_yl1x0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_anfw5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_6eofb")
 }],
 "loop": true,
 "name": &"idle",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_kw7ea")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_fggld")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_rnl6t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_7j50m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_ffw24")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_p1462")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_576al")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_jpvlo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_b3og5")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 16.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vnfl5"]
 radius = 134.004
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ffw2x"]
+streams_count = 3
+stream_0/stream = ExtResource("19_7wm88")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("20_ewqha")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("21_148gg")
+stream_2/weight = 1.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_j5ria"]
+playback_mode = 1
+streams_count = 2
+stream_0/stream = ExtResource("22_g0y0x")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("23_exv2a")
+stream_1/weight = 1.0
+
 [node name="saber" type="AnimatedSprite2D"]
+self_modulate = Color(1.2, 1.2, 1.2, 1)
 position = Vector2(56, 0)
 sprite_frames = SubResource("SpriteFrames_x02f2")
 animation = &"attack"
 frame = 4
 frame_progress = 1.0
 script = ExtResource("6_j3lt1")
-damage = 15.0
-knockback = 40.0
+damage = 20.0
+knockback = 35.0
 
 [node name="hitbox" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 4
 monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
 position = Vector2(59, -16)
 shape = SubResource("CircleShape2D_vnfl5")
+
+[node name="swing" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_ffw2x")
+volume_db = -19.0
+max_polyphony = 3
+bus = &"Gameplay"
+
+[node name="impact" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_j5ria")
+volume_db = -19.0
+max_polyphony = 3
+bus = &"Gameplay"
+
+[node name="idle" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("24_kf766")
+volume_db = -25.0

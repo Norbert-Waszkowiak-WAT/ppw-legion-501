@@ -8,7 +8,6 @@ class_name Ranged
 
 var gunshot_sound : AudioStreamPlayer2D
 
-@onready var sprite = get_parent()
 @onready var camera = get_node("../../Camera2D")
 
 

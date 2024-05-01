@@ -25,8 +25,13 @@ var double_jumped : bool = false
 var dash_charges : int
 var MAX_DASH_CHARGES : int = 1
 
+var bullet_time_duration : float = 3.5
+
+var quake_range : float = 80
+var quake_strength : float = 85
+
 var ammo : float
-var MAX_AMMO : int = 100
+var MAX_AMMO : int = 50
 
 
 var skill_points : float

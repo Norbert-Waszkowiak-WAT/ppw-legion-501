@@ -140,7 +140,6 @@ func randomize_stats():
 
 # Zadaje obrażenia oraz pokazuje pasek życia
 func apply_damage(damage, knockback, pos : Vector2):
-	#if $damage_timer.is_stopped():
 	health -= damage
 	apply_knockback(knockback, pos)
 	$healthbar.show()

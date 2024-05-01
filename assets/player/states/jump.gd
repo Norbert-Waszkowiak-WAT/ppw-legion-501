@@ -9,7 +9,7 @@ extends State
 # Wywoływana gdy gracz wchodzi w stan
 func enter():
 	player.sprite.play("jump")
-	player.velocity.y = player.jump_speed
+	player.velocity.y = player.jump_speed * sqrt(player.speed_modifier)
 	if not player.taking_knockback:
 		player.get_node("jump").play()
 
@@ -37,7 +37,7 @@ func process(_delta: float) -> State:
 func physics(delta) -> State:
 	if !player.dashing:
 		player.horizontal_movement()
-	player.velocity.y += player.get_gravity() * delta
+	player.velocity.y += player.get_gravity() * delta * player.speed_modifier
 	player.move_and_slide()
 	
 	

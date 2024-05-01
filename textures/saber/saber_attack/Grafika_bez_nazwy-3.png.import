@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dvi1fvr1kkexy"
-path="res://.godot/imported/Grafika_bez_nazwy-4.png-78e526a65c2b7102f27d6e50157a1bcb.ctex"
+uid="uid://ok357un1rn2c"
+path="res://.godot/imported/Grafika_bez_nazwy-3.png-77d2809af413fd750fc971f96bc0c3bd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/saber/Grafika_bez_nazwy-4.png"
-dest_files=["res://.godot/imported/Grafika_bez_nazwy-4.png-78e526a65c2b7102f27d6e50157a1bcb.ctex"]
+source_file="res://textures/saber/saber_attack/Grafika_bez_nazwy-3.png"
+dest_files=["res://.godot/imported/Grafika_bez_nazwy-3.png-77d2809af413fd750fc971f96bc0c3bd.ctex"]
 
 [params]
 

@@ -18,13 +18,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	super(delta)
-	move_clouds()
-
 
 # | ============================================================================= |
 
 
-func move_clouds():
-	clouds.position.x += cloudspeed
-	if clouds.position.x >= 1024:
-		clouds.position.x = 0

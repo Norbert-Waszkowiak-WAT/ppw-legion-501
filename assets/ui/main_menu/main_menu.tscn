@@ -5,10 +5,10 @@
 [ext_resource type="Texture2D" uid="uid://cdl2mva1ibxdu" path="res://textures/main-menu/logo.png" id="2_8ilsw"]
 [ext_resource type="Theme" uid="uid://dygspx1ouf0ul" path="res://assets/ui/main_menu/main_menu.tres" id="3_6h6dh"]
 [ext_resource type="Texture2D" uid="uid://bt6mke8k7uhgg" path="res://textures/main-menu/MenuBackground.jpg" id="4_hvcef"]
-[ext_resource type="TileSet" uid="uid://dfi3xlrx7twl8" path="res://assets/levels/test_level/test_level.tres" id="5_3f52k"]
 [ext_resource type="PackedScene" uid="uid://xhjx4f7178cn" path="res://assets/ui/main_menu/save_slot.tscn" id="5_rj1ys"]
 [ext_resource type="PackedScene" uid="uid://b8kl60fulqq1u" path="res://assets/player/player.tscn" id="6_3b3xo"]
 [ext_resource type="PackedScene" uid="uid://c4bbjae7r4w7y" path="res://assets/levels/level_tools/player_spawnpoint.tscn" id="6_rucww"]
+[ext_resource type="TileSet" uid="uid://bbjbjit1n1gwi" path="res://textures/tileset/128x.tres" id="7_cm3tx"]
 [ext_resource type="AudioStream" uid="uid://ecwyoyf7u4qs" path="res://assets/ui/menu_hover.wav" id="10_r3chd"]
 
 [sub_resource type="Environment" id="Environment_ugoqb"]
@@ -222,10 +222,10 @@ expand_mode = 1
 stretch_mode = 6
 
 [node name="TileMap" type="TileMap" parent="."]
-scale = Vector2(0.145, 0.145)
-tile_set = ExtResource("5_3f52k")
+scale = Vector2(1.16, 1.16)
+tile_set = ExtResource("7_cm3tx")
 format = 2
-layer_0/tile_data = PackedInt32Array(458751, 0, 0, 393216, 0, 0, 393217, 0, 0, 393218, 0, 0, 393219, 0, 0, 393220, 0, 1, 393224, 65536, 1, 393225, 0, 0, 393226, 0, 0, 393227, 0, 0, 393228, 0, 0, 393229, 0, 0, 393230, 0, 0, 458755, 65536, 0, 458754, 65536, 0, 458753, 65536, 0, 458752, 65536, 0, 524287, 65536, 0, 458761, 65536, 0, 458762, 65536, 0, 458763, 65536, 0, 458764, 65536, 0, 458765, 65536, 0, 458766, 65536, 0, 524286, 65536, 0, 524285, 65536, 0, 458749, 0, 0, 458750, 0, 0, 393213, 1, 65536, 327677, 1, 65536, 262141, 1, 65536, 196605, 1, 65536, 327696, 1, 65536, 262160, 1, 65536, 196624, 1, 65536, 131088, 1, 65536, 393231, 0, 0, 393232, 0, 0, 458767, 65536, 0, 458768, 65536, 0)
+layer_0/tile_data = PackedInt32Array(393213, 1, 65536, 327677, 1, 65536, 262141, 1, 65536, 196605, 1, 65536, 327696, 1, 65536, 262160, 1, 65536, 196624, 1, 65536, 131088, 1, 65536, 458749, 3, 0, 458750, 3, 0, 458751, 3, 0, 393216, 3, 0, 393217, 3, 0, 393218, 3, 0, 393226, 3, 0, 393227, 3, 0, 393228, 3, 0, 393229, 3, 0, 393230, 3, 0, 393231, 3, 0, 393232, 3, 0, 393219, 3, 0, 393225, 3, 0, 524285, 196611, 0, 524286, 196611, 0, 524287, 196611, 0, 458752, 196611, 0, 458753, 196611, 0, 458754, 196611, 0, 458762, 196611, 0, 458763, 196611, 0, 458764, 196611, 0, 458765, 196611, 0, 458766, 196611, 0, 458767, 196611, 0, 458768, 196611, 0, 393220, 65539, 1, 393224, 3, 1, 458755, 196611, 0, 458761, 196611, 0)
 
 [node name="player_spawnpoint" parent="." instance=ExtResource("6_rucww")]
 position = Vector2(-190, 819)

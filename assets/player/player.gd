@@ -374,9 +374,11 @@ func process_abilities():
 				set_player_time_scale(0.8 / time_mod)
 				
 				$HUD/bullet_time_effect.enable()
+				AudioServer.get_bus_effect(2, 0).pitch_scale = 0.7
 				
 				await get_tree().create_timer(PlayerVariables.bullet_time_duration).timeout
 				
+				AudioServer.get_bus_effect(2, 0).pitch_scale = 1.0
 				$HUD/bullet_time_effect.disable()
 				
 				Engine.time_scale = 1

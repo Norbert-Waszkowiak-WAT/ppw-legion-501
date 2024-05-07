@@ -8,7 +8,7 @@ size = Vector2(32, 32)
 
 [node name="barrier" type="Sprite2D" groups=["invisible"]]
 texture_filter = 1
-scale = Vector2(32, 32)
+scale = Vector2(4, 4)
 texture = ExtResource("1_n1usc")
 script = ExtResource("2_x0mao")
 

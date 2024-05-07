@@ -44,3 +44,6 @@ func attack():
 		
 		await animation_finished
 		attacking = false
+	else:
+		await animation_finished
+		attack()

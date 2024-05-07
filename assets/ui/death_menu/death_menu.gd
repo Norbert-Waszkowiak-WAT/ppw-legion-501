@@ -12,6 +12,7 @@ var exit_time : float = 1.0
 func _ready():
 	if get_parent().has_method("set_paused"):
 		get_parent().set_paused(true)
+	set_process(true)
 	$MarginContainer/VBoxContainer/restart.grab_focus()
 	var tween = create_tween().set_parallel(true).set_trans(Tween.TRANS_BACK)
 	tween.tween_property($background, "color:a", 0.3, 1.0)
@@ -37,7 +38,7 @@ func _on_main_menu_pressed():
 func _on_restart_pressed():
 	exit_animation()
 	await get_tree().create_timer(exit_time).timeout
-	get_tree().reload_current_scene()
+	PlayerVariables.save_game(PlayerVariables.loaded_save)
 
 
 func _on_exit_pressed():

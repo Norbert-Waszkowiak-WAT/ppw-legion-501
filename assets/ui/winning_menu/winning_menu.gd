@@ -14,7 +14,6 @@ var anim_time : float = 0.5
 
 
 func _ready():
-	PlayerVariables.save_game(PlayerVariables.loaded_save)
 	player.set_process_input(false)
 	
 	$MarginContainer/VBoxContainer/next_level.grab_focus()
@@ -40,6 +39,7 @@ func _process(_delta):
 
 
 func _on_main_menu_pressed():
+	PlayerVariables.save_game(PlayerVariables.loaded_save)
 	exit_animation()
 	await get_tree().create_timer(exit_time).timeout
 	get_tree().change_scene_to_file("res://assets/ui/main_menu/main_menu.tscn")
@@ -48,10 +48,12 @@ func _on_main_menu_pressed():
 func _on_restart_pressed():
 	exit_animation()
 	await get_tree().create_timer(exit_time).timeout
-	get_tree().reload_current_scene()
+	PlayerVariables.load_game(PlayerVariables.loaded_save)
+	#get_tree().reload_current_scene()
 
 
 func _on_exit_pressed():
+	PlayerVariables.save_game(PlayerVariables.loaded_save)
 	get_tree().quit()
 
 
@@ -69,6 +71,7 @@ func exit_animation():
 
 
 func _on_next_level_pressed():
+	PlayerVariables.save_game(PlayerVariables.loaded_save)
 	if next_level:
 		exit_animation()
 		await get_tree().create_timer(exit_time).timeout

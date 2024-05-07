@@ -1,7 +1,10 @@
-[gd_resource type="AudioBusLayout" format=3 uid="uid://csss321o17sy0"]
+[gd_resource type="AudioBusLayout" load_steps=2 format=3 uid="uid://csss321o17sy0"]
+
+[sub_resource type="AudioEffectPitchShift" id="AudioEffectPitchShift_jdcip"]
+resource_name = "PitchShift"
 
 [resource]
-bus/0/volume_db = -7.63072
+bus/0/volume_db = -21.0931
 bus/1/name = &"Menu"
 bus/1/solo = false
 bus/1/mute = false
@@ -14,3 +17,5 @@ bus/2/mute = false
 bus/2/bypass_fx = false
 bus/2/volume_db = 0.0
 bus/2/send = &"Master"
+bus/2/effect/0/effect = SubResource("AudioEffectPitchShift_jdcip")
+bus/2/effect/0/enabled = true

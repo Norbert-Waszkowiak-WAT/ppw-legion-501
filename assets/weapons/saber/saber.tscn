@@ -42,6 +42,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("5_vlw8f")
+}, {
+"duration": 2.0,
+"texture": ExtResource("1_64bgr")
 }],
 "loop": false,
 "name": &"attack",

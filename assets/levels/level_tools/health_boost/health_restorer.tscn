@@ -58,8 +58,8 @@ size = Vector2(12.1406, 19)
 [node name="health_restorer" type="AnimatedSprite2D"]
 self_modulate = Color(1.5, 1.5, 1.5, 1)
 texture_filter = 1
-position = Vector2(0, -512)
-scale = Vector2(64, 64)
+position = Vector2(0, -64)
+scale = Vector2(8, 8)
 sprite_frames = SubResource("SpriteFrames_uwqjm")
 animation = &"empty"
 script = ExtResource("3_6r618")

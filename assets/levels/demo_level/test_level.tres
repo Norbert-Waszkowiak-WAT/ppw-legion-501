@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://drgy1o1v6jbs3" path="res://textures/tileset/Tekstury1.png" id="1_d0ax0"]
 [ext_resource type="PackedScene" uid="uid://k6ed0568tuof" path="res://assets/levels/level_tools/barrier.tscn" id="2_efmhl"]
-[ext_resource type="PackedScene" uid="uid://bydgx2tg4seyx" path="res://assets/health_boost/health_restorer.tscn" id="3_m8s7x"]
+[ext_resource type="PackedScene" uid="uid://bydgx2tg4seyx" path="res://assets/levels/level_tools/health_boost/health_restorer.tscn" id="3_m8s7x"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8nm1w"]
 texture = ExtResource("1_d0ax0")

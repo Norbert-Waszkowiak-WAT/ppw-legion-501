@@ -50,9 +50,6 @@ var reaction_timer : float
 @export var memory_time : float
 var memory_timer : float
 
-@export var attack_time : float
-var attack_timer : float
-
 var dir_time : float = 2.0
 var dir_timer : float
 
@@ -75,20 +72,17 @@ func _ready():
 	is_dead = false
 	change_state(starting_state)
 	speed = idle_speed
+	sprite.animation = "idle"
 	
 	randomize_stats()
 	
-	if weapon:
+	if weapon is Melee:
 		weapon.set_target("player")
 	health = MAX_HEALTH
 	
 	$healthbar.max_value = MAX_HEALTH
 	$healthbar.hide()
 	$health_timer.timeout.connect(hide_health)
-	
-	# Daje wrogowi znać, jak wysoko może doskoczyć
-	$right_wall.position.y = -jump_height + 6
-	$left_wall.position.y = -jump_height + 6
 
 
 # Wywoływana na każdej klatce
@@ -103,6 +97,18 @@ func _process(delta):
 	
 	if dir != 0:
 		sprite.scale.x = sprite.scale.y * dir
+	
+	if velocity.y > 0:
+		sprite.animation = "fall"
+	elif velocity.y < 0:
+		sprite.animation = "jump"
+	elif velocity.x != 0:
+		sprite.animation = "walk"
+	else:
+		sprite.animation = "idle"
+	
+	if !sprite.is_playing():
+		sprite.play()
 
 
 func _physics_process(delta):
@@ -225,7 +231,6 @@ func idle(delta: float):
 		update_path()
 		change_state(states.chase)
 	if position.distance_to(player.position) <= attack_range and sees_player():
-		attack_timer = 0
 		change_state(states.attack)
 
 
@@ -249,7 +254,6 @@ func chase(delta: float):
 		memory_timer = memory_time
 		
 	if position.distance_to(player.position) <= attack_range:
-		attack_timer = 0
 		change_state(states.attack)
 
 
@@ -258,10 +262,7 @@ func attack(delta: float):
 	if reaction_timer <= 0:
 		turn_towards_player()
 		speed = 0
-		if attack_timer <= 0:
-			weapon.attack()
-			attack_timer = attack_time
-		attack_timer -= delta
+		weapon.attack()
 	else:
 		reaction_timer -= delta
 	
@@ -358,7 +359,7 @@ func update_path():
 func die():
 	set_process(false)
 	is_dead = true
-	sprite.self_modulate = Color(1.0, 0, 0, 1)
+	sprite.modulate = Color(1.0, 0, 0, 1)
 	PlayerVariables.experience += dropped_experience
 	PlayerVariables.ammo += dropped_ammo
 	await get_tree().create_timer(death_time).timeout

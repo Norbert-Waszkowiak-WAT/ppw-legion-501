@@ -1,0 +1,169 @@
+[gd_scene load_steps=29 format=3 uid="uid://bscw8cjfrsl2y"]
+
+[ext_resource type="Texture2D" uid="uid://j0pbvmwg3obg" path="res://textures/enemy/Enemy-arm-lightsaber-attack/Enemy-Arm-lightsaber-attack-1.png" id="1_qbbj2"]
+[ext_resource type="Texture2D" uid="uid://2sw8bo3wwrna" path="res://textures/enemy/Enemy-arm-lightsaber-attack/Enemy-Arm-lightsaber-attack-2.png" id="2_ato3o"]
+[ext_resource type="Texture2D" uid="uid://cn35sdxxrgyti" path="res://textures/enemy/Enemy-arm-lightsaber-attack/Enemy-Arm-lightsaber-attack-3.png" id="3_odqvk"]
+[ext_resource type="Texture2D" uid="uid://dagbwlsaxi3ks" path="res://textures/enemy/Enemy-arm-lightsaber-attack/Enemy-Arm-lightsaber-attack-4.png" id="4_ryxu8"]
+[ext_resource type="Texture2D" uid="uid://bl6x1cem5tue1" path="res://textures/enemy/Enemy-arm-lightsaber-attack/Enemy-Arm-lightsaber-attack-5.png" id="5_eltey"]
+[ext_resource type="Texture2D" uid="uid://bnnxkh0mpr4o5" path="res://textures/enemy/Enemy-arm-lightsaber-standing/Enemy-Arm-lightsaber-standing-1.png" id="6_nvyjm"]
+[ext_resource type="Texture2D" uid="uid://b6q0g1rhfgcsi" path="res://textures/enemy/Enemy-arm-lightsaber-standing/Enemy-Arm-lightsaber-standing-2.png" id="7_rjis1"]
+[ext_resource type="Texture2D" uid="uid://m8xghrq48tv4" path="res://textures/enemy/Enemy-arm-lightsaber-standing/Enemy-Arm-lightsaber-standing-3.png" id="8_ixxdc"]
+[ext_resource type="Texture2D" uid="uid://5my135ovkatj" path="res://textures/enemy/Enemy-arm-lightsaber-standing/Enemy-Arm-lightsaber-standing-4.png" id="9_uj23a"]
+[ext_resource type="Texture2D" uid="uid://cafi62r5x8jn7" path="res://textures/enemy/Enemy-walking-lightsaber/Enemy-Walking-lightsaber-1.png" id="10_brdj3"]
+[ext_resource type="Texture2D" uid="uid://dx48vbypsu5lf" path="res://textures/enemy/Enemy-walking-lightsaber/Enemy-Walking-lightsaber-2.png" id="11_5ryxe"]
+[ext_resource type="Texture2D" uid="uid://bn7ddh55sspu8" path="res://textures/enemy/Enemy-walking-lightsaber/Enemy-Walking-lightsaber-3.png" id="12_jbons"]
+[ext_resource type="Texture2D" uid="uid://h0pbk3qqtck7" path="res://textures/enemy/Enemy-walking-lightsaber/Enemy-Walking-lightsaber-4.png" id="13_ayk6o"]
+[ext_resource type="Texture2D" uid="uid://bn0wd8g3nggwi" path="res://textures/enemy/Enemy-walking-lightsaber/Enemy-Walking-lightsaber-5.png" id="14_us46x"]
+[ext_resource type="Texture2D" uid="uid://gfb7c7dtjuy5" path="res://textures/enemy/Enemy-walking-lightsaber/Enemy-Walking-lightsaber-6.png" id="15_brd60"]
+[ext_resource type="Texture2D" uid="uid://bh608bqs02180" path="res://textures/enemy/Enemy-walking-lightsaber/Enemy-Walking-lightsaber-7.png" id="16_b2o7x"]
+[ext_resource type="Texture2D" uid="uid://c06do34vd3sxr" path="res://textures/enemy/Enemy-walking-lightsaber/Enemy-Walking-lightsaber-8.png" id="17_vinjq"]
+[ext_resource type="Script" path="res://assets/weapons/saber/saber.gd" id="18_t85g8"]
+[ext_resource type="AudioStream" uid="uid://le6dqt24qsi0" path="res://assets/weapons/saber/swing1.mp3" id="19_cyr2l"]
+[ext_resource type="AudioStream" uid="uid://cby0g4rs5dcqa" path="res://assets/weapons/saber/swing2.mp3" id="20_bnanx"]
+[ext_resource type="AudioStream" uid="uid://csl2si7wt1osy" path="res://assets/weapons/saber/swing3.mp3" id="21_setm6"]
+[ext_resource type="AudioStream" uid="uid://dfkc3ae5nbwcg" path="res://assets/weapons/saber/impact1.mp3" id="22_3tmhb"]
+[ext_resource type="AudioStream" uid="uid://bkut5anqrl41" path="res://assets/weapons/saber/impact2.mp3" id="23_o46ml"]
+[ext_resource type="AudioStream" uid="uid://dbbdv5im3qvm2" path="res://assets/weapons/saber/saber_idle.mp3" id="24_n5yp6"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_x02f2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_qbbj2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_ato3o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_odqvk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ryxu8")
+}, {
+"duration": 5.0,
+"texture": ExtResource("5_eltey")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 17.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_nvyjm")
+}],
+"loop": true,
+"name": &"fall",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_nvyjm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_rjis1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_ixxdc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_uj23a")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_nvyjm")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_brdj3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_5ryxe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_jbons")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_ayk6o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_us46x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_brd60")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_b2o7x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_vinjq")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 16.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vnfl5"]
+radius = 134.004
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ffw2x"]
+streams_count = 3
+stream_0/stream = ExtResource("19_cyr2l")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("20_bnanx")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("21_setm6")
+stream_2/weight = 1.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_j5ria"]
+playback_mode = 1
+streams_count = 2
+stream_0/stream = ExtResource("22_3tmhb")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("23_o46ml")
+stream_1/weight = 1.0
+
+[node name="enemy_saber" type="AnimatedSprite2D"]
+self_modulate = Color(1.2, 1.2, 1.2, 1)
+position = Vector2(56, 0)
+sprite_frames = SubResource("SpriteFrames_x02f2")
+animation = &"attack"
+frame = 4
+frame_progress = 1.0
+script = ExtResource("18_t85g8")
+damage = 20.0
+knockback = 10.0
+
+[node name="hitbox" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 2
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+position = Vector2(59, -16)
+shape = SubResource("CircleShape2D_vnfl5")
+
+[node name="swing" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_ffw2x")
+volume_db = -25.0
+max_polyphony = 3
+bus = &"Gameplay"
+
+[node name="impact" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_j5ria")
+volume_db = -25.0
+max_polyphony = 3
+bus = &"Gameplay"
+
+[node name="idle" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("24_n5yp6")
+volume_db = -36.0
+max_distance = 150.0
+attenuation = 0.392292

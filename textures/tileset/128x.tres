@@ -1,13 +1,25 @@
-[gd_resource type="TileSet" load_steps=12 format=3 uid="uid://bbjbjit1n1gwi"]
+[gd_resource type="TileSet" load_steps=16 format=3 uid="uid://bbjbjit1n1gwi"]
 
 [ext_resource type="PackedScene" uid="uid://k6ed0568tuof" path="res://assets/levels/level_tools/barrier.tscn" id="2_cbwiu"]
 [ext_resource type="PackedScene" uid="uid://bydgx2tg4seyx" path="res://assets/levels/level_tools/health_boost/health_restorer.tscn" id="3_iqxck"]
 [ext_resource type="PackedScene" uid="uid://dlt4q6xtgb6p2" path="res://assets/levels/level_tools/waypoint.tscn" id="4_ut3y4"]
-[ext_resource type="Texture2D" uid="uid://rkfh5biipepg" path="res://textures/tileset/Tileset.png" id="5_wjeij"]
+[ext_resource type="Texture2D" uid="uid://cyuxeiomotam6" path="res://textures/tileset/Tileset-v2.png" id="4_vu71a"]
 [ext_resource type="Texture2D" uid="uid://csqvqnlteu7gx" path="res://textures/tileset/brick_set.png" id="6_6vot3"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_dmpgt"]
 tile_data = PackedInt32Array(0, 65536, 1, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 1)
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_xeicv"]
+tile_data = PackedInt32Array(0, 3, 1, 1, 3, 0, 2, 3, 0, 3, 65539, 1)
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_2c3em"]
+tile_data = PackedInt32Array(0, 3, 1, 1, 65539, 1)
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_5ri3m"]
+tile_data = PackedInt32Array(0, 3, 1, 1, 3, 0, 2, 3, 0, 3, 3, 0, 4, 65539, 1)
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_rp23c"]
+tile_data = PackedInt32Array(0, 3, 1, 1, 3, 0, 2, 65539, 1)
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_bnq84"]
 scenes/1/scene = ExtResource("2_cbwiu")
@@ -16,7 +28,7 @@ scenes/3/scene = ExtResource("4_ut3y4")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lakcj"]
 resource_name = "rocky"
-texture = ExtResource("5_wjeij")
+texture = ExtResource("4_vu71a")
 texture_region_size = Vector2i(128, 128)
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -42,10 +54,58 @@ texture_region_size = Vector2i(128, 128)
 3:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 3:0/0/physics_layer_0/angular_velocity = 0.0
 3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
+2:1/0 = 0
+2:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:1/0/physics_layer_0/angular_velocity = 0.0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
+4:1/0 = 0
+4:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+4:1/0/physics_layer_0/angular_velocity = 0.0
+4:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
+2:2/0 = 0
+2:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:2/0/physics_layer_0/angular_velocity = 0.0
+2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
+3:2/0 = 0
+3:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+3:2/0/physics_layer_0/angular_velocity = 0.0
+3:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
+4:2/0 = 0
+4:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+4:2/0/physics_layer_0/angular_velocity = 0.0
+4:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
+2:3/0 = 0
+2:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:3/0/physics_layer_0/angular_velocity = 0.0
+2:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
+3:3/0 = 0
+3:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+3:3/0/physics_layer_0/angular_velocity = 0.0
+3:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
+4:3/0 = 0
+4:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+4:3/0/physics_layer_0/angular_velocity = 0.0
+4:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
+0:2/0 = 0
+0:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:2/0/physics_layer_0/angular_velocity = 0.0
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
+1:2/0 = 0
+1:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:2/0/physics_layer_0/angular_velocity = 0.0
+1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
+0:3/0 = 0
+0:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:3/0/physics_layer_0/angular_velocity = 0.0
+0:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
+1:3/0 = 0
+1:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:3/0/physics_layer_0/angular_velocity = 0.0
+1:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cr3ww"]
 resource_name = "rocky_bg"
-texture = ExtResource("5_wjeij")
+texture = ExtResource("4_vu71a")
 texture_region_size = Vector2i(128, 128)
 0:1/0 = 0
 0:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -65,6 +125,42 @@ texture_region_size = Vector2i(128, 128)
 3:0/0 = 0
 3:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 3:0/0/physics_layer_0/angular_velocity = 0.0
+2:1/0 = 0
+2:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:1/0/physics_layer_0/angular_velocity = 0.0
+4:1/0 = 0
+4:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+4:1/0/physics_layer_0/angular_velocity = 0.0
+2:2/0 = 0
+2:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:2/0/physics_layer_0/angular_velocity = 0.0
+3:2/0 = 0
+3:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+3:2/0/physics_layer_0/angular_velocity = 0.0
+4:2/0 = 0
+4:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+4:2/0/physics_layer_0/angular_velocity = 0.0
+2:3/0 = 0
+2:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:3/0/physics_layer_0/angular_velocity = 0.0
+3:3/0 = 0
+3:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+3:3/0/physics_layer_0/angular_velocity = 0.0
+4:3/0 = 0
+4:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+4:3/0/physics_layer_0/angular_velocity = 0.0
+0:2/0 = 0
+0:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:2/0/physics_layer_0/angular_velocity = 0.0
+1:2/0 = 0
+1:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:2/0/physics_layer_0/angular_velocity = 0.0
+0:3/0 = 0
+0:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:3/0/physics_layer_0/angular_velocity = 0.0
+1:3/0 = 0
+1:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:3/0/physics_layer_0/angular_velocity = 0.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_56niy"]
 resource_name = "brick"
@@ -290,3 +386,7 @@ sources/4 = SubResource("TileSetAtlasSource_cr3ww")
 sources/5 = SubResource("TileSetAtlasSource_56niy")
 sources/6 = SubResource("TileSetAtlasSource_mmcxr")
 pattern_0 = SubResource("TileMapPattern_dmpgt")
+pattern_1 = SubResource("TileMapPattern_xeicv")
+pattern_2 = SubResource("TileMapPattern_2c3em")
+pattern_3 = SubResource("TileMapPattern_5ri3m")
+pattern_4 = SubResource("TileMapPattern_rp23c")

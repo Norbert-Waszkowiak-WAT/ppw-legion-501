@@ -38,7 +38,7 @@ func _on_main_menu_pressed():
 func _on_restart_pressed():
 	exit_animation()
 	await get_tree().create_timer(exit_time).timeout
-	PlayerVariables.save_game(PlayerVariables.loaded_save)
+	PlayerVariables.load_game(PlayerVariables.loaded_save)
 
 
 func _on_exit_pressed():

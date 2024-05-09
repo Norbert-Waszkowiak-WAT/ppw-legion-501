@@ -15,10 +15,14 @@ var restricted : Array[Vector2i]
 
 @export var debug_mode : bool
 
+var debug := false
 
 func _ready():
 	await get_tree().process_frame
 	preload_neighbors()
+	await get_tree().process_frame
+	#debug = true
+	#calculate_trajectory(-1, map_to_global(Vector2i(-9, 0)), parent.chase_speed)
 	#var point = Vector2i(-6, 0)
 	#print(neighbors[point])
 
@@ -34,12 +38,16 @@ func heuristic(start : Vector2i, end : Vector2i):
 
 
 func calculate_trajectory(dir, start_position, speed) -> KinematicCollision2D:
-	var collision
+	var collision : KinematicCollision2D
 	clear_points()
 	marker.global_position = start_position
 	marker.velocity.y = parent.jump_speed
+	if debug:
+		print("start")
 	for point in point_amount:
-		#add_point(marker.global_position)
+		if debug:
+			print(marker.global_position)
+			add_point(marker.global_position)
 		marker.velocity.x = dir * speed
 		if marker.velocity.y > 0:
 			marker.velocity.y += parent.fall_gravity * get_physics_process_delta_time()
@@ -47,17 +55,21 @@ func calculate_trajectory(dir, start_position, speed) -> KinematicCollision2D:
 			marker.velocity.y += parent.jump_gravity * get_physics_process_delta_time()
 		collision = marker.move_and_collide(marker.velocity * get_physics_process_delta_time(), true)
 		if collision:
-			break
+			if debug:
+				add_point(collision.get_position())
+				print("collision: ", collision.get_position())
+			else:
+				break
 		marker.global_position += marker.velocity * get_physics_process_delta_time()
 	return collision
 
 
 func assemble_path(came_from, last_point):
 	if debug_mode:
+		clear_points()
 		pos = map_to_global(last_point)
 		global_position = pos
 		add_point(pos)
-	clear_points()
 	
 	var path = [[last_point, "/"]]
 	var current = [last_point, "/"]

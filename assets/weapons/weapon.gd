@@ -11,7 +11,7 @@ var attack_cooldown: float
 var attack_time: float = 0.0
 
 # Odniesienie do użytkownika broni
-@onready var user = get_parent()
+@onready var user = get_parent().get_parent()
 @onready var sprite = get_parent()
 
 

@@ -13,6 +13,8 @@ var was_playing = {}
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$player/HUD/tint.color.a = 1.0
+	
 	Engine.set_time_scale(1)
 	# Konfiguruje warunek wygranej
 	for i in $winning_areas.get_children():
@@ -35,7 +37,8 @@ func _ready():
 	
 	generate_waypoints()
 	
-	$player/HUD/tint.color.a = 1.0
+	await get_tree().process_frame
+	
 	var tween = create_tween()
 	tween.tween_property($player/HUD/tint, "color:a", 0.0, 1.3)
 

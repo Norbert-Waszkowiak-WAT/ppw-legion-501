@@ -1,0 +1,154 @@
+[gd_scene load_steps=25 format=3 uid="uid://dvkwtd5bxredm"]
+
+[ext_resource type="Texture2D" uid="uid://dv2etnwddms3j" path="res://textures/enemy/Enemy-arm-shooting/Enemy-Arm_Shooting-1.png" id="1_yjfwq"]
+[ext_resource type="Texture2D" uid="uid://b4i84rjh06lm5" path="res://textures/enemy/Enemy-arm-shooting/Enemy-Arm_Shooting-2.png" id="2_6aym2"]
+[ext_resource type="Texture2D" uid="uid://bctedhsdh182m" path="res://textures/enemy/Enemy-arm-shooting/Enemy-Arm_Shooting-3.png" id="3_co75x"]
+[ext_resource type="Texture2D" uid="uid://chtenubxdtwsl" path="res://textures/enemy/Enemy-arm-shooting/Enemy-Arm_Shooting-4.png" id="4_88oam"]
+[ext_resource type="Texture2D" uid="uid://djlwfcreuhy1l" path="res://textures/enemy/Enemy-jump-arm/Enemy-Jump-3.png" id="5_3xr04"]
+[ext_resource type="Texture2D" uid="uid://bo1ogh861ar46" path="res://textures/enemy/Enemy-jump-arm/Enemy-Jump-1.png" id="10_2ityg"]
+[ext_resource type="Texture2D" uid="uid://d28haokk2lvik" path="res://textures/enemy/Enemy-standing-arm/Enemy-Standding_Hand-1.png" id="10_t6qdy"]
+[ext_resource type="Texture2D" uid="uid://c5dyu3umrj1kq" path="res://textures/enemy/Enemy-standing-arm/Enemy-Standding_Hand-2.png" id="11_0rvkm"]
+[ext_resource type="Texture2D" uid="uid://dc1yywme7q8yg" path="res://textures/enemy/Enemy-jump-arm/Enemy-Jump-2.png" id="11_2imlu"]
+[ext_resource type="Texture2D" uid="uid://btyuxgfqwp4wt" path="res://textures/enemy/Enemy-standing-arm/Enemy-Standding_Hand-3.png" id="12_5ene4"]
+[ext_resource type="Texture2D" uid="uid://dcxg0cs4hme2x" path="res://textures/enemy/Enemy-standing-arm/Enemy-Standding_Hand-4.png" id="13_aay8v"]
+[ext_resource type="Script" path="res://assets/weapons/gun/gun.gd" id="13_sdkbx"]
+[ext_resource type="Texture2D" uid="uid://bo28rimc4e26i" path="res://textures/enemy/Enemy-walking-arm/Enemy-Walkingg-Hand-1.png" id="16_6ij8h"]
+[ext_resource type="Texture2D" uid="uid://b5xpicv11uqb3" path="res://textures/enemy/Enemy-walking-arm/Enemy-Walkingg-Hand-2.png" id="17_l867a"]
+[ext_resource type="Texture2D" uid="uid://bdrajxegblmve" path="res://textures/enemy/Enemy-walking-arm/Enemy-Walkingg-Hand-3.png" id="18_l753o"]
+[ext_resource type="Texture2D" uid="uid://tuvh0vigr27w" path="res://textures/enemy/Enemy-walking-arm/Enemy-Walkingg-Hand-4.png" id="19_e4emf"]
+[ext_resource type="Texture2D" uid="uid://bxk011yucq2fd" path="res://textures/enemy/Enemy-walking-arm/Enemy-Walkingg-Hand-5.png" id="20_ip26i"]
+[ext_resource type="Texture2D" uid="uid://cy2p4wdeb1ejm" path="res://textures/enemy/Enemy-walking-arm/Enemy-Walkingg-Hand-6.png" id="21_fgbpp"]
+[ext_resource type="PackedScene" uid="uid://cddpay1lh2bu4" path="res://assets/weapons/enemy_blaster/blaster_shot.tscn" id="21_t3mlm"]
+[ext_resource type="AudioStream" uid="uid://jdijo7u572s5" path="res://assets/weapons/enemy_blaster/enemy_blaster_sound.wav" id="22_86fv0"]
+[ext_resource type="Texture2D" uid="uid://cy22fy65ax11p" path="res://textures/enemy/Enemy-walking-arm/Enemy-Walkingg-Hand-7.png" id="22_lwonx"]
+[ext_resource type="Texture2D" uid="uid://lqbahe2dkd5t" path="res://textures/enemy/Enemy-walking-arm/Enemy-Walkingg-Hand-8.png" id="23_7om2q"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_78r3p"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_yjfwq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_6aym2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_co75x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_88oam")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_3xr04")
+}],
+"loop": false,
+"name": &"fall",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_t6qdy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_0rvkm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_5ene4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_aay8v")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_2ityg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_2imlu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_3xr04")
+}],
+"loop": false,
+"name": &"jump",
+"speed": 11.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("16_6ij8h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_l867a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_l753o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_e4emf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_ip26i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_fgbpp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_lwonx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_7om2q")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 12.0
+}]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8qvhh"]
+lifetime_randomness = 0.45
+particle_flag_disable_z = true
+inherit_velocity_ratio = 1.0
+initial_velocity_min = 350.0
+initial_velocity_max = 450.0
+gravity = Vector3(0, 0, 0)
+damping_min = 50.0
+damping_max = 75.0
+scale_min = 0.2
+scale_max = 0.7
+color = Color(0.376471, 0.462745, 1, 1)
+
+[node name="enemy_blaster" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_78r3p")
+animation = &"attack"
+offset = Vector2(64, 0)
+script = ExtResource("13_sdkbx")
+bullet_type = ExtResource("21_t3mlm")
+weapon_range = 125.0
+damage = 15.0
+knockback = 10.0
+fire_rate = 60.0
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(112, -20)
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Marker2D"]
+self_modulate = Color(2, 2, 2, 1)
+emitting = false
+amount = 25
+process_material = SubResource("ParticleProcessMaterial_8qvhh")
+lifetime = 0.1
+one_shot = true
+
+[node name="gunshot_sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("22_86fv0")
+volume_db = -15.0
+pitch_scale = 1.2
+max_polyphony = 5
+bus = &"Gameplay"

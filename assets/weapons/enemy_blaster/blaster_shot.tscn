@@ -1,0 +1,52 @@
+[gd_scene load_steps=7 format=3 uid="uid://cddpay1lh2bu4"]
+
+[ext_resource type="Script" path="res://assets/weapons/enemy_blaster/blaster_shot.gd" id="1_se2i5"]
+[ext_resource type="PackedScene" uid="uid://bea7s73djggv1" path="res://assets/weapons/gun/impact.tscn" id="2_qu5uy"]
+[ext_resource type="Texture2D" uid="uid://cy1d7w6d2av1y" path="res://textures/enemy_blaster/blaster_shot.png" id="3_iadlu"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_4mks4"]
+lifetime_randomness = 1.0
+direction = Vector3(-1, 0, 0)
+spread = 60.0
+initial_velocity_min = 300.0
+initial_velocity_max = 350.0
+gravity = Vector3(0, 0, 0)
+linear_accel_min = -350.0
+linear_accel_max = -300.0
+damping_min = 50.0
+damping_max = 80.0
+scale_min = 0.2
+scale_max = 0.5
+color = Color(0.376471, 0.462745, 1, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_88vtq"]
+size = Vector2(158.142, 42.0527)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1pxdx"]
+size = Vector2(40, 8)
+
+[node name="blaster_shot" type="CharacterBody2D"]
+modulate = Color(3, 3, 3, 1)
+collision_layer = 16
+collision_mask = 3
+script = ExtResource("1_se2i5")
+speed_of_bullet = 200.0
+
+[node name="GPUParticles2D" parent="." instance=ExtResource("2_qu5uy")]
+process_material = SubResource("ParticleProcessMaterial_4mks4")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_iadlu")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(4.76837e-07, 1.78814e-07)
+scale = Vector2(0.303525, 0.380475)
+shape = SubResource("RectangleShape2D_88vtq")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_1pxdx")

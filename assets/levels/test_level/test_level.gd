@@ -4,8 +4,6 @@ extends Level
 # Prędkość poruszania się chmur
 @export var cloudspeed: float = 0.2
 
-@onready var clouds = get_node("ParallaxBackground/clouds_layer/clouds")
-
 
 # | ============================================================================= |
 

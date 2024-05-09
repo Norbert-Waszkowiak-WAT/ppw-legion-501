@@ -1,9 +1,44 @@
-[gd_scene load_steps=7 format=3 uid="uid://c53i7mvtd0bbx"]
+[gd_scene load_steps=8 format=3 uid="uid://c53i7mvtd0bbx"]
 
 [ext_resource type="Script" path="res://assets/enemies/test_enemy/test-enemy.gd" id="1_12jby"]
 [ext_resource type="Texture2D" uid="uid://smal4hmb1hlj" path="res://textures/test-enemy/enemy.png" id="1_k5m6p"]
 [ext_resource type="PackedScene" uid="uid://dh4fi820qxc7k" path="res://assets/weapons/stick/stick.tscn" id="3_6v6qr"]
 [ext_resource type="PackedScene" uid="uid://cpb5mre4u13vt" path="res://assets/enemies/navigation_component.tscn" id="4_bpcea"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jvrje"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_k5m6p")
+}],
+"loop": true,
+"name": &"fall",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_k5m6p")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_k5m6p")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_k5m6p")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ex46t"]
 bg_color = Color(0, 0, 0, 0.231373)
@@ -29,14 +64,14 @@ jump_descent = 0.25
 jump_peak = 0.35
 reaction_time = 0.25
 memory_time = 20.0
-attack_time = 0.5
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(-2, -3, 0, -6, 2, -3, 2, 5, 0, 6, -2, 5)
 
-[node name="AnimatedSprite2D" type="Sprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 3
-texture = ExtResource("1_k5m6p")
+sprite_frames = SubResource("SpriteFrames_jvrje")
+animation = &"walk"
 
 [node name="stick" parent="AnimatedSprite2D" instance=ExtResource("3_6v6qr")]
 position = Vector2(3, -1)

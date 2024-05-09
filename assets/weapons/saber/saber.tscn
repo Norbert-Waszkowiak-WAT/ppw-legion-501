@@ -168,3 +168,4 @@ bus = &"Gameplay"
 [node name="idle" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("24_kf766")
 volume_db = -25.0
+bus = &"Gameplay"

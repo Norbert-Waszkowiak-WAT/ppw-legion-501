@@ -7,6 +7,12 @@ var startup_delay : float = 0.9
 @export var first_level : PackedScene
 
 @onready var buttons = $MarginContainer/VBoxContainer.find_children("*", "Button")
+@onready var master = $MarginContainer/VBoxContainer/settings_screen/VBoxContainer/GridContainer/Master_slider
+@onready var vsync = $MarginContainer/VBoxContainer/settings_screen/VBoxContainer/GridContainer/Vsync_checkbox
+@onready var gameplay = $MarginContainer/VBoxContainer/settings_screen/VBoxContainer/GridContainer/Gameplay_slider
+@onready var display = $MarginContainer/VBoxContainer/settings_screen/VBoxContainer/GridContainer/Display_dropdown
+@onready var menu = $MarginContainer/VBoxContainer/settings_screen/VBoxContainer/GridContainer/Menu_slider
+
 
 var tween : Tween
 
@@ -16,6 +22,7 @@ var tween : Tween
 
 # Wywoływana na początku sceny
 func _ready():
+	load_settings()
 	startup_animation()
 	for button in buttons as Array[Button]:
 		button.focus_entered.connect(_on_focus_entered)
@@ -48,7 +55,8 @@ func _on_continue_pressed():
 
 
 func _on_settings_pressed():
-	pass
+	$MarginContainer/VBoxContainer/main_screen.hide()
+	$MarginContainer/VBoxContainer/settings_screen.show()
 
 
 func _on_exit_pressed():
@@ -58,6 +66,7 @@ func _on_exit_pressed():
 func _on_back_pressed():
 	$MarginContainer/VBoxContainer/load_screen.hide()
 	$MarginContainer/VBoxContainer/new_game_screen.hide()
+	$MarginContainer/VBoxContainer/settings_screen.hide()
 	$MarginContainer/VBoxContainer/main_screen.show()
 
 
@@ -131,3 +140,61 @@ func set_buttons_disabled(value: bool):
 				button.set_mouse_filter(0)
 
 
+func _on_vsync_checkbox_toggled(toggled_on):
+	if toggled_on:
+		DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_ENABLED)
+	else:
+		DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
+
+
+
+func _on_master_slider_value_changed(value):
+	AudioServer.set_bus_volume_db(0, value)
+
+
+func _on_menu_slider_value_changed(value):
+	AudioServer.set_bus_volume_db(1, value)
+
+
+func _on_gameplay_slider_value_changed(value):
+	AudioServer.set_bus_volume_db(2, value)
+
+
+func _on_display_dropdown_item_selected(index):
+	if index == 0:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
+		DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, false)
+	elif index == 1:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+		DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, false)
+	elif index == 2:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+		DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, true)
+
+
+func save_settings():
+	var file = FileAccess.open("user://user_settings.settings", FileAccess.WRITE)
+	var settings = {
+		"master" : master.value,
+		"vsync" : vsync.button_pressed,
+		"gameplay" : gameplay.value,
+		"display" : display.selected,
+		"menu" : menu.value
+	}
+	file.store_var(settings)
+
+
+func load_settings():
+	if !FileAccess.file_exists("user://user_settings.settings"):
+		return
+	var file = FileAccess.open("user://user_settings.settings", FileAccess.READ)
+	var settings = file.get_var()
+	master.value = settings["master"]
+	vsync.button_pressed = settings["vsync"]
+	gameplay.value = settings["gameplay"]
+	display.selected = settings["display"]
+	menu.value = settings["menu"]
+
+
+func _on_save_pressed():
+	save_settings()

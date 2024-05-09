@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=9 format=3 uid="uid://dygspx1ouf0ul"]
+[gd_resource type="Theme" load_steps=12 format=3 uid="uid://dygspx1ouf0ul"]
 
 [ext_resource type="FontFile" uid="uid://c0ob1ayhkkquv" path="res://textures/main-menu/upheavtt.ttf" id="1_dgtm0"]
 
@@ -44,6 +44,26 @@ expand_margin_top = 5.0
 expand_margin_right = 20.0
 expand_margin_bottom = 5.0
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_66ovb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_eftdp"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gvowq"]
+content_margin_left = 15.0
+content_margin_top = 15.0
+content_margin_right = 15.0
+content_margin_bottom = 15.0
+bg_color = Color(0.933333, 0.933333, 0.933333, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+corner_detail = 1
+expand_margin_left = 15.0
+expand_margin_top = 1.0
+expand_margin_right = 5.0
+expand_margin_bottom = 1.0
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fve7k"]
 content_margin_left = 4.0
 content_margin_top = 4.0
@@ -85,10 +105,16 @@ Button/styles/focus = SubResource("StyleBoxFlat_oqrou")
 Button/styles/hover = SubResource("StyleBoxEmpty_02mky")
 Button/styles/normal = SubResource("StyleBoxFlat_iyod0")
 Button/styles/pressed = SubResource("StyleBoxFlat_0gm18")
+CheckButton/styles/focus = SubResource("StyleBoxEmpty_66ovb")
+CheckButton/styles/hover = SubResource("StyleBoxEmpty_eftdp")
 ItemList/constants/h_separation = 68
 ItemList/constants/v_separation = 98
 ItemList/font_sizes/font_size = 101
 Label/font_sizes/font_size = 90
+OptionButton/colors/font_pressed_color = Color(0.427451, 0.427451, 0.427451, 1)
+OptionButton/constants/h_separation = 10
+OptionButton/font_sizes/font_size = 28
+OptionButton/styles/focus = SubResource("StyleBoxFlat_gvowq")
 RichTextLabel/colors/default_color = Color(1, 1, 1, 1)
 RichTextLabel/colors/font_outline_color = Color(1, 1, 1, 1)
 RichTextLabel/colors/font_selected_color = Color(0, 0, 0, 0)

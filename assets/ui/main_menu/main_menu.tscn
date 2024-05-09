@@ -207,6 +207,109 @@ size_flags_horizontal = 4
 theme = ExtResource("3_6h6dh")
 text = "back"
 
+[node name="settings_screen" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_left = 200
+theme_override_constants/margin_right = 200
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/settings_screen"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer/settings_screen/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_6h6dh")
+theme_override_constants/h_separation = 50
+theme_override_constants/v_separation = 30
+columns = 4
+
+[node name="Master" type="Label" parent="MarginContainer/VBoxContainer/settings_screen/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme = ExtResource("3_6h6dh")
+theme_override_font_sizes/font_size = 35
+text = "Master volume"
+horizontal_alignment = 2
+
+[node name="Master_slider" type="HSlider" parent="MarginContainer/VBoxContainer/settings_screen/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_vertical = 4
+min_value = -60.0
+max_value = 6.0
+step = 0.1
+
+[node name="Vsync" type="Label" parent="MarginContainer/VBoxContainer/settings_screen/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("3_6h6dh")
+theme_override_font_sizes/font_size = 35
+text = "Vsync"
+horizontal_alignment = 2
+
+[node name="Vsync_checkbox" type="CheckButton" parent="MarginContainer/VBoxContainer/settings_screen/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="Gameplay" type="Label" parent="MarginContainer/VBoxContainer/settings_screen/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme = ExtResource("3_6h6dh")
+theme_override_font_sizes/font_size = 35
+text = "Gameplay volume"
+horizontal_alignment = 2
+
+[node name="Gameplay_slider" type="HSlider" parent="MarginContainer/VBoxContainer/settings_screen/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+min_value = -60.0
+max_value = 6.0
+step = 0.1
+
+[node name="Display" type="Label" parent="MarginContainer/VBoxContainer/settings_screen/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("3_6h6dh")
+theme_override_font_sizes/font_size = 35
+text = "Display mode"
+horizontal_alignment = 2
+
+[node name="Display_dropdown" type="OptionButton" parent="MarginContainer/VBoxContainer/settings_screen/VBoxContainer/GridContainer"]
+layout_mode = 2
+item_count = 3
+selected = 0
+popup/item_0/text = "Fullscreen"
+popup/item_0/id = 0
+popup/item_1/text = "Windowed"
+popup/item_1/id = 1
+popup/item_2/text = "Borderless"
+popup/item_2/id = 2
+
+[node name="Menu" type="Label" parent="MarginContainer/VBoxContainer/settings_screen/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme = ExtResource("3_6h6dh")
+theme_override_font_sizes/font_size = 35
+text = "Menu volume"
+horizontal_alignment = 2
+
+[node name="Menu_slider" type="HSlider" parent="MarginContainer/VBoxContainer/settings_screen/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+min_value = -60.0
+max_value = 6.0
+step = 0.1
+
+[node name="Save" type="Button" parent="MarginContainer/VBoxContainer/settings_screen/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("3_6h6dh")
+text = "Save"
+
+[node name="Back" type="Button" parent="MarginContainer/VBoxContainer/settings_screen/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("3_6h6dh")
+text = "back"
+
 [node name="TextureRect" type="TextureRect" parent="."]
 z_index = -1
 texture_filter = 1
@@ -250,3 +353,10 @@ bus = &"Menu"
 [connection signal="pressed" from="MarginContainer/VBoxContainer/main_screen/exit" to="." method="_on_exit_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/load_screen/Button" to="." method="_on_back_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/new_game_screen/Button" to="." method="_on_back_pressed"]
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/settings_screen/VBoxContainer/GridContainer/Master_slider" to="." method="_on_master_slider_value_changed"]
+[connection signal="toggled" from="MarginContainer/VBoxContainer/settings_screen/VBoxContainer/GridContainer/Vsync_checkbox" to="." method="_on_vsync_checkbox_toggled"]
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/settings_screen/VBoxContainer/GridContainer/Gameplay_slider" to="." method="_on_gameplay_slider_value_changed"]
+[connection signal="item_selected" from="MarginContainer/VBoxContainer/settings_screen/VBoxContainer/GridContainer/Display_dropdown" to="." method="_on_display_dropdown_item_selected"]
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/settings_screen/VBoxContainer/GridContainer/Menu_slider" to="." method="_on_menu_slider_value_changed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/settings_screen/VBoxContainer/Save" to="." method="_on_save_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/settings_screen/VBoxContainer/Back" to="." method="_on_back_pressed"]

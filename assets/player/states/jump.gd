@@ -35,11 +35,12 @@ func process(_delta: float) -> State:
 
 # Wywoływana na każdej klatce, odpowiada za procesy fizyczne
 func physics(delta) -> State:
-	if !player.dashing:
-		player.horizontal_movement()
 	player.velocity.y += player.get_gravity() * delta * player.speed_modifier
+	
 	player.move_and_slide()
 	
+	if !player.dashing:
+		player.horizontal_movement()
 	
 	if player.velocity.y > 0:
 		return fall

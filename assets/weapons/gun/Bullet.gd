@@ -21,7 +21,7 @@ func _ready():
 func _physics_process(_delta):
 	for target in $Area2D.get_overlapping_bodies():
 		set_physics_process(false)
-		if target is Enemy:
+		if target is Enemy or target is Boss:
 			target.apply_damage(damage, knockback, global_position + Vector2(0, 30))
 		sprite.hide()
 		$GPUParticles2D.emitting = true
@@ -41,3 +41,7 @@ func _process(delta):
 	
 	if emitting == true and $GPUParticles2D.emitting == false:
 		queue_free()
+
+
+func _on_screen_exited():
+	queue_free()

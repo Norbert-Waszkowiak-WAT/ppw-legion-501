@@ -1,57 +1,103 @@
-[gd_scene load_steps=4 format=3 uid="uid://c58ee86830p4l"]
+[gd_scene load_steps=11 format=3 uid="uid://c58ee86830p4l"]
 
 [ext_resource type="PackedScene" uid="uid://bfqfqq7ggdc2o" path="res://assets/ui/skill_tree/skill_button.tscn" id="1_uelf4"]
 [ext_resource type="Texture2D" uid="uid://ditdkglwr8n8c" path="res://textures/skill_tree/skill_buttons/high_speed.png" id="2_cxdsd"]
+[ext_resource type="Texture2D" uid="uid://bfid5vr4xhs2y" path="res://textures/skill_tree/skill_buttons/ability_all_boost.png" id="2_e4i63"]
 [ext_resource type="Texture2D" uid="uid://7lifsi78fvkm" path="res://textures/skill_tree/skill_buttons/heavy_hitter.png" id="3_p0ypv"]
+[ext_resource type="Texture2D" uid="uid://5qehxxtof27r" path="res://textures/skill_tree/skill_buttons/ability_all_boost_upg_1.png" id="4_fo267"]
+[ext_resource type="Texture2D" uid="uid://dsb0ni6sgyjjm" path="res://textures/skill_tree/skill_buttons/fast_bullet_upg_1.png" id="4_ic5pc"]
+[ext_resource type="Texture2D" uid="uid://lw06bn3dojqg" path="res://textures/skill_tree/skill_buttons/heavy_hitter_upg_1.png" id="5_mxmcb"]
+[ext_resource type="Texture2D" uid="uid://1q1y8fdgf8t4" path="res://textures/skill_tree/skill_buttons/fast_bullets_upg_2.png" id="6_4jq2u"]
+[ext_resource type="Texture2D" uid="uid://l6sga8ecc7m7" path="res://textures/skill_tree/skill_buttons/ability_all_boost_upg_2.png" id="7_1ct6p"]
+[ext_resource type="Texture2D" uid="uid://bw7tada7qtrxv" path="res://textures/skill_tree/skill_buttons/heavy_hitter_upg_2.png" id="7_ire4u"]
 
 [node name="Ranged" type="HBoxContainer"]
-visible = false
 theme_override_constants/separation = 319
 alignment = 1
 
+[node name="large_mag" parent="." instance=ExtResource("1_uelf4")]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+texture_normal = ExtResource("2_e4i63")
+ability_name = "large_mag"
+description = "Doubles your max ammo capacity."
+
 [node name="VBoxContainer3" type="VBoxContainer" parent="."]
 layout_mode = 2
-theme_override_constants/separation = 220
+theme_override_constants/separation = 80
 alignment = 1
 
 [node name="high_speed" parent="VBoxContainer3" node_paths=PackedStringArray("excluded_buttons") instance=ExtResource("1_uelf4")]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 texture_normal = ExtResource("2_cxdsd")
-excluded_buttons = [NodePath("../heavy_hitter")]
+excluded_buttons = [NodePath("../heavy_hitter"), NodePath("../stopping_power")]
 ability_name = "high_speed_low_drag"
 description = "Increases rate of fire, decreases damage and accuracy."
+
+[node name="stopping_power" parent="VBoxContainer3" node_paths=PackedStringArray("previous_button", "excluded_buttons") instance=ExtResource("1_uelf4")]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+texture_normal = ExtResource("4_fo267")
+previous_button = NodePath("../../large_mag")
+excluded_buttons = [NodePath("../high_speed"), NodePath("../heavy_hitter")]
+ability_name = "stopping_power"
+description = "Increases the damage dealt by your weapon."
 
 [node name="heavy_hitter" parent="VBoxContainer3" node_paths=PackedStringArray("excluded_buttons") instance=ExtResource("1_uelf4")]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 texture_normal = ExtResource("3_p0ypv")
-excluded_buttons = [NodePath("../high_speed")]
+excluded_buttons = [NodePath("../high_speed"), NodePath("../stopping_power")]
 ability_name = "heavy_hitter"
 description = "Increases damage and accuracy, decreases rate of fire."
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
-theme_override_constants/separation = 220
+theme_override_constants/separation = 80
 alignment = 1
 
-[node name="ranged_2" parent="VBoxContainer" instance=ExtResource("1_uelf4")]
+[node name="hollow_points" parent="VBoxContainer" node_paths=PackedStringArray("previous_button") instance=ExtResource("1_uelf4")]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
+texture_normal = ExtResource("4_ic5pc")
+previous_button = NodePath("../../VBoxContainer3/high_speed")
+ability_name = "hollow_points"
+description = "Increases the damage dealt by your weapon."
 
-[node name="ranged_3" parent="VBoxContainer" instance=ExtResource("1_uelf4")]
+[node name="stopping_power_2" parent="VBoxContainer" node_paths=PackedStringArray("previous_button") instance=ExtResource("1_uelf4")]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
+texture_normal = ExtResource("7_1ct6p")
+previous_button = NodePath("../../VBoxContainer3/stopping_power")
+ability_name = "stopping_power_II"
+description = "Successful hits slow down opponents."
+
+[node name="large_caliber" parent="VBoxContainer" node_paths=PackedStringArray("previous_button") instance=ExtResource("1_uelf4")]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+texture_normal = ExtResource("5_mxmcb")
+previous_button = NodePath("../../VBoxContainer3/heavy_hitter")
+ability_name = "large_caliber"
+description = "Increases the damage dealt by your weapon."
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="."]
 layout_mode = 2
-theme_override_constants/separation = 220
+theme_override_constants/separation = 310
 alignment = 1
 
-[node name="ranged_4" parent="VBoxContainer2" instance=ExtResource("1_uelf4")]
+[node name="hollow_points_2" parent="VBoxContainer2" node_paths=PackedStringArray("previous_button") instance=ExtResource("1_uelf4")]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
+texture_normal = ExtResource("6_4jq2u")
+previous_button = NodePath("../../VBoxContainer/hollow_points")
+ability_name = "hollow_points_II"
+description = "Successful hits slow down opponents."
 
-[node name="ranged_5" parent="VBoxContainer2" instance=ExtResource("1_uelf4")]
+[node name="tuned_trigger" parent="VBoxContainer2" node_paths=PackedStringArray("previous_button") instance=ExtResource("1_uelf4")]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
+texture_normal = ExtResource("7_ire4u")
+previous_button = NodePath("../../VBoxContainer/large_caliber")
+ability_name = "tuned_trigger"
+description = "Improves the weapon's rate of fire."

@@ -105,6 +105,7 @@ use_ability={
 2d_physics/layer_3="enemies"
 2d_physics/layer_4="player_for_enemies"
 2d_physics/layer_5="bullet"
+2d_physics/layer_6="spc_terrain"
 
 [rendering]
 

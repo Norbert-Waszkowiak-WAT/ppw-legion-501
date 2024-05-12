@@ -55,7 +55,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d7ws6"]
 size = Vector2(12.1406, 19)
 
-[node name="health_restorer" type="AnimatedSprite2D"]
+[node name="health_restorer" type="AnimatedSprite2D" groups=["health_boosters"]]
 self_modulate = Color(1.5, 1.5, 1.5, 1)
 texture_filter = 1
 position = Vector2(0, -64)

@@ -11,12 +11,23 @@ var abilities = {
 	"deflect": false,
 	
 	# Ranged
+	"large_mag":false,
 	"high_speed_low_drag": false,
 	"heavy_hitter": false,
+	"hollow_points": false,
+	"stopping_power": false,
+	"large_caliber": false,
+	"hollow_points_II": false,
+	"stopping_power_II": false,
+	"tuned_trigger": false,
 	
 	# Magic
 	"bullet_time": false,
-	"quake": false
+	"quake": false,
+	"bullet_time_II": false,
+	"quake_II": false,
+	"bullet_time_III": false,
+	"quake_III": false
 	
 }
 

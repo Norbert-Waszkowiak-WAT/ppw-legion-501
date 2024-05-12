@@ -1,0 +1,66 @@
+[gd_scene load_steps=11 format=3 uid="uid://lapftiy0xquc"]
+
+[ext_resource type="Script" path="res://assets/enemies/boss/boss_projectile.gd" id="1_g71te"]
+[ext_resource type="Texture2D" uid="uid://r1lih20stdy7" path="res://textures/Boss/projectile/pixil-frame-0.png" id="2_kyme0"]
+[ext_resource type="Texture2D" uid="uid://d3sf1k6v6qf1l" path="res://textures/Boss/projectile/pixil-frame-1.png" id="3_tgapw"]
+[ext_resource type="Texture2D" uid="uid://lk600jq0vrqt" path="res://textures/Boss/projectile/pixil-frame-2.png" id="4_1c884"]
+[ext_resource type="Texture2D" uid="uid://rrkwho7ir4rj" path="res://textures/Boss/projectile/impact/pixil-frame-3.png" id="5_3t4fj"]
+[ext_resource type="Texture2D" uid="uid://c8mxhghmu3j08" path="res://textures/Boss/projectile/impact/pixil-frame-4.png" id="6_pfqgf"]
+[ext_resource type="Texture2D" uid="uid://2hpfk0ldxceh" path="res://textures/Boss/projectile/impact/pixil-frame-5.png" id="7_rvq6d"]
+[ext_resource type="Texture2D" uid="uid://1p06lg5vmrvn" path="res://textures/Boss/projectile/impact/pixil-frame-6.png" id="8_g2cy7"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cc6vg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_kyme0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_tgapw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_1c884")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_3t4fj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_pfqgf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_rvq6d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_g2cy7")
+}],
+"loop": false,
+"name": &"impact",
+"speed": 20.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uirvv"]
+radius = 15.0
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+z_index = 1
+scale = Vector2(0.4, 0.4)
+collision_layer = 16
+collision_mask = 34
+script = ExtResource("1_g71te")
+damage = 25.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_cc6vg")
+animation = &"impact"
+autoplay = "default"
+frame = 3
+frame_progress = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("CircleShape2D_uirvv")

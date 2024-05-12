@@ -45,12 +45,13 @@ func process(_delta: float) -> State:
 # Wywoływana na każdej klatce, odpowiada za procesy fizyczne
 func physics(delta: float) -> State:
 	# Nadanie prędkości poziomej i grawitacji
-	if !player.dashing:
-		player.horizontal_movement()
 	player.velocity.y += player.get_gravity() * delta
 	
 	# Obsługuje fizykę gracza
 	player.move_and_slide()
+	
+	if !player.dashing:
+		player.horizontal_movement()
 	
 	if not player.is_on_floor():
 		return fall

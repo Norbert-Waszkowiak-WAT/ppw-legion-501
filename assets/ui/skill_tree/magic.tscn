@@ -1,12 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://dodot8o48a5wu"]
+[gd_scene load_steps=7 format=3 uid="uid://dodot8o48a5wu"]
 
 [ext_resource type="PackedScene" uid="uid://bfqfqq7ggdc2o" path="res://assets/ui/skill_tree/skill_button.tscn" id="1_glv2x"]
 [ext_resource type="Texture2D" uid="uid://c3b3jt3utfc3t" path="res://textures/skill_tree/skill_buttons/ability_time.png" id="2_leutk"]
 [ext_resource type="Texture2D" uid="uid://c2etsx5htti41" path="res://textures/skill_tree/skill_buttons/ability_push_one_side.png" id="3_lqfhw"]
 [ext_resource type="Texture2D" uid="uid://b4nq5cnb8gnwl" path="res://textures/skill_tree/skill_buttons/ability_push_two_sides.png" id="4_bxol1"]
+[ext_resource type="Texture2D" uid="uid://bfid5vr4xhs2y" path="res://textures/skill_tree/skill_buttons/ability_all_boost.png" id="5_px8cr"]
+[ext_resource type="Texture2D" uid="uid://5qehxxtof27r" path="res://textures/skill_tree/skill_buttons/ability_all_boost_upg_1.png" id="6_vvq1m"]
 
 [node name="Magic" type="HBoxContainer"]
-visible = false
 theme_override_constants/separation = 319
 alignment = 1
 
@@ -20,12 +21,14 @@ custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 texture_normal = ExtResource("2_leutk")
 ability_name = "bullet_time"
+description = "Slows down time by 50% while only slowing you down by 20%. Lasts 3.5 seconds. Press and hold Q to select, press E to activate."
 
 [node name="quake" parent="VBoxContainer" instance=ExtResource("1_glv2x")]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 texture_normal = ExtResource("3_lqfhw")
 ability_name = "quake"
+description = "Pushes back enemies in front of you. Press and hold Q to select, press E to activate."
 
 [node name="skill_button4" parent="VBoxContainer" instance=ExtResource("1_glv2x")]
 custom_minimum_size = Vector2(150, 150)
@@ -36,35 +39,49 @@ layout_mode = 2
 theme_override_constants/separation = 80
 alignment = 1
 
-[node name="skill_button2" parent="VBoxContainer2" node_paths=PackedStringArray("previous_button") instance=ExtResource("1_glv2x")]
+[node name="bullet_time_2" parent="VBoxContainer2" node_paths=PackedStringArray("previous_button") instance=ExtResource("1_glv2x")]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
+texture_normal = ExtResource("5_px8cr")
 previous_button = NodePath("../../VBoxContainer/bullet_time")
+ability_name = "bullet_time_II"
+description = "Bullet time lasts 1 second longer."
 
 [node name="quake_2" parent="VBoxContainer2" node_paths=PackedStringArray("previous_button") instance=ExtResource("1_glv2x")]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 texture_normal = ExtResource("4_bxol1")
 previous_button = NodePath("../../VBoxContainer/quake")
+ability_name = "quake_II"
+description = "Quake works on enemies behind you as well."
 
-[node name="skill_button3" parent="VBoxContainer2" instance=ExtResource("1_glv2x")]
+[node name="skill_button3" parent="VBoxContainer2" node_paths=PackedStringArray("previous_button") instance=ExtResource("1_glv2x")]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
+previous_button = NodePath("../../VBoxContainer/skill_button4")
 
 [node name="VBoxContainer3" type="VBoxContainer" parent="."]
 layout_mode = 2
 theme_override_constants/separation = 80
 alignment = 1
 
-[node name="skill_button2" parent="VBoxContainer3" instance=ExtResource("1_glv2x")]
+[node name="bullet_time_3" parent="VBoxContainer3" node_paths=PackedStringArray("previous_button") instance=ExtResource("1_glv2x")]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
+texture_normal = ExtResource("6_vvq1m")
+previous_button = NodePath("../../VBoxContainer2/bullet_time_2")
+ability_name = "bullet_time_III"
+description = "Bullet Time slows time by 80%."
 
 [node name="quake_3" parent="VBoxContainer3" node_paths=PackedStringArray("previous_button") instance=ExtResource("1_glv2x")]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
+texture_normal = ExtResource("5_px8cr")
 previous_button = NodePath("../../VBoxContainer2/quake_2")
+ability_name = "quake_III"
+description = "Quake now deals damage."
 
-[node name="skill_button3" parent="VBoxContainer3" instance=ExtResource("1_glv2x")]
+[node name="skill_button3" parent="VBoxContainer3" node_paths=PackedStringArray("previous_button") instance=ExtResource("1_glv2x")]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
+previous_button = NodePath("../../VBoxContainer2/skill_button3")

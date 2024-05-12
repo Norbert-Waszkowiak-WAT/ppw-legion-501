@@ -70,7 +70,9 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="Ranged" parent="MarginContainer/VBoxContainer/Panel/MarginContainer/TabContainer" instance=ExtResource("5_ct6cl")]
+visible = false
 layout_mode = 2
 
 [node name="Magic" parent="MarginContainer/VBoxContainer/Panel/MarginContainer/TabContainer" instance=ExtResource("6_n02c6")]
+visible = false
 layout_mode = 2

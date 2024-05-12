@@ -13,7 +13,9 @@ texture = ExtResource("1_n1usc")
 script = ExtResource("2_x0mao")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 33
 collision_mask = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+visible = false
 shape = SubResource("RectangleShape2D_6fm0g")

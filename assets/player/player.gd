@@ -71,6 +71,8 @@ func _ready():
 	
 	PlayerVariables.ammo = PlayerVariables.MAX_AMMO
 	set_enabled(false)
+	$Camera2D.enabled = false
+	$HUD.visible = false
 	hide()
 	
 
@@ -143,8 +145,6 @@ func set_enabled(value : bool):
 	set_physics_process(value)
 	set_process(value)
 	set_process_input(value)
-	$Camera2D.enabled = value
-	$HUD.visible = value
 
 
 # Pojawianie się gracza
@@ -152,6 +152,8 @@ func spawn(pos):
 	position = pos
 	PlayerVariables.health = PlayerVariables.MAX_HEALTH
 	set_enabled(true)
+	$Camera2D.enabled = true
+	$HUD.visible = true
 	show()
 
 
@@ -242,10 +244,11 @@ func apply_damage(damage, knockback, pos : Vector2):
 # Odrzucenie podczas otrzymywania obrażeń
 func apply_knockback(strength, pos : Vector2):
 	if strength != 0:
-		pos += Vector2(0, 10)
+		#pos += Vector2(0, 10)
 		taking_knockback = true
 		var direction = pos.direction_to(global_position)
-		velocity = direction.normalized() * strength * knockback_multiplier * speed_modifier
+		var knock_vector = direction.normalized() * strength * knockback_multiplier * speed_modifier
+		velocity = knock_vector
 
 
 # Ustawienie koloru gracza na standardowy
@@ -332,8 +335,19 @@ func on_paused(value):
 		sprite.pause()
 
 
+func set_zoom(new_zoom : Vector2):
+	var cam_zoom_tween = create_tween().set_trans(Tween.TRANS_CUBIC)
+	cam_zoom_tween.tween_property($Camera2D, "zoom", new_zoom, 0.4)
+
+
 func move_camera(new_position : Vector2):
-	$Camera2D.global_position = new_position
+	var cam_mov_tween = create_tween().set_trans(Tween.TRANS_CUBIC)
+	cam_mov_tween.tween_property($Camera2D, "offset", new_position - global_position, 0.4)
+
+
+func reset_camera():
+	var cam_reset_tween = create_tween().set_trans(Tween.TRANS_CUBIC)
+	cam_reset_tween.tween_property($Camera2D, "offset", Vector2.ZERO, 0.4)
 
 
 func _on_dash_cooldown_timeout():

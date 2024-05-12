@@ -27,7 +27,7 @@ glow_hdr_scale = 1.5
 
 [node name="Level" type="Node"]
 script = ExtResource("1_j0jb0")
-next_level = "res://assets/levels/tutorial_level/tutorial_level.tscn"
+next_level = "res://assets/levels/boss_level/boss_level.tscn"
 
 [node name="player" parent="." instance=ExtResource("2_w8aub")]
 visible = false
@@ -115,15 +115,15 @@ position = Vector2(-10, -5)
 enemy_type = ExtResource("10_ruwra")
 
 [node name="enemy_spawnpoint3" parent="spawnpoints" instance=ExtResource("7_k47k2")]
-position = Vector2(374, -105)
+position = Vector2(350, -2)
 enemy_type = ExtResource("10_ruwra")
 
 [node name="enemy_spawnpoint5" parent="spawnpoints" instance=ExtResource("7_k47k2")]
-position = Vector2(374, -3)
+position = Vector2(454, -30)
 enemy_type = ExtResource("10_ruwra")
 
 [node name="enemy_spawnpoint10" parent="spawnpoints" instance=ExtResource("7_k47k2")]
-position = Vector2(330, -3)
+position = Vector2(204, -46)
 enemy_type = ExtResource("10_ruwra")
 
 [node name="enemy_spawnpoint6" parent="spawnpoints" instance=ExtResource("7_k47k2")]
@@ -135,7 +135,7 @@ position = Vector2(911, -2)
 enemy_type = ExtResource("10_ruwra")
 
 [node name="enemy_spawnpoint11" parent="spawnpoints" instance=ExtResource("7_k47k2")]
-position = Vector2(834, -5)
+position = Vector2(820, -53)
 enemy_type = ExtResource("10_ruwra")
 
 [node name="enemy_spawnpoint8" parent="spawnpoints" instance=ExtResource("7_k47k2")]
@@ -143,15 +143,15 @@ position = Vector2(884, -52)
 enemy_type = ExtResource("9_1isnf")
 
 [node name="enemy_spawnpoint12" parent="spawnpoints" instance=ExtResource("7_k47k2")]
-position = Vector2(1014, -31)
+position = Vector2(1082, -7)
 enemy_type = ExtResource("10_ruwra")
 
 [node name="enemy_spawnpoint13" parent="spawnpoints" instance=ExtResource("7_k47k2")]
-position = Vector2(1169, -50)
+position = Vector2(1300, -154)
 enemy_type = ExtResource("10_ruwra")
 
 [node name="enemy_spawnpoint14" parent="spawnpoints" instance=ExtResource("7_k47k2")]
-position = Vector2(1099, -92)
+position = Vector2(1046, -85)
 enemy_type = ExtResource("9_1isnf")
 
 [node name="enemy_spawnpoint15" parent="spawnpoints" instance=ExtResource("7_k47k2")]
@@ -175,11 +175,11 @@ position = Vector2(2159, -29)
 enemy_type = ExtResource("9_1isnf")
 
 [node name="enemy_spawnpoint23" parent="spawnpoints" instance=ExtResource("7_k47k2")]
-position = Vector2(2290, -29)
+position = Vector2(2306, -29)
 enemy_type = ExtResource("9_1isnf")
 
 [node name="enemy_spawnpoint24" parent="spawnpoints" instance=ExtResource("7_k47k2")]
-position = Vector2(2329, -28)
+position = Vector2(2371, -9)
 enemy_type = ExtResource("10_ruwra")
 
 [node name="enemy_spawnpoint25" parent="spawnpoints" instance=ExtResource("7_k47k2")]
@@ -191,7 +191,7 @@ position = Vector2(2467, -122)
 enemy_type = ExtResource("10_ruwra")
 
 [node name="enemy_spawnpoint27" parent="spawnpoints" instance=ExtResource("7_k47k2")]
-position = Vector2(2580, -122)
+position = Vector2(2615, -123)
 enemy_type = ExtResource("10_ruwra")
 
 [node name="enemy_spawnpoint28" parent="spawnpoints" instance=ExtResource("7_k47k2")]
@@ -203,7 +203,7 @@ position = Vector2(2670, 10)
 enemy_type = ExtResource("10_ruwra")
 
 [node name="enemy_spawnpoint30" parent="spawnpoints" instance=ExtResource("7_k47k2")]
-position = Vector2(2809, 12)
+position = Vector2(3008, -21)
 enemy_type = ExtResource("10_ruwra")
 
 [node name="enemy_spawnpoint31" parent="spawnpoints" instance=ExtResource("7_k47k2")]
@@ -211,7 +211,7 @@ position = Vector2(2813, -61)
 enemy_type = ExtResource("10_ruwra")
 
 [node name="enemy_spawnpoint32" parent="spawnpoints" instance=ExtResource("7_k47k2")]
-position = Vector2(2892, -132)
+position = Vector2(2867, -153)
 enemy_type = ExtResource("9_1isnf")
 
 [node name="enemy_spawnpoint33" parent="spawnpoints" instance=ExtResource("7_k47k2")]
@@ -219,11 +219,11 @@ position = Vector2(3001, -153)
 enemy_type = ExtResource("10_ruwra")
 
 [node name="enemy_spawnpoint22" parent="spawnpoints" instance=ExtResource("7_k47k2")]
-position = Vector2(2121, -30)
+position = Vector2(2072, -10)
 enemy_type = ExtResource("10_ruwra")
 
 [node name="enemy_spawnpoint17" parent="spawnpoints" instance=ExtResource("7_k47k2")]
-position = Vector2(1542, 0)
+position = Vector2(1485, -1)
 enemy_type = ExtResource("10_ruwra")
 
 [node name="enemy_spawnpoint18" parent="spawnpoints" instance=ExtResource("7_k47k2")]

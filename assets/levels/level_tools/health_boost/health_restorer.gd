@@ -4,12 +4,16 @@ extends AnimatedSprite2D
 @export var animation_timer: float
 @onready var player: Player =  get_node("../../player")
 
+
+
 func _ready():
 	animation = "full"
 	play()
 
+
 func _process(_delta):
 	health_restoring()
+
 
 #Funkcja odpowiadająca za leczenie gracza
 func health_restoring():
@@ -27,3 +31,7 @@ func health_restoring():
 			PlayerVariables.health += heal
 		else:
 			PlayerVariables.health += PlayerVariables.MAX_HEALTH - PlayerVariables.health
+
+
+func reset():
+	animation = "full"

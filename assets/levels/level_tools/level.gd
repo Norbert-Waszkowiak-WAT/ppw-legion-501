@@ -29,11 +29,7 @@ func _ready():
 		print("No player spawnpoints found.")
 	
 	# Dodaje wroga
-	if $spawnpoints:
-		for i in $spawnpoints.get_children():
-			spawn_enemy(i.enemy_type, i.position)
-	else:
-		print("No enemy spawnpoints node found.")
+	spawn_enemies()
 	
 	generate_waypoints()
 	
@@ -116,3 +112,9 @@ func generate_waypoints():
 	for cell in waypoint_cells:
 		$terrain.set_cell(3, cell, 1, Vector2i(0, 0), 3)
 	
+func spawn_enemies():
+	if $spawnpoints:
+		for i in $spawnpoints.get_children():
+			spawn_enemy(i.enemy_type, i.position)
+	else:
+		print("No enemy spawnpoints node found.")

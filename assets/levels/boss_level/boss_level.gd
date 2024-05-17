@@ -23,7 +23,7 @@ var boss_health_to_shield : float
 func _ready():
 	super()
 	
-	PlayerVariables.skill_points = 10
+	#PlayerVariables.skill_points = 10
 	
 	enter_sequence()
 

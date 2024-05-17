@@ -3,30 +3,49 @@
 [ext_resource type="PackedScene" uid="uid://bfqfqq7ggdc2o" path="res://assets/ui/skill_tree/skill_button.tscn" id="1_t8r0v"]
 
 [node name="Melee" type="HBoxContainer"]
-visible = false
 theme_override_constants/separation = 319
 alignment = 1
 
-[node name="melee_1" parent="." instance=ExtResource("1_t8r0v")]
+[node name="force_push" parent="." instance=ExtResource("1_t8r0v")]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
-
-[node name="melee_2" parent="." node_paths=PackedStringArray("previous_button") instance=ExtResource("1_t8r0v")]
-custom_minimum_size = Vector2(150, 150)
-layout_mode = 2
-previous_button = NodePath("")
+ability_name = "force_push"
+description = "Your saber knocks enemies back further."
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="."]
 layout_mode = 2
 theme_override_constants/separation = 220
 alignment = 1
 
-[node name="melee_3" parent="VBoxContainer2" node_paths=PackedStringArray("previous_button") instance=ExtResource("1_t8r0v")]
+[node name="enhanced_plasma" parent="VBoxContainer2" node_paths=PackedStringArray("previous_button") instance=ExtResource("1_t8r0v")]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
-previous_button = NodePath("")
+previous_button = NodePath("../../force_push")
+ability_name = "enhanced_plasma"
+description = "Your saber deals more damage."
 
-[node name="melee_4" parent="VBoxContainer2" node_paths=PackedStringArray("previous_button") instance=ExtResource("1_t8r0v")]
+[node name="block" parent="VBoxContainer2" node_paths=PackedStringArray("previous_button") instance=ExtResource("1_t8r0v")]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
-previous_button = NodePath("")
+previous_button = NodePath("../../force_push")
+ability_name = "block"
+description = "Allows you to block incoming projectiles by hitting them with your saber."
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 220
+alignment = 1
+
+[node name="low_resistance_blade" parent="VBoxContainer3" node_paths=PackedStringArray("previous_button") instance=ExtResource("1_t8r0v")]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+previous_button = NodePath("../../VBoxContainer2/enhanced_plasma")
+ability_name = "low_resistance_blade"
+description = "Your saber attacks are faster."
+
+[node name="deflect" parent="VBoxContainer3" node_paths=PackedStringArray("previous_button") instance=ExtResource("1_t8r0v")]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+previous_button = NodePath("../../VBoxContainer2/block")
+ability_name = "deflect"
+description = "Blocking projectiles now deflects them."

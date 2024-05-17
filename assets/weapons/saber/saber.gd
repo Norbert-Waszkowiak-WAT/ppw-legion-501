@@ -19,6 +19,29 @@ func _process(delta):
 				i.apply_damage(damage, knockback, user.global_position)
 				exceptions.append(i)
 				$impact.play()
+			if i not in exceptions and i is EnemyProjectile:
+				if PlayerVariables.abilities.deflect:
+					i.direction *= -1
+					i.set_collision_mask_value(2, false)
+					i.set_collision_mask_value(3, true)
+					i.get_node("Area2D").set_collision_mask_value(2, false)
+					i.get_node("Area2D").set_collision_mask_value(3, true)
+				elif PlayerVariables.abilities.block:
+					i.impact()
+				exceptions.append(i)
+	
+	if PlayerVariables.abilities.force_push:
+		knockback = 45
+	else:
+		knockback = 35
+	if PlayerVariables.abilities.enhanced_plasma:
+		damage = 30
+	else:
+		damage = 20
+	if PlayerVariables.abilities.low_resistance_blade:
+		sprite_frames.set_animation_speed("attack", 20)
+	else:
+		sprite_frames.set_animation_speed("attack", 17)
 	
 	if visible and !$idle.is_playing():
 		$idle.play()

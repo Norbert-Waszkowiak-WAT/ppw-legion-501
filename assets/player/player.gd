@@ -374,23 +374,41 @@ func process_abilities():
 				var enemies = get_tree().get_nodes_in_group("enemies")
 				for enemy in enemies as Array[Enemy]:
 					if enemy.position.distance_to(position) <= PlayerVariables.quake_range:
-						if (enemy.position.x - position.x) / abs(enemy.position.x - position.x) == sprite.scale.x / abs(sprite.scale.x):
-							var strength = randf_range(0.75 * PlayerVariables.quake_strength, 1.25 * PlayerVariables.quake_strength)
+						if PlayerVariables.abilities.quake_III:
+							var strength = randf_range(0.75 * PlayerVariables.quake_strength, 1.75 * PlayerVariables.quake_strength)
+							enemy.apply_damage(PlayerVariables.quake_damage, strength, position)
+						elif PlayerVariables.abilities.quake_II:
+							var strength = randf_range(0.75 * PlayerVariables.quake_strength, 1.75 * PlayerVariables.quake_strength)
 							enemy.apply_knockback(strength, position)
+						else:
+							if (enemy.position.x - position.x) / abs(enemy.position.x - position.x) == sprite.scale.x / abs(sprite.scale.x):
+								var strength = randf_range(0.75 * PlayerVariables.quake_strength, 1.25 * PlayerVariables.quake_strength)
+								enemy.apply_knockback(strength, position)
 				
 				ability_cooldown_timer = ability_cooldown
 				using_ability = false
 			"bullet_time":
 				using_ability = true
+				var time_mod
+				var duration
 				
-				var time_mod = 0.5
+				if PlayerVariables.abilities.bullet_time_II:
+					duration = PlayerVariables.bullet_time_duration + 1
+				else:
+					duration = PlayerVariables.bullet_time_duration
+				if PlayerVariables.abilities.bullet_time_III:
+					time_mod = 0.2
+				else:
+					time_mod = 0.5
+				
 				Engine.time_scale = time_mod
 				set_player_time_scale(0.8 / time_mod)
 				
 				$HUD/bullet_time_effect.enable()
 				AudioServer.get_bus_effect(2, 0).pitch_scale = 0.7
 				
-				await get_tree().create_timer(PlayerVariables.bullet_time_duration).timeout
+				
+				await get_tree().create_timer(duration).timeout
 				
 				AudioServer.get_bus_effect(2, 0).pitch_scale = 1.0
 				$HUD/bullet_time_effect.disable()
@@ -403,3 +421,8 @@ func process_abilities():
 	
 	if ability_cooldown_timer > 0:
 		ability_cooldown_timer -= get_process_delta_time()
+	
+	if PlayerVariables.abilities.large_mag:
+		PlayerVariables.MAX_AMMO = 80
+	else:
+		PlayerVariables.MAX_AMMO = 40

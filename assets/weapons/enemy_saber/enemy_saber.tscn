@@ -17,7 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://gfb7c7dtjuy5" path="res://textures/enemy/Enemy-walking-lightsaber/Enemy-Walking-lightsaber-6.png" id="15_brd60"]
 [ext_resource type="Texture2D" uid="uid://bh608bqs02180" path="res://textures/enemy/Enemy-walking-lightsaber/Enemy-Walking-lightsaber-7.png" id="16_b2o7x"]
 [ext_resource type="Texture2D" uid="uid://c06do34vd3sxr" path="res://textures/enemy/Enemy-walking-lightsaber/Enemy-Walking-lightsaber-8.png" id="17_vinjq"]
-[ext_resource type="Script" path="res://assets/weapons/saber/saber.gd" id="18_t85g8"]
+[ext_resource type="Script" path="res://assets/weapons/enemy_saber/enemy_saber.gd" id="18_e0tsx"]
 [ext_resource type="AudioStream" uid="uid://le6dqt24qsi0" path="res://assets/weapons/saber/swing1.mp3" id="19_cyr2l"]
 [ext_resource type="AudioStream" uid="uid://cby0g4rs5dcqa" path="res://assets/weapons/saber/swing2.mp3" id="20_bnanx"]
 [ext_resource type="AudioStream" uid="uid://csl2si7wt1osy" path="res://assets/weapons/saber/swing3.mp3" id="21_setm6"]
@@ -137,9 +137,9 @@ sprite_frames = SubResource("SpriteFrames_x02f2")
 animation = &"attack"
 frame = 4
 frame_progress = 1.0
-script = ExtResource("18_t85g8")
+script = ExtResource("18_e0tsx")
 damage = 20.0
-knockback = 10.0
+knockback = 35.0
 
 [node name="hitbox" type="Area2D" parent="."]
 collision_layer = 16

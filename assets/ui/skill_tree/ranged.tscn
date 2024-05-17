@@ -27,10 +27,11 @@ layout_mode = 2
 theme_override_constants/separation = 80
 alignment = 1
 
-[node name="high_speed" parent="VBoxContainer3" node_paths=PackedStringArray("excluded_buttons") instance=ExtResource("1_uelf4")]
+[node name="high_speed" parent="VBoxContainer3" node_paths=PackedStringArray("previous_button", "excluded_buttons") instance=ExtResource("1_uelf4")]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 texture_normal = ExtResource("2_cxdsd")
+previous_button = NodePath("../../large_mag")
 excluded_buttons = [NodePath("../heavy_hitter"), NodePath("../stopping_power")]
 ability_name = "high_speed_low_drag"
 description = "Increases rate of fire, decreases damage and accuracy."
@@ -44,10 +45,11 @@ excluded_buttons = [NodePath("../high_speed"), NodePath("../heavy_hitter")]
 ability_name = "stopping_power"
 description = "Increases the damage dealt by your weapon."
 
-[node name="heavy_hitter" parent="VBoxContainer3" node_paths=PackedStringArray("excluded_buttons") instance=ExtResource("1_uelf4")]
+[node name="heavy_hitter" parent="VBoxContainer3" node_paths=PackedStringArray("previous_button", "excluded_buttons") instance=ExtResource("1_uelf4")]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 texture_normal = ExtResource("3_p0ypv")
+previous_button = NodePath("../../large_mag")
 excluded_buttons = [NodePath("../high_speed"), NodePath("../stopping_power")]
 ability_name = "heavy_hitter"
 description = "Increases damage and accuracy, decreases rate of fire."

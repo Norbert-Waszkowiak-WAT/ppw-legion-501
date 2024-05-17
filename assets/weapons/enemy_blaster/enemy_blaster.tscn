@@ -11,11 +11,11 @@
 [ext_resource type="Texture2D" uid="uid://dc1yywme7q8yg" path="res://textures/enemy/Enemy-jump-arm/Enemy-Jump-2.png" id="11_2imlu"]
 [ext_resource type="Texture2D" uid="uid://btyuxgfqwp4wt" path="res://textures/enemy/Enemy-standing-arm/Enemy-Standding_Hand-3.png" id="12_5ene4"]
 [ext_resource type="Texture2D" uid="uid://dcxg0cs4hme2x" path="res://textures/enemy/Enemy-standing-arm/Enemy-Standding_Hand-4.png" id="13_aay8v"]
-[ext_resource type="Script" path="res://assets/weapons/gun/gun.gd" id="13_sdkbx"]
 [ext_resource type="Texture2D" uid="uid://bo28rimc4e26i" path="res://textures/enemy/Enemy-walking-arm/Enemy-Walkingg-Hand-1.png" id="16_6ij8h"]
 [ext_resource type="Texture2D" uid="uid://b5xpicv11uqb3" path="res://textures/enemy/Enemy-walking-arm/Enemy-Walkingg-Hand-2.png" id="17_l867a"]
 [ext_resource type="Texture2D" uid="uid://bdrajxegblmve" path="res://textures/enemy/Enemy-walking-arm/Enemy-Walkingg-Hand-3.png" id="18_l753o"]
 [ext_resource type="Texture2D" uid="uid://tuvh0vigr27w" path="res://textures/enemy/Enemy-walking-arm/Enemy-Walkingg-Hand-4.png" id="19_e4emf"]
+[ext_resource type="Script" path="res://assets/weapons/enemy_blaster/enemy_blaster.gd" id="20_df8mk"]
 [ext_resource type="Texture2D" uid="uid://bxk011yucq2fd" path="res://textures/enemy/Enemy-walking-arm/Enemy-Walkingg-Hand-5.png" id="20_ip26i"]
 [ext_resource type="Texture2D" uid="uid://cy2p4wdeb1ejm" path="res://textures/enemy/Enemy-walking-arm/Enemy-Walkingg-Hand-6.png" id="21_fgbpp"]
 [ext_resource type="PackedScene" uid="uid://cddpay1lh2bu4" path="res://assets/weapons/enemy_blaster/blaster_shot.tscn" id="21_t3mlm"]
@@ -128,12 +128,12 @@ color = Color(0.376471, 0.462745, 1, 1)
 sprite_frames = SubResource("SpriteFrames_78r3p")
 animation = &"attack"
 offset = Vector2(64, 0)
-script = ExtResource("13_sdkbx")
+script = ExtResource("20_df8mk")
 bullet_type = ExtResource("21_t3mlm")
-weapon_range = 125.0
+weapon_range = 100.0
 damage = 15.0
-knockback = 10.0
-fire_rate = 60.0
+knockback = 25.0
+fire_rate = 70.0
 
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(112, -20)

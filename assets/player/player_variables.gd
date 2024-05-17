@@ -8,6 +8,10 @@ var abilities = {
 	"dash_charge": false,
 	
 	# Melee
+	"force_push": false,
+	"enhanced_plasma": false,
+	"low_resistance_blade": false,
+	"block": false,
 	"deflect": false,
 	
 	# Ranged
@@ -40,6 +44,7 @@ var bullet_time_duration : float = 3.5
 
 var quake_range : float = 80
 var quake_strength : float = 85
+var quake_damage : float = 20
 
 var ammo : float
 var MAX_AMMO : int = 50
@@ -103,14 +108,30 @@ func reset_player():
 	"dash_charge": false,
 	
 	# Melee
+	"force_push": false,
+	"enhanced_plasma": false,
+	"low_resistance_blade": false,
+	"block": false,
 	"deflect": false,
 	
 	# Ranged
+	"large_mag":false,
 	"high_speed_low_drag": false,
 	"heavy_hitter": false,
+	"hollow_points": false,
+	"stopping_power": false,
+	"large_caliber": false,
+	"hollow_points_II": false,
+	"stopping_power_II": false,
+	"tuned_trigger": false,
+	
 	# Magic
 	"bullet_time": false,
-	"quake": false
+	"quake": false,
+	"bullet_time_II": false,
+	"quake_II": false,
+	"bullet_time_III": false,
+	"quake_III": false
 	
 	}
 	exp_lvl = 0

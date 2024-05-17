@@ -30,7 +30,6 @@ modulate = Color(3, 3, 3, 1)
 collision_layer = 16
 collision_mask = 3
 script = ExtResource("1_se2i5")
-speed_of_bullet = 200.0
 
 [node name="GPUParticles2D" parent="." instance=ExtResource("2_qu5uy")]
 process_material = SubResource("ParticleProcessMaterial_4mks4")

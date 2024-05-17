@@ -28,6 +28,7 @@ func set_target(target):
 			$hitbox.set_collision_mask_value(4, true)
 		"enemies":
 			$hitbox.set_collision_mask_value(3, true)
+			$hitbox.set_collision_mask_value(5, true)
 
 
 # Atak

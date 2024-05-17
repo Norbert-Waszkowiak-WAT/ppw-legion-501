@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name EnemyProjectile
 
 @export var speed_of_bullet: float = 100
 var damage : float
@@ -20,12 +21,9 @@ func _ready():
 
 func _physics_process(_delta):
 	for target in $Area2D.get_overlapping_bodies():
-		set_physics_process(false)
-		if target is Player:
+		impact()
+		if target.has_method("apply_damage"):
 			target.apply_damage(damage, knockback, global_position + Vector2(0, -10))
-		sprite.hide()
-		$GPUParticles2D.emitting = true
-		emitting = true
 	
 	velocity.x = speed_of_bullet * direction
 	velocity.y = ((randf() - 0.5) / 5) * spread * speed_of_bullet
@@ -42,3 +40,10 @@ func _process(delta):
 	if emitting == true:
 		await $GPUParticles2D.finished
 		queue_free()
+
+
+func impact():
+	set_physics_process(false)
+	sprite.hide()
+	$GPUParticles2D.emitting = true
+	emitting = true

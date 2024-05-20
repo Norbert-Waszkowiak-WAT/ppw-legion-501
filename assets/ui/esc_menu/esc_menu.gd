@@ -9,6 +9,11 @@ var anim_time : float = 0.3
 func _ready():
 	set_process(false)
 	$MarginContainer/VBoxContainer/resume.grab_focus()
+	
+	for button in buttons as Array[Button]:
+		button.focus_entered.connect(_on_focus_entered)
+		button.pressed.connect(_on_button_pressed)
+	
 	var tween = create_tween().set_parallel(true).set_trans(Tween.TRANS_CIRC).set_ease(Tween.EASE_IN_OUT)
 	tween.tween_property($background, "color:a", 0.7, anim_time)
 	tween.tween_property($blur.material, "shader_parameter/lod", 3, anim_time)
@@ -67,3 +72,10 @@ func unpause():
 	tween.set_parallel(false)
 	tween.tween_callback(get_parent().set_paused.bind(false))
 	tween.tween_callback(queue_free)
+
+
+func _on_focus_entered():
+	$hover_tick.play()
+
+func _on_button_pressed():
+	$select_click.play()

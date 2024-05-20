@@ -72,7 +72,7 @@ custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 texture_normal = ExtResource("7_1ct6p")
 previous_button = NodePath("../../VBoxContainer3/stopping_power")
-ability_name = "stopping_power_II"
+ability_name = "stopping_power_2"
 description = "Successful hits slow down opponents."
 
 [node name="large_caliber" parent="VBoxContainer" node_paths=PackedStringArray("previous_button") instance=ExtResource("1_uelf4")]
@@ -93,7 +93,7 @@ custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 texture_normal = ExtResource("6_4jq2u")
 previous_button = NodePath("../../VBoxContainer/hollow_points")
-ability_name = "hollow_points_II"
+ability_name = "hollow_points_2"
 description = "Successful hits slow down opponents."
 
 [node name="tuned_trigger" parent="VBoxContainer2" node_paths=PackedStringArray("previous_button") instance=ExtResource("1_uelf4")]

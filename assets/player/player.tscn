@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://b8kl60fulqq1u"]
+[gd_scene load_steps=33 format=3 uid="uid://b8kl60fulqq1u"]
 
 [ext_resource type="Script" path="res://assets/player/player.gd" id="1_xhwip"]
 [ext_resource type="Script" path="res://assets/player/Camera2D.gd" id="2_2bp8c"]
@@ -29,6 +29,7 @@
 [ext_resource type="AudioStream" uid="uid://bdis33wsr81xy" path="res://assets/player/sounds/gravel_land.ogg" id="21_vv04n"]
 [ext_resource type="AudioStream" uid="uid://c4d3bsd1sea1q" path="res://assets/player/sounds/dash.wav" id="24_irtn5"]
 [ext_resource type="PackedScene" uid="uid://d1n7jvmbhf7oo" path="res://assets/player/dash_effect.tscn" id="28_70ip8"]
+[ext_resource type="PackedScene" uid="uid://hkbtqp5cmgx2" path="res://assets/player/lazer_ability.tscn" id="30_b7cv2"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_w7ylu"]
 noise_type = 3
@@ -122,7 +123,7 @@ jump_descent = 0.2
 jump_peak = 0.3
 ghost_time = 0.015
 ghost_node = ExtResource("28_70ip8")
-knockback_multiplier = 4.0
+knockback_multiplier = 1.5
 ability_cooldown = 8.0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
@@ -161,6 +162,10 @@ frame_progress = 0.0
 [node name="gun" parent="AnimatedSprite2D" instance=ExtResource("15_scggg")]
 visible = false
 position = Vector2(16, 0)
+
+[node name="lazer_ability" parent="AnimatedSprite2D" instance=ExtResource("30_b7cv2")]
+position = Vector2(32, -32)
+scale = Vector2(8, 8)
 
 [node name="HUD" parent="." instance=ExtResource("5_e68ka")]
 visible = false

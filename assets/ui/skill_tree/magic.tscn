@@ -1,11 +1,15 @@
-[gd_scene load_steps=7 format=3 uid="uid://dodot8o48a5wu"]
+[gd_scene load_steps=11 format=3 uid="uid://dodot8o48a5wu"]
 
 [ext_resource type="PackedScene" uid="uid://bfqfqq7ggdc2o" path="res://assets/ui/skill_tree/skill_button.tscn" id="1_glv2x"]
 [ext_resource type="Texture2D" uid="uid://c3b3jt3utfc3t" path="res://textures/skill_tree/skill_buttons/ability_time.png" id="2_leutk"]
 [ext_resource type="Texture2D" uid="uid://c2etsx5htti41" path="res://textures/skill_tree/skill_buttons/ability_push_one_side.png" id="3_lqfhw"]
+[ext_resource type="Texture2D" uid="uid://ydvi0vdu32ms" path="res://textures/skill_tree/skill_buttons/lazer.png" id="4_3b1rn"]
 [ext_resource type="Texture2D" uid="uid://b4nq5cnb8gnwl" path="res://textures/skill_tree/skill_buttons/ability_push_two_sides.png" id="4_bxol1"]
-[ext_resource type="Texture2D" uid="uid://bfid5vr4xhs2y" path="res://textures/skill_tree/skill_buttons/ability_all_boost.png" id="5_px8cr"]
-[ext_resource type="Texture2D" uid="uid://5qehxxtof27r" path="res://textures/skill_tree/skill_buttons/ability_all_boost_upg_1.png" id="6_vvq1m"]
+[ext_resource type="Texture2D" uid="uid://dg6erkwrl4ls8" path="res://textures/skill_tree/skill_buttons/bullet_time_upg.png" id="4_lalib"]
+[ext_resource type="Texture2D" uid="uid://d0l3jhcy0yeyu" path="res://textures/skill_tree/skill_buttons/bullet_time_upg_2.png" id="6_y1ljc"]
+[ext_resource type="Texture2D" uid="uid://ddh3mjcq710pa" path="res://textures/skill_tree/skill_buttons/quake_upg.png" id="7_jyud2"]
+[ext_resource type="Texture2D" uid="uid://bnccxulrmqwsv" path="res://textures/skill_tree/skill_buttons/lazer_2.png" id="7_wr0k7"]
+[ext_resource type="Texture2D" uid="uid://cqtxv85lxoshy" path="res://textures/skill_tree/skill_buttons/lazer_3.png" id="10_omy45"]
 
 [node name="Magic" type="HBoxContainer"]
 theme_override_constants/separation = 319
@@ -21,7 +25,7 @@ custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 texture_normal = ExtResource("2_leutk")
 ability_name = "bullet_time"
-description = "Slows down time by 50% while only slowing you down by 20%. Lasts 3.5 seconds. Press and hold Q to select, press E to activate."
+description = "Slows down time by 40% while only slowing you down by 10%. Lasts 3.5 seconds. Press and hold Q to select, press E to activate."
 
 [node name="quake" parent="VBoxContainer" instance=ExtResource("1_glv2x")]
 custom_minimum_size = Vector2(150, 150)
@@ -30,9 +34,12 @@ texture_normal = ExtResource("3_lqfhw")
 ability_name = "quake"
 description = "Pushes back enemies in front of you. Press and hold Q to select, press E to activate."
 
-[node name="skill_button4" parent="VBoxContainer" instance=ExtResource("1_glv2x")]
+[node name="lazer" parent="VBoxContainer" instance=ExtResource("1_glv2x")]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
+texture_normal = ExtResource("4_3b1rn")
+ability_name = "lazer"
+description = "Shoots a laser that does damage to enemies, passing through them. Lasts 5 seconds."
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="."]
 layout_mode = 2
@@ -42,9 +49,9 @@ alignment = 1
 [node name="bullet_time_2" parent="VBoxContainer2" node_paths=PackedStringArray("previous_button") instance=ExtResource("1_glv2x")]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
-texture_normal = ExtResource("5_px8cr")
+texture_normal = ExtResource("4_lalib")
 previous_button = NodePath("../../VBoxContainer/bullet_time")
-ability_name = "bullet_time_II"
+ability_name = "bullet_time_2"
 description = "Bullet time lasts 1 second longer."
 
 [node name="quake_2" parent="VBoxContainer2" node_paths=PackedStringArray("previous_button") instance=ExtResource("1_glv2x")]
@@ -52,13 +59,16 @@ custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 texture_normal = ExtResource("4_bxol1")
 previous_button = NodePath("../../VBoxContainer/quake")
-ability_name = "quake_II"
+ability_name = "quake_2"
 description = "Quake works on enemies behind you as well."
 
-[node name="skill_button3" parent="VBoxContainer2" node_paths=PackedStringArray("previous_button") instance=ExtResource("1_glv2x")]
+[node name="lazer_2" parent="VBoxContainer2" node_paths=PackedStringArray("previous_button") instance=ExtResource("1_glv2x")]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
-previous_button = NodePath("../../VBoxContainer/skill_button4")
+texture_normal = ExtResource("7_wr0k7")
+previous_button = NodePath("../../VBoxContainer/lazer")
+ability_name = "lazer_2"
+description = "Lazer lasts 8 seconds."
 
 [node name="VBoxContainer3" type="VBoxContainer" parent="."]
 layout_mode = 2
@@ -68,20 +78,23 @@ alignment = 1
 [node name="bullet_time_3" parent="VBoxContainer3" node_paths=PackedStringArray("previous_button") instance=ExtResource("1_glv2x")]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
-texture_normal = ExtResource("6_vvq1m")
+texture_normal = ExtResource("6_y1ljc")
 previous_button = NodePath("../../VBoxContainer2/bullet_time_2")
-ability_name = "bullet_time_III"
-description = "Bullet Time slows time by 80%."
+ability_name = "bullet_time_3"
+description = "Bullet Time slows time by 60%. You are slowed by 20%."
 
 [node name="quake_3" parent="VBoxContainer3" node_paths=PackedStringArray("previous_button") instance=ExtResource("1_glv2x")]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
-texture_normal = ExtResource("5_px8cr")
+texture_normal = ExtResource("7_jyud2")
 previous_button = NodePath("../../VBoxContainer2/quake_2")
-ability_name = "quake_III"
+ability_name = "quake_3"
 description = "Quake now deals damage."
 
-[node name="skill_button3" parent="VBoxContainer3" node_paths=PackedStringArray("previous_button") instance=ExtResource("1_glv2x")]
+[node name="lazer_3" parent="VBoxContainer3" node_paths=PackedStringArray("previous_button") instance=ExtResource("1_glv2x")]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
-previous_button = NodePath("../../VBoxContainer2/skill_button3")
+texture_normal = ExtResource("10_omy45")
+previous_button = NodePath("../../VBoxContainer2/lazer_2")
+ability_name = "lazer_3"
+description = "Lazer deals more damage."

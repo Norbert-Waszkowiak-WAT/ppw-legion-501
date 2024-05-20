@@ -17,6 +17,11 @@ func _ready():
 	player.set_process_input(false)
 	
 	$MarginContainer/VBoxContainer/next_level.grab_focus()
+	
+	for button in buttons as Array[Button]:
+		button.focus_entered.connect(_on_focus_entered)
+		button.pressed.connect(_on_button_pressed)
+	
 	tween = create_tween().set_parallel(true).set_trans(Tween.TRANS_BACK)
 	tween.tween_property($background, "color:a", 0.3, anim_time)
 	tween.tween_property($blur.material, "shader_parameter/lod", 1, 1.0)
@@ -78,3 +83,10 @@ func _on_next_level_pressed():
 		get_tree().change_scene_to_file(next_level)
 	else:
 		print("ERROR: No next level attached")
+
+
+func _on_focus_entered():
+	$hover_tick.play()
+
+func _on_button_pressed():
+	$select_click.play()

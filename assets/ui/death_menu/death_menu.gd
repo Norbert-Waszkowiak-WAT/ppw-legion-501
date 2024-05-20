@@ -13,7 +13,13 @@ func _ready():
 	if get_parent().has_method("set_paused"):
 		get_parent().set_paused(true)
 	set_process(true)
+	
 	$MarginContainer/VBoxContainer/restart.grab_focus()
+	
+	for button in buttons as Array[Button]:
+		button.focus_entered.connect(_on_focus_entered)
+		button.pressed.connect(_on_button_pressed)
+	
 	var tween = create_tween().set_parallel(true).set_trans(Tween.TRANS_BACK)
 	tween.tween_property($background, "color:a", 0.3, 1.0)
 	tween.tween_property($blur.material, "shader_parameter/lod", 2, 1.0)
@@ -52,3 +58,10 @@ func exit_animation():
 	$background.z_index = 1
 	var tween = create_tween()
 	tween.tween_property($background, "color:a", 1, exit_time)
+
+
+func _on_focus_entered():
+	$hover_tick.play()
+
+func _on_button_pressed():
+	$select_click.play()

@@ -8,6 +8,7 @@ extends Enemy
 # Wywoływana na początku sceny
 func _ready():
 	attack_range = weapon.weapon_range
+	$AnimatedSprite2D/enemy_blaster/aiming_ray.target_position.x = attack_range
 	super()
 
 
@@ -87,5 +88,5 @@ func attack(delta: float):
 			memory_timer -= delta
 	else:
 		memory_timer = memory_time
-	if !ray.is_colliding():
+	if !ray.is_colliding() and player.is_on_floor():
 		change_state(states.chase)

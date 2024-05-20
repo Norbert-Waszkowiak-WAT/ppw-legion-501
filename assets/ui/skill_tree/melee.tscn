@@ -1,6 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://b2exxvumi4f4t"]
+[gd_scene load_steps=7 format=3 uid="uid://b2exxvumi4f4t"]
 
 [ext_resource type="PackedScene" uid="uid://bfqfqq7ggdc2o" path="res://assets/ui/skill_tree/skill_button.tscn" id="1_t8r0v"]
+[ext_resource type="Texture2D" uid="uid://cw80hfcr2nlwa" path="res://textures/skill_tree/skill_buttons/force_push.png" id="2_oxxq0"]
+[ext_resource type="Texture2D" uid="uid://lhp5h1l05p6b" path="res://textures/skill_tree/skill_buttons/saber_upg.png" id="3_x7lh1"]
+[ext_resource type="Texture2D" uid="uid://bi3prug1oyikk" path="res://textures/skill_tree/skill_buttons/block.png" id="4_vbo6y"]
+[ext_resource type="Texture2D" uid="uid://b0y74khijpl4c" path="res://textures/skill_tree/skill_buttons/saber_upg_2.png" id="5_jj7tm"]
+[ext_resource type="Texture2D" uid="uid://csxd1sucp2bej" path="res://textures/skill_tree/skill_buttons/deflect.png" id="6_vvbis"]
 
 [node name="Melee" type="HBoxContainer"]
 theme_override_constants/separation = 319
@@ -9,6 +14,7 @@ alignment = 1
 [node name="force_push" parent="." instance=ExtResource("1_t8r0v")]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
+texture_normal = ExtResource("2_oxxq0")
 ability_name = "force_push"
 description = "Your saber knocks enemies back further."
 
@@ -20,6 +26,7 @@ alignment = 1
 [node name="enhanced_plasma" parent="VBoxContainer2" node_paths=PackedStringArray("previous_button") instance=ExtResource("1_t8r0v")]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
+texture_normal = ExtResource("3_x7lh1")
 previous_button = NodePath("../../force_push")
 ability_name = "enhanced_plasma"
 description = "Your saber deals more damage."
@@ -27,6 +34,7 @@ description = "Your saber deals more damage."
 [node name="block" parent="VBoxContainer2" node_paths=PackedStringArray("previous_button") instance=ExtResource("1_t8r0v")]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
+texture_normal = ExtResource("4_vbo6y")
 previous_button = NodePath("../../force_push")
 ability_name = "block"
 description = "Allows you to block incoming projectiles by hitting them with your saber."
@@ -39,6 +47,7 @@ alignment = 1
 [node name="low_resistance_blade" parent="VBoxContainer3" node_paths=PackedStringArray("previous_button") instance=ExtResource("1_t8r0v")]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
+texture_normal = ExtResource("5_jj7tm")
 previous_button = NodePath("../../VBoxContainer2/enhanced_plasma")
 ability_name = "low_resistance_blade"
 description = "Your saber attacks are faster."
@@ -46,6 +55,7 @@ description = "Your saber attacks are faster."
 [node name="deflect" parent="VBoxContainer3" node_paths=PackedStringArray("previous_button") instance=ExtResource("1_t8r0v")]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
+texture_normal = ExtResource("6_vvbis")
 previous_button = NodePath("../../VBoxContainer2/block")
 ability_name = "deflect"
 description = "Blocking projectiles now deflects them."

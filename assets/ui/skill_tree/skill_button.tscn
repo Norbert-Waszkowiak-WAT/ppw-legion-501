@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://bfqfqq7ggdc2o"]
+[gd_scene load_steps=7 format=3 uid="uid://bfqfqq7ggdc2o"]
 
 [ext_resource type="Texture2D" uid="uid://cdve25cd25dtp" path="res://textures/skill_tree/skill_button.png" id="1_2jp60"]
 [ext_resource type="Theme" uid="uid://di4l5lx6nd1kk" path="res://assets/ui/skill_tree/skill_tree.tres" id="1_ptanc"]
 [ext_resource type="Script" path="res://assets/ui/skill_tree/skill_button.gd" id="2_wmkxc"]
+[ext_resource type="AudioStream" uid="uid://ecwyoyf7u4qs" path="res://assets/ui/menu_hover.wav" id="4_tiopq"]
+[ext_resource type="AudioStream" uid="uid://wf083sj16yuf" path="res://assets/ui/skill_tree/ability_buy.mp3" id="5_tgvqx"]
+[ext_resource type="AudioStream" uid="uid://bcuhrfebd66e" path="res://assets/ui/skill_tree/ability_sell.wav" id="6_4mhxc"]
 
 [node name="skill_button" type="TextureButton"]
 self_modulate = Color(0.7, 0.7, 0.7, 1)
@@ -37,4 +40,20 @@ top_level = true
 width = 20.0
 default_color = Color(0.556863, 0.556863, 0.556863, 1)
 
+[node name="hover_tick" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_tiopq")
+max_polyphony = 2
+bus = &"Menu"
+
+[node name="ability_buy" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_tgvqx")
+volume_db = -5.0
+bus = &"Menu"
+
+[node name="ability_sell" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_4mhxc")
+volume_db = -10.0
+bus = &"Menu"
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="toggled" from="." to="." method="_on_toggled"]

@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://dwqkmdjdqdjmt"]
+[gd_scene load_steps=9 format=3 uid="uid://dwqkmdjdqdjmt"]
 
 [ext_resource type="Script" path="res://assets/ui/radial_ability_menu/radial_ability_menu.gd" id="1_kuln6"]
 [ext_resource type="Texture2D" uid="uid://c2etsx5htti41" path="res://textures/skill_tree/skill_buttons/ability_push_one_side.png" id="2_cftci"]
 [ext_resource type="Script" path="res://assets/ui/radial_ability_menu/wheel_option.gd" id="2_yf4de"]
 [ext_resource type="Texture2D" uid="uid://c3b3jt3utfc3t" path="res://textures/skill_tree/skill_buttons/ability_time.png" id="4_mrca7"]
+[ext_resource type="Texture2D" uid="uid://ydvi0vdu32ms" path="res://textures/skill_tree/skill_buttons/lazer.png" id="5_b17xa"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wp7wb"]
 atlas = ExtResource("2_cftci")
@@ -16,6 +17,12 @@ atlas = ExtResource("4_mrca7")
 region = Rect2(0, 0, 22, 22)
 script = ExtResource("2_yf4de")
 name = "bullet_time"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x55k0"]
+atlas = ExtResource("5_b17xa")
+region = Rect2(0, 0, 22, 22)
+script = ExtResource("2_yf4de")
+name = "lazer"
 
 [node name="radial_ability_menu" type="Control"]
 layout_mode = 3
@@ -34,4 +41,4 @@ disabled_color = Color(0, 0, 0, 0.988235)
 cursor_width = 13.0
 separator_width = 3.0
 icon_scale = 5.5
-options = Array[ExtResource("2_yf4de")]([SubResource("AtlasTexture_wp7wb"), SubResource("AtlasTexture_4ytuo")])
+options = Array[ExtResource("2_yf4de")]([SubResource("AtlasTexture_wp7wb"), SubResource("AtlasTexture_4ytuo"), SubResource("AtlasTexture_x55k0")])

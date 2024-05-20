@@ -2,6 +2,8 @@ extends Node
 
 var abilities = {
 	# Movement
+	"exoskeleton": false,
+	"exoskeleton_2": false,
 	"double_jump": false,
 	"dash": false,
 	"air_dash": false,
@@ -21,17 +23,20 @@ var abilities = {
 	"hollow_points": false,
 	"stopping_power": false,
 	"large_caliber": false,
-	"hollow_points_II": false,
-	"stopping_power_II": false,
+	"hollow_points_2": false,
+	"stopping_power_2": false,
 	"tuned_trigger": false,
 	
 	# Magic
 	"bullet_time": false,
 	"quake": false,
-	"bullet_time_II": false,
-	"quake_II": false,
-	"bullet_time_III": false,
-	"quake_III": false
+	"lazer": false,
+	"bullet_time_2": false,
+	"quake_2": false,
+	"lazer_2": false,
+	"bullet_time_3": false,
+	"quake_3": false,
+	"lazer_3": false
 	
 }
 
@@ -102,6 +107,8 @@ func load_game(file_index : String):
 func reset_player():
 	abilities = {
 	# Movement
+	"exoskeleton": false,
+	"exoskeleton_2": false,
 	"double_jump": false,
 	"dash": false,
 	"air_dash": false,
@@ -121,17 +128,20 @@ func reset_player():
 	"hollow_points": false,
 	"stopping_power": false,
 	"large_caliber": false,
-	"hollow_points_II": false,
-	"stopping_power_II": false,
+	"hollow_points_2": false,
+	"stopping_power_2": false,
 	"tuned_trigger": false,
 	
 	# Magic
 	"bullet_time": false,
 	"quake": false,
-	"bullet_time_II": false,
-	"quake_II": false,
-	"bullet_time_III": false,
-	"quake_III": false
+	"lazer": false,
+	"bullet_time_2": false,
+	"quake_2": false,
+	"lazer_2": false,
+	"bullet_time_3": false,
+	"quake_3": false,
+	"lazer_3": false
 	
 	}
 	exp_lvl = 0

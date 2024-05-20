@@ -1,10 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://ddq4hjwbfxe7a"]
+[gd_scene load_steps=10 format=3 uid="uid://ddq4hjwbfxe7a"]
 
 [ext_resource type="Script" path="res://assets/ui/winning_menu/winning_menu.gd" id="1_e4kfp"]
 [ext_resource type="Texture2D" uid="uid://cdl2mva1ibxdu" path="res://textures/main-menu/logo.png" id="2_0ebxm"]
 [ext_resource type="FontFile" uid="uid://wlq1kryvxbf5" path="res://textures/main-menu/VCR_OSD_MONO_1.001.ttf" id="3_yx142"]
 [ext_resource type="Theme" uid="uid://dygspx1ouf0ul" path="res://assets/ui/main_menu/main_menu.tres" id="4_llyba"]
 [ext_resource type="Shader" path="res://assets/ui/screen_blur.gdshader" id="5_oguov"]
+[ext_resource type="AudioStream" uid="uid://ecwyoyf7u4qs" path="res://assets/ui/menu_hover.wav" id="6_4perw"]
+[ext_resource type="AudioStream" uid="uid://cg74k4rxcyj87" path="res://assets/ui/skill_tree/select_click.mp3" id="6_6n65f"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_5nhfc"]
 font = ExtResource("3_yx142")
@@ -129,6 +131,16 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(1, 1, 1, 0)
+
+[node name="select_click" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_6n65f")
+volume_db = -10.0
+bus = &"Menu"
+
+[node name="hover_tick" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_4perw")
+max_polyphony = 3
+bus = &"Menu"
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/next_level" to="." method="_on_next_level_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/restart" to="." method="_on_restart_pressed"]

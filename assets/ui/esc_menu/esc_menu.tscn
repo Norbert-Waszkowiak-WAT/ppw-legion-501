@@ -1,9 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://cqbudavifcd8g"]
+[gd_scene load_steps=8 format=3 uid="uid://cqbudavifcd8g"]
 
 [ext_resource type="Script" path="res://assets/ui/esc_menu/esc_menu.gd" id="1_jse3w"]
 [ext_resource type="Texture2D" uid="uid://cdl2mva1ibxdu" path="res://textures/main-menu/logo.png" id="2_elwvq"]
 [ext_resource type="Theme" uid="uid://dygspx1ouf0ul" path="res://assets/ui/main_menu/main_menu.tres" id="3_hqllu"]
 [ext_resource type="Shader" path="res://assets/ui/screen_blur.gdshader" id="4_3n8pe"]
+[ext_resource type="AudioStream" uid="uid://ecwyoyf7u4qs" path="res://assets/ui/menu_hover.wav" id="5_132np"]
+[ext_resource type="AudioStream" uid="uid://cg74k4rxcyj87" path="res://assets/ui/skill_tree/select_click.mp3" id="6_myslh"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bl6dj"]
 shader = ExtResource("4_3n8pe")
@@ -106,6 +108,16 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 0)
+
+[node name="hover_tick" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_132np")
+max_polyphony = 3
+bus = &"Menu"
+
+[node name="select_click" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_myslh")
+volume_db = -10.0
+bus = &"Menu"
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/resume" to="." method="unpause"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/restart" to="." method="_on_restart_pressed"]

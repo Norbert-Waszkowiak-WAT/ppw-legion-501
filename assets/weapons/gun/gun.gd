@@ -47,7 +47,7 @@ func _process(delta):
 			else:
 				damage = 6
 			spread = 1.3
-			if PlayerVariables.abilities.hollow_points_II:
+			if PlayerVariables.abilities.hollow_points_2:
 				knockback = 0.1
 			else:
 				knockback = 0
@@ -62,7 +62,7 @@ func _process(delta):
 			else:
 				damage = 10
 			spread = 0.8
-			if PlayerVariables.abilities.stopping_power_II:
+			if PlayerVariables.abilities.stopping_power_2:
 				knockback = 0.1
 			else:
 				knockback = 0

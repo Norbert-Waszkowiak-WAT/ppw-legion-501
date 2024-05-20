@@ -39,3 +39,13 @@ func unpause():
 	tween.set_parallel(false)
 	tween.tween_callback(queue_free)
 	tween.tween_callback(get_parent().set_paused.bind(false))
+
+
+
+
+func _on_tab_container_tab_hovered(tab):
+	$hover_tick.play()
+
+
+func _on_tab_container_tab_selected(tab):
+	$select_click.play()

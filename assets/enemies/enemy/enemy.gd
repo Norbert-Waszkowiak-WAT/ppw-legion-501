@@ -150,7 +150,6 @@ func apply_damage(damage, knockback, pos : Vector2):
 	apply_knockback(knockback, pos)
 	$healthbar.show()
 	$health_timer.start()
-	$damage_timer.start()
 
 
 # Odrzucenie podczas otrzymywania obrażeń
@@ -227,7 +226,6 @@ func idle(delta: float):
 	$navigation_timer.stop()
 	
 	if position.distance_to(player.position) <= detection_range and sees_player():
-		speed = chase_speed
 		update_path()
 		change_state(states.chase)
 	if position.distance_to(player.position) <= attack_range and sees_player():
@@ -237,7 +235,7 @@ func idle(delta: float):
 # Odpowiada za zachowanie wroga podczas gonienia gracza
 func chase(delta: float):
 	if reaction_timer <= 0:
-		pass
+		speed = chase_speed
 	else:
 		reaction_timer -= delta
 	

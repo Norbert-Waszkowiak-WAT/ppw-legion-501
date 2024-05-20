@@ -45,8 +45,8 @@ var using_ability : bool = false
 @onready var sprite = get_node("AnimatedSprite2D")
 @onready var healthbar = get_node("HUD/healthbar")
 @onready var expbar = get_node("HUD/expbar")
-@onready var weapons = $AnimatedSprite2D.get_children()
-@onready var level = get_tree().get_root().get_child(0)
+@onready var weapons = $AnimatedSprite2D.find_children("*", "Weapon")
+@onready var level = get_tree().get_root().get_child(1)
 
 
 var selected_weapon : Weapon
@@ -68,6 +68,8 @@ func _ready():
 		if weapon.has_method("set_target"):
 			weapon.set_target("enemies")
 	switch_weapon(default_weapon)
+	
+	$AnimatedSprite2D/lazer_ability.camera = $Camera2D
 	
 	PlayerVariables.ammo = PlayerVariables.MAX_AMMO
 	set_enabled(false)
@@ -102,7 +104,8 @@ func _process(delta):
 	process_weapons()
 	process_footstep_audio()
 	process_ghosting()
-	process_abilities()
+	if level is Level:
+		process_abilities()
 
 
 # Obsługuje fizykę 
@@ -374,10 +377,10 @@ func process_abilities():
 				var enemies = get_tree().get_nodes_in_group("enemies")
 				for enemy in enemies as Array[Enemy]:
 					if enemy.position.distance_to(position) <= PlayerVariables.quake_range:
-						if PlayerVariables.abilities.quake_III:
+						if PlayerVariables.abilities.quake_3:
 							var strength = randf_range(0.75 * PlayerVariables.quake_strength, 1.75 * PlayerVariables.quake_strength)
 							enemy.apply_damage(PlayerVariables.quake_damage, strength, position)
-						elif PlayerVariables.abilities.quake_II:
+						elif PlayerVariables.abilities.quake_2:
 							var strength = randf_range(0.75 * PlayerVariables.quake_strength, 1.75 * PlayerVariables.quake_strength)
 							enemy.apply_knockback(strength, position)
 						else:
@@ -390,19 +393,22 @@ func process_abilities():
 			"bullet_time":
 				using_ability = true
 				var time_mod
+				var player_slowdown
 				var duration
 				
-				if PlayerVariables.abilities.bullet_time_II:
+				if PlayerVariables.abilities.bullet_time_2:
 					duration = PlayerVariables.bullet_time_duration + 1
 				else:
 					duration = PlayerVariables.bullet_time_duration
-				if PlayerVariables.abilities.bullet_time_III:
-					time_mod = 0.2
+				if PlayerVariables.abilities.bullet_time_3:
+					time_mod = 0.4
+					player_slowdown = 0.9
 				else:
-					time_mod = 0.5
+					time_mod = 0.6
+					player_slowdown = 0.8
 				
 				Engine.time_scale = time_mod
-				set_player_time_scale(0.8 / time_mod)
+				set_player_time_scale(player_slowdown / time_mod)
 				
 				$HUD/bullet_time_effect.enable()
 				AudioServer.get_bus_effect(2, 0).pitch_scale = 0.7
@@ -418,6 +424,27 @@ func process_abilities():
 				
 				ability_cooldown_timer = ability_cooldown
 				using_ability = false
+			"lazer":
+				using_ability = true
+				var duration
+				
+				if PlayerVariables.abilities.lazer_2:
+					duration = 8.0
+				else:
+					duration = 5.0
+				if PlayerVariables.abilities.lazer_3:
+					$AnimatedSprite2D/lazer_ability.damage_per_second = 120
+				else:
+					$AnimatedSprite2D/lazer_ability.damage_per_second = 85
+				
+				$AnimatedSprite2D/lazer_ability.set("laser_enabled", true)
+				
+				await get_tree().create_timer(duration).timeout
+				
+				$AnimatedSprite2D/lazer_ability.set("laser_enabled", false)
+				
+				ability_cooldown_timer = ability_cooldown
+				using_ability = false
 	
 	if ability_cooldown_timer > 0:
 		ability_cooldown_timer -= get_process_delta_time()
@@ -426,3 +453,12 @@ func process_abilities():
 		PlayerVariables.MAX_AMMO = 80
 	else:
 		PlayerVariables.MAX_AMMO = 40
+	
+	if PlayerVariables.abilities.exoskeleton:
+		speed = 90
+	else:
+		speed = 75
+	if PlayerVariables.abilities.exoskeleton_2:
+		jump_height = 40
+	else:
+		jump_height = 35

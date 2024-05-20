@@ -43,11 +43,10 @@ func _process(delta):
 	else:
 		disabled = false
 	
+	excluded = false
 	for excluded_button in excluded_buttons:
-		if button_pressed:
-			excluded_button.excluded = true
-		else:
-			excluded_button.excluded = false
+		if excluded_button.button_pressed:
+			excluded = true
 	
 	# Wizualne efekty przycisku (tymczasowe)
 	if disabled:
@@ -90,8 +89,14 @@ func _on_toggled(pressed_button):
 	# Odejmuje / dodaje punkty umiejętności
 	if pressed_button:
 		PlayerVariables.skill_points -= 1
+		$ability_buy.play()
 	else:
 		PlayerVariables.skill_points += 1
+		$ability_sell.play()
 	# Aktualizuje globalną zmienną umiejętności
 	PlayerVariables.abilities[ability_name] = pressed_button
 
+
+
+func _on_mouse_entered():
+	$hover_tick.play()

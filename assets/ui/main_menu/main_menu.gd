@@ -24,8 +24,11 @@ var tween : Tween
 func _ready():
 	load_settings()
 	startup_animation()
+	
+	await tween.finished
 	for button in buttons as Array[Button]:
 		button.focus_entered.connect(_on_focus_entered)
+		button.pressed.connect(_on_button_pressed)
 
 
 func _process(_delta):
@@ -36,6 +39,9 @@ func _process(_delta):
 
 func _on_focus_entered():
 	$hover_tick.play()
+
+func _on_button_pressed():
+	$select_click.play()
 
 
 func _on_new_game_pressed():
@@ -82,12 +88,13 @@ func startup_animation():
 	animate()
 	tween.tween_property(self, "modulate", Color.WHITE, startup_delay)
 	
+	tween.tween_property($MarginContainer/VBoxContainer, "modulate:a", 1.0, 2 * startup_delay / 3)
+	tween.set_parallel(false)
+	
 	# Włącza przyciski po opóźnieniu
 	tween.tween_callback(set_buttons_disabled.bind(false))
 	if $MarginContainer/VBoxContainer/main_screen/new_game:
 		tween.tween_callback($MarginContainer/VBoxContainer/main_screen/new_game.grab_focus)
-	
-	tween.tween_property($MarginContainer/VBoxContainer, "modulate:a", 1.0, 2 * startup_delay / 3)
 	tween.tween_callback(set_process.bind(true))
 	
 	

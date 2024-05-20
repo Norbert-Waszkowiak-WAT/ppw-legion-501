@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://crl4bl20w7j5i"]
+[gd_scene load_steps=9 format=3 uid="uid://crl4bl20w7j5i"]
 
 [ext_resource type="Theme" uid="uid://di4l5lx6nd1kk" path="res://assets/ui/skill_tree/skill_tree.tres" id="1_qahuc"]
 [ext_resource type="Script" path="res://assets/ui/skill_tree/skill_tree_menu.gd" id="1_wct68"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://b2exxvumi4f4t" path="res://assets/ui/skill_tree/melee.tscn" id="4_o3rub"]
 [ext_resource type="PackedScene" uid="uid://c58ee86830p4l" path="res://assets/ui/skill_tree/ranged.tscn" id="5_ct6cl"]
 [ext_resource type="PackedScene" uid="uid://dodot8o48a5wu" path="res://assets/ui/skill_tree/magic.tscn" id="6_n02c6"]
+[ext_resource type="AudioStream" uid="uid://ecwyoyf7u4qs" path="res://assets/ui/menu_hover.wav" id="7_kfr42"]
+[ext_resource type="AudioStream" uid="uid://cg74k4rxcyj87" path="res://assets/ui/skill_tree/select_click.mp3" id="8_7i6fr"]
 
 [node name="skill_tree_menu" type="CanvasLayer"]
 script = ExtResource("1_wct68")
@@ -67,6 +69,7 @@ tab_alignment = 1
 layout_mode = 2
 
 [node name="Melee" parent="MarginContainer/VBoxContainer/Panel/MarginContainer/TabContainer" instance=ExtResource("4_o3rub")]
+visible = false
 layout_mode = 2
 
 [node name="Ranged" parent="MarginContainer/VBoxContainer/Panel/MarginContainer/TabContainer" instance=ExtResource("5_ct6cl")]
@@ -76,3 +79,16 @@ layout_mode = 2
 [node name="Magic" parent="MarginContainer/VBoxContainer/Panel/MarginContainer/TabContainer" instance=ExtResource("6_n02c6")]
 visible = false
 layout_mode = 2
+
+[node name="hover_tick" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_kfr42")
+max_polyphony = 3
+bus = &"Menu"
+
+[node name="select_click" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_7i6fr")
+volume_db = -10.0
+bus = &"Menu"
+
+[connection signal="tab_hovered" from="MarginContainer/VBoxContainer/Panel/MarginContainer/TabContainer" to="." method="_on_tab_container_tab_hovered"]
+[connection signal="tab_selected" from="MarginContainer/VBoxContainer/Panel/MarginContainer/TabContainer" to="." method="_on_tab_container_tab_selected"]

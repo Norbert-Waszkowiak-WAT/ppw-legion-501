@@ -1,6 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://ckdp4bvu8yt7m"]
+[gd_scene load_steps=12 format=3 uid="uid://ckdp4bvu8yt7m"]
 
 [ext_resource type="Script" path="res://assets/levels/boss_level/boss_level.gd" id="1_msgft"]
+[ext_resource type="PackedScene" uid="uid://cce0384rupgli" path="res://assets/ui/endgame_menu/endgame_menu.tscn" id="2_eh267"]
 [ext_resource type="PackedScene" uid="uid://b8kl60fulqq1u" path="res://assets/player/player.tscn" id="3_2bhf7"]
 [ext_resource type="PackedScene" uid="uid://cnx5rij8q6qap" path="res://assets/enemies/boss/boss.tscn" id="3_ew13t"]
 [ext_resource type="Texture2D" uid="uid://ctjk0fh1y7pbc" path="res://textures/level1/Tlo1.png" id="4_uvjew"]
@@ -29,6 +30,7 @@ script = ExtResource("1_msgft")
 enemy_spawn_chance = 0.3
 waves_in_sequence = 3.0
 boss_damage_to_shield = 500.0
+endgame_menu = ExtResource("2_eh267")
 
 [node name="player" parent="." instance=ExtResource("3_2bhf7")]
 visible = false

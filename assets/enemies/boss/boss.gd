@@ -2,6 +2,8 @@ extends StaticBody2D
 class_name Boss
 
 
+signal boss_defeated
+
 enum Sequence {HORDE_SEQ, ATTACK_SEQ}
 var current_sequence : Sequence
 
@@ -72,6 +74,7 @@ func attack_seq_process(delta):
 
 func die():
 	set_process(false)
+	boss_defeated.emit()
 
 
 func update_health():

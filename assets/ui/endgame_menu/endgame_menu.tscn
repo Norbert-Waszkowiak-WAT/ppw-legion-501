@@ -1,0 +1,135 @@
+[gd_scene load_steps=10 format=3 uid="uid://cce0384rupgli"]
+
+[ext_resource type="Script" path="res://assets/ui/endgame_menu/endgame_menu.gd" id="1_r3nsj"]
+[ext_resource type="Texture2D" uid="uid://cdl2mva1ibxdu" path="res://textures/main-menu/logo.png" id="2_8ci5p"]
+[ext_resource type="FontFile" uid="uid://wlq1kryvxbf5" path="res://textures/main-menu/VCR_OSD_MONO_1.001.ttf" id="3_q4244"]
+[ext_resource type="Theme" uid="uid://dygspx1ouf0ul" path="res://assets/ui/main_menu/main_menu.tres" id="4_n75on"]
+[ext_resource type="Shader" path="res://assets/ui/screen_blur.gdshader" id="5_mx4dm"]
+[ext_resource type="AudioStream" uid="uid://cg74k4rxcyj87" path="res://assets/ui/skill_tree/select_click.mp3" id="6_7n84a"]
+[ext_resource type="AudioStream" uid="uid://ecwyoyf7u4qs" path="res://assets/ui/menu_hover.wav" id="7_13lb4"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_5nhfc"]
+font = ExtResource("3_q4244")
+font_size = 176
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rrbiv"]
+shader = ExtResource("5_mx4dm")
+shader_parameter/lod = 0.0
+
+[node name="winning_menu" type="CanvasLayer"]
+script = ExtResource("1_r3nsj")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -1080.0
+offset_bottom = -1080.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_stretch_ratio = 0.0
+theme_override_constants/separation = 10
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_bottom = 60
+
+[node name="title" type="TextureRect" parent="MarginContainer/VBoxContainer/MarginContainer"]
+visible = false
+texture_filter = 1
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_8ci5p")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+text = "BOSS DEFEATED"
+label_settings = SubResource("LabelSettings_5nhfc")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="main_menu" type="Button" parent="MarginContainer/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_neighbor_top = NodePath("../restart")
+focus_neighbor_bottom = NodePath("../exit")
+theme = ExtResource("4_n75on")
+text = "main menu"
+
+[node name="restart" type="Button" parent="MarginContainer/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+size_flags_stretch_ratio = 0.0
+focus_neighbor_bottom = NodePath("../main_menu")
+theme = ExtResource("4_n75on")
+text = "restart"
+
+[node name="exit" type="Button" parent="MarginContainer/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_neighbor_top = NodePath("../main_menu")
+theme = ExtResource("4_n75on")
+text = "exit"
+
+[node name="background" type="ColorRect" parent="."]
+z_index = -1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.341176, 0.545098, 0.337255, 0)
+
+[node name="tint" type="ColorRect" parent="."]
+z_index = -1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.341176, 0.545098, 0.337255, 0)
+
+[node name="blur" type="ColorRect" parent="."]
+z_index = -1
+material = SubResource("ShaderMaterial_rrbiv")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 1, 1, 0)
+
+[node name="select_click" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_7n84a")
+volume_db = -10.0
+bus = &"Menu"
+
+[node name="hover_tick" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_13lb4")
+max_polyphony = 3
+bus = &"Menu"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/main_menu" to="." method="_on_main_menu_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/exit" to="." method="_on_exit_pressed"]

@@ -11,6 +11,8 @@ var waves_remaining : float
 @export var boss_damage_to_shield : float
 var boss_health_to_shield : float
 
+@export var endgame_menu : PackedScene
+
 @onready var player : Player = $player
 @onready var terrain : TileMap = $terrain
 @onready var boss : Boss = $boss
@@ -22,6 +24,7 @@ var boss_health_to_shield : float
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	super()
+	$boss.boss_defeated.connect(on_boss_defeated)
 	
 	#PlayerVariables.skill_points = 10
 	
@@ -31,6 +34,9 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	super(delta)
+	
+	if Input.is_action_just_pressed("ui_end"):
+		boss.apply_damage(50000, 0, Vector2.ZERO)
 	
 	match current_sequence:
 		Sequence.HORDE_SEQ:
@@ -121,3 +127,13 @@ func spawn_wave_of_enemies():
 
 func spawn_enemies():
 	pass
+
+
+func on_boss_defeated():
+	set_process(false)
+	current_sequence = Sequence.ENTER_SEQ
+	#var tween = create_tween().set_trans(Tween.TRANS_CIRC).set_ease(Tween.EASE_OUT)
+	#tween.tween_property(Engine, "time_scale", 0, 1.0)
+	#await tween.finished
+	var menu = endgame_menu.instantiate()
+	add_child(menu)
